@@ -7,3 +7,9 @@ class RSVP(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'), nullable=False)
+
+
+    #RSVP has a single event
+    event = db.relationship('Event', back_populates='rsvps')
+    #RSVP has a single User
+    user = db.relationship('User', back_populates='rsvps')
