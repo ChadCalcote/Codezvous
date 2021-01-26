@@ -9,8 +9,9 @@ user_routes = Blueprint('users', __name__)
 # @login_required
 def users():
     users = User.query.all() # returns a list of users
-    return {"users": [user.to_dict() for user in users]} # wrapped it in obj ==> JSON
+    return {"users": [user.to_dict() for user in users]} # <== this is the way.
     # return jsonify(([user.to_dict() for user in users]))
+
 # Retrieve single user
 @user_routes.route('/<int:id>')
 @login_required
@@ -24,11 +25,13 @@ def user(id):
 def user_groups(id):
     # user_groups = Users_Group.query.filter(Users_Group.user_id == id).all()
     groups = Group.query.filter(Group.leader_id == id).all()
-    return jsonify([group.to_dict() for group in groups])
+    return {"user_groups": [group.to_dict() for group in groups]}
 
 # Retrieve user events
+# we want all group's events
 @user_routes.route('/<int:id>/events')
-@login_required
+# @login_required
 def user_events(id):
-    user_events = RSVP.query.filter(RSVP.user_id == id).all()
-    return user_events.to_dict()
+    user_RSVPs = RSVP.query.join(Event).filter(RSVP.user_id == id).all()
+    events = [user_RSVP.event for user_RSVP in user_RSVPs]
+    return {"user_events": [event.event_name for event in events]}
