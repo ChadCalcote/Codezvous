@@ -59,7 +59,6 @@ const EventPage = () => {
           <div className="event-body_sim-events">
               {/* header tag */}
               {/* Event Components */}
-
           </div>
         </div>
         <div className="event-footer">
