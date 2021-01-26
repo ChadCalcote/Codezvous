@@ -18,5 +18,5 @@ def seed_rsvps():
 
 
 def undo_rsvps():
-    db.session.execute('TRUNCATE rsvps;')
+    db.session.execute('TRUNCATE rsvps CASCADE;')
     db.session.commit()

@@ -14,5 +14,5 @@ def seed_comments():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_comments():
-    db.session.execute('TRUNCATE comments;')
+    db.session.execute('TRUNCATE comments CASCADE;')
     db.session.commit()

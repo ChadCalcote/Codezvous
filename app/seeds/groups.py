@@ -15,5 +15,5 @@ def seed_groups():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_groups():
-    db.session.execute('TRUNCATE groups;')
+    db.session.execute('TRUNCATE groups CASCADE;')
     db.session.commit()
