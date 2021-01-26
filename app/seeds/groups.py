@@ -4,7 +4,7 @@ from app.models import db, Group
 def seed_groups():
 
     demo_group1 = Group(group_name='javascript group', description='We are passionate about Javascript!',
-                city='Austn', state='Texas', zip_code=78704, leader_id=1)
+                city='Austin', state='Texas', zip_code=78704, leader_id=2)
 
     db.session.add(demo_group1)
 

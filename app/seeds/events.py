@@ -3,7 +3,7 @@ from app.models import db, Event
 # Adds a demo user, you can add other users here if you want
 def seed_events():
 
-    demo_event1 = Event(event_name='javascripting-only', description='Don\'t forget the semicolons!', address='208 Barton Springs Rd', city='Austn', state='Texas', zip_code=78704, type='Workshop', group_id=1)
+    demo_event1 = Event(event_name='javascripting-only', description='Don\'t forget the semicolons!', address='208 Barton Springs Rd', city='Austin', state='Texas', zip_code=78704, type='Workshop', group_id=1)
 
     db.session.add(demo_event1)
 

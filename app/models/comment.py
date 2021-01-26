@@ -13,3 +13,11 @@ class Comment(db.Model):
     user = db.relationship('User', back_populates='comments')
     #Comment related to a single Event
     event = db.relationship('Event', back_populates='comments')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'event_id': self.event_id,
+            'body': self.body
+        }

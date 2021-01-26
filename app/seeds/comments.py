@@ -3,7 +3,7 @@ from app.models import db, Comment
 # Adds a demo user, you can add other users here if you want
 def seed_comments():
 
-    demo_comment1 = Comment(user_id=1, event_id=1, body='This event is wack. This is a workshop happening outdoors...for coding.')
+    demo_comment1 = Comment(user_id=2, event_id=1, body='This event is wack. This is a workshop happening outdoors...for coding.')
 
     db.session.add(demo_comment1)
 

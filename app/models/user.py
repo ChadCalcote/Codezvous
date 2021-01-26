@@ -11,16 +11,15 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-
-    #User has many RSVPs
+    # User has many RSVPs
     rsvps = db.relationship('RSVP', back_populates='user')
-    #User has many comments
+    # User has many comments
     comments = db.relationship('Comment', back_populates='user')
-    #User has one lead_Groups
+    # User has one lead_Groups
     lead_group = db.relationship('Group', back_populates='leader')
-    #User has many Groups
-    groups = db.relationship('Group', secondary='users_groups', back_populates='members')
-
+    # User has many Groups
+    groups = db.relationship(
+        'Group', secondary='users_groups', back_populates='members')
 
     @property
     def password(self):

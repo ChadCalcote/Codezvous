@@ -3,7 +3,7 @@ from app.models import db, Users_Group
 # Adds a demo user, you can add other users here if you want
 def seed_users_groups():
 
-    demo_users_group1 = Users_Group(user_id=1, group_id=1)
+    demo_users_group1 = Users_Group(user_id=2, group_id=1)
 
     db.session.add(demo_users_group1)
 

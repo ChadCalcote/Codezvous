@@ -5,7 +5,7 @@ from app.models import db, RSVP
 
 def seed_rsvps():
 
-    demo_rsvp1 = RSVP(user_id=1, event_id=1)
+    demo_rsvp1 = RSVP(user_id=2, event_id=1)
 
     db.session.add(demo_rsvp1)
 

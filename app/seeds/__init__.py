@@ -14,20 +14,20 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     seed_users()
-    # seed_groups()
-    # seed_events()
-    # seed_rsvps()
-    # seed_comments()
-    # seed_users_groups()
+    seed_groups()
+    seed_events()
+    seed_rsvps()
+    seed_comments()
+    seed_users_groups()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
     undo_users()
-    # undo_groups()
-    # undo_events()
-    # undo_rsvps()
-    # undo_comments()
-    # undo_users_groups()
+    undo_groups()
+    undo_events()
+    undo_rsvps()
+    undo_comments()
+    undo_users_groups()
     # Add other undo functions here
