@@ -2,8 +2,8 @@ export const formatTime = (dateToParse) => {
 
   const dateObj = new Date(dateToParse);
 
-  const hour = dateObj.getHours(); // 2
-  const minute = dateObj.getMinutes(); // 58
+  let hour = dateObj.getHours(); // 2
+  let minute = dateObj.getMinutes(); // 58
 
   let newHour;
 
