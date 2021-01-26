@@ -32,7 +32,7 @@ class Event(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'event_name': self.group_name,
+            'event_name': self.event_name,
             'description': self.description,
             'address': self.address,
             'city': self.city,

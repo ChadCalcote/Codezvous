@@ -23,8 +23,7 @@ def user(id):
 @user_routes.route('/<int:id>/groups')
 # @login_required
 def user_groups(id):
-    # user_groups = Users_Group.query.filter(Users_Group.user_id == id).all()
-    groups = Group.query.filter(Group.leader_id == id).all()
+    groups = Group.query.join(Users_Group).filter(Users_Group.user_id == id).all()
     return {"user_groups": [group.to_dict() for group in groups]}
 
 # Retrieve user events
@@ -32,6 +31,13 @@ def user_groups(id):
 @user_routes.route('/<int:id>/events')
 # @login_required
 def user_events(id):
-    user_RSVPs = RSVP.query.join(Event).filter(RSVP.user_id == id).all()
-    events = [user_RSVP.event for user_RSVP in user_RSVPs]
-    return {"user_events": [event.event_name for event in events]}
+    user_RSVPs = Event.query.join(RSVP).filter(RSVP.user_id == id).all()
+    return {"user_events": [event.to_dict() for event in user_RSVPs]}
+
+
+    # initial approach (for future reference):
+    # 1. grabbing user RSVPs where user's id matches RSVP user's id
+    # user_RSVPs = RSVP.query.join(Event).filter(RSVP.user_id == id).all()
+    # 2. grabbing iterables of user_RSVP, then for each user_RSVP, we're keying into our relationship.
+    # user_RSVP.event is taking that instance, finding the
+    # events = [user_RSVP.event for user_RSVP in user_RSVPs]
