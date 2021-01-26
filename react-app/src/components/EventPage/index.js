@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useState } from 'react';
+import { formatTime, formatDate } from '../../dateFunctions';
 // List Out Data from Single Event
 // List Out Data about Attendees
 // List Out Data about Comments
@@ -22,12 +23,13 @@ const event = {
   status: "upcoming",
   group_id: 41,
   image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
-  start_time: "2021-04-12 12:05:00 America/Chicago",
-  end_time: "2021-04-12 14:50:00 America/Chicago",
+  start_time: "2021-04-12 12:05:00",
+  end_time: "2021-04-12 14:50:00",
   createdAt: "2020-10-18T20:26:34.256Z",
   updatedAt: "2020-10-18T20:26:34.256Z",
 };
 
+console.log(event.start_time);
 const EventPage = () => {
     const params = useParams();
 
@@ -42,7 +44,7 @@ const EventPage = () => {
       <div className="event-page">
         <h1>Event Page!</h1>
         <div className="event-header">
-          <div className="event-header_date"></div>
+          <div className="event-header_date"><h4>{formatDate(event.start_time, 'long')}</h4></div>
           <div className="event-header_title"></div>
           <div className="event-header_leader"></div>
         </div>
