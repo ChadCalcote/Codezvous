@@ -23,9 +23,18 @@ def seed_comments():
     # =====================================================
 
     demo_comment3 = Comment(
-        user_id=1, event_id=1, body='Testing comment seed data.')
+        user_id=1, event_id=2, body='Testing comment seed data.')
 
     db.session.add(demo_comment3)
+
+    db.session.commit()
+
+    # =====================================================
+
+    demo_comment4 = Comment(
+        user_id=3, event_id=1, body='Testing comment seed data.')
+
+    db.session.add(demo_comment4)
 
     db.session.commit()
 
