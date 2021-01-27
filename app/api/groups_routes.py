@@ -10,7 +10,7 @@ groups_routes = Blueprint('groups', __name__)
 @groups_routes.route('/')
 def groups():
     groups = Group.query.all()
-    return {"groups": [group.to_dict() for group in groups]}
+    return jsonify([group.to_dict() for group in groups])
 
 # Retrieve a single group
 
