@@ -77,3 +77,11 @@ def delete(id):
     db.session.commit()
 
     return {"message": "success"}
+
+
+@events_routes.route('/<int:id>/rsvps', methods=['POST'])
+def rsvp(id):
+    rsvp = RSVP(event_id=id)
+    db.session.add(rsvp)
+    db.session.commit()
+    # user_id
