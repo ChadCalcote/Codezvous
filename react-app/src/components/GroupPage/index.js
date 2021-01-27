@@ -1,8 +1,12 @@
 import { useParams } from 'react-router-dom';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { formatTime, formatDate } from '../../dateFunctions';
 import "./GroupPage.css"
+import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
+import { fetchGroupUsers } from "../../store/users";
+
 // List Out Data from Single Event
 // List Out Data about Attendees
 // List Out Data about Comments
@@ -20,13 +24,32 @@ const group = {
 };
 
 const GroupPage = () => {
+    const params = useParams();
+    const dispatch = useDispatch();
+
+    const { groupId } = params;
+
+    const group = useSelector(reduxState => {
+      return reduxState.groups
+    })
+    const groupUsers = useSelector(reduxState => {
+      return reduxState.users
+    })
+
+
+    useEffect(() => {
+      dispatch(fetchOneGroup())
+      dispatch(fetchGroupUsers(groupId))
+    }, [dispatch])
+    console.log('GROUP1', group1)
 
     return (
         <div className="group-page">
             <h1>Group Page!</h1>
             <div className="group-header">
                 <div className="group-header_img">
-                    <img href={group.image_url} />
+                    {!group1 && <h2>Loading....</h2>}
+                    {group1 && <img src={group1[0].image_url} />}
                 </div>
                 <div className="group-header_start-date"><h4>{formatDate(group.createdAt, 'long')}</h4></div>
                 <div className="group-header_location">

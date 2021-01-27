@@ -1,9 +1,12 @@
 import { useParams } from 'react-router-dom';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { formatTime, formatDate } from '../../dateFunctions';
 import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs'
 import "./EventPage.css"
+import { setEvents, fetchAllEvents } from "../../store/events"
+
 // List Out Data from Single Event
 // List Out Data about Attendees
 // List Out Data about Comments
@@ -33,8 +36,18 @@ const event = {
 
 const EventPage = () => {
     const params = useParams();
+    const dispatch = useDispatch();
 
     const { eventId } = params;
+
+    const events = useSelector(reduxState => {
+      return reduxState.events
+      
+    })
+
+    useEffect(() => {
+      dispatch(fetchAllEvents())
+    }, [])
 
     // Set State
     const [leader, setLeader] = useState(false); //can the current user edit/delete the event
