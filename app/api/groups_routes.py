@@ -12,10 +12,15 @@ def groups():
     groups = Group.query.all()
     return {"groups": [group.to_dict() for group in groups]}
 
+# Retrieve a single group
+@groups_routes.route('/<int:id>')
+def group(id):
+    group = Group.query.get(id)
+    return group.to_dict()
 
 # Create a group
-@groups_routes.route('/', methods=['POST'])
-def create_group():
+@groups_routes.route('/', methods=["POST"])
+def post():
     form = CreateNewGroupForm()  # need to create a form
     if form.validate_on_submit():
         new_group = Group()
@@ -25,11 +30,6 @@ def create_group():
         return redirect('/<int:id>')
     return "Bad Data"
 
-# Retrieve a single group
-@groups_routes.route('/<int:id>')
-def group(id):
-    group = Group.query.get(id)
-    return group.to_dict()
 
 # Edit a group
 @groups_routes.route('/<int:id>', methods=["PUT"])
