@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { formatTime, formatDate } from '../../dateFunctions';
 import "./GroupPage.css"
-import { setGroups, fetchAllGroups } from "../../store/groups"
-import { setGroupUsers, fetchGroupUsers } from "../../store/users";
+import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
+import { fetchGroupUsers } from "../../store/users";
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -29,15 +29,16 @@ const GroupPage = () => {
 
     const { groupId } = params;
 
-    const groups = useSelector(reduxState => {
+    const group = useSelector(reduxState => {
       return reduxState.groups
     })
     const groupUsers = useSelector(reduxState => {
       return reduxState.users
     })
-    const group1 = groups.groups
+
+
     useEffect(() => {
-      dispatch(fetchAllGroups())
+      dispatch(fetchOneGroup())
       dispatch(fetchGroupUsers(groupId))
     }, [dispatch])
     console.log('GROUP1', group1)
@@ -48,7 +49,7 @@ const GroupPage = () => {
             <div className="group-header">
                 <div className="group-header_img">
                     {!group1 && <h2>Loading....</h2>}
-                    {group1 && <img href={group1.image_url} />}
+                    {group1 && <img src={group1[0].image_url} />}
                 </div>
                 <div className="group-header_start-date"><h4>{formatDate(group.createdAt, 'long')}</h4></div>
                 <div className="group-header_location">
