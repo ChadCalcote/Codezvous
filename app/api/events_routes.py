@@ -104,14 +104,16 @@ def comments(id):
 @events_routes.route('/<int:id>/comments', methods=['POST'])
 # @login_required
 def post_comments(id):
-    # if form.validate_on_submit():
-    new_comment = Comment(
-        body=request.json['body'], user_id=request.json['user_id'], event_id=id)
-    # user_id, not sure how to find this
-    db.session.add(new_comment)
-    db.session.commit()
-    return new_comment.to_dict()
-    # return 'Bad Data'
+    form = CommentForm()
+    if form.validate_on_submit():
+        new_comment = Comment(
+        #populate_obj combined with request.json?
+        body=form.populate_obj(form), user_id=request.json['user_id'], event_id=id)
+
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict()
+    return 'Bad Data'
 
 
 # Remove comment for an event
