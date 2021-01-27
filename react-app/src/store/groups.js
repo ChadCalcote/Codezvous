@@ -34,6 +34,7 @@ export const fetchOneGroup = (groupsId) => {
 
   return async(dispatch) => {
     const responseFromDb = await fetch(`/api/groups/${groupsId}`);
+    console.log('RES', responseFromDb);
     const group = await responseFromDb.json();
     dispatch(
       setOneGroup(group)

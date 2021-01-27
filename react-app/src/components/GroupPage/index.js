@@ -10,18 +10,18 @@ import { fetchGroupUsers } from "../../store/users";
 // List Out Data from Single Event
 // List Out Data about Attendees
 // List Out Data about Comments
-const group = {
-    id: 1,
-    group_name: "The Awesome Group",
-    description: "This group is the most awesome group of coders in the entire world. our group is so great. We code. We do stuff together. We code together. We are awesome coding together.",
-    city: "Denver",
-    state: "CO",
-    zip_code: "80205",
-    image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
-    leader_id: "1",
-    createdAt: "2020-10-18T20:26:34.256Z",
-    updatedAt: "2020-10-18T20:26:34.256Z",
-};
+// const mockGroup = {
+//     id: 1,
+//     group_name: "The Awesome Group",
+//     description: "This group is the most awesome group of coders in the entire world. our group is so great. We code. We do stuff together. We code together. We are awesome coding together.",
+//     city: "Denver",
+//     state: "CO",
+//     zip_code: "80205",
+//     image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
+//     leader_id: "1",
+//     createdAt: "2020-10-18T20:26:34.256Z",
+//     updatedAt: "2020-10-18T20:26:34.256Z",
+// };
 
 const GroupPage = () => {
     const params = useParams();
@@ -38,18 +38,18 @@ const GroupPage = () => {
 
 
     useEffect(() => {
-      dispatch(fetchOneGroup())
-      dispatch(fetchGroupUsers(groupId))
+      dispatch(fetchOneGroup(groupId));
+      dispatch(fetchGroupUsers(groupId));
     }, [dispatch])
-    console.log('GROUP1', group1)
+    console.log('GROUP', group)
 
     return (
         <div className="group-page">
             <h1>Group Page!</h1>
             <div className="group-header">
                 <div className="group-header_img">
-                    {!group1 && <h2>Loading....</h2>}
-                    {group1 && <img src={group1[0].image_url} />}
+                    {!group && <h2>Loading....</h2>}
+                    {group && <img src={group.image_url} />}
                 </div>
                 <div className="group-header_start-date"><h4>{formatDate(group.createdAt, 'long')}</h4></div>
                 <div className="group-header_location">
