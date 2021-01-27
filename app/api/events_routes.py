@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
-from app.models import Event, Comment, RSVP, db
+from app.models import User, Event, Comment, RSVP, db
 
 
 events_routes = Blueprint('events', __name__)
@@ -10,19 +10,23 @@ events_routes = Blueprint('events', __name__)
 @events_routes.route('/')
 def events():
     events = Event.query.all()
-    return {"events": [event.to_dict() for event in events]}
+    return jsonify([event.to_dict() for event in events])
+
 
 # Retrieve a single event
-
-
 @events_routes.route('/<int:id>')
 def event(id):
     event = Event.query.get(id)
     return event.to_dict()
 
+
+# Retrieve a event leader (group leader)
+# @events_routes.route('/<int:id>/leader') # this is event id
+# def event_leader(id):
+#     event_leader = User.query.join(Group).join(Event).filter(Group.id == Event.group_id).filter(User.id == Group.leader_id).all()
+
+
 # Create an event
-
-
 @events_routes.route('/', methods=["POST"])
 @login_required
 def post():
@@ -87,10 +91,12 @@ def delete(id):
     return {"message": "success"}
 
 
+#================== COMMENTS ==================#
+# Retrieve all comments by event id
 @events_routes.route('/<int:id>/comments')
-@login_required
+# @login_required
 def comments(id):
-    comments = Comment.query.all()
+    comments = Comment.query.filter(Comment.event_id == id)
     return jsonify([comment.to_dict() for comment in comments])
 
 
@@ -108,7 +114,6 @@ def post_comments(id):
     # return 'Bad Data'
 
 
-# This deletes a single comment by its comment.id which is id2 here
 # Remove comment for an event
 @events_routes.route('/<int:id>/comments/<int:id2>', methods=['DELETE'])
 @login_required
@@ -132,6 +137,16 @@ def edit_user_comment(id, id2):
     return {"message": "success"}
 
 
+#================== RSVP ==================#
+# Retrieve attendees for an event
+@events_routes.route('/<int:id>/attendees')
+# @login_required
+def attendees(id):
+    attendees = User.query.join(RSVP).filter(RSVP.event_id == id).all()
+    return jsonify([attendee.to_dict() for attendee in attendees])
+
+
+# Post RSVP for an event
 @events_routes.route('/<int:id>/rsvps', methods=['POST'])
 @login_required
 def post_rsvp(id):
@@ -141,6 +156,7 @@ def post_rsvp(id):
     return new_rsvp.to_dict()
 
 
+# Delete RSVP for an event
 @events_routes.route('/<int:id>/rsvps/<int:id2>', methods=['DELETE'])
 @login_required
 def delete_user_rsvp(id, id2):

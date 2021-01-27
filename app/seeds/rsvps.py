@@ -21,7 +21,7 @@ def seed_rsvps():
 
 # =====================================================
 
-    demo_rsvp3 = RSVP(user_id=3, event_id=1)
+    demo_rsvp3 = RSVP(user_id=3, event_id=2)
 
     db.session.add(demo_rsvp3)
 
@@ -35,22 +35,3 @@ def seed_rsvps():
 def undo_rsvps():
     db.session.execute('TRUNCATE rsvps CASCADE;')
     db.session.commit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
