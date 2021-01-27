@@ -1,0 +1,33 @@
+/* Color Palette:
+Smoky Black: #161315
+Raisin Black: #211C1F
+Cosmic Latte: #FFF4E4
+Carolina Blue: #449DD1 
+Dark Pastel Green: #35C04A
+*/
+.event-body {
+    display: flex;
+}
+
+.event-header {
+    background-color: #211C1F;
+}
+
+.event-body_sidebar,
+#event-body_sidebar_group,
+#event-body_sidebar_details,
+#event-body_sidebar_virtual {
+    display: flex;
+    background-color: #211C1F;
+    border-radius: 4px;
+}
+
+#event-body_sidebar_details {
+    flex-direction: column;
+}
+
+.event-body_sidebar {
+    flex-direction: column;
+    max-width: 300px;
+    min-width: 222px;
+}
