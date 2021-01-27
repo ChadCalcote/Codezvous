@@ -11,6 +11,21 @@ def seed_rsvps():
 
     db.session.commit()
 
+# =====================================================
+
+    demo_rsvp2 = RSVP(user_id=1, event_id=1)
+
+    db.session.add(demo_rsvp2)
+
+    db.session.commit()
+
+# =====================================================
+
+    demo_rsvp3 = RSVP(user_id=3, event_id=1)
+
+    db.session.add(demo_rsvp3)
+
+    db.session.commit()
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and resets
@@ -20,3 +35,22 @@ def seed_rsvps():
 def undo_rsvps():
     db.session.execute('TRUNCATE rsvps CASCADE;')
     db.session.commit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
