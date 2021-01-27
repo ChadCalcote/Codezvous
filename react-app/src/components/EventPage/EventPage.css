@@ -5,6 +5,11 @@ Cosmic Latte: #FFF4E4
 Carolina Blue: #449DD1 
 Dark Pastel Green: #35C04A
 */
+.event-page {
+    padding: 30px;
+
+}
+
 .event-body {
     display: flex;
 }

@@ -20,7 +20,7 @@ const event = {
   city: "Columbus",
   state: "Ohio",
   zip_code: 43219,
-  virtual: true,
+  virtual: false,
   type: "Movie",
   status: "upcoming",
   group_id: 41,
@@ -62,6 +62,7 @@ const EventPage = () => {
             <div id="event-body_feed_details">
               <h2>Details</h2>
               <p>{event.description}</p>
+              {/* <video class="header-video" autoplay="true" loop="true" src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4"></video> */}
             </div>
             <div id="event-body_feed_attendees">
               <h2>Attendees (99{/* TODO: need to setup a useEffect/State for selecting users who are attending and sum*/})</h2> 

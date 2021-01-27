@@ -28,27 +28,57 @@ const GroupPage = () => {
                 <div className="group-header_img">
                     <img href={group.image_url} />
                 </div>
-                <div className="group-header_date"></div>
-                <div className="group-header_date"><h4>{formatDate(group.createdAt, 'long')}</h4></div>
-                <div className="group-header_title"></div>
-                <div className="group-header_leader"></div>
+                <div className="group-header_start-date"><h4>{formatDate(group.createdAt, 'long')}</h4></div>
+                <div className="group-header_location">
+                    Group Header Location
+                </div>
+                <div className="group-header_members">
+                    Group header members
+                </div>
+                <div className="group-header_leader">
+                    Group Header leader
+                </div>
+                <div className="group-header_status-button">
+                    Button saying You're a member or Join?
+                </div>
             </div>
             <div className="group-body">
                 <div className="group-body_feed">
-                    <div id="group-body_feed_details"></div>
-                    <div id="group-body_feed_attendees"></div>
-                    <div id="group-body_feed_comments"></div>
+                    <div id="group-body_feed_description">
+                        Description
+                    </div>
+                    <div id="group-body_feed_events">
+                        upcoming events
+                        {/* event cards */}
+                        past events
+                        {/* event cards */}
+                    </div>
+                    <div className="group-body_images">
+                        Images from the events???
+                    </div>
+                    <div id="group-body_feed_discussion">
+                        Discussion
+                    </div> 
+                    {/* maybe not as no seed or maybe need a new table?? */}
                 </div>
                 <div className="group-body_sidebar">
-                    <div id="group-body_sidebar_group"></div>
-                    <div id="group-body_sidebar_details"></div>
+                    <div id="group-body_sidebar_organizer">
+                        Organizer
+                    </div>
+                    <div id="group-body_sidebar_members">
+                        Member icons
+                    </div>
+                    {/* members (###) */}
+                    {/* member icons only */}
                 </div>
                 <div className="group-body_sim-events">
+                    Similar events
                     {/* header tag */}
                     {/* Event Components */}
                 </div>
             </div>
             <div className="group-footer">
+                Footer?
                 {/* Event Details  */}
                 {/* RSVP COMPONENT  */}
             </div>
