@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
 from app.models import User, Event, Comment, RSVP, db
+from app.forms import EventForm, CommentForm
 
 
 events_routes = Blueprint('events', __name__)
@@ -30,10 +31,13 @@ def event(id):
 @events_routes.route('/', methods=["POST"])
 @login_required
 def post():
-    form = CreateNewEventForm()
+    form = EventForm()
+    print(form.event_name.data)
     if form.validate_on_submit():
         new_event = Event()
+        new_event.group_id = request.json["group_id"]
         form.populate_obj(new_event)
+        print(new_event.to_dict())
         db.session.add(new_event)
         db.session.commit()
         return new_event.to_dict()
@@ -102,14 +106,14 @@ def comments(id):
 
 # Posts a comment on an event
 @events_routes.route('/<int:id>/comments', methods=['POST'])
-# @login_required
+@login_required
 def post_comments(id):
     form = CommentForm()
     if form.validate_on_submit():
-        new_comment = Comment(
-        #populate_obj combined with request.json?
-        body=form.populate_obj(form), user_id=request.json['user_id'], event_id=id)
-
+        new_comment = Comment()
+        new_comment.user_id = request.json["user_id"]
+        new_comment.event_id = id
+        form.populate_obj(new_comment)
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict()
