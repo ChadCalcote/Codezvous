@@ -11,7 +11,7 @@ class EventForm(FlaskForm):
     city = StringField('City', validators=[DataRequired()])
     state = StringField('State', validators=[DataRequired()])
     zip_code = IntegerField('Zip Code', validators=[DataRequired()])
-    virtual = BooleanField('Virtual')
+    virtual = BooleanField('Virtual Event?')
     type = StringField('Type', validators=[DataRequired()])
     status = StringField('Status')
     image_url = StringField('Image_Url')
