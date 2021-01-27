@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { formatTime, formatDate } from '../../dateFunctions';
 import "./GroupPage.css"
 import { setGroups, fetchAllGroups } from "../../store/groups"
+import { setGroupUsers, fetchGroupUsers } from "../../store/users";
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -30,11 +31,14 @@ const GroupPage = () => {
 
     const groups = useSelector(reduxState => {
       return reduxState.groups
-      
+    })
+    const groupUsers = useSelector(reduxState => {
+      return reduxState.users
     })
     const group1 = groups.groups
     useEffect(() => {
       dispatch(fetchAllGroups())
+      dispatch(fetchGroupUsers(groupId))
     }, [dispatch])
     console.log('GROUP1', group1)
 
