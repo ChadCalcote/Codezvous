@@ -48,6 +48,7 @@ CORS(app)
 # request made over http is redirected to https.
 # Well.........
 
+
 @app.before_request
 def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
@@ -69,6 +70,8 @@ def inject_csrf_token(response):
     return response
 
 # PRODUCTION ONLY
+
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def react_root(path):

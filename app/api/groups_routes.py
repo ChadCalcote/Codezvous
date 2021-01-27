@@ -13,12 +13,16 @@ def groups():
     return {"groups": [group.to_dict() for group in groups]}
 
 # Retrieve a single group
+
+
 @groups_routes.route('/<int:id>')
 def group(id):
     group = Group.query.get(id)
     return group.to_dict()
 
 # Create a group
+
+
 @groups_routes.route('/', methods=["POST"])
 @login_required
 def post():
@@ -39,26 +43,28 @@ def put(id):
     group = Group.query.get(id)
 
     if "group_name" in request.json:
-      group.group_name = request.json["group_name"]
+        group.group_name = request.json["group_name"]
     if "description" in request.json:
-      group.description = request.json["description"]
+        group.description = request.json["description"]
     if "city" in request.json:
-      group.city = request.json["city"]
+        group.city = request.json["city"]
     if "state" in request.json:
-      group.state = request.json["state"]
+        group.state = request.json["state"]
     if "zip_code" in request.json:
-      group.zip_code = request.json["zip_code"]
+        group.zip_code = request.json["zip_code"]
     if "is_active" in request.json:
-      group.state = request.json["is_active"]
+        group.state = request.json["is_active"]
     if "image_url" in request.json:
-      group.image_url = request.json["image_url"]
+        group.image_url = request.json["image_url"]
     if "leader_id" in request.json:
-      group.leader_id = request.json["leader_id"]
+        group.leader_id = request.json["leader_id"]
     db.session.commit()
 
     return {"message": "success"}
 
 # Delete a group
+
+
 @groups_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete(id):
@@ -71,7 +77,6 @@ def delete(id):
     db.session.commit()
 
     return {"message": "success"}
-
 
 
 # Delete a group

@@ -35,9 +35,8 @@ def post():
         return new_event.to_dict()
     return "Bad Data"
 
+
 # Edit an event
-
-
 @events_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def put(id):
@@ -73,9 +72,8 @@ def put(id):
 
     return {"message": "success"}
 
+
 # Delete an event
-
-
 @events_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete(id):
@@ -101,7 +99,8 @@ def comments(id):
 # @login_required
 def post_comments(id):
     # if form.validate_on_submit():
-    new_comment = Comment(body=request.json['body'], user_id=request.json['user_id'], event_id=id)
+    new_comment = Comment(
+        body=request.json['body'], user_id=request.json['user_id'], event_id=id)
     # user_id, not sure how to find this
     db.session.add(new_comment)
     db.session.commit()
@@ -114,15 +113,14 @@ def post_comments(id):
 @events_routes.route('/<int:id>/comments/<int:id2>', methods=['DELETE'])
 @login_required
 def delete_user_comments(id, id2):
-    #need to be able to verify user's Id
+    # need to be able to verify user's Id
     user_comment = Comment.query.get(id2)
     db.session.delete(user_comment)
     db.session.commit()
     return {"message": "success"}
 
+
 # Edits a comment for an event
-
-
 @events_routes.route('/<int:id>/comments/<int:id2>', methods=['PUT'])
 @login_required
 def edit_user_comment(id, id2):
@@ -147,8 +145,6 @@ def post_rsvp(id):
 @login_required
 def delete_user_rsvp(id, id2):
     user_rsvp = RSVP.query.get(id2)
-    # print(request.data) what does the object look like?
-
     db.session.delete(user_rsvp)
     db.session.commit()
     return {"message": "success"}
