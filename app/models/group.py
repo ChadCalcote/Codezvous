@@ -13,6 +13,7 @@ class Group(db.Model):
     city = db.Column(db.String(50), nullable=False)
     state = db.Column(db.String(30), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
+    is_active = db.Column(db.Boolean, default=True)
     image_url = db.Column(
         db.String, default='https://i.dlpng.com/static/png/6914875_preview.png')
     # May cause errors, Do we need to import users table here?
@@ -35,6 +36,7 @@ class Group(db.Model):
             'city': self.city,
             'state': self.state,
             'zip_code': self.zip_code,
+            'is_active': self.is_active,
             'image_url': self.image_url,
             'leader_id': self.leader_id
         }

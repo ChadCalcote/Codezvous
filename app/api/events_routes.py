@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
-from app.models import Event, Comment, db
+from app.models import Event, Comment, RSVP, db
 
 
 events_routes = Blueprint('events', __name__)
@@ -13,13 +13,18 @@ def events():
     return {"events": [event.to_dict() for event in events]}
 
 # Retrieve a single event
+
+
 @events_routes.route('/<int:id>')
 def event(id):
     event = Event.query.get(id)
     return event.to_dict()
 
 # Create an event
+
+
 @events_routes.route('/', methods=["POST"])
+@login_required
 def post():
     form = CreateNewEventForm()
     if form.validate_on_submit():
@@ -27,12 +32,13 @@ def post():
         form.populate_obj(new_event)
         db.session.add(new_event)
         db.session.commit()
-        return redirect('/<int:id>')  # is this the right way?
-        # return redirect(f'/<new_event.id>')
+        return new_event.to_dict()
     return "Bad Data"
+
 
 # Edit an event
 @events_routes.route('/<int:id>', methods=["PUT"])
+@login_required
 def put(id):
     event = Event.query.get(id)
 
@@ -66,8 +72,10 @@ def put(id):
 
     return {"message": "success"}
 
+
 # Delete an event
 @events_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
 def delete(id):
     event = Event.query.get(id)
     comments = Comment.query.join(Event).filter(Comment.event_id == id).all()
@@ -76,4 +84,67 @@ def delete(id):
     db.session.delete(event)
     db.session.commit()
 
+    return {"message": "success"}
+
+
+@events_routes.route('/<int:id>/comments')
+@login_required
+def comments(id):
+    comments = Comment.query.all()
+    return {"comments": [comment.to_dict() for comment in comments]}
+
+
+# Posts a comment on an event
+@events_routes.route('/<int:id>/comments', methods=['POST'])
+# @login_required
+def post_comments(id):
+    # if form.validate_on_submit():
+    new_comment = Comment(
+        body=request.json['body'], user_id=request.json['user_id'], event_id=id)
+    # user_id, not sure how to find this
+    db.session.add(new_comment)
+    db.session.commit()
+    return new_comment.to_dict()
+    # return 'Bad Data'
+
+
+# This deletes a single comment by its comment.id which is id2 here
+# Remove comment for an event
+@events_routes.route('/<int:id>/comments/<int:id2>', methods=['DELETE'])
+@login_required
+def delete_user_comments(id, id2):
+    # need to be able to verify user's Id
+    user_comment = Comment.query.get(id2)
+    db.session.delete(user_comment)
+    db.session.commit()
+    return {"message": "success"}
+
+
+# Edits a comment for an event
+@events_routes.route('/<int:id>/comments/<int:id2>', methods=['PUT'])
+@login_required
+def edit_user_comment(id, id2):
+    user_comment = Comment.query.get(id2)
+
+    if "body" in request.json:
+        user_comment.body = request.json["body"]
+    db.session.commit()
+    return {"message": "success"}
+
+
+@events_routes.route('/<int:id>/rsvps', methods=['POST'])
+@login_required
+def post_rsvp(id):
+    new_rsvp = RSVP(event_id=id, user_id=request.json['user_id'])
+    db.session.add(new_rsvp)
+    db.session.commit()
+    return new_rsvp.to_dict()
+
+
+@events_routes.route('/<int:id>/rsvps/<int:id2>', methods=['DELETE'])
+@login_required
+def delete_user_rsvp(id, id2):
+    user_rsvp = RSVP.query.get(id2)
+    db.session.delete(user_rsvp)
+    db.session.commit()
     return {"message": "success"}

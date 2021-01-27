@@ -25,6 +25,7 @@ def upgrade():
     sa.Column('city', sa.String(length=50), nullable=False),
     sa.Column('state', sa.String(length=30), nullable=False),
     sa.Column('zip_code', sa.Integer(), nullable=False),
+    sa.Column('is_active', sa.Boolean(), default=True), 
     sa.Column('image_url', sa.String(), nullable=True),
     sa.Column('leader_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['leader_id'], ['users.id'], ),
