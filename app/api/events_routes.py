@@ -91,7 +91,7 @@ def delete(id):
 @login_required
 def comments(id):
     comments = Comment.query.all()
-    return {"comments": [comment.to_dict() for comment in comments]}
+    return jsonify([comment.to_dict() for comment in comments])
 
 
 # Posts a comment on an event

@@ -21,6 +21,15 @@ def seed_groups():
 
     db.session.commit()
 
+    # =====================================================
+
+    demo_group3 = Group(group_name='python group2', description='COBRAAAAA!',
+                        city='San Antonio', state='Texas', zip_code=78154, leader_id=1)
+
+    db.session.add(demo_group3)
+
+    db.session.commit()
+
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and resets
