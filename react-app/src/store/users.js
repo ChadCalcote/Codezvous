@@ -2,7 +2,7 @@ const initialState = {
 
 };
 
-const usersReducer = (state = initalState, action) => {
+const usersReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     default:

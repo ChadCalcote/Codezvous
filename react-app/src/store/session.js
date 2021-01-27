@@ -2,7 +2,7 @@ const initialState = {
 
 };
 
-const sessionReducer = (state = initalState, action) => {
+const sessionReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     default:
