@@ -9,6 +9,17 @@ def seed_users_groups():
 
     db.session.commit()
 
+    demo_users_group2 = Users_Group(user_id=2, group_id=2)
+
+    db.session.add(demo_users_group2)
+
+    db.session.commit()
+
+    demo_users_group3 = Users_Group(user_id=1, group_id=1)
+
+    db.session.add(demo_users_group3)
+
+    db.session.commit()
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and resets

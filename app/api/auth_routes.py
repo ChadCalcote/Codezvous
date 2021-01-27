@@ -18,6 +18,8 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 # Authenticate
+
+
 @auth_routes.route('/')
 def authenticate():
     """
@@ -28,6 +30,8 @@ def authenticate():
     return {'errors': ['Unauthorized']}, 401
 
 # Log In
+
+
 @auth_routes.route('/login', methods=['POST'])
 def login():
     """
@@ -46,6 +50,8 @@ def login():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # Log Out
+
+
 @auth_routes.route('/logout')
 def logout():
     """
@@ -55,6 +61,8 @@ def logout():
     return {'message': 'User logged out'}
 
 # Sign Up
+
+
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
     """
@@ -75,6 +83,8 @@ def sign_up():
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # Unauthorized
+
+
 @auth_routes.route('/unauthorized')
 def unauthorized():
     """

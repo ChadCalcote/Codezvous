@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
-from app.models import Group, Event, RSVP, db
+from app.models import User, Group, Event, RSVP, db, Users_Group
 
 
 groups_routes = Blueprint('groups', __name__)
@@ -10,7 +10,7 @@ groups_routes = Blueprint('groups', __name__)
 @groups_routes.route('/')
 def groups():
     groups = Group.query.all()
-    return {"groups": [group.to_dict() for group in groups]}
+    return jsonify([group.to_dict() for group in groups])
 
 # Retrieve a single group
 @groups_routes.route('/<int:id>')
@@ -18,8 +18,21 @@ def group(id):
     group = Group.query.get(id)
     return group.to_dict()
 
+# Retrieve a group leader
+@groups_routes.route('/<int:id>/leader')
+def get_leader(id):
+    leader_id = User.query.join(Group).filter(Group.id == id).filter(User.id == Group.leader_id).all()
+    return jsonify([leader.to_dict() for leader in leader_id])
+
+# Retrieve all group members
+@groups_routes.route('/<int:id>/members')
+def get_members(id):
+    members = User.query.join(Users_Group).filter(Users_Group.group_id == id).all()
+    return jsonify([member.to_dict() for member in members])
+
 # Create a group
 @groups_routes.route('/', methods=["POST"])
+@login_required
 def post():
     form = CreateNewGroupForm()  # need to create a form
     if form.validate_on_submit():
@@ -27,35 +40,41 @@ def post():
         form.populate_obj(new_group)
         db.session.add(new_group)
         db.session.commit()
-        return redirect('/<int:id>')
+        return new_group.to_dict()
     return "Bad Data"
 
 
 # Edit a group
 @groups_routes.route('/<int:id>', methods=["PUT"])
+@login_required
 def put(id):
     group = Group.query.get(id)
 
     if "group_name" in request.json:
-      group.group_name = request.json["group_name"]
+        group.group_name = request.json["group_name"]
     if "description" in request.json:
-      group.description = request.json["description"]
+        group.description = request.json["description"]
     if "city" in request.json:
-      group.city = request.json["city"]
+        group.city = request.json["city"]
     if "state" in request.json:
-      group.state = request.json["state"]
+        group.state = request.json["state"]
     if "zip_code" in request.json:
-      group.zip_code = request.json["zip_code"]
+        group.zip_code = request.json["zip_code"]
+    if "is_active" in request.json:
+        group.state = request.json["is_active"]
     if "image_url" in request.json:
-      group.image_url = request.json["image_url"]
+        group.image_url = request.json["image_url"]
     if "leader_id" in request.json:
-      group.leader_id = request.json["leader_id"]
+        group.leader_id = request.json["leader_id"]
     db.session.commit()
 
     return {"message": "success"}
 
 # Delete a group
+
+
 @groups_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
 def delete(id):
     events = Event.query.filter(Event.group_id == id).all()
     group = Group.query.get(id)
@@ -66,7 +85,6 @@ def delete(id):
     db.session.commit()
 
     return {"message": "success"}
-
 
 
 # Delete a group
