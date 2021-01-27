@@ -7,6 +7,7 @@ import EventPage from "./components/EventPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import GroupPage from "./components/GroupPage"
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -45,6 +46,12 @@ function App() {
         </Route>
         <Route path="/events/:eventId">
           <EventPage
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <Route path="/groups/:groupId">
+          <GroupPage 
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
