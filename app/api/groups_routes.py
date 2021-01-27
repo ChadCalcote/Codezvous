@@ -20,6 +20,7 @@ def group(id):
 
 # Create a group
 @groups_routes.route('/', methods=["POST"])
+@login_required
 def post():
     form = CreateNewGroupForm()  # need to create a form
     if form.validate_on_submit():
@@ -33,6 +34,7 @@ def post():
 
 # Edit a group
 @groups_routes.route('/<int:id>', methods=["PUT"])
+@login_required
 def put(id):
     group = Group.query.get(id)
 
@@ -56,6 +58,7 @@ def put(id):
 
 # Delete a group
 @groups_routes.route('/<int:id>', methods=["DELETE"])
+@login_required
 def delete(id):
     events = Event.query.filter(Event.group_id == id).all()
     group = Group.query.get(id)
