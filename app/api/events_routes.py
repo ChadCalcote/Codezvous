@@ -32,8 +32,7 @@ def post():
         form.populate_obj(new_event)
         db.session.add(new_event)
         db.session.commit()
-        return redirect('/<int:id>')  # is this the right way?
-        # return redirect(f'/<new_event.id>')
+        return new_event.to_dict()
     return "Bad Data"
 
 # Edit an event
@@ -99,14 +98,14 @@ def comments(id):
 
 # Posts a comment on an event
 @events_routes.route('/<int:id>/comments', methods=['POST'])
-@login_required
+# @login_required
 def post_comments(id):
     # if form.validate_on_submit():
-    new_comment = Comment(body=request.json['body'], user_id=1, event_id=id)
+    new_comment = Comment(body=request.json['body'], user_id=request.json['user_id'], event_id=id)
     # user_id, not sure how to find this
     db.session.add(new_comment)
     db.session.commit()
-    return redirect(f'/api/events/{id}')
+    return new_comment.to_dict()
     # return 'Bad Data'
 
 
@@ -116,11 +115,10 @@ def post_comments(id):
 @login_required
 def delete_user_comments(id, id2):
     #need to be able to verify user's Id
-    user_comment = Comment.query.join(User).filter(Comment.user_id == User.id)
-    
+    user_comment = Comment.query.get(id2)
     db.session.delete(user_comment)
     db.session.commit()
-    return redirect(f'/api/events/{id}')
+    return {"message": "success"}
 
 # Edits a comment for an event
 
@@ -142,7 +140,7 @@ def post_rsvp(id):
     new_rsvp = RSVP(event_id=id, user_id=request.json['user_id'])
     db.session.add(new_rsvp)
     db.session.commit()
-    return redirect(f'/api/events/{id}')
+    return new_rsvp.to_dict()
 
 
 @events_routes.route('/<int:id>/rsvps/<int:id2>', methods=['DELETE'])
@@ -153,4 +151,4 @@ def delete_user_rsvp(id, id2):
 
     db.session.delete(user_rsvp)
     db.session.commit()
-    return redirect(f'/api/events/{id}')
+    return {"message": "success"}

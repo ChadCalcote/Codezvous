@@ -28,7 +28,7 @@ def post():
         form.populate_obj(new_group)
         db.session.add(new_group)
         db.session.commit()
-        return redirect('/<int:id>')
+        return new_group.to_dict()
     return "Bad Data"
 
 
@@ -48,6 +48,8 @@ def put(id):
       group.state = request.json["state"]
     if "zip_code" in request.json:
       group.zip_code = request.json["zip_code"]
+    if "is_active" in request.json:
+      group.state = request.json["is_active"]
     if "image_url" in request.json:
       group.image_url = request.json["image_url"]
     if "leader_id" in request.json:
