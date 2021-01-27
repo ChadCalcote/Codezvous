@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useState } from 'react';
 import { formatTime, formatDate } from '../../dateFunctions';
-import { BsClock, BsCameraVideo } from 'react-icons/bs'
+import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs'
 import "./EventPage.css"
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -56,7 +56,7 @@ const EventPage = () => {
             {/* {TODO: Need to setup a useEffect/State for selecting groupleader id to get name} */}
           </div>
         </div>
-        <hr color="#211C1F"/>
+        <hr color="#2C2629"/>
         <div className="event-body">
           <div className="event-body_feed">
             <div id="event-body_feed_details">
@@ -80,26 +80,26 @@ const EventPage = () => {
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
-                <BsClock />
-                <p>{event.group_id}</p> {/*TODO: Group_Id.group_name*/ }
                 {/* TODO: Group_Id.image_url */}
+                <p>{event.group_id}</p> {/*TODO: Group_Id => group_name*/ }
               </div>
               <div id="event-body_sidebar_details">
-                <div>{formatDate(event.start_time, 'long')}</div>
+                <div><BsClock />{formatDate(event.start_time, 'long')}</div>
                 <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div>
-              </div>
-              <div id="event-body_sidebar_virtual">
-                {event.virtual ? <><BsCameraVideo /><p>Virtual event</p></> : <><p>{event.address}</p><p>{event.city}, {event.state} {event.zip_code}</p></>}
+                <div id="event-body_sidebar_location">
+                  {event.virtual ? <><BsCameraVideo /><p>Virtual event</p></> : <><div><BsGeoAlt />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
+                </div>
               </div>
           </div>
         </div>
+        <hr color="#2C2629"/>
         <div className="event-sim-events">
           <h2>Similar events nearby</h2>
             {/* header tag */}
             {/* Event Components */}
         </div>
         <div className="event-footer">
-            <h2>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h2>
+            <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3>
             <h2>{event.event_name}</h2>
             {/* Event Details  */}
             {/* RSVP COMPONENT  */}

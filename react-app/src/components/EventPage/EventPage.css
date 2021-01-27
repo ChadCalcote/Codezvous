@@ -1,29 +1,47 @@
 /* Color Palette:
 Smoky Black: #161315
-Raisin Black: #211C1F
+Raisin Black: #2C2629
 Cosmic Latte: #FFF4E4
 Carolina Blue: #449DD1 
 Dark Pastel Green: #35C04A
 */
-.event-page {
-    padding: 30px;
 
+.event-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-header,
+.event-sim-events {
+    padding: 0px 30px
 }
 
 .event-body {
     display: flex;
+    padding: 0px 30px;
 }
 
-.event-header {
-    background-color: #211C1F;
+.event-header,
+.event-footer {
+    background-color: #2C2629;
+    padding: 0px 30px;
+    width: 100%;
+
 }
 
-.event-body_sidebar,
+.event-body_feed {
+    width: 600px;
+
+}
+
+
 #event-body_sidebar_group,
-#event-body_sidebar_details,
-#event-body_sidebar_virtual {
+#event-body_sidebar_details {
     display: flex;
-    background-color: #211C1F;
+    margin: 15px 0px;
+    padding: 15px;
+    background-color: #2C2629;
     border-radius: 4px;
 }
 
@@ -33,6 +51,5 @@ Dark Pastel Green: #35C04A
 
 .event-body_sidebar {
     flex-direction: column;
-    max-width: 300px;
-    min-width: 222px;
+    max-width: 350px;
 }
