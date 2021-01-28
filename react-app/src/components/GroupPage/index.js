@@ -7,6 +7,9 @@ import "./GroupPage.css"
 import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
 import { fetchGroupUsers } from "../../store/users";
 import { BsGeoAlt, BsPeople } from 'react-icons/bs';
+import EventCard from '../EventCard';
+import GroupCard from '../GroupCard';
+import RSVP from '../RSVP';
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -90,6 +93,7 @@ const GroupPage = () => {
             </div>
             <div id="group-body_feed_events">
               upcoming events
+              <EventCard />
               {/* event cards */}
               past events
               {/* event cards */}
@@ -114,6 +118,7 @@ const GroupPage = () => {
           Footer?
           {/* Event Details  */}
           {/* RSVP COMPONENT  */}
+          <RSVP />
         </div>
       </div>
     );
