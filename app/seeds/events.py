@@ -255,14 +255,15 @@ def seed_events():
         programming_language = programming_languages[int(random() * 83)]
         event = events[int(random() * 15)]
         state_abbr = fakes.state_abbr()
-        event_name = f'{adjective} {programming_language} {event} of {state_abbr}'
+        city = fakes.city()
+        event_name = f'{adjective} {programming_language} {event}'
         start_date = fakes.date_this_year(before_today=False, after_today=True)
         hours = int(random() * 3 ) + 1
         random_group = int(random() * 50 ) + 1
         is_virtual = random() >= 0.5
 
         demo_event = Event(event_name=event_name, description=fakes.paragraph(nb_sentences=5),
-                            address=fakes.address(), city=fakes.city(), state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr),
+                            address=fakes.address(), city=city, state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr),
                             virtual=is_virtual, type=event, start_time=start_date, 
                             end_time=(start_date + datetime.timedelta(hours)), group_id=random_group)
 

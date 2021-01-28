@@ -121,10 +121,12 @@ def seed_groups():
     num = 0
     for _ in range (70):
         random_number = int(random() *10) + 1
-        current_group_name = fake_group_names[num]
+        city = fakes.city()
+        current_group_name = f'{fake_group_names[num]} of {city}'
         num += 1
+
         fake_group = Group(group_name=current_group_name, description=fakes.paragraph(nb_sentences=5),
-                        city=fakes.city(), state=fakes.state(), zip_code=fakes.postcode(), image_url='https://picsum.photos/seed/picsum/600/337/?blur=2', leader_id=random_number)
+                        city=city, state=fakes.state(), zip_code=fakes.postcode(), image_url='https://picsum.photos/seed/picsum/600/337/?blur=2', leader_id=random_number)
 
         db.session.add(fake_group)
 
