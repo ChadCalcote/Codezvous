@@ -1,6 +1,7 @@
 const SET_GROUP_USERS = "SET_GROUP_USERS";
 const SET_SINGLE_USER = "SET_SINGLE_USER"
 
+
 export const setGroupUsers= (users) => {
   return {
     type: SET_GROUP_USERS,
@@ -23,9 +24,9 @@ export const fetchGroupUsers = (groupId) => {
   };
 };
 
-export const fetchSingleUser = (userid) => {
+export const fetchSingleUser = (userId) => {
   return async (dispatch) => {
-    const responseFromDb = await fetch(`/api/users/${userid}`);
+    const responseFromDb = await fetch(`/api/users/${userId}`);
     const user = await responseFromDb.json();
     dispatch(setSingleUser(user))
   }
