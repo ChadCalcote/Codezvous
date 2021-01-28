@@ -43,7 +43,7 @@ const EventPage = () => {
 
     const events = useSelector(reduxState => {
       return reduxState.events
-    
+
     })
 
     useEffect(() => {

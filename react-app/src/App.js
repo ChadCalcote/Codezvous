@@ -10,6 +10,7 @@ import User from "./components/User";
 import GroupPage from "./components/GroupPage";
 import UserImage from "./components/UserImage";
 import { authenticate } from "./services/auth";
+import EventCard from "./components/EventCard";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -59,6 +60,12 @@ function App() {
         </Route>
         <Route path="/groups/:groupId">
           <GroupPage
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <Route path="/event">
+          <EventCard
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />

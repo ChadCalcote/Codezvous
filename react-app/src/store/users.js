@@ -32,10 +32,15 @@ export const fetchSingleUser = (userId) => {
   }
 }
 
-
-const initialState = {
-
+export const fetchEventUsers = (eventId) => {
+  return async (dispatch) => {
+    const responseFromDb = await fetch(`/api/events/${eventId}/attendees`); // /api/groups/${groupId}/users
+    const usersList = await responseFromDb.json();
+    dispatch(setGroupUsers(usersList));
+  };
 };
+
+const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
   let newState;
