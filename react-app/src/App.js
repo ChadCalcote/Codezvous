@@ -8,6 +8,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import GroupPage from "./components/GroupPage";
+import HomePage from "./components/HomePage"
 import UserImage from "./components/UserImage";
 import { authenticate } from "./services/auth";
 import EventCard from "./components/EventCard";
@@ -64,12 +65,6 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/event">
-          <EventCard
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route>
         <ProtectedRoute
           path="/users"
           exact={true}
@@ -86,7 +81,7 @@ function App() {
           <UserImage />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
