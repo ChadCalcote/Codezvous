@@ -10,10 +10,12 @@ const dispatch = useDispatch();
 const { userId } = params
 
 const [ imageLoaded, setImageLoaded ] = useState("loading...")
+const [ imageErrored, setImageErrored ] = useState("")
 
 const handleImageLoaded = () => setImageLoaded("loaded")
 
 const handleImageErrored = () => setImageErrored("failed to load")
+
 // // Fetch User
 // const user = useSelector(reduxState => {
 //   return reduxState.users
@@ -27,8 +29,11 @@ const handleImageErrored = () => setImageErrored("failed to load")
 
     return (
       <div className="user_photo">
-        {
-          user.image_url ? <img width="100px" src={user.image_url}/> : null
+        {user.image_url ? <img width="100px" 
+                                src={user.image_url}
+                                onLoad={handleImageLoaded}
+                                onError={handleImageErrored}
+                                /> : null
         }
       </div>
     );

@@ -31,11 +31,12 @@ const EventCard = ({  }) => {
   const dispatch = useDispatch();
 
   const users = useSelector(reduxState => {
+    console.log("USERS:", reduxState.users)
     return reduxState.users;
   })
 
   useEffect( () =>{
-    dispatch(fetchEventUsers(event.id));
+    dispatch(fetchEventUsers(18));
   },[dispatch])
 
   return (
@@ -48,7 +49,7 @@ const EventCard = ({  }) => {
       <div className="event-card_description">{event.description}</div>
       <div className="event-card_attendees">
         <div className="event-card_attendees_pics">
-        {users.length > 0 ? users.slice(0, 2).map(user => <UserImage user={user}/>) : <BsPerson />}
+        {users.length > 0 ? users.slice(0, 3).map(user => <UserImage user={user}/>) : <BsPerson />}
         </div>
         <div className="event-card_attendees_total">
           {users.length > 0 ? `${users.length} going` : "1 going"}
