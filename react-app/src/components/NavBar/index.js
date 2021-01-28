@@ -1,29 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import SearchBar from '../SearchBar'
 import './NavBar.css';
-import { BsSearch } from 'react-icons/bs'
 
 const NavBar = ({ setAuthenticated }) => {
   const history = useHistory()
 
-  const [keyword, setKeyword] = useState("")
-  const [zipcode, setZipcode] = useState("")
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newSearch = {
-      keyword,
-      zipcode,
-    };
-    console.log(newSearch);
-    handleInputReset();
-  }
-
-  const handleInputReset = () => {
-    setKeyword("")
-    setZipcode("")
-  }
 
 	return (
 		<div className="navbarWrapper">
@@ -33,27 +17,10 @@ const NavBar = ({ setAuthenticated }) => {
           onClick={() => history.push('/')}
           src={"react-app/logo.png"} />
         </div>
-
-        <div className="searchBar">
-          <form onSubmit={handleSubmit}>
-            <input
-              type='text'
-              value={keyword}
-              onChange={(event) => setKeyword(event.target.value)}
-              placeholder='Search by keyword'
-            />
-            <input
-              type='text'
-              value={zipcode}
-              onChange={(event) => setZipcode(event.target.value)}
-              placeholder='Zip Code'
-              defaultValue='78704'
-            />
-            <button className='searchButton' type='submit'>
-              <BsSearch />
-            </button>
-          </form>
+        <div className="searchbar">
+          <SearchBar />
         </div>
+
       </div>
 
       <div className="header_right">
