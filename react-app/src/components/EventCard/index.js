@@ -48,7 +48,7 @@ const EventCard = ({  }) => {
       <div className="event-card_description">{event.description}</div>
       <div className="event-card_attendees">
         <div className="event-card_attendees_pics">
-        {users.length > 0 ? users.slice(0, 2).map(user => <UserImage image={user.image_url} />) : <BsPerson />}
+        {users.length > 0 ? users.slice(0, 2).map(user => <UserImage user={user}/>) : <BsPerson />}
         </div>
         <div className="event-card_attendees_total">
           {users.length > 0 ? `${users.length} going` : "1 going"}
