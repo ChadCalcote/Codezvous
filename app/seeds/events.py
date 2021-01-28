@@ -201,6 +201,9 @@ def seed_events():
 
     events = [
         'Talk',
+        'Competition',
+        'Job Fair',
+        'Pairboarding',
         'Film',
         'Meetup',
         'Hackathon',
