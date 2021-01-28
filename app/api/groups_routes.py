@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
 from app.models import User, Group, Event, RSVP, db, Users_Group
+from app.forms import GroupForm
 
 
 groups_routes = Blueprint('groups', __name__)
@@ -45,9 +46,10 @@ def get_members(id):
 @groups_routes.route('/', methods=["POST"])
 @login_required
 def post():
-    form = CreateNewGroupForm()  # need to create a form
+    form = GroupForm()  # need to create a form
     if form.validate_on_submit():
         new_group = Group()
+        new_group.leader_id = request.json["leader_id"]
         form.populate_obj(new_group)
         db.session.add(new_group)
         db.session.commit()
