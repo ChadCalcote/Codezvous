@@ -7,7 +7,8 @@ import EventPage from "./components/EventPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import GroupPage from "./components/GroupPage"
+import GroupPage from "./components/GroupPage";
+import UserImage from "./components/UserImage";
 import { authenticate } from "./services/auth";
 import EventCard from "./components/EventCard";
 
@@ -82,6 +83,7 @@ function App() {
           authenticated={authenticated}
         >
           <User />
+          <UserImage />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
