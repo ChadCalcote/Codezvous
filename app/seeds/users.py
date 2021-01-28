@@ -8,8 +8,11 @@ def seed_users():
 
     fakes = Faker()
 
+    state_abbr = 'TX'
+
     demo = User(username='Demo', image_url='www.thispersondoesnotexist.com/image', 
-                zip_code=fakes.postcode(), email='demo@aa.io', password='password')
+                zip_code=fakes.postalcode_in_state(state_abbr=state_abbr), 
+                email='demo@aa.io', password='password')
 
     db.session.add(demo)
 
@@ -18,7 +21,8 @@ def seed_users():
     for _ in range(300):
         username = f'{fakes.last_name()}{fakes.state_abbr()}{int(random() * 50 ) + 1960}'
         fakeUser = User(username=username, image_url='www.thispersondoesnotexist.com/image', 
-                        zip_code=fakes.postcode(), email=fakes.email(), password=fakes.password())
+                        zip_code=fakes.postalcode_in_state(state_abbr=state_abbr), 
+                        email=fakes.email(), password=fakes.password())
         db.session.add(fakeUser)
         db.session.commit()
 
