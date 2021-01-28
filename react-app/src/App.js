@@ -50,6 +50,12 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
+        <Route path="/attendee">
+          <EventPage
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
         <Route path="/groups/:groupId">
           <GroupPage
             authenticated={authenticated}
