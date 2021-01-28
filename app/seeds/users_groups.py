@@ -3,6 +3,16 @@ from random import random
 
 # Adds a demo user, you can add other users here if you want
 def seed_users_groups():
+    num2 = 1
+    for _ in range (11):
+        num1 = 1
+        for _ in range (11):
+            demo_users_group = Users_Group(user_id=num1, group_id=num2)
+            db.session.add(demo_users_group)
+            db.session.commit()
+            num1 += 1
+        num2 += 1
+
     for _ in range (500):
         random_user = int(random() * 300 ) + 1
         random_group = int(random() * 70 ) + 1
