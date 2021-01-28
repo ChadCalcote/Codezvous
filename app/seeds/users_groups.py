@@ -1,25 +1,17 @@
 from app.models import db, Users_Group
+from random import random
 
 # Adds a demo user, you can add other users here if you want
 def seed_users_groups():
+    for _ in range (500):
+        random_user = int(random() * 300 ) + 1
+        random_group = int(random() * 70 ) + 1
+        demo_users_group = Users_Group(user_id=random_user, group_id=random_group)
 
-    demo_users_group1 = Users_Group(user_id=2, group_id=1)
+        db.session.add(demo_users_group)
 
-    db.session.add(demo_users_group1)
+        db.session.commit()
 
-    db.session.commit()
-
-    demo_users_group2 = Users_Group(user_id=2, group_id=2)
-
-    db.session.add(demo_users_group2)
-
-    db.session.commit()
-
-    demo_users_group3 = Users_Group(user_id=1, group_id=1)
-
-    db.session.add(demo_users_group3)
-
-    db.session.commit()
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this
 # TRUNCATE Removes all the data from the table, and resets
