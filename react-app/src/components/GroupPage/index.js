@@ -39,16 +39,20 @@ const GroupPage = () => {
     // If session.userId === leader.id make edit/delete/add buttons available
     const group = useSelector(reduxState => {
       return reduxState.groups
-    })
+    });
     const groupUsers = useSelector(reduxState => {
       return reduxState.users
-    })
+    });
 
     const numGroupUsers = groupUsers.length;
 
-    // const groupLeader = groupUsers.filter(user => {
-    //     return user.id === group.leader_id;
-    // });
+    const groupLeader = () => {
+      const leader = groupUsers.filter(user => {
+        return user.id === 104;
+    });
+
+    return leader[0].username;
+  }
 
     const checkForGroupLeader = () => {
         for (let user in groupUsers) {
@@ -81,7 +85,7 @@ const GroupPage = () => {
           <div className="group-header_members">
               <BsPeople /> {`${numGroupUsers} members`}
           </div>
-          <div className="group-header_leader"> Organized by leader</div>
+          <div className="group-header_leader"> Organized by leader: {groupUsers.length > 0 ? groupLeader() : null}</div>
           <div className="group-header_status-button">
             Button saying You're a member or Join?
           </div>
