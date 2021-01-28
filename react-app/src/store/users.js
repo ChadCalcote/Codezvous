@@ -9,11 +9,13 @@ export const setGroupUsers= (users) => {
 
 export const fetchGroupUsers = (groupId) => {
   return async (dispatch) => {
-    const responseFromDb = await fetch("/api/users/"); // /api/groups/${groupId}/users
+    const responseFromDb = await fetch(`/api/groups/${groupId}/members`); // /api/groups/${groupId}/users
     const usersList = await responseFromDb.json();
     dispatch(setGroupUsers(usersList));
   };
 };
+
+
 
 const initialState = {
 

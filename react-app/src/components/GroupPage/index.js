@@ -6,6 +6,7 @@ import { formatTime, formatDate } from '../../dateFunctions';
 import "./GroupPage.css"
 import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
 import { fetchGroupUsers } from "../../store/users";
+import { BsGeoAlt, BsPeople } from 'react-icons/bs';
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -29,6 +30,10 @@ const GroupPage = () => {
 
     const { groupId } = params;
 
+    const [leader, setLeader] = useState({});
+    const [isLeader, setIsLeader] = useState(false);
+
+    // If session.userId === leader.id make edit/delete/add buttons available
     const group = useSelector(reduxState => {
       return reduxState.groups
     })
@@ -36,6 +41,19 @@ const GroupPage = () => {
       return reduxState.users
     })
 
+    const numGroupUsers = groupUsers.length;
+
+    // const groupLeader = groupUsers.filter(user => {
+    //     return user.id === group.leader_id;
+    // });
+
+    const checkForGroupLeader = () => {
+        for (let user in groupUsers) {
+            if (user.id === group.leader_id) {
+                setLeader(user)
+            }
+        }
+    }
 
     useEffect(() => {
       dispatch(fetchOneGroup(groupId));
@@ -44,69 +62,61 @@ const GroupPage = () => {
     console.log('GROUP', group)
 
     return (
-        <div className="group-page">
-            <h1>Group Page!</h1>
-            <div className="group-header">
-                <div className="group-header_img">
-                    {!group && <h2>Loading....</h2>}
-                    {group && <img src={group.image_url} />}
-                </div>
-                <div className="group-header_start-date"><h4>{formatDate(group.createdAt, 'long')}</h4></div>
-                <div className="group-header_location">
-                    Group Header Location
-                </div>
-                <div className="group-header_members">
-                    Group header members
-                </div>
-                <div className="group-header_leader">
-                    Group Header leader
-                </div>
-                <div className="group-header_status-button">
-                    Button saying You're a member or Join?
-                </div>
-            </div>
-            <div className="group-body">
-                <div className="group-body_feed">
-                    <div id="group-body_feed_description">
-                        Description
-                    </div>
-                    <div id="group-body_feed_events">
-                        upcoming events
-                        {/* event cards */}
-                        past events
-                        {/* event cards */}
-                    </div>
-                    <div className="group-body_images">
-                        Images from the events???
-                    </div>
-                    <div id="group-body_feed_discussion">
-                        Discussion
-                    </div> 
-                    {/* maybe not as no seed or maybe need a new table?? */}
-                </div>
-                <div className="group-body_sidebar">
-                    <div id="group-body_sidebar_organizer">
-                        Organizer
-                    </div>
-                    <div id="group-body_sidebar_members">
-                        Member icons
-                    </div>
-                    {/* members (###) */}
-                    {/* member icons only */}
-                </div>
-                <div className="group-body_sim-events">
-                    Similar events
-                    {/* header tag */}
-                    {/* Event Components */}
-                </div>
-            </div>
-            <div className="group-footer">
-                Footer?
-                {/* Event Details  */}
-                {/* RSVP COMPONENT  */}
-            </div>
+      <div className="group-page">
+        <h1>Group Page!</h1>
+        <div className="group-header">
+          <div className="group-header_img">
+            {!group && <h2>Loading....</h2>}
+            {group && <img src={group.image_url} />}
+          </div>
+          <div className="group-header_location">
+              <h1>{group.group_name}</h1>
+          </div>
+          <div className="group-header_location">
+              <BsGeoAlt /> {`${group.city}, ${group.state}`}
+          </div>
+          <div className="group-header_members">
+              <BsPeople /> {`${numGroupUsers} members`}
+          </div>
+          <div className="group-header_leader"> Organized by leader</div>
+          <div className="group-header_status-button">
+            Button saying You're a member or Join?
+          </div>
         </div>
-    )
+        <div className="group-body">
+          <div className="group-body_feed">
+            <div id="group-body_feed_description">
+                {group.description}
+            </div>
+            <div id="group-body_feed_events">
+              upcoming events
+              {/* event cards */}
+              past events
+              {/* event cards */}
+            </div>
+            <div className="group-body_images">Images from the events???</div>
+            <div id="group-body_feed_discussion">Discussion</div>
+            {/* maybe not as no seed or maybe need a new table?? */}
+          </div>
+          <div className="group-body_sidebar">
+            <div id="group-body_sidebar_organizer">Organizer</div>
+            <div id="group-body_sidebar_members">Member icons</div>
+            {/* members (###) */}
+            {/* member icons only */}
+          </div>
+          <div className="group-body_sim-events">
+            Similar events
+            {/* header tag */}
+            {/* Event Components */}
+          </div>
+        </div>
+        <div className="group-footer">
+          Footer?
+          {/* Event Details  */}
+          {/* RSVP COMPONENT  */}
+        </div>
+      </div>
+    );
 }
 
 export default GroupPage;
