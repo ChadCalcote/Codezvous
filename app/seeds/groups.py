@@ -124,9 +124,12 @@ def seed_groups():
         city = fakes.city()
         current_group_name = f'{fake_group_names[num]} of {city}'
         num += 1
+        state_abbr = 'TX'
+        active = random() >= 0.5
 
         fake_group = Group(group_name=current_group_name, description=fakes.paragraph(nb_sentences=5),
-                        city=city, state=fakes.state(), zip_code=fakes.postcode(), image_url='https://picsum.photos/seed/picsum/600/337/?blur=2', leader_id=random_number)
+                        city=city, state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr), 
+                        is_active=active, image_url='https://picsum.photos/seed/picsum/600/337/?blur=2', leader_id=random_number)
 
         db.session.add(fake_group)
 

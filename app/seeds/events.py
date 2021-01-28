@@ -254,7 +254,7 @@ def seed_events():
         adjective = adjectives[int(random() * 98)]
         programming_language = programming_languages[int(random() * 83)]
         event = events[int(random() * 15)]
-        state_abbr = fakes.state_abbr()
+        state_abbr = 'TX'
         city = fakes.city()
         event_name = f'{adjective} {programming_language} {event}'
         start_date = fakes.date_this_year(before_today=False, after_today=True)
@@ -264,7 +264,7 @@ def seed_events():
 
         demo_event = Event(event_name=event_name, description=fakes.paragraph(nb_sentences=5),
                             address=fakes.address(), city=city, state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr),
-                            virtual=is_virtual, type=event, start_time=start_date, 
+                            status='active', image_url='https://picsum.photos/seed/picsum/600/337/?blur=2', virtual=is_virtual, type=event, start_time=start_date, 
                             end_time=(start_date + datetime.timedelta(hours)), group_id=random_group)
 
         db.session.add(demo_event)
