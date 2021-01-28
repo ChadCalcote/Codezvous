@@ -97,6 +97,66 @@ def seed_events():
         'XSL'
     ]
 
+    adverbs = [
+        'Boldly',
+        'Bravely',
+        'Brightly',
+        'Cheerfully',
+        'Deftly',
+        'Devotedly',
+        'Eagerly',
+        'Elegantly',
+        'Faithfully',
+        'Fortunately',
+        'Gleefully',
+        'Gracefully',
+        'Happily',
+        'Honestly',
+        'Innocently',
+        'Justly',
+        'Kindly',
+        'Merrily',
+        'Obediently',
+        'Perfectly',
+        'Politely',
+        'Powerfully',
+        'Safely',
+        'Victoriously',
+        'Warmly',
+        'Vivaciously',
+        'Accidentally',
+        'Awkwardly',
+        'Blindly',
+        'Coyly',
+        'Crazily',
+        'Defiantly',
+        'Deliberately',
+        'Doubtfully',
+        'Dramatically',
+        'Dutifully',
+        'Enormously',
+        'Evenly',
+        'Exactly',
+        'Hastily',
+        'Hungrily',
+        'Inquisitively',
+        'Loosely',
+        'Madly',
+        'Mortally',
+        'Mysteriously',
+        'Nervously',
+        'Only',
+        'Seriously',
+        'Shakily',
+        'Sharply',
+        'Silently',
+        'Solemnly',
+        'Sternly',
+        'Technically',
+        'Unexpectedly',
+        'Wildly'
+    ]
+
     adjectives = [
         'Adaptable',
         'Adventurous',
@@ -254,9 +314,10 @@ def seed_events():
         adjective = adjectives[int(random() * 98)]
         programming_language = programming_languages[int(random() * 83)]
         event = events[int(random() * 15)]
+        adverb = adverbs[int(random() * 56)]
         state_abbr = 'TX'
         city = fakes.city()
-        event_name = f'{adjective} {programming_language} {event}'
+        event_name = f'{adverb} {adjective} {programming_language} {event}'
         start_date = fakes.date_this_year(before_today=False, after_today=True)
         hours = int(random() * 3 ) + 1
         random_group = int(random() * 50 ) + 1
