@@ -4,9 +4,9 @@ from random import random
 # Adds a demo user, you can add other users here if you want
 def seed_users_groups():
     num2 = 1
-    for _ in range (11):
+    for _ in range (70):
         num1 = 1
-        for _ in range (11):
+        for _ in range (10):
             demo_users_group = Users_Group(user_id=num1, group_id=num2)
             db.session.add(demo_users_group)
             db.session.commit()
