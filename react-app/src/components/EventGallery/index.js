@@ -17,12 +17,24 @@ const EventGallery = () => {
         dispatch(fetchAllEvents())
     }, [dispatch])
 
+    function renderEvents(events) {
+        const today = new Date(Date.now());
+        const tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 5);
+
+        events.forEach(event => {
+            const eventDate = new Date(events[0].start_time)
+            if (eventDate <= today){
+                console.log("EVENT:", event)
+                return <EventCard event={event} key={event.id} />;
+            }
+        })
+    }
+
     return (
         <div className="event-gallery">
             {!events && <h3>Loading....</h3>}
-            {Array.isArray(events) && events.map(event => {
-                return <EventCard event={event} key={event.id} />;
-            })}
+            {Array.isArray(events) && renderEvents(events)}
         </div>
     )
 }
