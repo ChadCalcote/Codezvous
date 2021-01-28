@@ -51,7 +51,7 @@ function App() {
           />
         </Route>
         <Route path="/groups/:groupId">
-          <GroupPage 
+          <GroupPage
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />

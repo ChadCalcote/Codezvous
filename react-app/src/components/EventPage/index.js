@@ -6,6 +6,7 @@ import { formatTime, formatDate } from '../../dateFunctions';
 import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs'
 import "./EventPage.css"
 import { setEvents, fetchAllEvents } from "../../store/events"
+import AttendeeCard from "../AttendeeCard";
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -79,7 +80,7 @@ const EventPage = () => {
             </div>
             <div id="event-body_feed_attendees">
               <h2>Attendees (99{/* TODO: need to setup a useEffect/State for selecting users who are attending and sum*/})</h2> 
-              
+              <AttendeeCard />
               {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
             </div>
             <div id="event-body_feed_comments">
