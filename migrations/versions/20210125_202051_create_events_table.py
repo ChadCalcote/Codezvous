@@ -31,8 +31,8 @@ def upgrade():
     sa.Column('status', sa.String(length=30), nullable=True),
     sa.Column('image_url', sa.String(), nullable=True),
     sa.Column('group_id', sa.Integer(), nullable=False),
-    sa.Column('start_time', sa.DateTime(), nullable=True),
-    sa.Column('end_time', sa.DateTime(), nullable=True),
+    sa.Column('start_time', sa.DateTime(), nullable=False),
+    sa.Column('end_time', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['group_id'], ['groups.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('event_name')

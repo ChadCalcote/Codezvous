@@ -19,8 +19,8 @@ class Event(db.Model):
         db.String, default='https://www.cambridgebrewingcompany.com/wp-content/uploads/generic-banner.jpg')
     group_id = db.Column(db.Integer, db.ForeignKey(
         'groups.id'), nullable=False)
-    start_time = db.Column(db.DateTime)
-    end_time = db.Column(db.DateTime)
+    start_time = db.Column(db.DateTime, nullable=False)
+    end_time = db.Column(db.DateTime, nullable=False)
 
     # Event has a single Group
     group = db.relationship('Group', back_populates='events')
