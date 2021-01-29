@@ -3,7 +3,7 @@ const SET_COMMENT = "SET_COMMENT";
 export const setComment = (comment) => {
   return {
     type: SET_COMMENT,
-    comment: comment,
+    comments: comment,
   };
 };
 
@@ -29,7 +29,7 @@ const commentsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_COMMENT:
-        newState = action.comments
+      newState = action.comments
       return newState;
     default:
       return state;

@@ -3,11 +3,13 @@ import CommentForm from "../../../../app/forms/comment_form.py";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { createComment } from "../../store/comments";
+
 
 const CommentFormReact = () => {
 
     const params = useParams()
-
+    const dispatch = useDispatch()
     const { eventId } = params;
 
 
@@ -21,7 +23,7 @@ const CommentFormReact = () => {
             body: comment
         }
 
-        const addComment = await dispatchEvent(createComment(newComment, eventId))
+        const addComment = await dispatch(createComment(newComment, eventId))
     }
 
 
