@@ -30,19 +30,25 @@ export const fetchAllGroups = () => {
   }
 }
 
-export const fetchOneGroup = (groupsId) => {
+export const fetchUserGroups = (userId) => {
+  return async (dispatch) => {
+    const responseFromDb = await fetch(`api/users/${userId}/groups`);
+    const groupsList = await responseFromDb.json();
+    dispatch(
+      setGroups(groupsList)
+    )
+  }
+}
 
+export const fetchOneGroup = (groupsId) => {
   return async(dispatch) => {
     const responseFromDb = await fetch(`/api/groups/${groupsId}`);
-    console.log('RES', responseFromDb);
     const group = await responseFromDb.json();
     dispatch(
       setOneGroup(group)
     )
   }
 }
-
-
 
 const initialState = [];
 

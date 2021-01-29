@@ -102,8 +102,8 @@ const GroupPage = () => {
               past events
               {/* event cards */}
             </div>
-            <div className="group-body_images">Images from the events???</div>
-            <div id="group-body_feed_discussion">Discussion</div>
+            {/* <div className="group-body_images">Images from the events???</div> */}
+            {/* <div id="group-body_feed_discussion">Discussion</div> */}
             {/* maybe not as no seed or maybe need a new table?? */}
           </div>
           <div className="group-body_sidebar">
@@ -117,12 +117,6 @@ const GroupPage = () => {
             {/* header tag */}
             {/* Event Components */}
           </div>
-        </div>
-        <div className="group-footer">
-          Footer?
-          {/* Event Details  */}
-          {/* RSVP COMPONENT  */}
-          <RSVP />
         </div>
       </div>
     );
