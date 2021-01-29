@@ -10,6 +10,7 @@ import User from "./components/User";
 import GroupPage from "./components/GroupPage";
 import HomePage from "./components/HomePage"
 import UserImage from "./components/UserImage";
+import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
 import EventCard from "./components/EventCard";
 import Footer from "./components/Footer";
@@ -46,6 +47,12 @@ function App() {
           <Footer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <Route path="/create-group" exact={true}>
+          <GroupForm
+            // authenticated={authenticated}
+            // setAuthenticated={setAuthenticated}
           />
         </Route>
         <Route path="/sign-up" exact={true}>
