@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { fetchAllEvents } from '../../store/events'
 import EventGallery from '../EventGallery'
 import "./HomePage.css";
 
 const HomePage = () => {
 
-    const [ galleryToDisplay, setGalleryToDisplay ] = useState("Event")
+    // const [ galleryToDisplay, setGalleryToDisplay ] = useState("Event")
     const dispatch = useDispatch();
 
-    const groups = useSelector(reduxState => {
-        return reduxState.groups
+    // const groups = useSelector(reduxState => {
+    //     return reduxState.groups
+    // })
+
+    const events = useSelector(reduxState => {
+        return reduxState.events
     })
 
-    const user = useSelector(reduxState => {
-        return reduxState.session
-    })
+    // const user = useSelector(reduxState => {
+    //     return reduxState.session
+    // })
 
     useEffect(() => {
-        dispatch(fetchAllGroups())
-        dispatch(getCurrentUser())
+        dispatch(fetchAllEvents())
+    //     dispatch(getCurrentUser())
     }, [dispatch])
 
     return (
@@ -27,9 +32,9 @@ const HomePage = () => {
                 <button className="toggle" id="group-toggle"></button>
                 <button className="toggle" id="event-toggle"></button>
             </div>
-            <EventGallery events={userEvents.slice(0,3)}/>
+            {/* <EventGallery events={userEvents.slice(0,3)}/> */}
             <br />
-            <EventGallery events={allEvents}/>
+            <EventGallery events={events}/>
             <div className="home-page_sidebar">
             </div>
         </div>
