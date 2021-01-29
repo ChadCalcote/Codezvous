@@ -42,7 +42,8 @@ def post():
         db.session.add(new_event)
         db.session.commit()
         return new_event.to_dict()
-    return "Bad Data"
+    else:
+        return "Bad Data"
 
 
 @events_routes.route('/test', methods=["POST"])
@@ -50,6 +51,9 @@ def post():
 def postTest():
     form = EventForm()  # need to create a form
     form['csrf_token'].data = request.cookies['csrf_token']
+    form.data['start_time'] = request.json['start_time']
+    print(form.data)
+    print(request.json['start_time'])
     if form.validate_on_submit():
         new_event = Event(
             event_name=form.data['event_name'],
@@ -60,14 +64,18 @@ def postTest():
             zip_code=form.data['zip_code'],
             virtual=form.data['virtual'],
             type=form.data['type'],
+            status=form.data['status'],
             image_url=form.data['image_url'],
-            group_id=form.data['group_id']
+            group_id=form.data['group_id'],
+            start_time=form.data['start_time'],
+            end_time=form.data['end_time']
         )
         # new_group.leader_id = request.json["leader_id"]
         # form.populate_obj(new_group)
         db.session.add(new_event)
         db.session.commit()
         return new_group.to_dict()
+    print("did not validate")
     return "Bad Data"
 
 
