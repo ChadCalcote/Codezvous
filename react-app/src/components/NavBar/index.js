@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import SearchBar from '../SearchBar';
-import Dropdown from '../Dropdown';
+import { useDetectOutsideClick } from "./useDetectOutsideClick";
+
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { CgProfile } from 'react-icons/cg';
 import './NavBar.css';
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs'
-import { CgProfile } from 'react-icons/cg'
 
 const NavBar = ({ setAuthenticated }) => {
-  const history = useHistory();
+	const history = useHistory();
 
-  const [click, setClick] = useState(false)
-  const [dropdown, setDropdown] = useState(false)
-
-  const handleClick = () => setClick(!click)
-  const closeMobileMenu = () => setClick(false);
+	const dropdownRef = useRef(null);
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+  // const [isActive, setIsActive] = useState(false)
+	const onClick = () => setIsActive(!isActive);
 
 	return (
 		<div className="navbarWrapper">
@@ -36,35 +36,40 @@ const NavBar = ({ setAuthenticated }) => {
 						Start a new group
 					</NavLink>
 				</div>
-        <div className="menu_icon" onClick={handleClick}>
-          <i>
-            <CgProfile />
-            {click ? <BsChevronUp /> : <BsChevronDown />}
-          </i>
-        </div>
-        <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-          <li className='nav-item'>
-            <NavLink to="/" className="nav-links" onClick={closeMobileMenu}>
-              Home
-            </NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink to="/groups/1" className="nav-links" onClick={closeMobileMenu}>
-              Demo Groups
-            </NavLink>
-            {dropdown && <Dropdown />}
-          </li>
-          <li className='nav-item'>
-            <NavLink to="/events/1" className="nav-links" onClick={closeMobileMenu}>
-              Demo Events
-            </NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink to="/signup" className="nav-links" onClick={closeMobileMenu}>
-              Sign Up
-            </NavLink>
-          </li>
-        </ul>
+
+				<div className="menu-container">
+					<button className="menu_icon" onClick={onClick}>
+						<CgProfile />
+						{isActive ? <BsChevronUp /> : <BsChevronDown />}
+					</button>
+					<nav
+						ref={dropdownRef}
+						className={`menu ${isActive ? 'active' : 'inactive'}`}
+					>
+						<ul>
+							<li className="nav-item">
+								<NavLink to="/">
+									Home
+								</NavLink>
+							</li>
+							<li className="nav-item">
+								<NavLink to="/groups/1">
+									Demo Groups
+								</NavLink>
+							</li>
+							<li className="nav-item">
+								<NavLink to="/events/1">
+									Demo Events
+								</NavLink>
+							</li>
+							<li className="nav-item">
+								<NavLink to="/signup">
+									Sign Up
+								</NavLink>
+							</li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 		</div>
 	);
