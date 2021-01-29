@@ -6,16 +6,18 @@ import EventCard from '../EventCard'
 import UserImage from '../UserImage';
 import './EventGallery.css'
 
-const EventGallery = () => {
-    const dispatch = useDispatch();
+const EventGallery = ({eventsShown}) => {
+    // const dispatch = useDispatch();
 
-    const events = useSelector(reduxState => {
-        return reduxState.events
-    })
+    // const events = useSelector(reduxState => {
+    //     return reduxState.events
+    // })
 
-    useEffect(() => {
-        dispatch(fetchAllEvents())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(fetchAllEvents())
+    // }, [dispatch])
+
+
 
     // const todayDate = new Date(Date.now())
     // const dayTwo = addADay(todayDate)
@@ -44,9 +46,9 @@ const EventGallery = () => {
 
     return (
         <div className="event-gallery">
-            {!events && <h3>Loading....</h3>}
-            {/* {Array.isArray(sectionEvents) && sectionEvents.map(event => <EventCard event={event} key={event.id} />)} */} */}
-            {Array.isArray(events) && events.slice(0,20).map(event => <EventCard event={event} key={event.id} />)}
+            {!eventsShown && <h3>Loading....</h3>}
+            {/* {Array.isArray(sectionEvents) && sectionEvents.map(event => <EventCard event={event} key={event.id} />)} */}
+            {Array.isArray(eventsShown) && eventsShown.slice(0,20).map(event => <EventCard event={event} key={event.id} />)}
         </div>
     )
 }
