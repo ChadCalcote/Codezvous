@@ -13,11 +13,7 @@ const SearchBar = ({ query, setQuery, activePage }) => {
                 key="random1"
                 maxLength={60}
                 value={query}
-                placeholder={
-                    activePage === "groups" ? "Search groups" :
-                    activePage === "events" ? "Search events" :
-                    "Search by keywords"
-                }
+                placeholder={"Search by events"}
                 onChange={(e) => setQuery(e.target.value)}
             />
             <button onClick={handleXClick}
