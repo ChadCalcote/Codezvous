@@ -14,10 +14,10 @@ const Dropdown = ({setAuthenticated}) => {
 
 	return (
 		<div className="menu-container">
-					<button className="menu_icon" onClick={onClick}>
+					<i className="menu_icon" onClick={onClick}>
 						<CgProfile />
 						{isActive ? <BsChevronUp /> : <BsChevronDown />}
-					</button>
+					</i>
 					<nav
 						ref={dropdownRef}
 						className={`menu ${isActive ? 'active' : 'inactive'}`}

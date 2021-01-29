@@ -23,7 +23,7 @@ const SearchBar = (props) => {
 
   return (
     <div className="searchBar">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="searchbox">
         <input
           type='text'
           value={keyword}
