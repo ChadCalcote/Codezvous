@@ -30,7 +30,7 @@ def event(id):
 
 # Create an event
 @events_routes.route('/', methods=["POST"])
-@login_required
+# @login_required
 def post():
     form = EventForm()
     print(form.event_name.data)

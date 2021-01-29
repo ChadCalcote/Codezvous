@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./index.css";
 
-const createEvent = async (event_name, description, city, state, zip_code, virtual, type, image_url, group_id) => {
+const createEvent = async (event_name, description, address, city, state, zip_code, virtual, type, image_url, group_id) => {
   const response = await fetch("/api/events/test", {
     method: "POST",
     headers: {
@@ -43,7 +43,7 @@ const EventFormReact = () => {
         if (event.errors) {
             return "Event Did Not Create";
         } else {
-            return "<h1>Event Posted</h1>";
+            return event;
         }
     }
 
@@ -108,7 +108,6 @@ const EventFormReact = () => {
           <input
             type="checkbox"
             name="isVirtual"
-            checked={!virtual}
             onChange={(event) => setVirtual(event.target.value)}
             value={virtual}
           ></input>

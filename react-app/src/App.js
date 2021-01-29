@@ -14,6 +14,7 @@ import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
 import EventCard from "./components/EventCard";
 import Footer from "./components/Footer";
+import EventFormReact from "./components/EventForm";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -59,6 +60,12 @@ function App() {
           <SignUpForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <Route exact path="/events/test">
+          <EventFormReact
+            // authenticated={authenticated}
+            // setAuthenticated={setAuthenticated}
           />
         </Route>
         <Route path="/events/:eventId">
