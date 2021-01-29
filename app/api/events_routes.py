@@ -30,7 +30,7 @@ def event(id):
 
 # Create an event
 @events_routes.route('/', methods=["POST"])
-@login_required
+# @login_required
 def post():
     form = EventForm()
     print(form.event_name.data)
@@ -42,6 +42,38 @@ def post():
         db.session.add(new_event)
         db.session.commit()
         return new_event.to_dict()
+    else:
+        return "Bad Data"
+
+
+@events_routes.route('/test', methods=["POST"])
+# @login_required
+def postTest():
+    form = EventForm()  # need to create a form
+    form['csrf_token'].data = request.cookies['csrf_token']
+    form.data['start_time'] = request.json['start_time']
+    print(form.data)
+    print(request.json['start_time'])
+    if form.validate_on_submit():
+        new_event = Event(
+            event_name=form.data['event_name'],
+            description=form.data['description'],
+            address=form.data['address'],
+            city=form.data['city'],
+            state=form.data['state'],
+            zip_code=form.data['zip_code'],
+            virtual=form.data['virtual'],
+            type=form.data['type'],
+            status=form.data['status'],
+            image_url=form.data['image_url'],
+            group_id=form.data['group_id'],
+            start_time=request.json['start_time'],
+            end_time=request.json['end_time']
+        )
+        db.session.add(new_event)
+        db.session.commit()
+        return new_event.to_dict()
+    print("did not validate")
     return "Bad Data"
 
 
@@ -106,15 +138,18 @@ def comments(id):
 
 
 # Posts a comment on an event
-@events_routes.route('/<int:id>/comments', methods=['POST'])
+@events_routes.route('/comments', methods=["POST"])
 # @login_required
-def post_comments(id):
+def post_comments():
     form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
     if form.validate_on_submit():
         new_comment = Comment()
         new_comment.user_id = request.json["user_id"]
-        new_comment.event_id = id
+        new_comment.event_id = request.json["event_id"]
         form.populate_obj(new_comment)
+        print(new_comment)
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict()
