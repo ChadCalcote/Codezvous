@@ -45,6 +45,32 @@ def post():
     return "Bad Data"
 
 
+@events_routes.route('/test', methods=["POST"])
+# @login_required
+def postTest():
+    form = EventForm()  # need to create a form
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_event = Event(
+            event_name=form.data['event_name'],
+            description=form.data['description'],
+            address=form.data['address'],
+            city=form.data['city'],
+            state=form.data['state'],
+            zip_code=form.data['zip_code'],
+            virtual=form.data['virtual'],
+            type=form.data['type'],
+            image_url=form.data['image_url'],
+            group_id=form.data['group_id']
+        )
+        # new_group.leader_id = request.json["leader_id"]
+        # form.populate_obj(new_group)
+        db.session.add(new_event)
+        db.session.commit()
+        return new_group.to_dict()
+    return "Bad Data"
+
+
 # Edit an event
 @events_routes.route('/<int:id>', methods=["PUT"])
 @login_required
