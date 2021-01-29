@@ -43,12 +43,12 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/footer" exact={true}>
-          <Footer
+        {/* <Route path="/footer" exact={true}> */}
+          {/* <Footer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
-          />
-        </Route>
+          /> */}
+        {/* </Route> */}
         <Route path="/create-group" exact={true}>
           <GroupForm
             // authenticated={authenticated}
@@ -98,6 +98,7 @@ function App() {
           <HomePage />
         </ProtectedRoute>
       </Switch>
+      <Footer authenticated={authenticated} setAuthenticated={setAuthenticated}/>
     </BrowserRouter>
   );
 }
