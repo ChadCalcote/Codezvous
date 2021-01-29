@@ -17,27 +17,36 @@ const EventGallery = () => {
         dispatch(fetchAllEvents())
     }, [dispatch])
 
-    function renderEvents(events) {
-        const today = new Date(Date.now());
-        const tomorrow = new Date();
-        tomorrow.setDate(today.getDate() + 5);
+    // const todayDate = new Date(Date.now())
+    // const dayTwo = addADay(todayDate)
 
-        events.map(event => {
-            const eventDate = new Date(event.start_time)
-            let num = 0
-            while( num < 20)
-                if (eventDate >= today){
-                    console.log("EVENT:", event)
-                    return <EventCard event={event} key={event.id} />;
-                }
-                num ++
-        })
-    }
+    // function addADay(date){
+    //     const copyofDate = new Date(Number(date));
+    //     copyofDate.setDate(date.getDate() + 10)
+    //     return copyofDate
+    // }
+
+    // function setDateSpan(events, startDay, endDay) {
+    //     return events.filter(event => {
+    //         const eventDate = new Date(event.start_time)
+    //         return eventDate >= startDay && eventDate <= endDay
+    //     })
+    // }
+    // function selectEvents(events, startDay, endDay) {
+    //     const todayEvents = setDateSpan(events, startDay, endDay)
+    //     console.log(todayEvents)
+    //     todayEvents.map(event => {
+    //         return <EventCard event={event} key={event.id} />;
+    //     })
+    // }
+
+    // const sectionEvents = selectEvents(events, todayDate, dayTwo)
 
     return (
         <div className="event-gallery">
             {!events && <h3>Loading....</h3>}
-            {Array.isArray(events) && events.map(event => <EventCard event={event} key={event.id} />)}
+            {/* {Array.isArray(sectionEvents) && sectionEvents.map(event => <EventCard event={event} key={event.id} />)} */} */}
+            {Array.isArray(events) && events.slice(0,20).map(event => <EventCard event={event} key={event.id} />)}
         </div>
     )
 }
