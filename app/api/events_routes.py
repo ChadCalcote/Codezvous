@@ -138,15 +138,18 @@ def comments(id):
 
 
 # Posts a comment on an event
-@events_routes.route('/<int:id>/comments', methods=['POST'])
+@events_routes.route('/comments', methods=["POST"])
 # @login_required
-def post_comments(id):
+def post_comments():
     form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
     if form.validate_on_submit():
         new_comment = Comment()
         new_comment.user_id = request.json["user_id"]
-        new_comment.event_id = id
+        new_comment.event_id = request.json["event_id"]
         form.populate_obj(new_comment)
+        print(new_comment)
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict()

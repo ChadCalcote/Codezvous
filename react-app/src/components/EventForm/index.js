@@ -34,7 +34,7 @@ const EventFormReact = () => {
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
     const [zipCode, setZipCode] = useState();
-    const [virtual, setVirtual] = useState("False");
+    const [virtual, setVirtual] = useState(false);
     const [type, setType] = useState("Workshop");
     const [imageUrl, setImageUrl] = useState("");
     const [groupId, setGroupId] = useState();
@@ -47,15 +47,15 @@ const EventFormReact = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const event = await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)
+        await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)
         setEventName("")
         setDescription("")
         setAddress("")
         setCity("")
         setState("")
         setZipCode("")
-        setVirtual("False")
-        setType("Workshop")
+        setVirtual(false)
+        setType("")
         setImageUrl("")
         setGroupId("")
         setStartTime("")
@@ -124,6 +124,7 @@ const EventFormReact = () => {
                 <input
                     type="checkbox"
                     name="isVirtual"
+                    checked={virtual}
                     onChange={(event) => setVirtual(event.target.value)}
                     value={virtual}
                 ></input>
@@ -134,6 +135,7 @@ const EventFormReact = () => {
                     onChange={(event) => setType(event.target.value)}
                     value={type}
                 >
+                    <option value=''>Select Event Type</option>
                     <option value='workshop'>Workshop</option>
                     <option value='competition'>Competition</option>
                     <option value='networking'>Networking Event</option>
