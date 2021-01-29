@@ -24,22 +24,22 @@ const Dropdown = ({setAuthenticated}) => {
 					>
 						<ul>
 							<li className="nav-item">
-								<NavLink to="/">
+								<NavLink to="/" onClick={onClick}>
 									Home
 								</NavLink>
 							</li>
 							<li className="nav-item">
-								<NavLink to="/groups/1">
+								<NavLink to="/groups/1" onClick={onClick}>
 									Demo Groups
 								</NavLink>
 							</li>
 							<li className="nav-item">
-								<NavLink to="/events/1">
+								<NavLink to="/events/1" onClick={onClick}>
 									Demo Events
 								</NavLink>
 							</li>
 							<li className="nav-item">
-								<NavLink to="/signup">
+								<NavLink to="/signup" onClick={onClick}>
 									Sign Up
 								</NavLink>
 							</li>

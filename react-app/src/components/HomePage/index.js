@@ -18,31 +18,31 @@ const HomePage = () => {
         return reduxState.session
     })
 
-    const [query, setQuery] = useState('');
-    const [eventsShown, setEventsShown] = useState([...events]);
+    // const [query, setQuery] = useState('');
+    // const [eventsShown, setEventsShown] = useState([...events]);
     const [ galleryToDisplay, setGalleryToDisplay ] = useState("event")
     const [ eventListDisplayed, setEventListDisplayed ] = useState(true)
 
-	let EventsRegex = new RegExp(query, 'i');
-	const filterEvents = () => {
-        if (query.length > 0) {
-            let eventName = [...events].filter((event) => EventsRegex.test(event.event_name));
-			let eventDescription = [...events].filter(event => EventsRegex.test(event.description))
-			let eventAddress = [...events].filter(event => EventsRegex.test(event.address))
-			let eventCity = [...events].filter(event => EventsRegex.test(event.city))
-			let eventState = [...events].filter(event => EventsRegex.test(event.state))
-			let eventZipcode = [...events].filter(event => EventsRegex.test(event.zip_code))
-            setEventsShown([...eventName, ...eventDescription, ...eventAddress, ...eventCity, ...eventState, ...eventZipcode,]);
-		} else if (query.length === 0) {
-            setEventsShown([...events]);
-		}
-	};
+	// let EventsRegex = new RegExp(query, 'i');
+	// const filterEvents = () => {
+    //     if (query.length > 0) {
+    //         let eventName = [...events].filter((event) => EventsRegex.test(event.event_name));
+	// 		let eventDescription = [...events].filter(event => EventsRegex.test(event.description))
+	// 		let eventAddress = [...events].filter(event => EventsRegex.test(event.address))
+	// 		let eventCity = [...events].filter(event => EventsRegex.test(event.city))
+	// 		let eventState = [...events].filter(event => EventsRegex.test(event.state))
+	// 		let eventZipcode = [...events].filter(event => EventsRegex.test(event.zip_code))
+    //         setEventsShown([...eventName, ...eventDescription, ...eventAddress, ...eventCity, ...eventState, ...eventZipcode,]);
+	// 	} else if (query.length === 0) {
+    //         setEventsShown([...events]);
+	// 	}
+	// };
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        filterEvents();
-    }, [query, events]);
+    // useEffect(() => {
+    //     filterEvents();
+    // }, [query, events]);
 
     useEffect(() => {
         dispatch(fetchAllEvents())
@@ -84,16 +84,16 @@ const HomePage = () => {
         <div className="home-page">
             <div className="home-page_header">
                 <div className="searchbar">
-                    <SearchBar
+                    {/* <SearchBar
                         query={query}
                         setQuery={setQuery}
-                    />
+                    /> */}
                 </div>
                 <button className="toggle" id="group-toggle" hidden={!eventListDisplayed} onClick={()=>handleToggleClick()}>Groups</button>
                 <button className="toggle" id="event-toggle" hidden={eventListDisplayed} onClick={()=>handleToggleClick()}>Calendar</button>
             </div>
             <div className="home-page_body">
-                <EventGallery />
+                {/* <EventGallery /> */}
             </div>
             <div className="home-page_sidebar">
             </div>
