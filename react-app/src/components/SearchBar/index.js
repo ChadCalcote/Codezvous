@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SearchBar.css';
 import { BsSearch } from 'react-icons/bs'
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   const [keyword, setKeyword] = useState("")
   const [zipcode, setZipcode] = useState("")
 
