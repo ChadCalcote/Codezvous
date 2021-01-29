@@ -1,29 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import SearchBar from '../SearchBar';
-import { useDetectOutsideClick } from "./useDetectOutsideClick";
+import Dropdown from '../Dropdown';
+import logo from './logo.png'
 
-import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { CgProfile } from 'react-icons/cg';
 import './NavBar.css';
 
 const NavBar = ({ setAuthenticated }) => {
 	const history = useHistory();
 
-	const dropdownRef = useRef(null);
-  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
-  // const [isActive, setIsActive] = useState(false)
-	const onClick = () => setIsActive(!isActive);
 
 	return (
 		<div className="navbarWrapper">
 			<div className="header_left">
 				<div className="home">
-					<img
-						className="header-logo"
-						onClick={() => history.push('/')}
-						src={'./logo.png'}
-					/>
+            <img
+              className="header_logo"
+              onClick={() => history.push('/')}
+              src={logo}
+            />
 				</div>
 				<div className="searchbar">
 					<SearchBar />
@@ -36,40 +31,8 @@ const NavBar = ({ setAuthenticated }) => {
 						Start a new group
 					</NavLink>
 				</div>
+        <Dropdown />
 
-				<div className="menu-container">
-					<button className="menu_icon" onClick={onClick}>
-						<CgProfile />
-						{isActive ? <BsChevronUp /> : <BsChevronDown />}
-					</button>
-					<nav
-						ref={dropdownRef}
-						className={`menu ${isActive ? 'active' : 'inactive'}`}
-					>
-						<ul>
-							<li className="nav-item">
-								<NavLink to="/">
-									Home
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink to="/groups/1">
-									Demo Groups
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink to="/events/1">
-									Demo Events
-								</NavLink>
-							</li>
-							<li className="nav-item">
-								<NavLink to="/signup">
-									Sign Up
-								</NavLink>
-							</li>
-						</ul>
-					</nav>
-				</div>
 			</div>
 		</div>
 	);
