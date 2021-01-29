@@ -8,8 +8,11 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import GroupPage from "./components/GroupPage";
+import HomePage from "./components/HomePage"
 import UserImage from "./components/UserImage";
 import { authenticate } from "./services/auth";
+import EventCard from "./components/EventCard";
+import Footer from "./components/Footer";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -35,6 +38,12 @@ function App() {
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <Route path="/footer" exact={true}>
+          <Footer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
@@ -79,7 +88,7 @@ function App() {
           <UserImage />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <HomePage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

@@ -34,7 +34,7 @@ export const fetchSingleUser = (userId) => {
 
 export const fetchEventUsers = (eventId) => {
   return async (dispatch) => {
-    const responseFromDb = await fetch(`/api/events/${eventId}/attendees`); // /api/groups/${groupId}/users
+    const responseFromDb = await fetch(`/api/events/${eventId}/attendees`);
     const usersList = await responseFromDb.json();
     dispatch(setGroupUsers(usersList));
   };

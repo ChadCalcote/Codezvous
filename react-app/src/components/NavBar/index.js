@@ -1,38 +1,41 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
-import "./NavBar.css"
+import { NavLink, useHistory } from 'react-router-dom';
+import SearchBar from '../SearchBar';
+import Dropdown from '../Dropdown';
+import logo from './logo.png'
+
+import './NavBar.css';
 
 const NavBar = ({ setAuthenticated }) => {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
-    </nav>
-  );
-}
+	const history = useHistory();
+
+
+	return (
+		<div className="navbarWrapper">
+			<div className="header_left">
+				<div className="home">
+            <img
+              className="header_logo"
+              onClick={() => history.push('/')}
+              src={logo}
+            />
+				</div>
+				<div className="searchbar">
+					<SearchBar />
+				</div>
+			</div>
+
+			<div className="header_right">
+				<div className="start_new_group">
+					<NavLink to="/new-group" exact={true} activeClassName="active">
+						Start a new group
+					</NavLink>
+				</div>
+        <Dropdown />
+
+			</div>
+		</div>
+	);
+};
 
 export default NavBar;

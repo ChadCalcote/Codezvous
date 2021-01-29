@@ -10,7 +10,8 @@ events_routes = Blueprint('events', __name__)
 # Retrieve all events
 @events_routes.route('/')
 def events():
-    events = Event.query.all()
+    # events = Event.query.all()
+    events = db.session.query(Event).order_by(Event.start_time)
     return jsonify([event.to_dict() for event in events])
 
 
