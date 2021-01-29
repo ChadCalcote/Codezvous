@@ -318,7 +318,7 @@ def seed_events():
         state_abbr = 'TX'
         city = fakes.city()
         event_name = f'{adverb} {adjective} {programming_language} {event}'
-        start_date = fakes.date_time_ad(end_datetime='+1m', start_datetime='now')
+        start_date = fakes.date_time_ad(end_datetime='+90d', start_datetime='now')
         hours = int(random() * 3 ) + 1
         random_group = int(random() * 50 ) + 1
         is_virtual = random() >= 0.5
