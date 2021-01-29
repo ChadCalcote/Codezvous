@@ -1,47 +1,32 @@
-import React, { useState } from 'react';
-import './SearchBar.css';
-import { BsSearch } from 'react-icons/bs'
+import React from 'react';
+import './SearchBar.css'
 
-const SearchBar = (props) => {
-  const [keyword, setKeyword] = useState("")
-  const [zipcode, setZipcode] = useState("")
+const SearchBar = ({ query, setQuery, activePage }) => {
+    const handleXClick = () => {
+        setQuery("")
+    }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newSearch = {
-      keyword,
-      zipcode,
-    };
-    console.log(newSearch);
-    handleInputReset();
-  }
-
-  const handleInputReset = () => {
-    setKeyword("")
-    setZipcode("")
-  }
-
-  return (
-    <div className="searchBar">
-      <form onSubmit={handleSubmit} className="searchbox">
-        <input
-          type='text'
-          value={keyword}
-          onChange={(event) => setKeyword(event.target.value)}
-          placeholder='Search by keyword'
-        />
-        <input
-          type='text'
-          value={zipcode}
-          onChange={(event) => setZipcode(event.target.value)}
-          placeholder='Zip Code'
-        />
-        <button className='searchButton' type='submit'>
-          <BsSearch />
-        </button>
-      </form>
-    </div>
-  )
+    return (
+        <div className="search-bar-div">
+            <input
+                className="search-bar"
+                key="random1"
+                maxLength={60}
+                value={query}
+                placeholder={
+                    activePage === "groups" ? "Search groups" :
+                    activePage === "events" ? "Search events" :
+                    "Search by keywords"
+                }
+                onChange={(e) => setQuery(e.target.value)}
+            />
+            <button onClick={handleXClick}
+                className="x-button"
+            >
+                X
+            </button>
+        </div>
+    );
 }
 
 export default SearchBar;
