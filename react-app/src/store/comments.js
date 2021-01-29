@@ -3,24 +3,24 @@ const SET_COMMENT = "SET_COMMENT";
 export const setComment = (comment) => {
   return {
     type: SET_COMMENT,
-    comments: comment,
+    comment: comment,
   };
 };
 
 export const createComment = (data, eventId) => async (dispatch) => {
-    const responseFromDb = await fetch(`/api/events/${eventId}/comments`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
+  const responseFromDb = await fetch(`/api/events/${eventId}/comments`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
 
-    if (responseFromDb.ok) {
-        const comment = await responseFromDb.json();
-        dispatch(setComment(comment));
-        return comment;
-    }
+  if (responseFromDb.ok) {
+    const comment = await responseFromDb.json();
+    dispatch(setComment(comment));
+    return comment;
+  }
 };
 
 const initialState = {};

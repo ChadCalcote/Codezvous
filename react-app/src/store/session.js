@@ -7,8 +7,10 @@ export const setCurrentUser = (user) => {
   }
 }
 
-export const currentUser = (user) => async (dispatch) => {
-  const current_user = await fetch(`/api/`)
+export const getCurrentUser = () => async (dispatch) => {
+  const response = await fetch(`/api/auth/`)
+  const current_user = await response.json()
+  dispatch(setCurrentUser(current_user))
 }
 
 const initialState = {};

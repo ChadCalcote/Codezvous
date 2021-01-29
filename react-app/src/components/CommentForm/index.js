@@ -1,17 +1,24 @@
 import React from "react";
-import CommentForm from "../../../../app/forms/comment_form.py";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createComment } from "../../store/comments";
+import { getCurrentUser } from "../../store/session";
 
 
 const CommentFormReact = () => {
 
-    const params = useParams()
-    const dispatch = useDispatch()
+    const params = useParams();
+    const dispatch = useDispatch();
     const { eventId } = params;
 
+    const  user = useSelector(state => {
+      return state.session
+    })
+
+    useEffect(() => {
+      dispatch(getCurrentUser())
+    }, [])
 
     const [comment, setComment] = useState("")
 
@@ -19,11 +26,11 @@ const CommentFormReact = () => {
         event.preventDefault();
 
         const newComment = {
-            user_id: userId,
+            user_id: user.id,
             body: comment
         }
 
-        const addComment = await dispatch(createComment(newComment, eventId))
+          dispatch(createComment(newComment, eventId));
     }
 
 
