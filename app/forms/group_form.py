@@ -12,3 +12,4 @@ class GroupForm(FlaskForm):
     zip_code = IntegerField('Zip Code', validators=[DataRequired()])
     is_active = BooleanField('Active?')
     image_url = StringField('Image_Url')
+    leader_id = IntegerField('Leader', validators=[DataRequired()])

@@ -44,13 +44,36 @@ def get_members(id):
 
 # Create a group
 @groups_routes.route('/', methods=["POST"])
-@login_required
+# @login_required
 def post():
     form = GroupForm()  # need to create a form
     if form.validate_on_submit():
         new_group = Group()
         new_group.leader_id = request.json["leader_id"]
         form.populate_obj(new_group)
+        db.session.add(new_group)
+        db.session.commit()
+        return new_group.to_dict()
+    return "Bad Data"
+
+# Create a group [TEST]
+@groups_routes.route('/test', methods=["POST"])
+# @login_required
+def postTest():
+    form = GroupForm()  # need to create a form
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_group = Group(
+            group_name=form.data['group_name'],
+            description=form.data['description'],
+            city=form.data['city'],
+            state=form.data['state'],
+            zip_code=form.data['zip_code'],
+            image_url=form.data['image_url'],
+            leader_id=form.data['leader_id']
+        )
+        # new_group.leader_id = request.json["leader_id"]
+        # form.populate_obj(new_group)
         db.session.add(new_group)
         db.session.commit()
         return new_group.to_dict()
