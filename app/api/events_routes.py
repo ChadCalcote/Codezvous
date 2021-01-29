@@ -107,7 +107,7 @@ def comments(id):
 
 # Posts a comment on an event
 @events_routes.route('/<int:id>/comments', methods=['POST'])
-@login_required
+# @login_required
 def post_comments(id):
     form = CommentForm()
     if form.validate_on_submit():
