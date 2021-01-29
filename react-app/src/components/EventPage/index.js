@@ -45,7 +45,7 @@ const EventPage = () => {
       return reduxState.events
 
     })
-
+// setup groups state to be the one group holding the event
     useEffect(() => {
       dispatch(fetchAllEvents())
     }, [])
@@ -109,6 +109,7 @@ const EventPage = () => {
         <hr color="#2C2629"/>
         <div className="event-sim-events">
           <h2>Similar events nearby</h2>
+          {/* event gallery with 4 random events */}
             {/* header tag */}
             {/* Event Components */}
         </div>
