@@ -1,14 +1,40 @@
 import React from "react";
-const UserImage = () => {
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchSingleUser } from "../../store/users";
 
-// Fetch User
+const UserImage = ({ user }) => {
+const params = useParams();
+const dispatch = useDispatch();
+const { userId } = params
+
+const [ imageLoaded, setImageLoaded ] = useState("loading...")
+const [ imageErrored, setImageErrored ] = useState("")
+
+const handleImageLoaded = () => setImageLoaded("loaded")
+
+const handleImageErrored = () => setImageErrored("failed to load")
+
+// // Fetch User
+// const user = useSelector(reduxState => {
+//   return reduxState.users
+// })
+
+// useEffect(() => {
+//   dispatch(fetchSingleUser(userId))
+
+// }, [dispatch])
+// // Use User's image 
 
     return (
       <div className="user_photo">
-        <img
-          width="100px"
-          src="https://i.pinimg.com/originals/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.png"
-        />
+        {user.image_url ? <img width="100px" 
+                                src={user.image_url}
+                                onLoad={handleImageLoaded}
+                                onError={handleImageErrored}
+                                /> : null
+        }
       </div>
     );
 }

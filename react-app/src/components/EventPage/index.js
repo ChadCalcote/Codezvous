@@ -43,7 +43,7 @@ const EventPage = () => {
 
     const events = useSelector(reduxState => {
       return reduxState.events
-    
+
     })
 
     useEffect(() => {
@@ -80,7 +80,7 @@ const EventPage = () => {
             </div>
             <div id="event-body_feed_attendees">
               <h2>Attendees (99{/* TODO: need to setup a useEffect/State for selecting users who are attending and sum*/})</h2> 
-              <AttendeeCard />
+              {/* <AttendeeCard /> */}
               {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
             </div>
             <div id="event-body_feed_comments">

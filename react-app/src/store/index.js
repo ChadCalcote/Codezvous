@@ -4,12 +4,14 @@ import sessionReducer from './session.js';
 import groupsReducer from './groups.js';
 import eventsReducer from './events.js';
 import usersReducer from './users.js';
+import commentsReducer from './comments.js'
 
 const rootReducer = combineReducers({
 	session: sessionReducer,
 	groups: groupsReducer,
 	events: eventsReducer,
 	users: usersReducer,
+	comments: commentsReducer
 });
 
 let enhancer;

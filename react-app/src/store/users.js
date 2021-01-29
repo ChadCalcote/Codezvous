@@ -1,4 +1,6 @@
 const SET_GROUP_USERS = "SET_GROUP_USERS";
+const SET_SINGLE_USER = "SET_SINGLE_USER"
+
 
 export const setGroupUsers= (users) => {
   return {
@@ -6,6 +8,13 @@ export const setGroupUsers= (users) => {
     users: users,
   };
 };
+
+export const setSingleUser = (user) => {
+  return {
+    type: SET_SINGLE_USER,
+    user: user
+  }
+}
 
 export const fetchGroupUsers = (groupId) => {
   return async (dispatch) => {
@@ -15,17 +24,33 @@ export const fetchGroupUsers = (groupId) => {
   };
 };
 
+export const fetchSingleUser = (userId) => {
+  return async (dispatch) => {
+    const responseFromDb = await fetch(`/api/users/${userId}`);
+    const user = await responseFromDb.json();
+    dispatch(setSingleUser(user))
+  }
+}
 
-
-const initialState = {
-
+export const fetchEventUsers = (eventId) => {
+  return async (dispatch) => {
+    const responseFromDb = await fetch(`/api/events/${eventId}/attendees`); // /api/groups/${groupId}/users
+    const usersList = await responseFromDb.json();
+    dispatch(setGroupUsers(usersList));
+  };
 };
+
+const initialState = {};
 
 const usersReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_GROUP_USERS:
-      return action.users;
+      newState = action.users
+      return newState;
+      case SET_SINGLE_USER:
+      newState = action.user
+      return action.user;
     default:
         return state;
   }
