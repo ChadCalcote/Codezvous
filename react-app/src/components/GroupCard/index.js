@@ -1,19 +1,34 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchGroupUsers } from "../../store/users";
 import "./index.css";
 
-// Fetch One Group
+const GroupCard = ({ group }) => {
 
-const GroupCard = () => {
+    const dispatch = useDispatch();
+
+    const users = useSelector((reduxState) => {
+      return reduxState.users;
+    });
+
+    useEffect(() => {
+      dispatch(fetchGroupUsers(group.id));
+    }, [dispatch]);
 
     return (
         <div className="group-card">
             <div className="group-card_photo">
-                Photo Here
+                {group.image_url}
             </div>
-            <div className="group-card_name">Women Who Code</div>
-            <div className="group-card_members">4,924 Women Who Code Members</div>
+            <div className="group-card_name">
+                {group.group_name}
+            </div>
+            <div className="group-card_members">
+            {users.length > 0 ? `${users.length} Members`: "Check us out!"}
+            </div>
         </div>
     );
-}
+
+};
 
 export default GroupCard;
