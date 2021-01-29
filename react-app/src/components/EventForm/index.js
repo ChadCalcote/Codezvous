@@ -38,8 +38,8 @@ const EventFormReact = () => {
     const [type, setType] = useState("Workshop");
     const [imageUrl, setImageUrl] = useState("");
     const [groupId, setGroupId] = useState();
-    const [startTime, setStartTime] = useState("Mar 05 00:00:00	");
-    const [endTime, setEndTime] = useState("Mar 05 00:00:00	");
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
     const [status, setStatus] = useState("Ongoing");
     
 
@@ -48,11 +48,19 @@ const EventFormReact = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         const event = await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)
-        if (event.errors) {
-            return "Event Did Not Create";
-        } else {
-            return "<h1>Event Created</h1>";
-        }
+        setEventName("")
+        setDescription("")
+        setAddress("")
+        setCity("")
+        setState("")
+        setZipCode("")
+        setVirtual("False")
+        setType("Workshop")
+        setImageUrl("")
+        setGroupId("")
+        setStartTime("")
+        setEndTime("")
+        setStatus("Ongoing")
     }
 
     return (
@@ -170,7 +178,7 @@ const EventFormReact = () => {
             </div>
             <div>
                 <label>Choose a time for your meeting:</label>
-                <input type="text"
+                <input type="datetime-local"
                     value={startTime}
                     onChange={(event) => setStartTime(event.target.value)}
                     required
@@ -179,14 +187,14 @@ const EventFormReact = () => {
             </div>
             <div>
                 <label>Choose a time for your meeting:</label>
-                <input type="text" 
+                <input type="datetime-local" 
                     value={endTime}
                     onChange={(event) => setEndTime(event.target.value)}
                     required
                     >
                 </input>
             </div>
-            <button type="submit">Create Group</button>
+            <button type="submit">Create Event</button>
       </form>
     );
 };

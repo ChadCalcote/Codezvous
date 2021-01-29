@@ -16,5 +16,3 @@ class EventForm(FlaskForm):
     status = StringField('Status')
     group_id = IntegerField('Group_Id', validators=[DataRequired()])
     image_url = StringField('Image_Url')
-    start_time = DateTimeField('Start Time', validators=[DataRequired()])
-    end_time = DateTimeField('End Time', validators=[DataRequired()])

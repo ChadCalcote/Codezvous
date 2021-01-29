@@ -67,14 +67,12 @@ def postTest():
             status=form.data['status'],
             image_url=form.data['image_url'],
             group_id=form.data['group_id'],
-            start_time=form.data['start_time'],
-            end_time=form.data['end_time']
+            start_time=request.json['start_time'],
+            end_time=request.json['end_time']
         )
-        # new_group.leader_id = request.json["leader_id"]
-        # form.populate_obj(new_group)
         db.session.add(new_event)
         db.session.commit()
-        return new_group.to_dict()
+        return new_event.to_dict()
     print("did not validate")
     return "Bad Data"
 
