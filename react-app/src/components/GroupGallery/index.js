@@ -7,21 +7,7 @@ import GroupCard from '../GroupCard'
 import UserImage from '../UserImage';
 import './GroupGallery.css'
 
-const GroupGallery = ({ groupType }) => {
-    const dispatch = useDispatch();
-
-    const groups = useSelector(reduxState => {
-        return reduxState.groups
-    })
-
-    const user = useSelector(reduxState => {
-        return reduxState.session
-    })
-
-    useEffect(() => {
-        dispatch(fetchAllGroups())
-        dispatch(getCurrentUser())
-    }, [dispatch])
+const GroupGallery = ({ events }) => {
 
 // Need to figure out how to display either groups the currently authenticated user belongs to
 // OR all groups
