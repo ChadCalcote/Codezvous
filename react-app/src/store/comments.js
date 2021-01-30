@@ -14,6 +14,7 @@ export const getAllComments = (comments) => {
     comments: comments,
   };
 };
+
 export const createComment = (data) => {
   return async (dispatch) => {
     const responseFromDb = await fetch(`/api/events/comments`, {
@@ -23,7 +24,6 @@ export const createComment = (data) => {
       },
       body: JSON.stringify(data)
     });
-    console.log("HELLLLOOOOO")
     if (responseFromDb.ok) {
       const comment = await responseFromDb.json();
       dispatch(setComment(comment));

@@ -16,7 +16,7 @@ class Event(db.Model):
     type = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(30), default='pending')
     image_url = db.Column(
-        db.String, default='https://www.cambridgebrewingcompany.com/wp-content/uploads/generic-banner.jpg')
+        db.String, default='https://picsum.photos/600/337')
     group_id = db.Column(db.Integer, db.ForeignKey(
         'groups.id'), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False)

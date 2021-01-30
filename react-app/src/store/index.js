@@ -4,8 +4,9 @@ import sessionReducer from './session.js';
 import groupsReducer from './groups.js';
 import eventsReducer from './events.js';
 import usersReducer from './users.js';
-import commentsReducer from './comments.js'
+import commentsReducer from './comments.js';
 import userGroupsReducer from './userGroups.js';
+import RSVPsReducer from './rsvps.js';
 
 const rootReducer = combineReducers({
 	session: sessionReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
 	events: eventsReducer,
 	users: usersReducer,
 	comments: commentsReducer,
-	userGroups: userGroupsReducer
+	userGroups: userGroupsReducer,
+	RSVPs: RSVPsReducer
 });
 
 let enhancer;

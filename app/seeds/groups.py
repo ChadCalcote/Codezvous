@@ -113,14 +113,15 @@ def seed_groups():
         ]
 
     demo_group1 = Group(group_name='javascript group', description='We are passionate about Javascript!',
-                        city='Austin', state='TX', zip_code=78704, leader_id=2)
+                        city='Austin', state='TX', zip_code=78704, leader_id=1)
 
     db.session.add(demo_group1)
 
     db.session.commit()
-    num = 0
-    for _ in range (70):
+    num = 2
+    for _ in range (71):
         random_number = int(random() *10) + 1
+        img_num = num + 2
         city = fakes.city()
         current_group_name = f'{fake_group_names[num]} of {city}'
         num += 1
@@ -129,7 +130,7 @@ def seed_groups():
 
         fake_group = Group(group_name=current_group_name, description=fakes.paragraph(nb_sentences=5),
                         city=city, state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr), 
-                        is_active=active, image_url='https://picsum.photos/seed/picsum/600/337/?blur=2', leader_id=random_number)
+                        is_active=active, image_url=f'https://picsum.photos/id/{img_num}/600/337', leader_id=num)
 
         db.session.add(fake_group)
 

@@ -16,28 +16,6 @@ import EventGallery from '../EventGallery';
 import RSVP from '../RSVP';
 import UserImage from '../UserImage';
 
-// List Out Data from Single Event
-// List Out Data about Attendees
-// List Out Data about Comments
-// const mockGroup = {
-//     id: 1,
-//     group_name: "The Awesome Group",
-//     description: "This group is the most awesome group of coders in the entire world. our group is so great. We code. We do stuff together. We code together. We are awesome coding together.",
-//     city: "Denver",
-//     state: "CO",
-//     zip_code: "80205",
-//     image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
-//     leader_id: "1",
-//     createdAt: "2020-10-18T20:26:34.256Z",
-//     updatedAt: "2020-10-18T20:26:34.256Z",
-// };
-
-// /groups/:groupId
-
-// If leader is viewing page, edit and delete buttons already
-
-
-
 const GroupPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
@@ -123,8 +101,6 @@ const GroupPage = () => {
       dispatch(fetchGroupEvents(groupId));
     }, [dispatch])
 
-    console.log(members);
-
     return (
       <div className="group-page">
         <h1>Group Page!</h1>
@@ -156,7 +132,7 @@ const GroupPage = () => {
             <div id="group-body_feed_description">{group.description}</div>
             <div id="group-body_feed_events">
               Group Events ({`${events.length}`})
-              <EventGallery events={events} />
+              <EventGallery events={events} parent={"groupPage"} />
             </div>
           </div>
           <div className="group-body_sidebar">

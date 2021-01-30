@@ -37,8 +37,14 @@ def user_groups(id):
 @user_routes.route('/<int:id>/events')
 # @login_required
 def user_events(id):
-    user_RSVPs = Event.query.join(RSVP).filter(RSVP.user_id == id).all()
-    return jsonify([event.to_dict() for event in user_RSVPs])
+    user_events = Event.query.join(RSVP).filter(RSVP.user_id == id).all()
+    return jsonify([event.to_dict() for event in user_events])
+
+@user_routes.route('/<int:id>/rsvps')
+# @login_required
+def user_rsvps(id):
+    user_RSVPs = RSVP.query.filter(RSVP.user_id == id).all()
+    return jsonify([rsvp.to_dict() for rsvp in user_RSVPs])
 
     # initial approach (for future reference):
     # 1. grabbing user RSVPs where user's id matches RSVP user's id
