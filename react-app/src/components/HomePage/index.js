@@ -63,7 +63,7 @@ const HomePage = () => {
         } else if (events) {
             return (
             <>
-                <EventGallery events={events}/>
+                <EventGallery events={events} parent={"home"}/>
             </>
             )
         }
