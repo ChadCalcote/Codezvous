@@ -6,6 +6,7 @@ import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
 import "./index.css";
 import UserImage from "../UserImage";
+import { formatDate } from "../../dateFunctions";
 
 const EventCard = ({ event }) => {
   const dispatch = useDispatch();
@@ -18,9 +19,18 @@ const EventCard = ({ event }) => {
     dispatch(fetchEventUsers(event.id));
   },[dispatch])
 
+    function addADay(date){
+        const copyofDate = new Date(Number(date));
+        copyofDate.setDate(date.getDate() + 10)
+        return copyofDate
+    }
+
   return (
     <div className="event-card">
-      <div className="event-card_date">{event.start_time}</div>
+      <div className="event-card_date">
+        {!event.start_time && <>Loading...</>}
+        {formatDate(event.start_time, 'long')}
+      </div>
       <div className="event-card_title">{event.event_name}</div>
       <div className="event-card_location">
         {event.virtual ? <><BsCameraVideo /><p>Virtual event</p></> : <><div><BsGeoAlt />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
