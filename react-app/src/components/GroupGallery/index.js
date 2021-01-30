@@ -27,7 +27,7 @@ const GroupGallery = ({ user, type }) => {
     return (
         <div className="group-suggested-gallery">
             {!groups && <h3>Loading....</h3>}
-            {/* {Array.isArray(sectionEvents) && sectionEvents.map(event => <EventCard event={event} key={event.id} />)} */} */}
+            {/* {Array.isArray(sectionEvents) && sectionEvents.map(event => <EventCard event={event} key={event.id} />)} */}
             {Array.isArray(groups) && type=="user" && groups.slice(0,4).map(group => <GroupCard group={group} key={group.id} />)}
             {Array.isArray(groups) && type=="all" && groups.slice(0,20).map(group => <GroupCard group={group} key={group.id} />)}
         </div>

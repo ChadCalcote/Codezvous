@@ -10,19 +10,19 @@ import "./HomePage.css";
 
 const HomePage = () => {
     let displayedGallery;
-
+    
     const events = useSelector(reduxState => {
         return reduxState.events
     })
     const user = useSelector(reduxState => {
         return reduxState.session
     })
-
-    // const [query, setQuery] = useState('');
+    
+    const [query, setQuery] = useState('');
     // const [eventsShown, setEventsShown] = useState([...events]);
     const [ galleryToDisplay, setGalleryToDisplay ] = useState("event")
     const [ eventListDisplayed, setEventListDisplayed ] = useState(true)
-
+    
 	// let EventsRegex = new RegExp(query, 'i');
 	// const filterEvents = () => {
     //     if (query.length > 0) {
@@ -37,38 +37,35 @@ const HomePage = () => {
     //         setEventsShown([...events]);
 	// 	}
 	// };
-
+    
     const dispatch = useDispatch();
-
+    
     // useEffect(() => {
     //     filterEvents();
     // }, [query, events]);
-
+    
     useEffect(() => {
         dispatch(fetchAllEvents())
         dispatch(getCurrentUser())
     }, [dispatch])
-
-    useEffect(()=>{
-        function gallerySwap() {
-            if (galleryToDisplay === "group"){
-               return (
-                <>
-                    <GroupGallery user={user} type="all"/>
-                    <br />
-                    <GroupGallery user={user} type="user"/>
-                </>
-                )
-            } else {
-                return (
-                <>
-                    <EventGallery />
-                </>
-                )
-            }
-        }
-        displayedGallery = gallerySwap()
-    }, [galleryToDisplay])
+    
+    // function gallerySwap() {
+    //     if (galleryToDisplay === "group"){
+    //         return (
+    //         <>
+    //             <GroupGallery user={user} type="all"/>
+    //             <br />
+    //             <GroupGallery user={user} type="user"/>
+    //         </>
+    //         )
+    //     } else if (eventsShown) {
+    //         return (
+    //         <>
+    //             {/* <EventGallery eventsShown={eventsShown}/> */}
+    //         </>
+    //         )
+    //     }
+    // }
 
     function handleToggleClick(e) {
         if (galleryToDisplay == "group") {
@@ -89,11 +86,11 @@ const HomePage = () => {
                         setQuery={setQuery}
                     /> */}
                 </div>
-                <button className="toggle" id="group-toggle" hidden={!eventListDisplayed} onClick={()=>handleToggleClick()}>Groups</button>
-                <button className="toggle" id="event-toggle" hidden={eventListDisplayed} onClick={()=>handleToggleClick()}>Calendar</button>
+                <button className="toggle" id="group-toggle" disabled={!eventListDisplayed} onClick={()=>handleToggleClick()}>Groups</button>
+                <button className="toggle" id="event-toggle" disabled={eventListDisplayed} onClick={()=>handleToggleClick()}>Calendar</button>
             </div>
             <div className="home-page_body">
-                {/* <EventGallery /> */}
+                {/* {gallerySwap()} */}
             </div>
             <div className="home-page_sidebar">
             </div>
