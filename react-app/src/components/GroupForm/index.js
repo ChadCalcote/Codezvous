@@ -35,12 +35,14 @@ const GroupForm = () => {
 
     const onSubmit = async(event) => {
         event.preventDefault();
-        const group = await createGroup(groupName, description, city, state, zipCode, imageUrl, leader_id)
-        if (group.errors) {
-            return "Group Did Not Create";
-        } else {
-            return "<h1>Group Posted</h1>";
-        }
+        await createGroup(groupName, description, city, state, zipCode, imageUrl, leader_id)
+        setGroupName("")
+        setDescription("")
+        setCity("")
+        setState("")
+        setZipCode(0)
+        setImageUrl("")
+        setLeaderId(0)
     }
 
     return (

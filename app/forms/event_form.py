@@ -14,6 +14,5 @@ class EventForm(FlaskForm):
     virtual = BooleanField('Virtual Event?')
     type = StringField('Type', validators=[DataRequired()])
     status = StringField('Status')
+    group_id = IntegerField('Group_Id', validators=[DataRequired()])
     image_url = StringField('Image_Url')
-    start_time = DateTimeField('Start Time')
-    end_time = DateTimeField('End Time')

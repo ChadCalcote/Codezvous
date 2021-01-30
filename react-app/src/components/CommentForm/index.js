@@ -27,15 +27,17 @@ const CommentFormReact = () => {
 
         const newComment = {
             user_id: user.id,
-            body: comment
-        }
+            body: comment,
+            event_id: parseInt(eventId)
+        };
 
-          dispatch(createComment(newComment, eventId));
+          dispatch(createComment(newComment));
+          setComment("");
     }
 
 
     return (
-      <form onSubmit={onSubmit} method="post" action="/events/<int:id>/comments">
+      <form onSubmit={onSubmit}>
         <div>
           <label>Comment</label>
           <textarea value={comment} onChange={event => setComment(event.target.value)}/>

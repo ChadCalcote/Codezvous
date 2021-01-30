@@ -4,7 +4,7 @@ const GET_ALL_COMMENTS = "GET_ALL_COMMENTS";
 export const setComment = (comment) => {
   return {
     type: SET_COMMENT,
-    comment: comment,
+    comments: comment,
   };
 };
 
@@ -14,22 +14,22 @@ export const getAllComments = (comments) => {
     comments: comments,
   };
 };
-
-export const createComment = (data, eventId) => async (dispatch) => {
-  const responseFromDb = await fetch(`/api/events/${eventId}/comments`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data)
-  });
-
-  if (responseFromDb.ok) {
-    const comment = await responseFromDb.json();
-    dispatch(setComment(comment));
-    return comment;
-  }
-};
+export const createComment = (data) => {
+  return async (dispatch) => {
+    const responseFromDb = await fetch(`/api/events/comments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data)
+    });
+    console.log("HELLLLOOOOO")
+    if (responseFromDb.ok) {
+      const comment = await responseFromDb.json();
+      dispatch(setComment(comment));
+    }
+  };
+}
 
 export const fetchAllComments = (eventId) => {
   return async (dispatch) => {
