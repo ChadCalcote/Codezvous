@@ -13,6 +13,7 @@ import EventCard from '../EventCard';
 import GroupCard from '../GroupCard';
 import EventGallery from '../EventGallery';
 import RSVP from '../RSVP';
+import UserImage from '../UserImage';
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -46,6 +47,7 @@ const GroupPage = () => {
     const [isLeader, setIsLeader] = useState(false);
     const [activeUser, setActiveUser] = useState({});
     const [isMember, setIsMember] = useState(false);
+    const [members, setMembers] = useState([]);
 
     // If session.userId === leader.id make edit/delete/add buttons available
     const group = useSelector(reduxState => { // Returning an Object
@@ -70,7 +72,9 @@ const GroupPage = () => {
         setLeader(groupUsers.find((user) => {
           return user.id === groupLeaderId;
         }))
+        setMembers(groupUsers);
     }
+      // dispatch(fetchGroupUsers(groupId));
     }, [groupUsers]);
 
     useEffect(() => {
@@ -100,6 +104,8 @@ const GroupPage = () => {
       dispatch(fetchGroupEvents(groupId));
     }, [dispatch])
 
+    console.log(members);
+
     return (
       <div className="group-page">
         <h1>Group Page!</h1>
@@ -108,7 +114,7 @@ const GroupPage = () => {
             {!group && <h2>Loading....</h2>}
             {group && <img src={group.image_url} />}
           </div>
-          <div className="group-header_location">
+          <div className="group-header_title">
             <h1>{group.group_name}</h1>
           </div>
           <div className="group-header_location">
@@ -119,9 +125,9 @@ const GroupPage = () => {
           </div>
           <div className="group-header_leader">
             Organized by leader:
-            {groupUsers.length > 0 ? leader.username : null}
+            {leader ? leader.username : null}
           </div>
-          <div className="group-header_status-button">
+          <div className="group-header_member-button">
             {isMember && <h2>You're a member</h2>}
             {!isMember && <button>Join Us!</button>}
           </div>
@@ -130,19 +136,18 @@ const GroupPage = () => {
           <div className="group-body_feed">
             <div id="group-body_feed_description">{group.description}</div>
             <div id="group-body_feed_events">
-              upcoming events
-              <EventGallery events={events}/>
-              {/* <EventCard /> */}
-              {/* event cards */}
-              past events
-              {/* event cards */}
+              Group Events ({`${events.length}`})
+              <EventGallery events={events} />
             </div>
           </div>
           <div className="group-body_sidebar">
             <div id="group-body_sidebar_organizer">Organizer</div>
+            {/* UserImages */}
             <div id="group-body_sidebar_members">Member icons</div>
             {/* members (###) */}
-            {/* member icons only */}
+            {/* UserImages */}
+            Members ({`${members.length}`})
+            {members.length > 0 &&  Array.isArray(members) && members.map((user) => <UserImage user={user} key={user.id} />)}
           </div>
           <div className="group-body_sim-events">
             Similar events
