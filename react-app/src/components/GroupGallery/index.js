@@ -21,7 +21,7 @@ const GroupGallery = ({ user, type }) => {
         }else {
             dispatch(fetchUserGroups(user.id))
         }
-        
+
     }, [dispatch])
 
     return (

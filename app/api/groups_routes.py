@@ -117,3 +117,18 @@ def delete(id):
     db.session.commit()
 
     return {"message": "success"}
+
+# Create a user_groups record
+@groups_routes.route('/new-user', methods=["POST"])
+@login_required
+def create():
+    new_user_group = Users_Group(
+        user_id = request.json["user_id"],
+        group_id = request.json["group_id"]
+    )
+
+    db.session.add(new_user_group)
+    db.session.commit()
+
+    return new_user_group.to_dict()
+

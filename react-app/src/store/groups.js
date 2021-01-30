@@ -2,6 +2,7 @@
 // Action
 const SET_GROUPS = "SET_GROUPS";
 const SET_ONE_GROUP = "SET_ONE_GROUP";
+// const SET_USER_GROUP = "SET_USER_GROUP";
 
 // Action Creator Carries Data to the State
 export const setGroups = (groups) => { // All of the groups in our DB
@@ -16,7 +17,15 @@ export const setOneGroup = (group) => {
     type: SET_ONE_GROUP,
     group: group
   }
-}
+};
+
+
+// export const setUserGroup = (userGroup) => {
+//   return {
+//     type: SET_USER_GROUP,
+//     userGroup: userGroup
+//   }
+// };
 
 // Thunk
 // What we use in the component
@@ -41,7 +50,7 @@ export const fetchUserGroups = (userId) => {
 }
 
 export const fetchOneGroup = (groupsId) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     const responseFromDb = await fetch(`/api/groups/${groupsId}`);
     const group = await responseFromDb.json();
     dispatch(
@@ -49,6 +58,24 @@ export const fetchOneGroup = (groupsId) => {
     )
   }
 }
+
+// export const createUserGroup = (groupsId) => {
+
+//   return async (dispatch) => {
+//     const responseFromDb = await fetch(`/api/groups/${groupsId}/new-user`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify()
+//     });
+
+//     if (responseFromDb.ok) {
+//       const userGroup = await responseFromDb.json();
+//       dispatch(setUserGroup(userGroup));
+//     }
+//   }
+// }
 
 const initialState = [];
 
