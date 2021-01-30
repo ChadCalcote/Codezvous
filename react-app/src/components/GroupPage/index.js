@@ -6,10 +6,14 @@ import { formatTime, formatDate } from '../../dateFunctions';
 import "./GroupPage.css"
 import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
 import { fetchGroupUsers } from "../../store/users";
+import { getCurrentUser } from "../../store/session";
+import { fetchGroupEvents } from "../../store/events";
 import { BsGeoAlt, BsPeople } from 'react-icons/bs';
 import EventCard from '../EventCard';
 import GroupCard from '../GroupCard';
+import EventGallery from '../EventGallery';
 import RSVP from '../RSVP';
+import UserImage from '../UserImage';
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -27,6 +31,12 @@ import RSVP from '../RSVP';
 //     updatedAt: "2020-10-18T20:26:34.256Z",
 // };
 
+// /groups/:groupId
+
+// If leader is viewing page, edit and delete buttons already
+
+
+
 const GroupPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
@@ -35,38 +45,66 @@ const GroupPage = () => {
 
     const [leader, setLeader] = useState({});
     const [isLeader, setIsLeader] = useState(false);
+    const [activeUser, setActiveUser] = useState({});
+    const [isMember, setIsMember] = useState(false);
+    const [members, setMembers] = useState([]);
 
     // If session.userId === leader.id make edit/delete/add buttons available
-    const group = useSelector(reduxState => {
+    const group = useSelector(reduxState => { // Returning an Object
       return reduxState.groups
     });
-    const groupUsers = useSelector(reduxState => {
+    const groupUsers = useSelector(reduxState => { // Returning a list
       return reduxState.users
     });
 
-    const numGroupUsers = groupUsers.length;
-
-    const groupLeader = () => {
-      const leader = groupUsers.filter(user => {
-        return user.id === 104;
+    const currentUser = useSelector(reduxState => {
+      return reduxState.session
     });
 
-    return leader[0].username;
-  }
+    const events = useSelector(reduxState => {
+      return reduxState.events
+    })
 
-    const checkForGroupLeader = () => {
-        for (let user in groupUsers) {
-            if (user.id === group.leader_id) {
-                setLeader(user)
-            }
-        }
+    const groupLeaderId = group.leader_id; // 6
+
+    useEffect(() => {
+      if (Array.isArray(groupUsers)) {
+        setLeader(groupUsers.find((user) => {
+          return user.id === groupLeaderId;
+        }))
+        setMembers(groupUsers);
     }
+      // dispatch(fetchGroupUsers(groupId));
+    }, [groupUsers]);
+
+    useEffect(() => {
+      if (currentUser) {
+        setActiveUser(currentUser)
+      }
+    }, [currentUser]);
+
+    useEffect(() => {
+      if (Array.isArray(groupUsers)) {
+
+        for (let i = 0; i < groupUsers.length; i++) {
+          if (groupUsers[i].id === currentUser.id) {
+            setIsMember(true)
+            return;
+          }
+        }
+      }
+    }, [groupUsers, currentUser]);
+
+    const numGroupUsers = groupUsers.length;
 
     useEffect(() => {
       dispatch(fetchOneGroup(groupId));
       dispatch(fetchGroupUsers(groupId));
+      dispatch(getCurrentUser());
+      dispatch(fetchGroupEvents(groupId));
     }, [dispatch])
-    console.log('GROUP', group)
+
+    console.log(members);
 
     return (
       <div className="group-page">
@@ -76,41 +114,40 @@ const GroupPage = () => {
             {!group && <h2>Loading....</h2>}
             {group && <img src={group.image_url} />}
           </div>
-          <div className="group-header_location">
-              <h1>{group.group_name}</h1>
+          <div className="group-header_title">
+            <h1>{group.group_name}</h1>
           </div>
           <div className="group-header_location">
-              <BsGeoAlt /> {`${group.city}, ${group.state}`}
+            <BsGeoAlt /> {`${group.city}, ${group.state}`}
           </div>
           <div className="group-header_members">
-              <BsPeople /> {`${numGroupUsers} members`}
+            <BsPeople /> {`${numGroupUsers} members`}
           </div>
-          <div className="group-header_leader"> Organized by leader: {groupUsers.length > 0 ? groupLeader() : null}</div>
-          <div className="group-header_status-button">
-            Button saying You're a member or Join?
+          <div className="group-header_leader">
+            Organized by leader:
+            {leader ? leader.username : null}
+          </div>
+          <div className="group-header_member-button">
+            {isMember && <h2>You're a member</h2>}
+            {!isMember && <button>Join Us!</button>}
           </div>
         </div>
         <div className="group-body">
           <div className="group-body_feed">
-            <div id="group-body_feed_description">
-                {group.description}
-            </div>
+            <div id="group-body_feed_description">{group.description}</div>
             <div id="group-body_feed_events">
-              upcoming events
-              <EventCard />
-              {/* event cards */}
-              past events
-              {/* event cards */}
+              Group Events ({`${events.length}`})
+              <EventGallery events={events} />
             </div>
-            {/* <div className="group-body_images">Images from the events???</div> */}
-            {/* <div id="group-body_feed_discussion">Discussion</div> */}
-            {/* maybe not as no seed or maybe need a new table?? */}
           </div>
           <div className="group-body_sidebar">
             <div id="group-body_sidebar_organizer">Organizer</div>
+            {/* UserImages */}
             <div id="group-body_sidebar_members">Member icons</div>
             {/* members (###) */}
-            {/* member icons only */}
+            {/* UserImages */}
+            Members ({`${members.length}`})
+            {members.length > 0 &&  Array.isArray(members) && members.map((user) => <UserImage user={user} key={user.id} />)}
           </div>
           <div className="group-body_sim-events">
             Similar events

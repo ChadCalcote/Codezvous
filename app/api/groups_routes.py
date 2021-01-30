@@ -34,7 +34,6 @@ def get_leader(id):
     leader_id = User.query.join(Group).filter(Group.id == id).filter(User.id == Group.leader_id).all()
     return jsonify([leader.to_dict() for leader in leader_id])
 
-
 # Retrieve all group members
 @groups_routes.route('/<int:id>/members')
 def get_members(id):

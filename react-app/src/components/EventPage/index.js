@@ -12,6 +12,7 @@ import AttendeeCard from "../AttendeeCard";
 import UserImage from '../UserImage';
 import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
+import CommentFeed from '../CommentFeed';
 import "./EventPage.css";
 
 // List Out Data from Single Event
@@ -21,31 +22,12 @@ import "./EventPage.css";
 // RSVP Button
 // If User is Event Owner, Display Edit Form & Delete Button
 
-// const event = {
-//   id: 23,
-//   event_name: "Showing of The Social Network",
-//   description:
-//     "Come join us to watch The Social Network starring Jesse Eisenberg depicting Mark Zuckerberg and the triumphs and trials of starting Facebook",
-//   address: "275 Easton Town Center",
-//   city: "Columbus",
-//   state: "Ohio",
-//   zip_code: 43219,
-//   virtual: false,
-//   type: "Movie",
-//   status: "upcoming",
-//   group_id: 41,
-//   image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
-//   start_time: "2021-04-12 12:05:00",
-//   end_time: "2021-04-12 14:50:00",
-//   createdAt: "2020-10-18T20:26:34.256Z",
-//   updatedAt: "2020-10-18T20:26:34.256Z",
-// };
-
 const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const [ event, setEvent ] = useState({})
-    const [ galleryEvents, setGalleryEvents ] = useState([])
+    const [ event, setEvent ] = useState({});
+    const [ galleryEvents, setGalleryEvents ] = useState([]);
+    const [ numComments, setNumComments ] = useState([]);
     
     const { eventId } = params;
     
@@ -81,6 +63,10 @@ const EventPage = () => {
       dispatch(fetchAllComments(eventId))
       dispatch(fetchEventUsers(eventId))
     }, [])
+
+    useEffect(() => {
+      setNumComments(comments.length)
+    }, [comments])
 
     useEffect(() => {
       function chooseOneEvent(events) {
@@ -149,10 +135,10 @@ const EventPage = () => {
               {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
             </div>
             <div id="event-body_feed_comments">
-              <h2>Comments</h2>
-              {/* TODO: Comment Component => will need to setup state for user/comments and pass in */}
+              <h2>Comments ({numComments? numComments : 0})</h2>
             </div>
             <CommentForm />
+            <CommentFeed comments={comments} />
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
