@@ -3,10 +3,20 @@
 }
 
 .menu_icon {
+  display: flex;
+  align-items: center;
   font-size: 20px;
   padding-left: 50px;
   padding-right: 20px;
   color: #5DACBD;
+}
+
+.menu_icon:hover {
+  opacity: 0.8;
+}
+
+.profile {
+  font-size: 30px;
 }
 
 .menu {
@@ -45,31 +55,12 @@
   display: block;
 }
 
-.menu-trigger {
-  background: #ffffff;
-  border-radius: 90px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+.menu li button {
+  text-decoration: none;
+  color: red;
+  padding: 15px 20px;
   border: none;
-  vertical-align: middle;
-  transition: box-shadow 0.4s ease;
-}
-
-.menu-trigger:hover {
-  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-}
-
-.menu-trigger span {
-  font-weight: 700;
-  vertical-align: middle;
-  font-size: 14px;
-  margin: 0 10px;
-}
-
-.menu-trigger img {
-  border-radius: 90px;
+  background: none;
+  font-size: 19px;
+  outline: none;
 }

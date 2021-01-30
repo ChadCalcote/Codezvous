@@ -15,7 +15,7 @@ const Dropdown = ({setAuthenticated}) => {
 	return (
 		<div className="menu-container">
 					<i className="menu_icon" onClick={onClick}>
-						<CgProfile />
+						<CgProfile className="profile"/>
 						{isActive ? <BsChevronUp /> : <BsChevronDown />}
 					</i>
 					<nav
