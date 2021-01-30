@@ -4,9 +4,14 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { formatTime, formatDate } from '../../dateFunctions';
 import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs'
-import "./EventPage.css"
-import { setEvents, fetchAllEvents } from "../../store/events"
+import { fetchAllEvents, fetchOneEvent } from "../../store/events"
+import { fetchOneGroup } from "../../store/groups"
+import { fetchSingleUser } from "../../store/users"
+import { fetchAllComments } from "../../store/comments"
 import AttendeeCard from "../AttendeeCard";
+import UserImage from '../UserImage';
+import EventGallery from '../EventGallery'
+import "./EventPage.css"
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -15,40 +20,86 @@ import AttendeeCard from "../AttendeeCard";
 // RSVP Button
 // If User is Event Owner, Display Edit Form & Delete Button
 
-const event = {
-  id: 23,
-  event_name: "Showing of The Social Network",
-  description:
-    "Come join us to watch The Social Network starring Jesse Eisenberg depicting Mark Zuckerberg and the triumphs and trials of starting Facebook",
-  address: "275 Easton Town Center",
-  city: "Columbus",
-  state: "Ohio",
-  zip_code: 43219,
-  virtual: false,
-  type: "Movie",
-  status: "upcoming",
-  group_id: 41,
-  image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
-  start_time: "2021-04-12 12:05:00",
-  end_time: "2021-04-12 14:50:00",
-  createdAt: "2020-10-18T20:26:34.256Z",
-  updatedAt: "2020-10-18T20:26:34.256Z",
-};
+// const event = {
+//   id: 23,
+//   event_name: "Showing of The Social Network",
+//   description:
+//     "Come join us to watch The Social Network starring Jesse Eisenberg depicting Mark Zuckerberg and the triumphs and trials of starting Facebook",
+//   address: "275 Easton Town Center",
+//   city: "Columbus",
+//   state: "Ohio",
+//   zip_code: 43219,
+//   virtual: false,
+//   type: "Movie",
+//   status: "upcoming",
+//   group_id: 41,
+//   image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
+//   start_time: "2021-04-12 12:05:00",
+//   end_time: "2021-04-12 14:50:00",
+//   createdAt: "2020-10-18T20:26:34.256Z",
+//   updatedAt: "2020-10-18T20:26:34.256Z",
+// };
 
 const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
-
+    const [ event, setEvent ] = useState({})
+    const [ galleryEvents, setGalleryEvents ] = useState([])
+    
     const { eventId } = params;
-
+    
     const events = useSelector(reduxState => {
       return reduxState.events
-
     })
+
+    // const event = useSelector(reduxState => {
+    //   eventsArray = { events }
+    //   return reduxState.events
+    // }).find(event => event.id = eventId)
+
+    const group = useSelector(reduxState => {
+      return reduxState.groups
+    })
+
+    const user = useSelector(reduxState => {
+      return reduxState.users
+    })
+
+    const comments = useSelector(reduxState => {
+      return reduxState.comments
+    })
+
+// setup groups state to be the one group holding the event
 
     useEffect(() => {
       dispatch(fetchAllEvents())
+      dispatch(fetchAllComments(eventId))
     }, [])
+
+    useEffect(() => {
+      function chooseOneEvent(events) {
+        const eventsArray = events.events
+        if (Array.isArray(eventsArray)){
+          setEvent(eventsArray.find(event => eventId == event.id))
+        }
+      }
+      function chooseFourEvents(events) {
+        const eventsArray = events.events
+        if (Array.isArray(eventsArray)){
+          setGalleryEvents(eventsArray.slice(0,3))
+        }
+      }
+      chooseOneEvent({events})
+      chooseFourEvents({events})
+    }, [events])
+
+    useEffect(() => {
+      dispatch(fetchOneGroup(event.group_id))
+    }, [event])
+
+    useEffect(() => {
+      dispatch(fetchSingleUser(group.leader_id))
+    }, [group])
 
     // Set State
     const [leader, setLeader] = useState(false); //can the current user edit/delete the event
@@ -65,9 +116,9 @@ const EventPage = () => {
             <h1>{event.event_name}</h1>
           </div>
           <div className="event-header_leader">
-            <p>Hosted by</p>
-            Jimmy
-            {/* {TODO: Need to setup a useEffect/State for selecting groupleader id to get name} */}
+            Hosted by
+            <UserImage user={user} />
+            <h3>{user.username}</h3>
           </div>
         </div>
         <hr color="#2C2629"/>
@@ -94,8 +145,8 @@ const EventPage = () => {
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
-                {/* TODO: Group_Id.image_url */}
-                <p>{event.group_id}</p> {/*TODO: Group_Id => group_name*/ }
+                <img src={group.image_url} />
+                {group.group_name}
               </div>
               <div id="event-body_sidebar_details">
                 <div><BsClock />{formatDate(event.start_time, 'long')}</div>
@@ -109,6 +160,8 @@ const EventPage = () => {
         <hr color="#2C2629"/>
         <div className="event-sim-events">
           <h2>Similar events nearby</h2>
+          <EventGallery selectedEvents={galleryEvents}/>
+          {/* event gallery with 4 random events */}
             {/* header tag */}
             {/* Event Components */}
         </div>
