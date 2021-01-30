@@ -70,16 +70,22 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(request)
     if form.validate_on_submit():
+        print("Validated!!!")
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
+            image_url=form.data['image_url'],
+            zip_code=form.data['zip_code']
         )
+        print("Got User")
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
+    print("Made it to bottom")
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # Unauthorized

@@ -8,6 +8,7 @@ import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
 import { fetchGroupUsers } from "../../store/users";
 import { getCurrentUser } from "../../store/session";
 import { fetchGroupEvents } from "../../store/events";
+import { createUserGroup } from "../../store/userGroups";
 import { BsGeoAlt, BsPeople } from 'react-icons/bs';
 import EventCard from '../EventCard';
 import GroupCard from '../GroupCard';
@@ -48,6 +49,7 @@ const GroupPage = () => {
     const [activeUser, setActiveUser] = useState({});
     const [isMember, setIsMember] = useState(false);
     const [members, setMembers] = useState([]);
+    const [userGroupState, setUserGroupState] = useState([])
 
     // If session.userId === leader.id make edit/delete/add buttons available
     const group = useSelector(reduxState => { // Returning an Object
@@ -63,9 +65,26 @@ const GroupPage = () => {
 
     const events = useSelector(reduxState => {
       return reduxState.events
-    })
+    });
+
+    const userGroup = useSelector(reduxState => {
+      return reduxState.userGroups;
+    });
 
     const groupLeaderId = group.leader_id; // 6
+
+    const onClick = async (event) => {
+      event.preventDefault();
+
+      const newUserGroup = {
+        user_id: currentUser.id,
+        group_id: parseInt(groupId),
+      };
+
+      dispatch(createUserGroup(newUserGroup));
+      setUserGroupState(newUserGroup);
+      setIsMember(true);
+    };
 
     useEffect(() => {
       if (Array.isArray(groupUsers)) {
@@ -129,7 +148,7 @@ const GroupPage = () => {
           </div>
           <div className="group-header_member-button">
             {isMember && <h2>You're a member</h2>}
-            {!isMember && <button>Join Us!</button>}
+            {!isMember && <button onClick={onClick}>Join Us!</button>}
           </div>
         </div>
         <div className="group-body">
