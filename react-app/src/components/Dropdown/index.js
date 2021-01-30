@@ -43,6 +43,9 @@ const Dropdown = ({setAuthenticated}) => {
 									Sign Up
 								</NavLink>
 							</li>
+							<li classname="nav-item">
+								<LogoutButton setAuthenticated={setAuthenticated} />
+							</li>
 						</ul>
 					</nav>
 				</div>
