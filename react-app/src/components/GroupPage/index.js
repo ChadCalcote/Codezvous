@@ -101,8 +101,6 @@ const GroupPage = () => {
       dispatch(fetchGroupEvents(groupId));
     }, [dispatch])
 
-    console.log(members);
-
     return (
       <div className="group-page">
         <h1>Group Page!</h1>
