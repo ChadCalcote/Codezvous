@@ -6,7 +6,7 @@ import EventCard from '../EventCard'
 import UserImage from '../UserImage';
 import './EventGallery.css'
 
-const EventGallery = ({eventsShown}) => {
+const EventGallery = ({events}) => {
 
 
 
@@ -38,8 +38,8 @@ const EventGallery = ({eventsShown}) => {
 
     return (
         <div className="event-gallery">
-            {!eventsShown && <h3>Loading....</h3>}
-            {Array.isArray(eventsShown) && eventsShown.slice(0,20).map(event => <EventCard event={event} key={event.id} />)}
+            {!events && <h3>Loading....</h3>}
+            {Array.isArray(events) && events.slice(0,20).map(event => <EventCard event={event} key={event.id} />)}
         </div>
     )
 }

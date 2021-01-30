@@ -49,23 +49,23 @@ const HomePage = () => {
         dispatch(getCurrentUser())
     }, [dispatch])
     
-    // function gallerySwap() {
-    //     if (galleryToDisplay === "group"){
-    //         return (
-    //         <>
-    //             <GroupGallery user={user} type="all"/>
-    //             <br />
-    //             <GroupGallery user={user} type="user"/>
-    //         </>
-    //         )
-    //     } else if (eventsShown) {
-    //         return (
-    //         <>
-    //             {/* <EventGallery eventsShown={eventsShown}/> */}
-    //         </>
-    //         )
-    //     }
-    // }
+    function gallerySwap() {
+        if (galleryToDisplay === "group"){
+            return (
+            <>
+                <GroupGallery user={user} type="all"/>
+                <br />
+                <GroupGallery user={user} type="user"/>
+            </>
+            )
+        } else if (events) {
+            return (
+            <>
+                <EventGallery events={events}/>
+            </>
+            )
+        }
+    }
 
     function handleToggleClick(e) {
         if (galleryToDisplay == "group") {
@@ -90,7 +90,7 @@ const HomePage = () => {
                 <button className="toggle" id="event-toggle" disabled={eventListDisplayed} onClick={()=>handleToggleClick()}>Calendar</button>
             </div>
             <div className="home-page_body">
-                {/* {gallerySwap()} */}
+                {gallerySwap()}
             </div>
             <div className="home-page_sidebar">
             </div>
