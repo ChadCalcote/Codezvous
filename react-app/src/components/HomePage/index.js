@@ -52,10 +52,12 @@ const HomePage = () => {
     function gallerySwap() {
         if (galleryToDisplay === "group"){
             return (
-            <>
-                <GroupGallery user={user} type="all"/>
-                <br />
+            <>  
+                <h2>Your Groups</h2>
                 <GroupGallery user={user} type="user"/>
+                <br />
+                <h2>Suggested Groups</h2>
+                <GroupGallery user={user} type="all"/>
             </>
             )
         } else if (events) {
