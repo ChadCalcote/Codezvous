@@ -11,6 +11,7 @@ import { fetchGroupEvents } from "../../store/events";
 import { BsGeoAlt, BsPeople } from 'react-icons/bs';
 import EventCard from '../EventCard';
 import GroupCard from '../GroupCard';
+import EventGallery from '../EventGallery';
 import RSVP from '../RSVP';
 
 // List Out Data from Single Event
@@ -130,6 +131,7 @@ const GroupPage = () => {
             <div id="group-body_feed_description">{group.description}</div>
             <div id="group-body_feed_events">
               upcoming events
+              <EventGallery events={events}/>
               {/* <EventCard /> */}
               {/* event cards */}
               past events
