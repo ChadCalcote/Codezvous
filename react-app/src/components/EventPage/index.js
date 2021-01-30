@@ -1,17 +1,18 @@
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
-import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs'
-import { fetchAllEvents, fetchOneEvent } from "../../store/events"
-import { fetchOneGroup } from "../../store/groups"
-import { fetchSingleUser } from "../../store/users"
-import { fetchAllComments } from "../../store/comments"
+import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs';
+import { fetchAllEvents, fetchOneEvent } from "../../store/events";
+import { fetchOneGroup } from "../../store/groups";
+import { fetchSingleUser } from "../../store/users";
+import { fetchAllComments } from "../../store/comments";
 import AttendeeCard from "../AttendeeCard";
 import UserImage from '../UserImage';
-import EventGallery from '../EventGallery'
-import "./EventPage.css"
+import EventGallery from '../EventGallery';
+import CommentForm from '../CommentForm';
+import "./EventPage.css";
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -137,11 +138,8 @@ const EventPage = () => {
             <div id="event-body_feed_comments">
               <h2>Comments</h2>
               {/* TODO: Comment Component => will need to setup state for user/comments and pass in */}
-              <form method="POST" action="/api/routeMcRouterson">
-                <button>Add Comment</button>
-                {/* TODO: Delete button and place in flask form */}
-              </form>
             </div>
+            <CommentForm />
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
@@ -166,7 +164,7 @@ const EventPage = () => {
             {/* Event Components */}
         </div>
         <div className="event-footer">
-            <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3>
+            {/* <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3> */}
             <h2>{event.event_name}</h2>
             {/* Event Details  */}
             {/* RSVP COMPONENT  */}
