@@ -1,8 +1,10 @@
 .navbarWrapper {
+    background-color: #161315;
     display: flex;
     margin: 0;
     justify-content: space-between;
     align-items: center;
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     left: 0;

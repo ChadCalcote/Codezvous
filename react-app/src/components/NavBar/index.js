@@ -10,7 +10,7 @@ const NavBar = ({ setAuthenticated }) => {
 	const history = useHistory();
 
 	return (
-		<div className="navbarWrapper">
+		<nav className="navbarWrapper">
 			<div className="header_left">
 				<div className="home">
 					<img
@@ -22,14 +22,14 @@ const NavBar = ({ setAuthenticated }) => {
 			</div>
 
 			<div className="header_right">
-				<div className="start_new_group">
-					<NavLink to="/new-group" exact={true} activeClassName="active">
+				<div className="create_group">
+					<NavLink to="/create-group" exact={true} activeClassName="active">
 						Start a new group
 					</NavLink>
 				</div>
-				<Dropdown />
+				<Dropdown setAuthenticated={setAuthenticated}/>
 			</div>
-		</div>
+		</nav>
 	);
 };
 
