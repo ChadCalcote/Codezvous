@@ -7,29 +7,44 @@ const Footer = () => {
 
     return (
       <div className="footer-container">
-        <div className="footer-container_title">Codezvous</div>
-        <div className="footer-container_connect">Stay Connected</div>
-        <div className="footer-container_jimmy">
-          <div className="name">Demeatrice James Sherrod</div>
-          <a className="email" href="mailto:demeatricej.sherrod@gmail.com">demeatricej.sherrod@gmail.com</a>
-          <SocialIcon url="https://www.linkedin.com/in/demeatrice-james-sherrod-2650091a4" />
+        <div className="footer-container_title">
+          Codezvous :
+          <br />
+          a <a href="http://meetup.com">Meetup</a> clone project
         </div>
-        <div className="footer-container_dan">
-          <div className="name">Dan Chin</div>
-          <a className="email" href="mailto:danielmchin@outlook.com">danielmchin@outlook.com</a>
-          <SocialIcon url="https://www.linkedin.com/in/danielmchin/" />
+          <div className="footer-container_jimmy">
+            <div className="name">Demeatrice James <br /> Sherrod</div>
+            <div className="icons">
+              <SocialIcon url="https://github.com/Dem-Eat-Rice" />
+              <SocialIcon url="https://www.linkedin.com/in/demeatrice-james-sherrod-2650091a4" />
+              <SocialIcon url="mailto:demeatricej.sherrod@gmail.com" />
+            </div>
+          </div>
+          <div className="footer-container_dan">
+            <div className="name">Dan Chin</div>
+            <div className="icons">
+              <SocialIcon url="https://github.com/bongochin" />
+              <SocialIcon url="https://www.linkedin.com/in/danielmchin/" />
+              <SocialIcon url="mailto:danielmchin@outlook.com" />
+            </div>
+          </div>
+          <div className="footer-container_chris">
+            <div className="name">Chris Clark</div>
+            <div className="icons">
+              <SocialIcon url="https://github.com/percist" />
+              <SocialIcon url="https://www.linkedin.com/in/crclark101010/" />
+              <SocialIcon url="mailto:percist@gmail.com" />
+            </div>
+          </div>
+          <div className="footer-container_chad">
+            <div className="name">Chad Calcote</div>
+            <div className="icons">
+              <SocialIcon url="https://github.com/ChadCalcote" />
+              <SocialIcon url="https://www.linkedin.com/in/chadcalcote/" />
+              <SocialIcon url="mailto:calcote@att.net" />
+            </div>
+          </div>
         </div>
-        <div className="footer-container_chris">
-          <div className="name">Chris Clark</div>
-          <a className="email" href="mailto:percist@gmail.com">percist@gmail.com</a>
-          <SocialIcon url="https://www.linkedin.com/in/crclark101010/" />
-        </div>
-        <div className="footer-container_chad">
-          <div className="name">Chad Calcote</div>
-          <a className="email" href="mailto:calcote@att.net">calcote@att.net</a>
-          <SocialIcon url="https://www.linkedin.com/in/chadcalcote/" />
-        </div>
-      </div>
     );
 }
 
