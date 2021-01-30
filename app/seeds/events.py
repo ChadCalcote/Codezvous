@@ -310,23 +310,24 @@ def seed_events():
     db.session.commit()
 
     num = 0
-    for _ in range (400):
+    for _ in range (200):
         adjective = adjectives[int(random() * 98)]
         programming_language = programming_languages[int(random() * 83)]
         event = events[int(random() * 15)]
+        img_num = num + 80
         adverb = adverbs[int(random() * 56)]
         state_abbr = 'TX'
         city = fakes.city()
         event_name = f'{adverb} {adjective} {programming_language} {event}'
-        start_date = fakes.date_time_ad(end_datetime='+90d', start_datetime='now')
+        start_date = fakes.date_time_ad(end_datetime='+30d', start_datetime='now')
         hours = int(random() * 3 ) + 1
         random_group = int(random() * 50 ) + 1
         is_virtual = random() >= 0.5
 
-        demo_event = Event(event_name=event_name, description=fakes.paragraph(nb_sentences=5),
+        demo_event = Event(event_name=event_name, description=fakes.paragraph(nb_sentences=10),
                             address=fakes.address(), city=city, state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr),
-                            status='active', image_url='https://picsum.photos/seed/picsum/600/337/?blur=2', virtual=is_virtual, type=event, start_time=start_date, 
-                            end_time=(start_date + datetime.timedelta(hours)), group_id=random_group)
+                            status='active', image_url=f'https://picsum.photos/id/{img_num}/600/337', virtual=is_virtual, type=event, 
+                            start_time=start_date, end_time=(start_date + datetime.timedelta(hours)), group_id=random_group)
 
         db.session.add(demo_event)
 
