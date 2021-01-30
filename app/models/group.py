@@ -15,7 +15,7 @@ class Group(db.Model):
     zip_code = db.Column(db.Integer, nullable=False)
     is_active = db.Column(db.Boolean, default=True)
     image_url = db.Column(
-        db.String, default='https://i.dlpng.com/static/png/6914875_preview.png')
+        db.String, default='https://picsum.photos/600/337')
     # May cause errors, Do we need to import users table here?
     leader_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)

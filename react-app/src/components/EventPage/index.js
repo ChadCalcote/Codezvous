@@ -144,8 +144,8 @@ const EventPage = () => {
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
-                <img src={group.image_url} />
-                {group.group_name}
+                <img src={group.image_url} href={`/groups/${group.id}`} />
+                <a href={`/groups/${group.id}`}>{group.group_name}</a>
               </div>
               <div id="event-body_sidebar_details">
                 <div><BsClock />{formatDate(event.start_time, 'long')}</div>
