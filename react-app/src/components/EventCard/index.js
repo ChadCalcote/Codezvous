@@ -19,12 +19,6 @@ const EventCard = ({ event }) => {
     dispatch(fetchEventUsers(event.id));
   },[dispatch])
 
-    function addADay(date){
-        const copyofDate = new Date(Number(date));
-        copyofDate.setDate(date.getDate() + 10)
-        return copyofDate
-    }
-
   return (
     <div className="event-card">
       <div className="event-card_date">
