@@ -7,11 +7,12 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-
+  const [imageUrl, setImageUrl] = useState("");
+  const [zipCode, setZipCode] = useState(0);
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const user = await signUp(username, email, password);
+      const user = await signUp(username, email, password, imageUrl, zipCode);
       if (!user.errors) {
         setAuthenticated(true);
       }
@@ -32,6 +33,14 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const updateImageUrl = (e) => {
+    setImageUrl(e.target.value);
+  };
+
+  const updateZipCode = (e) => {
+    setZipCode(e.target.value);
   };
 
   if (authenticated) {
@@ -56,6 +65,24 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           name="email"
           onChange={updateEmail}
           value={email}
+        ></input>
+      </div>
+      <div>
+        <label>Profile Photo</label>
+        <input
+          type="text"
+          name="imageUrl"
+          onChange={updateImageUrl}
+          value={imageUrl}
+        ></input>
+      </div>
+      <div>
+        <label>Zip Code</label>
+        <input
+          type="text"
+          name="zipCode"
+          onChange={updateZipCode}
+          value={zipCode}
         ></input>
       </div>
       <div>
