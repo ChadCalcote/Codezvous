@@ -166,7 +166,7 @@ const EventPage = () => {
             {/* Event Components */}
         </div>
         <div className="event-footer">
-            {/* <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3> */}
+            <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3>
             <h2>{event.event_name}</h2>
             {/* Event Details  */}
             {/* RSVP COMPONENT  */}
