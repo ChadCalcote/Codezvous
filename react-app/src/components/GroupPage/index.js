@@ -6,6 +6,8 @@ import { formatTime, formatDate } from '../../dateFunctions';
 import "./GroupPage.css"
 import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
 import { fetchGroupUsers } from "../../store/users";
+import { getCurrentUser } from "../../store/session";
+import { fetchGroupEvents } from "../../store/events";
 import { BsGeoAlt, BsPeople } from 'react-icons/bs';
 import EventCard from '../EventCard';
 import GroupCard from '../GroupCard';
@@ -41,6 +43,8 @@ const GroupPage = () => {
 
     const [leader, setLeader] = useState({});
     const [isLeader, setIsLeader] = useState(false);
+    const [activeUser, setActiveUser] = useState({});
+    const [isMember, setIsMember] = useState(false);
 
     // If session.userId === leader.id make edit/delete/add buttons available
     const group = useSelector(reduxState => { // Returning an Object
@@ -50,29 +54,50 @@ const GroupPage = () => {
       return reduxState.users
     });
 
+    const currentUser = useSelector(reduxState => {
+      return reduxState.session
+    });
+
+    const events = useSelector(reduxState => {
+      return reduxState.events
+    })
+
     const groupLeaderId = group.leader_id; // 6
-
-    console.log(groupLeaderId);
-
-
 
     useEffect(() => {
       if (Array.isArray(groupUsers)) {
         setLeader(groupUsers.find((user) => {
           return user.id === groupLeaderId;
         }))
-      }
+    }
     }, [groupUsers]);
 
+    useEffect(() => {
+      if (currentUser) {
+        setActiveUser(currentUser)
+      }
+    }, [currentUser]);
+
+    useEffect(() => {
+      if (Array.isArray(groupUsers)) {
+
+        for (let i = 0; i < groupUsers.length; i++) {
+          if (groupUsers[i].id === currentUser.id) {
+            setIsMember(true)
+            return;
+          }
+        }
+      }
+    }, [groupUsers, currentUser]);
+
     const numGroupUsers = groupUsers.length;
-
-
 
     useEffect(() => {
       dispatch(fetchOneGroup(groupId));
       dispatch(fetchGroupUsers(groupId));
+      dispatch(getCurrentUser());
+      dispatch(fetchGroupEvents(groupId));
     }, [dispatch])
-    console.log('GROUP', group)
 
     return (
       <div className="group-page">
@@ -83,24 +108,26 @@ const GroupPage = () => {
             {group && <img src={group.image_url} />}
           </div>
           <div className="group-header_location">
-              <h1>{group.group_name}</h1>
+            <h1>{group.group_name}</h1>
           </div>
           <div className="group-header_location">
-              <BsGeoAlt /> {`${group.city}, ${group.state}`}
+            <BsGeoAlt /> {`${group.city}, ${group.state}`}
           </div>
           <div className="group-header_members">
-              <BsPeople /> {`${numGroupUsers} members`}
+            <BsPeople /> {`${numGroupUsers} members`}
           </div>
-          <div className="group-header_leader"> Organized by leader: {groupUsers.length > 0 ? leader.username : null}</div>
+          <div className="group-header_leader">
+            Organized by leader:
+            {groupUsers.length > 0 ? leader.username : null}
+          </div>
           <div className="group-header_status-button">
-            Button saying You're a member or Join?
+            {isMember && <h2>You're a member</h2>}
+            {!isMember && <button>Join Us!</button>}
           </div>
         </div>
         <div className="group-body">
           <div className="group-body_feed">
-            <div id="group-body_feed_description">
-                {group.description}
-            </div>
+            <div id="group-body_feed_description">{group.description}</div>
             <div id="group-body_feed_events">
               upcoming events
               {/* <EventCard /> */}
@@ -108,9 +135,6 @@ const GroupPage = () => {
               past events
               {/* event cards */}
             </div>
-            {/* <div className="group-body_images">Images from the events???</div> */}
-            {/* <div id="group-body_feed_discussion">Discussion</div> */}
-            {/* maybe not as no seed or maybe need a new table?? */}
           </div>
           <div className="group-body_sidebar">
             <div id="group-body_sidebar_organizer">Organizer</div>
