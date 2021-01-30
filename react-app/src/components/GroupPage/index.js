@@ -27,6 +27,12 @@ import RSVP from '../RSVP';
 //     updatedAt: "2020-10-18T20:26:34.256Z",
 // };
 
+// /groups/:groupId
+
+// If leader is viewing page, edit and delete buttons already
+
+
+
 const GroupPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
@@ -37,30 +43,30 @@ const GroupPage = () => {
     const [isLeader, setIsLeader] = useState(false);
 
     // If session.userId === leader.id make edit/delete/add buttons available
-    const group = useSelector(reduxState => {
+    const group = useSelector(reduxState => { // Returning an Object
       return reduxState.groups
     });
-    const groupUsers = useSelector(reduxState => {
+    const groupUsers = useSelector(reduxState => { // Returning a list
       return reduxState.users
     });
 
+    const groupLeaderId = group.leader_id; // 6
+
+    console.log(groupLeaderId);
+
+
+
+    useEffect(() => {
+      if (Array.isArray(groupUsers)) {
+        setLeader(groupUsers.find((user) => {
+          return user.id === groupLeaderId;
+        }))
+      }
+    }, [groupUsers]);
+
     const numGroupUsers = groupUsers.length;
 
-    const groupLeader = () => {
-      const leader = groupUsers.filter(user => {
-        return user.id === 104;
-    });
 
-    return leader[0].username;
-  }
-
-    const checkForGroupLeader = () => {
-        for (let user in groupUsers) {
-            if (user.id === group.leader_id) {
-                setLeader(user)
-            }
-        }
-    }
 
     useEffect(() => {
       dispatch(fetchOneGroup(groupId));
@@ -85,7 +91,7 @@ const GroupPage = () => {
           <div className="group-header_members">
               <BsPeople /> {`${numGroupUsers} members`}
           </div>
-          <div className="group-header_leader"> Organized by leader: {groupUsers.length > 0 ? groupLeader() : null}</div>
+          <div className="group-header_leader"> Organized by leader: {groupUsers.length > 0 ? leader.username : null}</div>
           <div className="group-header_status-button">
             Button saying You're a member or Join?
           </div>
@@ -97,7 +103,7 @@ const GroupPage = () => {
             </div>
             <div id="group-body_feed_events">
               upcoming events
-              <EventCard />
+              {/* <EventCard /> */}
               {/* event cards */}
               past events
               {/* event cards */}
