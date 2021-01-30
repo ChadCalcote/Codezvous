@@ -18,7 +18,7 @@ const GroupCard = ({ group }) => {
     return (
         <div className="group-card">
             <div className="group-card_photo">
-                {group.image_url}
+                <img src={group.image_url} alt="group image" />
             </div>
             <div className="group-card_name">
                 {group.group_name}
