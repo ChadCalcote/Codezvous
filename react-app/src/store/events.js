@@ -1,5 +1,6 @@
-const SET_EVENTS = "SET_EVENTS"
-const SET_ONE_EVENT = "SET_ONE_EVENT"
+const SET_EVENTS = "SET_EVENTS";
+const SET_ONE_EVENT = "SET_ONE_EVENT";
+const SET_GROUP_EVENTS = "SET_GROUP_EVENTS";
 
 export const setEvents = (events) => {
   return {
@@ -7,12 +8,20 @@ export const setEvents = (events) => {
     events: events
   }
 }
+
 export const setOneEvent = (event) => {
   return {
     type: SET_ONE_EVENT,
     event: event
   }
 }
+
+export const setGroupEvents = (events) => {
+  return {
+    type: SET_GROUP_EVENTS,
+    events: events,
+  };
+};
 
 export const fetchAllEvents = () => {
   return async (dispatch) => {
@@ -34,6 +43,16 @@ export const fetchOneEvent = (eventId) => {
   }
 }
 
+export const fetchGroupEvents = (groupId) => {
+  return async(dispatch) => {
+    const responseFromDb = await fetch(`/api/groups/${groupId}/events`);
+    const groupEvents = await responseFromDb.json();
+    dispatch(
+      setGroupEvents(groupEvents)
+    )
+  }
+}
+
 const initialState ={};
 
 const eventsReducer = (state = initialState, action) => {
@@ -43,6 +62,8 @@ const eventsReducer = (state = initialState, action) => {
       return action.events;
     case SET_ONE_EVENT:
       return action.event;
+    case SET_GROUP_EVENTS:
+      return action.events;
     default:
         return state;
   }
