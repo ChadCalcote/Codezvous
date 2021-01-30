@@ -43,14 +43,18 @@ import "./EventPage.css"
 const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
-
-    const [event, setEvent] = useState({});
-
+    const [ event, setEvent ] = useState({})
+    
     const { eventId } = params;
-
+    
     const events = useSelector(reduxState => {
       return reduxState.events
     })
+
+    // const event = useSelector(reduxState => {
+    //   eventsArray = { events }
+    //   return reduxState.events
+    // }).find(event => event.id = eventId)
 
     const group = useSelector(reduxState => {
       return reduxState.groups
@@ -65,19 +69,21 @@ const EventPage = () => {
     })
 
 // setup groups state to be the one group holding the event
+
     useEffect(() => {
-      // dispatch(fetchOneEvent(eventId))
       dispatch(fetchAllEvents())
       dispatch(fetchAllComments(eventId))
     }, [])
 
-    useEffect(()=>{
-      if (Array.isArray(events)){
-        setEvent(events.filter(event => eventId == event.id))
-      }else{
-        setEvent(events)
+    useEffect(() => {
+      function chooseEvent(events) {
+        const eventsArray = events.events
+        if (Array.isArray(eventsArray)){
+          setEvent(eventsArray.find(event => eventId == event.id))
+        }
       }
-    },[events, event])
+      chooseEvent({events})
+    }, [events])
 
     useEffect(() => {
       dispatch(fetchOneGroup(event.group_id))
@@ -96,8 +102,7 @@ const EventPage = () => {
       <div className="event-page">
         <div className="event-header">
           <div className="event-header_date">
-            {/* <h4>{formatDate(event.start_time, 'long')}</h4> */}
-            <h4>{event.start_time}</h4>
+            <h4>{formatDate(event.start_time, 'long')}</h4>
           </div>
           <div className="event-header_title">
             <h1>{event.event_name}</h1>
@@ -136,8 +141,8 @@ const EventPage = () => {
                 {group.group_name}
               </div>
               <div id="event-body_sidebar_details">
-                {/* <div><BsClock />{formatDate(event.start_time, 'long')}</div> */}
-                {/* <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div> */}
+                <div><BsClock />{formatDate(event.start_time, 'long')}</div>
+                <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div>
                 <div id="event-body_sidebar_location">
                   {event.virtual ? <><BsCameraVideo /><p>Virtual event</p></> : <><div><BsGeoAlt />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
                 </div>
