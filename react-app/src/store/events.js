@@ -34,7 +34,7 @@ export const fetchOneEvent = (eventId) => {
   }
 }
 
-const initialState = {};
+const initialState ={};
 
 const eventsReducer = (state = initialState, action) => {
   let newState;

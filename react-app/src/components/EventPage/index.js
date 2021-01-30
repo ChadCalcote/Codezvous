@@ -10,7 +10,7 @@ import { fetchSingleUser } from "../../store/users"
 import { fetchAllComments } from "../../store/comments"
 import AttendeeCard from "../AttendeeCard";
 import UserImage from '../UserImage';
-import EventBar from '../EventBar'
+import EventGallery from '../EventGallery'
 import "./EventPage.css"
 
 // List Out Data from Single Event
@@ -44,6 +44,7 @@ const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const [ event, setEvent ] = useState({})
+    const [ galleryEvents, setGalleryEvents ] = useState([])
     
     const { eventId } = params;
     
@@ -76,13 +77,20 @@ const EventPage = () => {
     }, [])
 
     useEffect(() => {
-      function chooseEvent(events) {
+      function chooseOneEvent(events) {
         const eventsArray = events.events
         if (Array.isArray(eventsArray)){
           setEvent(eventsArray.find(event => eventId == event.id))
         }
       }
-      chooseEvent({events})
+      function chooseFourEvents(events) {
+        const eventsArray = events.events
+        if (Array.isArray(eventsArray)){
+          setGalleryEvents(eventsArray.slice(0,3))
+        }
+      }
+      chooseOneEvent({events})
+      chooseFourEvents({events})
     }, [events])
 
     useEffect(() => {
@@ -152,7 +160,7 @@ const EventPage = () => {
         <hr color="#2C2629"/>
         <div className="event-sim-events">
           <h2>Similar events nearby</h2>
-          {/* <EventBar /> */}
+          <EventGallery selectedEvents={galleryEvents}/>
           {/* event gallery with 4 random events */}
             {/* header tag */}
             {/* Event Components */}
