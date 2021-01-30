@@ -7,15 +7,7 @@ import UserImage from '../UserImage';
 import './EventGallery.css'
 
 const EventGallery = ({eventsShown}) => {
-    // const dispatch = useDispatch();
 
-    // const events = useSelector(reduxState => {
-    //     return reduxState.events
-    // })
-
-    // useEffect(() => {
-    //     dispatch(fetchAllEvents())
-    // }, [dispatch])
 
 
 
@@ -47,7 +39,6 @@ const EventGallery = ({eventsShown}) => {
     return (
         <div className="event-gallery">
             {!eventsShown && <h3>Loading....</h3>}
-            {/* {Array.isArray(sectionEvents) && sectionEvents.map(event => <EventCard event={event} key={event.id} />)} */}
             {Array.isArray(eventsShown) && eventsShown.slice(0,20).map(event => <EventCard event={event} key={event.id} />)}
         </div>
     )
