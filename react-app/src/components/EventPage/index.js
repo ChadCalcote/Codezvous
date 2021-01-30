@@ -1,17 +1,19 @@
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
-import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs'
-import { fetchAllEvents, fetchOneEvent } from "../../store/events"
-import { fetchOneGroup } from "../../store/groups"
-import { fetchSingleUser } from "../../store/users"
-import { fetchAllComments } from "../../store/comments"
+import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs';
+import { fetchAllEvents, fetchOneEvent } from "../../store/events";
+import { fetchOneGroup } from "../../store/groups";
+import { fetchSingleUser } from "../../store/users";
+import { fetchAllComments } from "../../store/comments";
 import AttendeeCard from "../AttendeeCard";
 import UserImage from '../UserImage';
-import EventGallery from '../EventGallery'
-import "./EventPage.css"
+import EventGallery from '../EventGallery';
+import CommentForm from '../CommentForm';
+import CommentFeed from '../CommentFeed';
+import "./EventPage.css";
 
 // List Out Data from Single Event
 // List Out Data about Attendees
@@ -20,31 +22,12 @@ import "./EventPage.css"
 // RSVP Button
 // If User is Event Owner, Display Edit Form & Delete Button
 
-// const event = {
-//   id: 23,
-//   event_name: "Showing of The Social Network",
-//   description:
-//     "Come join us to watch The Social Network starring Jesse Eisenberg depicting Mark Zuckerberg and the triumphs and trials of starting Facebook",
-//   address: "275 Easton Town Center",
-//   city: "Columbus",
-//   state: "Ohio",
-//   zip_code: 43219,
-//   virtual: false,
-//   type: "Movie",
-//   status: "upcoming",
-//   group_id: 41,
-//   image_url: "https://assets.fortnitecreativehq.com/wp-content/uploads/2019/02/04052712/Movie-theatre.jpg",
-//   start_time: "2021-04-12 12:05:00",
-//   end_time: "2021-04-12 14:50:00",
-//   createdAt: "2020-10-18T20:26:34.256Z",
-//   updatedAt: "2020-10-18T20:26:34.256Z",
-// };
-
 const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const [ event, setEvent ] = useState({})
-    const [ galleryEvents, setGalleryEvents ] = useState([])
+    const [ event, setEvent ] = useState({});
+    const [ galleryEvents, setGalleryEvents ] = useState([]);
+    const [ numComments, setNumComments ] = useState([]);
     
     const { eventId } = params;
     
@@ -75,6 +58,10 @@ const EventPage = () => {
       dispatch(fetchAllEvents())
       dispatch(fetchAllComments(eventId))
     }, [])
+
+    useEffect(() => {
+      setNumComments(comments.length)
+    }, [comments])
 
     useEffect(() => {
       function chooseOneEvent(events) {
@@ -135,13 +122,10 @@ const EventPage = () => {
               {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
             </div>
             <div id="event-body_feed_comments">
-              <h2>Comments</h2>
-              {/* TODO: Comment Component => will need to setup state for user/comments and pass in */}
-              <form method="POST" action="/api/routeMcRouterson">
-                <button>Add Comment</button>
-                {/* TODO: Delete button and place in flask form */}
-              </form>
+              <h2>Comments ({numComments? numComments : 0})</h2>
             </div>
+            <CommentForm />
+            <CommentFeed comments={comments} />
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
@@ -166,7 +150,7 @@ const EventPage = () => {
             {/* Event Components */}
         </div>
         <div className="event-footer">
-            <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3>
+            {/* <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3> */}
             <h2>{event.event_name}</h2>
             {/* Event Details  */}
             {/* RSVP COMPONENT  */}
