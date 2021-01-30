@@ -22,7 +22,7 @@ const Dropdown = ({setAuthenticated}) => {
 
 	useEffect( () => {
 		dispatch(getCurrentUser())
-	}, [dispatch]);
+	}, []);
 
 	if (currentUser.errors == undefined) {
 		return (
