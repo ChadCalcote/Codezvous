@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { fetchAllEvents } from '../../store/events';
-import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import {formatDate} from '../../dateFunctions';
 import EventCard from '../EventCard'
-import UserImage from '../UserImage';
 import './EventGallery.css'
 
 const EventGallery = ({events, parent}) => {
@@ -32,33 +29,33 @@ const EventGallery = ({events, parent}) => {
 
             setDayOneEvents(events.filter(event => {
                 const eventDate = formatDate(event.start_time, "long")
-                return eventDate == dayOne;
+                return eventDate === dayOne;
             }))
 
             setDayTwoEvents(events.filter(event => {
                 const eventDate = formatDate(event.start_time, "long")
-                return eventDate == dayTwo;
+                return eventDate === dayTwo;
             }))
 
             setDayThreeEvents(events.filter(event => {
                 const eventDate = formatDate(event.start_time, "long")
-                return eventDate == dayThree;
+                return eventDate === dayThree;
             }))
 
             setDayFourEvents(events.filter(event => {
                 const eventDate = formatDate(event.start_time, "long")
-                return eventDate == dayFour;
+                return eventDate === dayFour;
             }))
 
             setDayFiveEvents(events.filter(event => {
                 const eventDate = formatDate(event.start_time, "long")
-                return eventDate == dayFive;
+                return eventDate === dayFive;
             }))
         }
     },[events])
 
     function gallerySwap() {
-        if (parent == "home"){
+        if (parent === "home"){
             return (
                 <div className="event-gallery">
                     <div className="event-gallery_day-one">
@@ -88,14 +85,14 @@ const EventGallery = ({events, parent}) => {
                     </div>
                 </div>
             )
-        }else if (parent == "groupPage"){
+        }else if (parent === "groupPage"){
             return (
                 <div className="event-gallery">
                     {!events && <img src='../../Bars-0.7s-98px.gif'/>}
                     {Array.isArray(events) && events.map(event => <EventCard event={event} key={event.id} />)}
                 </div>
             )
-        }else if (parent == "eventPage"){
+        }else if (parent === "eventPage"){
             return (
                 <div className="event-gallery">
                     {!events && <img src='../../Bars-0.7s-98px.gif'/>}
