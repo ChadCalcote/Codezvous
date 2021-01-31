@@ -2,9 +2,6 @@ from app.models import db, Group
 from faker import Faker
 from random import random
 
-# Adds a demo user, you can add other users here if you want
-
-
 def seed_groups():
 
     fakes = Faker()
@@ -112,7 +109,7 @@ def seed_groups():
         'Symbolic Share Demons',
         ]
 
-    demo_group1 = Group(group_name='javascript group', description='We are passionate about Javascript!',
+    demo_group1 = Group(group_name='Super Duper Javascript Group of Austin', description='We are passionate about Javascript and coming together as a group!',
                         city='Austin', state='TX', zip_code=78704, leader_id=1)
 
     db.session.add(demo_group1)
@@ -136,14 +133,6 @@ def seed_groups():
 
         db.session.commit()
 
-    # =====================================================
-
-    # demo_group3 = Group(group_name='python group2', description='COBRAAAAA!',
-    #                     city='San Antonio', state='Texas', zip_code=78154, leader_id=1)
-
-    # db.session.add(demo_group3)
-
-    # db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
 # SQLAlchemy doesn't have a built in function to do this

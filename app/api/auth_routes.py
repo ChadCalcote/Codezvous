@@ -38,7 +38,6 @@ def login():
     Logs a user in
     """
     form = LoginForm()
-    print(request.get_json())
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -70,9 +69,7 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(request)
     if form.validate_on_submit():
-        print("Validated!!!")
         user = User(
             username=form.data['username'],
             email=form.data['email'],
@@ -80,12 +77,10 @@ def sign_up():
             image_url=form.data['image_url'],
             zip_code=form.data['zip_code']
         )
-        print("Got User")
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    print("Made it to bottom")
     return {'errors': validation_errors_to_error_messages(form.errors)}
 
 # Unauthorized

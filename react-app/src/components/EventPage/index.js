@@ -123,7 +123,9 @@ const EventPage = () => {
                 <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
               </div>
               <CommentForm />
-              <CommentFeed comments={comments} />
+              <div className="comment-feeds">
+                <CommentFeed comments={comments}/>
+              </div>
             </div>
             <div className="event-body_sidebar">
                 <div id="event-body_sidebar_group">
