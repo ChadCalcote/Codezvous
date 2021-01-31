@@ -1,0 +1,21 @@
+.comment-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+  color: #5dabbd8e;
+  font-size: smaller;
+  min-width: 130px;
+}
+
+.comment-info .user-image {
+  width: 50px;
+}
+
+.comment-body {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  color: #FFF4E4
+}
