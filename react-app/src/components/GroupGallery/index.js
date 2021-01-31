@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllGroups, fetchUserGroups } from '../../store/groups';
@@ -35,4 +33,3 @@ const GroupGallery = ({ user, type }) => {
 }
 
 export default GroupGallery;
->>>>>>> main

@@ -343,4 +343,3 @@ def seed_events():
 def undo_events():
     db.session.execute('TRUNCATE events CASCADE;')
     db.session.commit()
->>>>>>> main

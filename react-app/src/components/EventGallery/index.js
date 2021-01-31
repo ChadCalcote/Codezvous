@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useEffect, useState } from 'react'
 import { fetchAllEvents } from '../../store/events';
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
@@ -115,4 +113,3 @@ const EventGallery = ({events, parent}) => {
 }
 
 export default EventGallery;
->>>>>>> main
