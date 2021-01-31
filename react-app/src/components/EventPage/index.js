@@ -84,7 +84,6 @@ const EventPage = () => {
       if (Array.isArray(users)){
         setLeader(users.find(user => user.id == group.leader_id));
         setAttendees(users);
-        console.log(users);
       }
     }, [users, group]);
 

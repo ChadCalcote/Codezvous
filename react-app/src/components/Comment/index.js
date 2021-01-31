@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { fetchSingleUser } from "../../store/users";
 import UserImage from '../UserImage';
 
-const Comment = ({comment}) => {
-    const dispatch = useDispatch()
+const Comment = ({ comment }) => {
+    
     const [ user, setUser ] = useState({})
-// TODO: Can we render the info of the user who made the post????
-    // useEffect(() => {
-    //     setUser(fetchSingleUser(comment.user_id))
-    // }, [comment])
+    
+    useEffect(() => {
+        const fetchUser = async()=> {
+            const response = await fetch(`/api/users/${comment.user_id}`)
+            const user = await response.json()
+            setUser(user)
+            }
+        fetchUser()
+    },[])
 
     return (
         <div className="comment" id={`comment-${comment.id}`}>
             <div className="comment-info">
-                {/* <UserImage user={user} />
-                {user.username}     */}
+                {user && <UserImage user={user} />}
+                {user && user.username}    
             </div>
             <div className="comment-body">
                 {comment.body}
