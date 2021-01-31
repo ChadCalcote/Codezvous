@@ -116,28 +116,63 @@ const EventPage = () => {
             <h1>{event.event_name}</h1>
           </div>
           <div className="event-header_leader">
-            Hosted by
-            {leader ? <UserImage user={leader} />: "loading"}
-            {leader ? <h3>{leader.username}</h3> :"loading"}
+            {leader ? <UserImage className="leader-image" user={leader} />: "loading"}
+            <div className="hosted-by">
+              Hosted by
+              {leader ? <h3>{leader.username}</h3> :"loading"}
+            </div>
           </div>
         </div>
         <hr color="#2C2629"/>
         <div className="event-body">
           <div className="event-body_feed">
             <div id="event-body_feed_details">
-              <h2>Details</h2>
+              <h2 id="body-color">Details</h2>
               <p>{event.description}</p>
               {/* <video class="header-video" autoplay="true" loop="true" src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4"></video> */}
             </div>
             <div id="event-body_feed_attendees">
-              <h2>Attendees ({users.length})</h2>
-              { attendees.slice(0, 7).map(attendee => {
-                return <AttendeeCard user={attendee} />
-              })}
+              <h2 id="body-color">Attendees ({users.length})</h2>
+              {/* need to work on this */}
+              <div className="top-row">
+                { attendees.slice(0, 1).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+                <br />
+                { attendees.slice(1, 2).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+                <br />
+                { attendees.slice(2, 3).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+                <br />
+                { attendees.slice(3, 4).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+              </div>
+              <br />
+              <div className="bottom-row">
+                { attendees.slice(4, 5).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+                <br />
+                { attendees.slice(5, 6).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+                <br />
+                { attendees.slice(6, 7).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+                <br />
+                { attendees.slice(7, 8).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+              </div>
               {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
             </div>
             <div id="event-body_feed_comments">
-              <h2>Comments ({numComments? numComments : 0})</h2>
+              <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
             </div>
             <CommentForm />
             <CommentFeed comments={comments} />
