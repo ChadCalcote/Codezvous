@@ -1,0 +1,28 @@
+.comment-form_form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  padding-bottom: 30px;
+}
+
+textarea {
+  text-align: justify;
+  height: 50px;
+  width: 80%;
+  box-sizing: border-box;
+  border: 1px solid #5DACBD;
+  border-radius: 10px;
+  background-color: #211C1F;
+  color: white;
+  outline: none;
+  margin-top: 2px;
+}
+
+.submit-button {
+  font-size:30px;
+  background-color: rgb(23,20,22);
+  border: none;
+  color: #5DACBD;
+  padding-top: 15px;
+}

@@ -120,3 +120,12 @@ Dark Pastel Green: #35C04A
     width: 1000px;
     margin: auto;
 }
+
+.comment-feeds .comment {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #2D262A;
+    border-radius: 10px;
+}
