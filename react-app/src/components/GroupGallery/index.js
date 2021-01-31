@@ -18,7 +18,7 @@ const GroupGallery = ({ user, type }) => {
             dispatch(fetchUserGroups(user.id))
         }
 
-    }, [dispatch])
+    }, [dispatch, type, user.id])
 
     return (
         <div className="group-suggested-gallery">

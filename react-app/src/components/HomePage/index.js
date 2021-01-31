@@ -62,7 +62,7 @@ const HomePage = () => {
     }
 
     function handleToggleClick(e) {
-        if (galleryToDisplay == "group") {
+        if (galleryToDisplay === "group") {
             setGalleryToDisplay("event")
             setEventListDisplayed(true)
         } else {

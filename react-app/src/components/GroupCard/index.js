@@ -68,7 +68,7 @@ const GroupCard = ({ group }) => {
         <a href={`/groups/${group.id}`}>
             <div className="group-card">
                 <div className="group-card_photo">
-                    <img src={group.image_url} alt="group image" />
+                    <img src={group.image_url} alt="group" />
                 </div>
                 <div className="group-card_name">
                     {group.group_name}

@@ -37,7 +37,7 @@ const EventCard = ({ event }) => {
           {users.length > 0 ? `${users.length} going` : "1 going"}
         </div>
         <div className="event-card_attendees_pics">
-        {users.length > 0 ? users.slice(0, 3).map(user => <UserImage user={user}/>) : <BsPerson />}
+        {users.length > 0 ? users.slice(0, 3).map(user => <UserImage key={user.id} user={user}/>) : <BsPerson />}
         </div>
       </div>
       </a>

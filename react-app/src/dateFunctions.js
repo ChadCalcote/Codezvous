@@ -61,7 +61,9 @@ export const formatDate = (dateToParse, format) => {
       case 'long':
         return `${dayName}, ${monthName} ${date}, ${year}`;
       case 'short':
-          return `${dayName.slice(0,3)}, ${monthName}, ${date}` // Wed Jun 21
+        return `${dayName.slice(0,3)}, ${monthName}, ${date}`; // Wed Jun 21
+      default:
+        return null
   }
 
 };

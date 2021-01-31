@@ -58,7 +58,7 @@ const EventPage = () => {
       dispatch(fetchAllEvents())
       dispatch(fetchAllComments(eventId))
       dispatch(fetchEventUsers(eventId))
-    }, [])
+    }, [dispatch, eventId])
 
     useEffect(() => {
       setNumComments(comments.length)
@@ -68,7 +68,7 @@ const EventPage = () => {
       function chooseOneEvent(events) {
         const eventsArray = events.events
         if (Array.isArray(eventsArray)){
-          setEvent(eventsArray.find(event => eventId == event.id))
+          setEvent(eventsArray.find(event => eventId === event.id))
         }
       }
       function chooseFourEvents(events) {
@@ -79,7 +79,7 @@ const EventPage = () => {
       }
       chooseOneEvent({events})
       chooseFourEvents({events})
-    }, [events])
+    }, [dispatch, events])
 
     useEffect(() => {
       dispatch(fetchOneGroup(event.group_id))
@@ -88,7 +88,7 @@ const EventPage = () => {
 
     useEffect(() => {
       if (Array.isArray(users)){
-        setLeader(users.find(user => user.id == group.leader_id))
+        setLeader(users.find(user => user.id === group.leader_id))
         setAttendees(users)
         console.log(users)
       }
@@ -97,8 +97,6 @@ const EventPage = () => {
 
     // Set State
     const [leader, setLeader] = useState({}); //can the current user edit/delete the event
-    const [attending, setAttending] = useState(false);
-    const [commentHasText, setCommentHasText] = useState(false);
     const [attendees, setAttendees] = useState([])
 
 
@@ -140,7 +138,7 @@ const EventPage = () => {
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
-                <img src={group.image_url} href={`/groups/${group.id}`} />
+                <img src={group.image_url} href={`/groups/${group.id}`} alt="" />
                 <br />
                 <a href={`/groups/${group.id}`}>{group.group_name}</a>
               </div>

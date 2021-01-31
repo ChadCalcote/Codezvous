@@ -1,13 +1,7 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchSingleUser } from "../../store/users";
+import { useState, useEffect, useCallback } from "react";
 
 const UserImage = ({ user }) => {
-const params = useParams();
-const dispatch = useDispatch();
-const { userId } = params
 
 const [ imageLoaded, setImageLoaded ] = useState("loading...")
 const [ imageErrored, setImageErrored ] = useState("")
@@ -22,6 +16,7 @@ function displayUserImage (user){
       src={user.image_url}
       onLoad={handleImageLoaded}
       onError={handleImageErrored}
+      alt=""
     />
   )
 }

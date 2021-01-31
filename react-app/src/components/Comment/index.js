@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+// import { useDispatch } from 'react-redux';
+// import { fetchSingleUser } from "../../store/users";
+
 
 const Comment = ({comment}) => {
-    const dispatch = useDispatch()
-    const [ user, setUser ] = useState({})
+    // const dispatch = useDispatch()
+    // const [ user, setUser ] = useState({})
 // TODO: Can we render the info of the user who made the post????
     // useEffect(() => {
     //     setUser(fetchSingleUser(comment.user_id))
