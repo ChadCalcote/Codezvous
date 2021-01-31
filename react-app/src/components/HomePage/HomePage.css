@@ -26,4 +26,46 @@
 
     ====
 */
+.home-page_body {
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    /* width: 980px; */
+}
+/* .group-suggested-gallery {
+    
+} */
+.grp, .cls {
+    margin-left: 20vw;
+    padding-left: 25px;
+}
+.group-suggested-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+    width: 980px;
+    padding-bottom: 20px;
+    margin: auto;
+}
+
+.group-card {
+    margin-bottom: 20px;
+    border: solid;
+    border-width: 2px;
+    border-color: #5DACBD;
+    border-radius: 25px;
+    background-color: #5DACBD;
+}
+
+.group-card_photo > img {
+    width: 309px;
+    height: 180px;
+    border-radius: 25px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+
 
