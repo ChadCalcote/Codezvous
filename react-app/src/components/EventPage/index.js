@@ -145,10 +145,10 @@ const EventPage = () => {
         <hr color="#2C2629"/>
         <div className="event-sim-events">
           <h2>Similar events nearby</h2>
-          <EventGallery selectedEvents={galleryEvents}/>
+          <EventGallery events={events} parent={"eventPage"}/>
         </div>
         <div className="event-footer">
-            {event.start_time && <h3>{formatDate(event.start_time, "short")} - {formatTime(event.end_time, "short")}</h3>}
+            {event.start_time && event.end_time && <h3>{formatDate(event.start_time, "short")} • {formatTime(event.end_time, "short")}</h3>}
             <h2>{event.event_name}</h2>
             <RSVP event={event}/>
         </div>
