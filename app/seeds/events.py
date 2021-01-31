@@ -283,7 +283,7 @@ def seed_events():
     ]
 
     demo_event1 = Event(event_name='javascripting-only', description='Don\'t forget the semicolons!',
-                        address='208 Barton Springs Rd', city='Austin', state='TX', zip_code=78704, 
+                        address='208 Barton Springs Rd', city='Austin', state='TX', zip_code=78704,
                         type='Workshop', start_time='2021-02-02 11:45:00', end_time='2020-02-02 12:30:00', group_id=1)
 
     db.session.add(demo_event1)
@@ -292,7 +292,7 @@ def seed_events():
     # =====================================================
 
     demo_event2 = Event(event_name='python-only-bbq', description='No, we\'re not cooking snakes. We have good indentions with this event.',
-                        address='3853 N St Mary\'s S', city='San Antonio', state='TX', zip_code=78212, 
+                        address='3853 N St Mary\'s S', city='San Antonio', state='TX', zip_code=78212,
                         type='Social', start_time='2021-02-03 11:45:00', end_time='2020-02-03 12:30:00',group_id=1)
 
     db.session.add(demo_event2)
@@ -302,7 +302,7 @@ def seed_events():
     # =====================================================
 
     demo_event3 = Event(event_name='slightly above average', description='Ted Talk by Alfredo',
-                        address='480 E Broad St', city='Columbus', state='OH', zip_code=43215, 
+                        address='480 E Broad St', city='Columbus', state='OH', zip_code=43215,
                         type='Info Session', start_time='2021-02-02 08:45:00', end_time='2020-02-02 10:30:00', group_id=2)
 
     db.session.add(demo_event3)
@@ -325,8 +325,8 @@ def seed_events():
         is_virtual = random() >= 0.5
 
         demo_event = Event(event_name=event_name, description=fakes.paragraph(nb_sentences=10),
-                            address=fakes.address(), city=city, state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr),
-                            status='active', image_url=f'https://picsum.photos/id/{img_num}/600/337', virtual=is_virtual, type=event, 
+                            address=fakes.street_address(), city=city, state=state_abbr, zip_code=fakes.postalcode_in_state(state_abbr=state_abbr),
+                            status='active', image_url=f'https://picsum.photos/id/{img_num}/600/337', virtual=is_virtual, type=event,
                             start_time=start_date, end_time=(start_date + datetime.timedelta(hours)), group_id=random_group)
 
         db.session.add(demo_event)
