@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
-import "./index.css";
+import "./GroupForm.css";
 
 const createGroup = async (group_name, description, city, state, zip_code, image_url, leader_id) => {
   const response = await fetch("/api/groups/test", {
@@ -46,71 +46,88 @@ const GroupForm = () => {
     }
 
     return (
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>Group Name</label>
-          <input
-            type="text"
-            name="groupName"
-            onChange={(event) => setGroupName(event.target.value)}
-            value={groupName}
-          ></input>
+      <form className="group-form" onSubmit={onSubmit}>
+        <div className="form-wrapper">
+          <div>
+            <label>Group Name</label>
+            <br />
+            <input
+              type="text"
+              name="groupName"
+              onChange={(event) => setGroupName(event.target.value)}
+              value={groupName}
+            ></input>
+          </div>
+          <br />
+          <div>
+            <label>Description</label>
+            <br />
+            <textarea
+              className="description"
+              type="text"
+              name="description"
+              onChange={(event) => setDescription(event.target.value)}
+              value={description}
+            ></textarea>
+          </div>
+          <br />
+          <div>
+            <label>City</label>
+            <br />
+            <input
+              type="text"
+              name="city"
+              onChange={(event) => setCity(event.target.value)}
+              value={city}
+            ></input>
+          </div>
+          <br />
+          <div>
+            <label>State</label>
+            <br />
+            <input
+              type="text"
+              name="state"
+              onChange={(event) => setState(event.target.value)}
+              value={state}
+            ></input>
+          </div>
+          <br />
+          <div>
+            <label>Zip Code</label>
+            <br />
+            <input
+              type="number"
+              name="zipCode"
+              onChange={(event) => setZipCode(event.target.value)}
+              value={zipCode}
+            ></input>
+          </div>
+          <br />
+          <div>
+            <label>Image URL</label>
+            <br />
+            <input
+              type="text"
+              name="imageUrl"
+              onChange={(event) => setImageUrl(event.target.value)}
+              value={imageUrl}
+            ></input>
+          </div>
+          <br />
+          <div>
+            <label>Leader</label>
+            <br />
+            <input
+              type="number"
+              name="leader_id"
+              onChange={(event) => setLeaderId(event.target.value)}
+              value={leader_id}
+            ></input>
+          </div>
+          <br />
+          <button type="submit">Create Group</button>
         </div>
-        <div>
-          <label>Description</label>
-          <input
-            type="text"
-            name="description"
-            onChange={(event) => setDescription(event.target.value)}
-            value={description}
-          ></input>
-        </div>
-        <div>
-          <label>City</label>
-          <input
-            type="text"
-            name="city"
-            onChange={(event) => setCity(event.target.value)}
-            value={city}
-          ></input>
-        </div>
-        <div>
-          <label>State</label>
-          <input
-            type="text"
-            name="state"
-            onChange={(event) => setState(event.target.value)}
-            value={state}
-          ></input>
-        </div>
-        <div>
-          <label>Zip Code</label>
-          <input
-            type="number"
-            name="zipCode"
-            onChange={(event) => setZipCode(event.target.value)}
-            value={zipCode}
-          ></input>
-        </div>
-        <div>
-          <label>Image URL</label>
-          <input
-            type="text"
-            name="imageUrl"
-            onChange={(event) => setImageUrl(event.target.value)}
-            value={imageUrl}
-          ></input>
-        </div>
-        <div>
-          <label>Leader</label>
-          <input
-            type="number"
-            name="leader_id"
-            onChange={(event) => setLeaderId(event.target.value)}
-            value={leader_id}
-          ></input>
-        </div>
-        <button type="submit">Create Group</button>
       </form>
     );
 };
