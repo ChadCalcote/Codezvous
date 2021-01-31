@@ -1,0 +1,5 @@
+.comment-form_form {
+  display: flex;
+  flex-direction: row;
+  background-color: red;
+}

@@ -24,7 +24,7 @@ input {
   margin-top: 2px;
 }
 
-button {
+.submit-button {
   padding: 10px;
   color: white;
   background-color: #5DACBD;

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { createComment } from "../../store/comments";
 import { getCurrentUser } from "../../store/session";
 import { FiSend } from 'react-icons/all'
+import './CommentForm.css'
 
 const CommentFormReact = () => {
 
@@ -36,9 +37,7 @@ const CommentFormReact = () => {
 
     return (
       <div className="comment-form_wrapper">
-        <form onSubmit={onSubmit}>
-            <label>Comment</label>
-            <br />
+        <form className="comment-form_form" onSubmit={onSubmit}>
             <textarea value={comment} onChange={event => setComment(event.target.value)}/>
           <button type="submit"><FiSend /></button>
         </form>
