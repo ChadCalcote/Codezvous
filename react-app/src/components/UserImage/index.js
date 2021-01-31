@@ -1,13 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { fetchSingleUser } from "../../store/users";
 
 const UserImage = ({ user }) => {
-const params = useParams();
-const dispatch = useDispatch();
-const { userId } = params
 
 const [ imageLoaded, setImageLoaded ] = useState("loading...")
 const [ imageErrored, setImageErrored ] = useState("")
@@ -18,11 +12,14 @@ const handleImageErrored = () => setImageErrored("failed to load")
 
 function displayUserImage (user){
   return (
-    <img width="100px" 
-      src={user.image_url}
-      onLoad={handleImageLoaded}
-      onError={handleImageErrored}
-    />
+    <div className="user-pic">
+      <img width="100px" 
+        src={user.image_url}
+        onLoad={handleImageLoaded}
+        onError={handleImageErrored}
+        alt=""
+      />
+    </div>
   )
 }
 
@@ -31,10 +28,10 @@ function displayUserImage (user){
 //   return reduxState.users
 // })
 
-  useEffect(() => {
-    displayUserImage(user)
+  // useEffect(() => {
+  //   displayUserImage(user)
 
-  }, [user])
+  // }, [user])
 // // Use User's image 
 
     return (

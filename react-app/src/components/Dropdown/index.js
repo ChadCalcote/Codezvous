@@ -1,12 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import './Dropdown.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCurrentUser } from '../../store/session';
 
 const Dropdown = ({setAuthenticated}) => {
 
@@ -45,7 +43,7 @@ const Dropdown = ({setAuthenticated}) => {
 									Sign Up
 								</NavLink>
 							</li>
-							<li classname="nav-item">
+							<li className="nav-item">
 								<LogoutButton setAuthenticated={setAuthenticated} />
 							</li>
 						</ul>

@@ -1,15 +1,15 @@
-import { useParams } from 'react-router-dom';
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
 import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs';
-import { fetchAllEvents, fetchOneEvent } from "../../store/events";
+import { fetchAllEvents } from "../../store/events";
 import { fetchOneGroup } from "../../store/groups";
-import { fetchSingleUser, fetchEventUsers } from "../../store/users";
+import { fetchEventUsers } from "../../store/users";
 import { fetchAllComments } from "../../store/comments";
-import AttendeeCard from "../AttendeeCard";
 import UserImage from '../UserImage';
+import AttendeeCard from "../AttendeeCard";
 import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
@@ -94,17 +94,24 @@ const EventPage = () => {
       if (Array.isArray(users)){
         setLeader(users.find(user => user.id == group.leader_id))
         setAttendees(users)
-        console.log(users)
       }
     }, [users, group])
 
 
     // Set State
     const [leader, setLeader] = useState({}); //can the current user edit/delete the event
-    const [attending, setAttending] = useState(false);
-    const [commentHasText, setCommentHasText] = useState(false);
     const [attendees, setAttendees] = useState([])
 
+    const keyArray = [
+      "first-attendee", 
+      "second-attendee", 
+      "third-attendee", 
+      "fourth-attendee", 
+      "fifth-attendee", 
+      "sixth-attendee", 
+      "seventh-attendee", 
+      "eigth-attendee"
+    ]
 
     return (
       <div className="event-page">
@@ -116,28 +123,32 @@ const EventPage = () => {
             <h1>{event.event_name}</h1>
           </div>
           <div className="event-header_leader">
-            Hosted by
-            {leader ? <UserImage user={leader} />: "loading"}
-            {leader ? <h3>{leader.username}</h3> :"loading"}
+            {leader ? <UserImage className="leader-image" user={leader} />: "loading"}
+            <div className="hosted-by">
+              Hosted by
+              {leader ? <h3>{leader.username}</h3> :"loading"}
+            </div>
           </div>
         </div>
         <hr color="#2C2629"/>
         <div className="event-body">
           <div className="event-body_feed">
             <div id="event-body_feed_details">
-              <h2>Details</h2>
+              <h2 id="body-color">Details</h2>
               <p>{event.description}</p>
               {/* <video class="header-video" autoplay="true" loop="true" src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4"></video> */}
             </div>
             <div id="event-body_feed_attendees">
-              <h2>Attendees ({users.length})</h2>
-              { attendees.slice(0, 7).map(attendee => {
-                return <AttendeeCard user={attendee} />
-              })}
-              {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
+              <h2 id="body-color">Attendees ({users.length})</h2>
+              {/* need to work on this */}
+              <div className="attendees-row">
+                { attendees.slice(0,8).map((attendee, i) => {
+                  return <div key={i} id={keyArray[i]}><AttendeeCard user={attendee} key={attendee.id} /></div>
+                })} 
+              </div>
             </div>
             <div id="event-body_feed_comments">
-              <h2>Comments ({numComments? numComments : 0})</h2>
+              <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
             </div>
             <CommentForm />
             <CommentFeed comments={comments} />

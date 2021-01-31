@@ -71,3 +71,12 @@ Dark Pastel Green: #35C04A
 .icons {
     margin-right: 10px;
 }
+
+.attendees-row {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+    flex-direction: row;
+    max-width: 500px;
+}
+
