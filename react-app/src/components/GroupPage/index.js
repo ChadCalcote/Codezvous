@@ -65,11 +65,15 @@ const GroupPage = () => {
         setIsLeader(currentUser.id === groupLeaderId )
         setMembers(groupUsers);
       }
+    }, [currentUser, groupUsers, groupLeaderId]);
 
+    useEffect(() => {
       if (currentUser) {
         setActiveUser(currentUser)
       }
+    }, [currentUser]);
 
+    useEffect(() => {
       if (Array.isArray(groupUsers)) {
 
         for (let i = 0; i < groupUsers.length; i++) {
@@ -79,7 +83,9 @@ const GroupPage = () => {
           }
         }
       }
-    }, [currentUser, groupUsers, groupLeaderId]);
+    }, [groupUsers, currentUser]);
+
+    const numGroupUsers = groupUsers.length;
 
     useEffect(() => {
       dispatch(fetchOneGroup(groupId));
@@ -93,8 +99,8 @@ const GroupPage = () => {
         <h1>Group Page!</h1>
         <div className="group-header">
           <div className="group-header_img">
-            {!group && <img src='../../Bars-0.7s-98px.gif'/>}
-            {group && <img src={group.image_url} />}
+            {!group && <h2>Loading....</h2>}
+            {group && <img alt="" src={group.image_url} />}
           </div>
           <div className="group-header_title">
             <h1>{group.group_name}</h1>
@@ -103,7 +109,7 @@ const GroupPage = () => {
             <BsGeoAlt /> {`${group.city}, ${group.state}`}
           </div>
           <div className="group-header_members">
-            <BsPeople /> {`${groupUsers.length} members`}
+            <BsPeople /> {`${numGroupUsers} members`}
           </div>
           <div className="group-header_leader">
             Organized by leader:
@@ -134,7 +140,7 @@ const GroupPage = () => {
         </div>
         <div>
           {isLeader 
-          ? <Link to="create-event">Create Form</Link> : null }
+          ? <Link to="create/event">Create Form</Link> : null }
         </div>
       </div>
     );
