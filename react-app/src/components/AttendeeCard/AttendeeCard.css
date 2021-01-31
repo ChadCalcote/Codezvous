@@ -1,0 +1,22 @@
+.attendee-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #2D262A;
+  width: min-content;
+  min-width: 140px;
+  height: 130px;
+  padding: 20px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.attendee-card_name {
+  font-size: 13px;
+}
+
+.attendee-card_member {
+  font-size: smaller;
+  font-size: 10px;
+  color: #FFF4E4;
+}

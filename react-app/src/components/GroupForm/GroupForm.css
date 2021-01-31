@@ -42,5 +42,9 @@ button {
   background-color: #211C1F;
   color: white;
   outline: none;
+  /* use the below for cards */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* here */
   margin-top: 2px;
 }
