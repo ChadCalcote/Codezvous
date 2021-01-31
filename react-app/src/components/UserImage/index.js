@@ -19,23 +19,11 @@ function displayUserImage (user){
     <img
       className="user-image"
       src={user.image_url}
-      // src={`${user.image_url}?${Math.random().toString().split(".")[1]}`}
       onLoad={handleImageLoaded}
       onError={handleImageErrored}
     />
   )
 }
-
-// // Fetch User
-// const user = useSelector(reduxState => {
-//   return reduxState.users
-// })
-
-  // useEffect(() => {
-  //   displayUserImage(user)
-
-  // }, [user])
-// // Use User's image
 
     return (
       <div className="user_photo">
