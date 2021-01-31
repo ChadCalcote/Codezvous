@@ -7,7 +7,6 @@ import RSVP from "../RSVP"
 import "./index.css";
 import UserImage from "../UserImage";
 import { formatDate } from "../../dateFunctions";
-import "../../../public/"
 
 const EventCard = ({ event }) => {
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ const EventCard = ({ event }) => {
     <div className="event-card">
       <a href={`/events/${event.id}`}>
       <div className="event-card_date">
-        {!event.start_time && <img src={"../../../public/Bars-0.7s-98px.gif"}/>}
+        {!event.start_time && <img src='../../Bars-0.7s-98px.gif'/>}
         {formatDate(event.start_time, 'long')}
       </div>
       <div className="event-card_title">{event.event_name}</div>
@@ -39,7 +38,7 @@ const EventCard = ({ event }) => {
           {/* {users.length > 0 ? `${users.length} going` : "1 going"} */}
         </div>
         <div className="event-card_attendees_pics">
-        {users.length > 0 ? users.slice(0, 3).map(user => <UserImage user={user}/>) : <BsPerson />}
+          {users.length > 0 ? users.slice(0, 3).map(user => <UserImage user={user}/>) : <BsPerson />}
         </div>
       </div>
       </a>

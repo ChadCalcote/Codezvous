@@ -103,10 +103,10 @@ const EventPage = () => {
             <h1>{event.event_name}</h1>
           </div>
           <div className="event-header_leader">
-            {leader ? <UserImage className="leader-image" user={leader} />: "loading"}
+            {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif'/>}
             <div className="hosted-by">
               Hosted by
-              {leader ? <h3>{leader.username}</h3> :"loading"}
+              {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif'/> }
             </div>
           </div>
         </div>
@@ -117,8 +117,8 @@ const EventPage = () => {
               <h2 id="body-color">Details</h2>
               <p>{event.description}</p>
             </div>
-            <div id="event-body_feed_attendees">
               <h2>Attendees ({users.length})</h2>
+            <div id="event-body_feed_attendees">
               { attendees.slice(0, 7).map(attendee => {
                 return <AttendeeCard user={attendee} />
               })}
