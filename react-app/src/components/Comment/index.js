@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchSingleUser } from "../../store/users";
 import UserImage from '../UserImage';
-import './Comment.css'
+import './comment.css'
 
 const Comment = ({ comment }) => {
 
