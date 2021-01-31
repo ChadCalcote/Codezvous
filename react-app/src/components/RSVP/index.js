@@ -18,13 +18,16 @@ function RSVP({ event }) {
   })
 
   async function createRSVP(userid, eventid) {
-    await fetch(`/api/events/${event.id}/rsvps`, {
+    const response = await fetch(`/api/events/${eventid}/rsvps`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({user_id: user.id})
+      body: JSON.stringify({
+        user_id: userid
+      }),
     });
+    return await response.json()
   };
 
   useEffect(()=>{
@@ -55,7 +58,7 @@ function RSVP({ event }) {
     if (attending){
       return "See you there!"
     }else {
-      return <button onClick={()=>handleClick()}>RSVP</button>;
+      return <button onClick={handleClick}>RSVP</button>;
     };
   };
 
