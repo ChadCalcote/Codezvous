@@ -82,77 +82,83 @@ const EventPage = () => {
 
     useEffect(() => {
       if (Array.isArray(users)){
-        setLeader(users.find(user => user.id == group.leader_id))
-        setAttendees(users)
+        setLeader(users.find(user => user.id == group.leader_id));
+        setAttendees(users);
       }
     }, [users, group]);
 
-    const [leader, setLeader] = useState({}); 
+    const [leader, setLeader] = useState({});
     const [attending, setAttending] = useState(false);
     const [commentHasText, setCommentHasText] = useState(false);
     const [attendees, setAttendees] = useState([]);
 
     return (
-      <div className="event-page">
-        <div className="event-header">
-          <div className="event-header_date">
-            <h4>{formatDate(event.start_time, 'long')}</h4>
-          </div>
-          <div className="event-header_title">
-            <h1>{event.event_name}</h1>
-          </div>
-          <div className="event-header_leader">
-            {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif'/>}
-            <div className="hosted-by">
-              Hosted by
-              {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif'/> }
+      <div className="event-page_wrapper">
+        <div className="event-page">
+          <div className="event-header">
+            <div className="event-header_date">
+              <h4>{formatDate(event.start_time, 'long')}</h4>
             </div>
-          </div>
-        </div>
-        <hr color="#2C2629"/>
-        <div className="event-body">
-          <div className="event-body_feed">
-            <div id="event-body_feed_details">
-              <h2 id="body-color">Details</h2>
-              <p>{event.description}</p>
+            <div className="event-header_title">
+              <h1>{event.event_name}</h1>
             </div>
-              <h2>Attendees ({users.length})</h2>
-            <div id="event-body_feed_attendees">
-              { attendees.slice(0, 7).map(attendee => {
-                return <AttendeeCard user={attendee} />
-              })}
-            </div>
-            <div id="event-body_feed_comments">
-              <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
-            </div>
-            <CommentForm />
-            <CommentFeed comments={comments} />
-          </div>
-          <div className="event-body_sidebar">
-              <div id="event-body_sidebar_group">
-                <img src={group.image_url} href={`/groups/${group.id}`} />
-                <br />
-                <a href={`/groups/${group.id}`}>{group.group_name}</a>
+            <div className="event-header_leader">
+              {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif'/>}
+              <div className="hosted-by">
+                Hosted by
+                {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif'/> }
               </div>
-              <div id="event-body_sidebar_details">
-                <div><BsClock className="icons"/>{formatDate(event.start_time, 'long')}</div>
-                <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div>
-                <div id="event-body_sidebar_location">
-                  {event.virtual ? <><BsCameraVideo className="icons"/>Virtual event</> : <><div><BsGeoAlt className="icons"/>{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
+            </div>
+          </div>
+          <hr color="#2C2629"/>
+          <div className="event-body">
+            <div className="event-body_feed">
+              <div id="event-body_feed_details">
+                <h2 id="body-color">Details</h2>
+                <p>{event.description}</p>
+              </div>
+                <h2 id="body-color">Attendees ({users.length})</h2>
+              <div id="event-body_feed_attendees">
+                { attendees.slice(0, 7).map(attendee => {
+                  return <AttendeeCard user={attendee} />
+                })}
+              </div>
+              <div id="event-body_feed_comments">
+                <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
+              </div>
+              <CommentForm />
+              <CommentFeed comments={comments} />
+            </div>
+            <div className="event-body_sidebar">
+                <div id="event-body_sidebar_group">
+                  <img src={group.image_url} href={`/groups/${group.id}`} />
+                  <br />
+                  <a href={`/groups/${group.id}`}>{group.group_name}</a>
+                  <h4>Public Group</h4>
                 </div>
-              </div>
+                <div id="event-body_sidebar_details">
+                  <div><BsClock className="icons"/>{formatDate(event.start_time, 'long')}</div>
+                  <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div>
+                  <br />
+                  <div id="event-body_sidebar_location">
+                    {event.virtual ? <><BsCameraVideo className="icons"/>Virtual event</> : <><div><BsGeoAlt className="icons"/>{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
+                  </div>
+                </div>
+            </div>
+          </div>
+          <hr color="#2C2629"/>
+          <div className="event-sim-events">
+            <h2 id="body-color">Similar events nearby</h2>
+            <EventGallery events={events} parent={"eventPage"}/>
           </div>
         </div>
-        <hr color="#2C2629"/>
-        <div className="event-sim-events">
-          <h2>Similar events nearby</h2>
-          <EventGallery events={events} parent={"eventPage"}/>
-        </div>
-        <div className="event-footer">
+        <footer className="event-footer">
+          <div className="event-footer_contents">
             {event.start_time && event.end_time && <h3>{formatDate(event.start_time, "short")} • {formatTime(event.end_time, "short")}</h3>}
             <h2>{event.event_name}</h2>
             <RSVP event={event}/>
-        </div>
+          </div>
+        </footer>
       </div>
     );
 }
