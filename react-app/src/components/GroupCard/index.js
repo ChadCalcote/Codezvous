@@ -42,7 +42,7 @@ const GroupCard = ({ group }) => {
     useEffect(() => {
         dispatch(fetchGroupUsers(group.id));
         dispatch(getCurrentUser());
-    }, [dispatch, setIsMember]);
+    }, [dispatch, setIsMember, group.id]);
 
     const showButtonHandler = () => {
         if (isMember){

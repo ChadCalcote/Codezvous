@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchSingleUser } from "../../store/users";
-import UserImage from '../UserImage';
-
 
 const Comment = ({comment}) => {
     const dispatch = useDispatch()

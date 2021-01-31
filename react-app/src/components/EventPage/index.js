@@ -1,18 +1,18 @@
-import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
 import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs';
-import { fetchAllEvents, fetchOneEvent } from "../../store/events";
 import { fetchOneGroup } from "../../store/groups";
-import { fetchSingleUser, fetchEventUsers } from "../../store/users";
+import { fetchAllEvents } from "../../store/events";
+import { fetchEventUsers } from "../../store/users";
 import { fetchAllComments } from "../../store/comments";
-import AttendeeCard from "../AttendeeCard";
 import UserImage from '../UserImage';
-import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
+import EventGallery from '../EventGallery';
+import AttendeeCard from "../AttendeeCard";
 import "./EventPage.css";
 
 // List Out Data from Single Event
@@ -25,11 +25,11 @@ import "./EventPage.css";
 const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
+    const { eventId } = params;
+
     const [ event, setEvent ] = useState({});
     const [ galleryEvents, setGalleryEvents ] = useState([]);
     const [ numComments, setNumComments ] = useState([]);
-
-    const { eventId } = params;
 
     const events = useSelector(reduxState => {
       return reduxState.events
@@ -50,10 +50,6 @@ const EventPage = () => {
 
     const comments = useSelector(reduxState => {
       return reduxState.comments
-    })
-
-    const currentUser = useSelector(reduxState => {
-      return reduxState.session
     })
 
 // setup groups state to be the one group holding the event

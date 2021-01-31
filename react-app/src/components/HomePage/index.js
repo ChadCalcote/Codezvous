@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllEvents } from '../../store/events'
-import { fetchAllGroups } from '../../store/groups';
 import { getCurrentUser } from '../../store/session';
 import EventGallery from '../EventGallery'
 import GroupGallery from '../GroupGallery'
-import SearchBar from '../SearchBar';
 import "./HomePage.css";
 
 const HomePage = () => {
-    let displayedGallery;
     
     const events = useSelector(reduxState => {
         return reduxState.events
@@ -18,7 +15,6 @@ const HomePage = () => {
         return reduxState.session
     })
     
-    const [query, setQuery] = useState('');
     // const [eventsShown, setEventsShown] = useState([...events]);
     const [ galleryToDisplay, setGalleryToDisplay ] = useState("event")
     const [ eventListDisplayed, setEventListDisplayed ] = useState(true)
@@ -39,10 +35,6 @@ const HomePage = () => {
 	// };
     
     const dispatch = useDispatch();
-    
-    // useEffect(() => {
-    //     filterEvents();
-    // }, [query, events]);
     
     useEffect(() => {
         dispatch(fetchAllEvents())

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import SearchBar from '../SearchBar';
 import Dropdown from '../Dropdown';
 import logo from './logo.png';
 
@@ -17,13 +16,14 @@ const NavBar = ({ setAuthenticated }) => {
 						className="header_logo"
 						onClick={() => history.push('/')}
 						src={logo}
+						alt=""
 					/>
 				</div>
 			</div>
 
 			<div className="header_right">
 				<div className="create_group">
-					<NavLink to="/create-group" exact={true} activeClassName="active">
+					<NavLink to="/create/group" exact={true} activeClassName="active">
 						Start a new group
 					</NavLink>
 				</div>

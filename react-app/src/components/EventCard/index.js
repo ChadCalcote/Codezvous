@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import EventPage from "../EventPage";
 import { fetchEventUsers } from "../../store/users";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
@@ -17,7 +16,7 @@ const EventCard = ({ event }) => {
 
   useEffect( () =>{
     dispatch(fetchEventUsers(event.id));
-  },[dispatch])
+  },[dispatch, event.id])
 
   return (
     <div className="event-card">

@@ -12,9 +12,7 @@ import HomePage from "./components/HomePage"
 import UserImage from "./components/UserImage";
 import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
-import EventCard from "./components/EventCard";
 import Footer from "./components/Footer";
-import CommentFormReact from "./components/CommentForm";
 import EventFormReact from "./components/EventForm";
 
 function App() {
@@ -51,8 +49,14 @@ function App() {
             setAuthenticated={setAuthenticated}
           /> */}
         {/* </Route> */}
-        <Route path="/create-group" exact={true}>
+        <Route path="/create/group" exact={true}>
           <GroupForm
+            // authenticated={authenticated}
+            // setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <Route path="/groups/create/event" exact={true}>
+          <EventFormReact
             // authenticated={authenticated}
             // setAuthenticated={setAuthenticated}
           />
