@@ -36,7 +36,7 @@ function RSVP({ event }) {
 
   useEffect(()=>{
     dispatch(fetchUserRSVPs(user.id))
-  },[user])
+  },[dispatch, user])
 
   useEffect(() => {
     if (Array.isArray(rsvps)) {

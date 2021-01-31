@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import EventPage from "../EventPage";
 import { fetchEventUsers } from "../../store/users";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
@@ -42,7 +41,7 @@ const EventCard = ({ event }) => {
           {users && users.length > 0 ? `${users.length} going` : "1 going"}
         </div>
         <div className="event-card_attendees_pics">
-          {users.length > 0 ? users.slice(0, 3).map(user => <UserImage user={user}/>) : <BsPerson />}
+        {users.length > 0 ? users.slice(0, 3).map(user => <UserImage key={user.id} user={user}/>) : <BsPerson />}
         </div>
       </div>
       </a>

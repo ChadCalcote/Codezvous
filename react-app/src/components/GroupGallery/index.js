@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllGroups, fetchUserGroups } from '../../store/groups';
-import { getCurrentUser } from '../../store/session';
-import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import GroupCard from '../GroupCard'
-import UserImage from '../UserImage';
 import './GroupGallery.css'
 
 const GroupGallery = ({ user, type }) => {
@@ -21,7 +18,7 @@ const GroupGallery = ({ user, type }) => {
             dispatch(fetchUserGroups(user.id))
         }
 
-    }, [dispatch])
+    }, [dispatch, type, user.id])
 
     return (
         <div className="group-suggested-gallery">
