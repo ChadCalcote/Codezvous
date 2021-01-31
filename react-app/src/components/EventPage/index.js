@@ -28,9 +28,9 @@ const EventPage = () => {
     const [ event, setEvent ] = useState({});
     const [ galleryEvents, setGalleryEvents ] = useState([]);
     const [ numComments, setNumComments ] = useState([]);
-    
+
     const { eventId } = params;
-    
+
     const events = useSelector(reduxState => {
       return reduxState.events
     })
@@ -87,7 +87,7 @@ const EventPage = () => {
 
     useEffect(() => {
       dispatch(fetchOneGroup(event.group_id))
-    
+
     }, [event])
 
     useEffect(() => {
@@ -98,7 +98,7 @@ const EventPage = () => {
       }
     }, [users, group])
 
-    
+
     // Set State
     const [leader, setLeader] = useState({}); //can the current user edit/delete the event
     const [attending, setAttending] = useState(false);
@@ -130,7 +130,7 @@ const EventPage = () => {
               {/* <video class="header-video" autoplay="true" loop="true" src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4"></video> */}
             </div>
             <div id="event-body_feed_attendees">
-              <h2>Attendees ({users.length})</h2> 
+              <h2>Attendees ({users.length})</h2>
               { attendees.slice(0, 7).map(attendee => {
                 return <AttendeeCard user={attendee} />
               })}
@@ -145,13 +145,14 @@ const EventPage = () => {
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
                 <img src={group.image_url} href={`/groups/${group.id}`} />
+                <br />
                 <a href={`/groups/${group.id}`}>{group.group_name}</a>
               </div>
               <div id="event-body_sidebar_details">
-                <div><BsClock />{formatDate(event.start_time, 'long')}</div>
+                <div><BsClock className="icons"/>{formatDate(event.start_time, 'long')}</div>
                 <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div>
                 <div id="event-body_sidebar_location">
-                  {event.virtual ? <><BsCameraVideo /><p>Virtual event</p></> : <><div><BsGeoAlt />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
+                  {event.virtual ? <><BsCameraVideo className="icons"/>Virtual event</> : <><div><BsGeoAlt className="icons"/>{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
                 </div>
               </div>
           </div>
