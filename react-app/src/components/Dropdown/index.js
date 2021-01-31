@@ -1,10 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import './Dropdown.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCurrentUser } from '../../store/session';
 
 const Dropdown = ({setAuthenticated}) => {
 

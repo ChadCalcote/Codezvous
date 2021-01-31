@@ -19,7 +19,6 @@ export const setOneGroup = (group) => {
   }
 };
 
-
 // export const setUserGroup = (userGroup) => {
 //   return {
 //     type: SET_USER_GROUP,

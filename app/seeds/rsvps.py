@@ -29,9 +29,23 @@ def seed_rsvps():
 
     db.session.commit()
 
-    for _ in range (600):
-        random_user = int(random() * 300 ) + 1
-        random_event = int(random() * 400 ) + 1
+    num1 = 1
+    for _ in range (70):
+        user = num1
+        num2 = 1
+        for _ in range (200):
+            event = num2
+            demo_rsvp = RSVP(user_id=user, event_id=event)
+
+            db.session.add(demo_rsvp)
+
+            db.session.commit()
+            num2 += 1
+        num1 += 1
+
+    for _ in range (2000):
+        random_user = int(random() * 230 ) + 70
+        random_event = int(random() * 200 ) + 1
         demo_rsvp = RSVP(user_id=random_user, event_id=random_event)
 
         db.session.add(demo_rsvp)

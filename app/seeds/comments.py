@@ -41,10 +41,10 @@ def seed_comments():
 
     db.session.commit()
 
-    for _ in range (200):
-        random_length = int(random() * 3 ) + 1
+    for _ in range (600):
+        random_length = int(random() * 5 ) + 1
         random_user = int(random() * 299 ) + 1
-        random_event = int(random() * 399 ) + 1
+        random_event = int(random() * 199 ) + 1
 
         random_comment = Comment( user_id=random_user, event_id=random_event, 
                                 body=fakes.paragraph(nb_sentences=random_length, variable_nb_sentences=True))

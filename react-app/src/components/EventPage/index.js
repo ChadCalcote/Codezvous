@@ -91,19 +91,19 @@ const EventPage = () => {
     }, [event])
 
     useEffect(() => {
-      // console.log(users)
       if (Array.isArray(users)){
-        console.log("Group Leader Id", group.leader_id)
         setLeader(users.find(user => user.id == group.leader_id))
-        console.log(leader)
+        setAttendees(users)
+        console.log(users)
       }
     }, [users, group])
+
     
     // Set State
     const [leader, setLeader] = useState({}); //can the current user edit/delete the event
     const [attending, setAttending] = useState(false);
     const [commentHasText, setCommentHasText] = useState(false);
-    
+    const [attendees, setAttendees] = useState([])
 
 
     return (
@@ -131,7 +131,9 @@ const EventPage = () => {
             </div>
             <div id="event-body_feed_attendees">
               <h2>Attendees ({users.length})</h2> 
-              {/* <AttendeeCard /> */}
+              { attendees.slice(0, 7).map(attendee => {
+                return <AttendeeCard user={attendee} />
+              })}
               {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
             </div>
             <div id="event-body_feed_comments">
@@ -142,8 +144,8 @@ const EventPage = () => {
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
-                <img src={group.image_url} />
-                {group.group_name}
+                <img src={group.image_url} href={`/groups/${group.id}`} />
+                <a href={`/groups/${group.id}`}>{group.group_name}</a>
               </div>
               <div id="event-body_sidebar_details">
                 <div><BsClock />{formatDate(event.start_time, 'long')}</div>
