@@ -51,3 +51,14 @@
     border: 1px solid #5DACBD;
     border-radius: 10px;
 }
+
+.create_group > a {
+    padding: 10px;
+    color: #5DACBD;
+    border: 2px solid #5DACBD;
+    border-radius: 20px;
+}
+
+.create_group > a:hover {
+    opacity: 0.8;
+}
