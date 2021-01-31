@@ -10,7 +10,7 @@ const params = useParams();
 const dispatch = useDispatch();
 const { userId } = params
 
-const [ imageLoaded, setImageLoaded ] = useState("loading...")
+const [ imageLoaded, setImageLoaded ] = useState("loading")
 const [ imageErrored, setImageErrored ] = useState("")
 
 const handleImageLoaded = () => setImageLoaded("loaded")

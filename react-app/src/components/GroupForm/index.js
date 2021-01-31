@@ -32,7 +32,6 @@ const GroupForm = () => {
     const [imageUrl, setImageUrl] = useState("");
     const [leader_id, setLeaderId] = useState();
 
-
     const onSubmit = async(event) => {
         event.preventDefault();
         await createGroup(groupName, description, city, state, zipCode, imageUrl, leader_id)

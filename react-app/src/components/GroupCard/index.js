@@ -15,7 +15,7 @@ const GroupCard = ({ group }) => {
         return reduxState.users;
     });
 
-    const groupUsers = useSelector(reduxState => { // Returning a list
+    const groupUsers = useSelector(reduxState => { 
         return reduxState.users;
     });
 
@@ -49,6 +49,7 @@ const GroupCard = ({ group }) => {
             return (
                 <>
                     You're a Member
+                    {/* NEED A LEAVE THE GROUP BUTTON */}
                 </>
             )
         }else {
