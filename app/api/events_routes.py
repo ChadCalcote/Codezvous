@@ -10,7 +10,6 @@ events_routes = Blueprint('events', __name__)
 # Retrieve all events
 @events_routes.route('/')
 def events():
-    # events = Event.query.all()
     events = db.session.query(Event).order_by(Event.start_time)
     return jsonify([event.to_dict() for event in events])
 
@@ -29,31 +28,12 @@ def event(id):
 
 
 # Create an event
-@events_routes.route('/', methods=["POST"])
-# @login_required
-def post():
-    form = EventForm()
-    print(form.event_name.data)
-    if form.validate_on_submit():
-        new_event = Event()
-        new_event.group_id = request.json["group_id"]
-        form.populate_obj(new_event)
-        print(new_event.to_dict())
-        db.session.add(new_event)
-        db.session.commit()
-        return new_event.to_dict()
-    else:
-        return "Bad Data"
-
-
 @events_routes.route('/test', methods=["POST"])
-# @login_required
+@login_required
 def postTest():
     form = EventForm()  # need to create a form
     form['csrf_token'].data = request.cookies['csrf_token']
     form.data['start_time'] = request.json['start_time']
-    print(form.data)
-    print(request.json['start_time'])
     if form.validate_on_submit():
         new_event = Event(
             event_name=form.data['event_name'],
@@ -120,11 +100,9 @@ def put(id):
 def delete(id):
     event = Event.query.get(id)
     comments = Comment.query.join(Event).filter(Comment.event_id == id).all()
-
     db.session.delete(comments)
     db.session.delete(event)
     db.session.commit()
-
     return {"message": "success"}
 
 
@@ -143,13 +121,11 @@ def comments(id):
 def post_comments():
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.data)
     if form.validate_on_submit():
         new_comment = Comment()
         new_comment.user_id = request.json["user_id"]
         new_comment.event_id = request.json["event_id"]
         form.populate_obj(new_comment)
-        print(new_comment)
         db.session.add(new_comment)
         db.session.commit()
         return new_comment.to_dict()

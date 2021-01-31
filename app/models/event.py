@@ -10,7 +10,7 @@ class Event(db.Model):
     description = db.Column(db.Text, nullable=False)
     address = db.Column(db.String(100))
     city = db.Column(db.String(50), nullable=False)
-    state = db.Column(db.String(30), nullable=False)
+    state = db.Column(db.String(2), nullable=False)
     zip_code = db.Column(db.Integer, nullable=False)
     virtual = db.Column(db.Boolean, default=False)
     type = db.Column(db.String(50), nullable=False)
