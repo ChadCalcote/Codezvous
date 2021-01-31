@@ -1,18 +1,18 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
 import { BsClock, BsCameraVideo, BsGeoAlt } from 'react-icons/bs';
-import { fetchOneGroup } from "../../store/groups";
 import { fetchAllEvents } from "../../store/events";
+import { fetchOneGroup } from "../../store/groups";
 import { fetchEventUsers } from "../../store/users";
 import { fetchAllComments } from "../../store/comments";
 import UserImage from '../UserImage';
+import AttendeeCard from "../AttendeeCard";
+import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
-import EventGallery from '../EventGallery';
-import AttendeeCard from "../AttendeeCard";
 import "./EventPage.css";
 
 // List Out Data from Single Event
@@ -25,11 +25,11 @@ import "./EventPage.css";
 const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const { eventId } = params;
-
     const [ event, setEvent ] = useState({});
     const [ galleryEvents, setGalleryEvents ] = useState([]);
     const [ numComments, setNumComments ] = useState([]);
+
+    const { eventId } = params;
 
     const events = useSelector(reduxState => {
       return reduxState.events
@@ -52,13 +52,17 @@ const EventPage = () => {
       return reduxState.comments
     })
 
+    const currentUser = useSelector(reduxState => {
+      return reduxState.session
+    })
+
 // setup groups state to be the one group holding the event
 
     useEffect(() => {
       dispatch(fetchAllEvents())
       dispatch(fetchAllComments(eventId))
       dispatch(fetchEventUsers(eventId))
-    }, [dispatch, eventId])
+    }, [])
 
     useEffect(() => {
       setNumComments(comments.length)
@@ -68,7 +72,7 @@ const EventPage = () => {
       function chooseOneEvent(events) {
         const eventsArray = events.events
         if (Array.isArray(eventsArray)){
-          setEvent(eventsArray.find(event => eventId === event.id))
+          setEvent(eventsArray.find(event => eventId == event.id))
         }
       }
       function chooseFourEvents(events) {
@@ -79,7 +83,7 @@ const EventPage = () => {
       }
       chooseOneEvent({events})
       chooseFourEvents({events})
-    }, [dispatch, events])
+    }, [events])
 
     useEffect(() => {
       dispatch(fetchOneGroup(event.group_id))
@@ -88,9 +92,8 @@ const EventPage = () => {
 
     useEffect(() => {
       if (Array.isArray(users)){
-        setLeader(users.find(user => user.id === group.leader_id))
+        setLeader(users.find(user => user.id == group.leader_id))
         setAttendees(users)
-        console.log(users)
       }
     }, [users, group])
 
@@ -99,6 +102,16 @@ const EventPage = () => {
     const [leader, setLeader] = useState({}); //can the current user edit/delete the event
     const [attendees, setAttendees] = useState([])
 
+    const keyArray = [
+      "first-attendee", 
+      "second-attendee", 
+      "third-attendee", 
+      "fourth-attendee", 
+      "fifth-attendee", 
+      "sixth-attendee", 
+      "seventh-attendee", 
+      "eigth-attendee"
+    ]
 
     return (
       <div className="event-page">
@@ -110,35 +123,39 @@ const EventPage = () => {
             <h1>{event.event_name}</h1>
           </div>
           <div className="event-header_leader">
-            Hosted by
-            {leader ? <UserImage user={leader} />: "loading"}
-            {leader ? <h3>{leader.username}</h3> :"loading"}
+            {leader ? <UserImage className="leader-image" user={leader} />: "loading"}
+            <div className="hosted-by">
+              Hosted by
+              {leader ? <h3>{leader.username}</h3> :"loading"}
+            </div>
           </div>
         </div>
         <hr color="#2C2629"/>
         <div className="event-body">
           <div className="event-body_feed">
             <div id="event-body_feed_details">
-              <h2>Details</h2>
+              <h2 id="body-color">Details</h2>
               <p>{event.description}</p>
               {/* <video class="header-video" autoplay="true" loop="true" src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4"></video> */}
             </div>
             <div id="event-body_feed_attendees">
-              <h2>Attendees ({users.length})</h2>
-              { attendees.slice(0, 7).map(attendee => {
-                return <AttendeeCard user={attendee} />
-              })}
-              {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
+              <h2 id="body-color">Attendees ({users.length})</h2>
+              {/* need to work on this */}
+              <div className="attendees-row">
+                { attendees.slice(0,8).map((attendee, i) => {
+                  return <div key={i} id={keyArray[i]}><AttendeeCard user={attendee} key={attendee.id} /></div>
+                })} 
+              </div>
             </div>
             <div id="event-body_feed_comments">
-              <h2>Comments ({numComments? numComments : 0})</h2>
+              <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
             </div>
             <CommentForm />
             <CommentFeed comments={comments} />
           </div>
           <div className="event-body_sidebar">
               <div id="event-body_sidebar_group">
-                <img src={group.image_url} href={`/groups/${group.id}`} alt="" />
+                <img src={group.image_url} href={`/groups/${group.id}`} />
                 <br />
                 <a href={`/groups/${group.id}`}>{group.group_name}</a>
               </div>

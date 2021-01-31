@@ -65,15 +65,11 @@ const GroupPage = () => {
         setIsLeader(currentUser.id === groupLeaderId )
         setMembers(groupUsers);
       }
-    }, [currentUser, groupUsers, groupLeaderId]);
 
-    useEffect(() => {
       if (currentUser) {
         setActiveUser(currentUser)
       }
-    }, [currentUser]);
 
-    useEffect(() => {
       if (Array.isArray(groupUsers)) {
 
         for (let i = 0; i < groupUsers.length; i++) {
@@ -83,9 +79,7 @@ const GroupPage = () => {
           }
         }
       }
-    }, [groupUsers, currentUser]);
-
-    const numGroupUsers = groupUsers.length;
+    }, [currentUser, groupUsers, groupLeaderId]);
 
     useEffect(() => {
       dispatch(fetchOneGroup(groupId));
@@ -109,7 +103,7 @@ const GroupPage = () => {
             <BsGeoAlt /> {`${group.city}, ${group.state}`}
           </div>
           <div className="group-header_members">
-            <BsPeople /> {`${numGroupUsers} members`}
+            <BsPeople /> {`${groupUsers.length} members`}
           </div>
           <div className="group-header_leader">
             Organized by leader:
@@ -140,7 +134,7 @@ const GroupPage = () => {
         </div>
         <div>
           {isLeader 
-          ? <Link to="create/event">Create Form</Link> : null }
+          ? <Link to="create-event">Create Form</Link> : null }
         </div>
       </div>
     );

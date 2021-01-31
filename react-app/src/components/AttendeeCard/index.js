@@ -6,7 +6,9 @@ const AttendeeCard = ({user}) => {
 
     return (
         <div className="attendee-card">
-            <UserImage user={user}/>
+            <div className="user-pic">
+                <UserImage id="pic" user={user}/>
+            </div>
             <div className="attendee-card_name">
                 {user.username}
             </div>

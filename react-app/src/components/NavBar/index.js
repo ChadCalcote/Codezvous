@@ -23,7 +23,7 @@ const NavBar = ({ setAuthenticated }) => {
 
 			<div className="header_right">
 				<div className="create_group">
-					<NavLink to="/create/group" exact={true} activeClassName="active">
+					<NavLink to="/create-group" exact={true} activeClassName="active">
 						Start a new group
 					</NavLink>
 				</div>

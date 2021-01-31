@@ -6,7 +6,7 @@ const CommentFeed = ({comments}) => {
     return (
         <div className="event-gallery">
             {!Array.isArray(comments) && <h3>Start the conversation</h3>}
-            {Array.isArray(comments) && comments.map(comment => <Comment comment={comment} />)}
+            {Array.isArray(comments) && comments.map(comment => <Comment key={comment.id} comment={comment} />)}
         </div>
     )
 }

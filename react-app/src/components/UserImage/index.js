@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 const UserImage = ({ user }) => {
 
@@ -12,12 +12,14 @@ const handleImageErrored = () => setImageErrored("failed to load")
 
 function displayUserImage (user){
   return (
-    <img width="100px" 
-      src={user.image_url}
-      onLoad={handleImageLoaded}
-      onError={handleImageErrored}
-      alt=""
-    />
+    <div className="user-pic">
+      <img width="100px" 
+        src={user.image_url}
+        onLoad={handleImageLoaded}
+        onError={handleImageErrored}
+        alt=""
+      />
+    </div>
   )
 }
 
@@ -26,10 +28,10 @@ function displayUserImage (user){
 //   return reduxState.users
 // })
 
-  useEffect(() => {
-    displayUserImage(user)
+  // useEffect(() => {
+  //   displayUserImage(user)
 
-  }, [user])
+  // }, [user])
 // // Use User's image 
 
     return (
