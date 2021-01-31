@@ -12,11 +12,16 @@
 }
 
 .attendee-card_name {
+  color: #5dabbd8e;
   font-size: 13px;
 }
 
 .attendee-card_member {
   font-size: smaller;
   font-size: 10px;
+  color: #FFF4E4;
+}
+
+#body-color {
   color: #FFF4E4;
 }
