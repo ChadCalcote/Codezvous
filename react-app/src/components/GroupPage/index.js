@@ -1,20 +1,16 @@
-import { useParams } from 'react-router-dom';
 import React from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { formatTime, formatDate } from '../../dateFunctions';
-import "./GroupPage.css"
-import { fetchAllGroups, fetchOneGroup } from "../../store/groups"
+import { fetchOneGroup } from "../../store/groups"
 import { fetchGroupUsers } from "../../store/users";
 import { getCurrentUser } from "../../store/session";
 import { fetchGroupEvents } from "../../store/events";
 import { createUserGroup } from "../../store/userGroups";
 import { BsGeoAlt, BsPeople } from 'react-icons/bs';
-import EventCard from '../EventCard';
-import GroupCard from '../GroupCard';
 import EventGallery from '../EventGallery';
-import RSVP from '../RSVP';
 import UserImage from '../UserImage';
+import "./GroupPage.css"
 
 const GroupPage = () => {
     const params = useParams();
@@ -38,15 +34,11 @@ const GroupPage = () => {
     });
 
     const currentUser = useSelector(reduxState => {
-      return reduxState.session
+      return reduxState.session 
     });
 
     const events = useSelector(reduxState => {
       return reduxState.events
-    });
-
-    const userGroup = useSelector(reduxState => {
-      return reduxState.userGroups;
     });
 
     const groupLeaderId = group.leader_id; // 6
@@ -70,10 +62,10 @@ const GroupPage = () => {
         setLeader(groupUsers.find((user) => {
           return user.id === groupLeaderId;
         }))
+        setIsLeader(currentUser.id === groupLeaderId )
         setMembers(groupUsers);
-    }
-      // dispatch(fetchGroupUsers(groupId));
-    }, [groupUsers]);
+      }
+    }, [currentUser, groupUsers, groupLeaderId]);
 
     useEffect(() => {
       if (currentUser) {
@@ -100,15 +92,15 @@ const GroupPage = () => {
       dispatch(fetchGroupUsers(groupId));
       dispatch(getCurrentUser());
       dispatch(fetchGroupEvents(groupId));
-    }, [dispatch])
+    }, [dispatch, groupId])
 
     return (
       <div className="group-page">
         <h1>Group Page!</h1>
         <div className="group-header">
           <div className="group-header_img">
-            {!group && <img src='../../Bars-0.7s-98px.gif'/>}
-            {group && <img src={group.image_url} />}
+            {!group && <h2>Loading....</h2>}
+            {group && <img alt="" src={group.image_url} />}
           </div>
           <div className="group-header_title">
             <h1>{group.group_name}</h1>
@@ -145,6 +137,10 @@ const GroupPage = () => {
               Array.isArray(members) &&
               members.slice(0, 10).map((user) => <UserImage user={user} key={user.id} />)}
           </div>
+        </div>
+        <div>
+          {isLeader 
+          ? <Link to="create/event">Create Form</Link> : null }
         </div>
       </div>
     );

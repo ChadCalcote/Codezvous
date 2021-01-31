@@ -1,4 +1,4 @@
-.attendee-card {
+  .attendee-card {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -24,7 +24,7 @@
   color: #FFF4E4;
 }
 
-.user-image{
+.user-image {
   width: 80px;
 }
 
