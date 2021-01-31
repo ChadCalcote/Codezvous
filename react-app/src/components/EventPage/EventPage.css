@@ -71,3 +71,29 @@ Dark Pastel Green: #35C04A
 .icons {
     margin-right: 10px;
 }
+
+.event-header_leader {
+    display: flex;
+}
+
+.hosted-by {
+    width: 50%;
+    float: left;
+    margin-left: 5px;
+}
+
+.event-header_title {
+    color: #FFF4E4;
+}
+
+.top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

@@ -103,16 +103,18 @@ const EventPage = () => {
             <h1>{event.event_name}</h1>
           </div>
           <div className="event-header_leader">
-            Hosted by
-            {leader ? <UserImage user={leader} />: "loading"}
-            {leader ? <h3>{leader.username}</h3> :"loading"}
+            {leader ? <UserImage className="leader-image" user={leader} />: "loading"}
+            <div className="hosted-by">
+              Hosted by
+              {leader ? <h3>{leader.username}</h3> :"loading"}
+            </div>
           </div>
         </div>
         <hr color="#2C2629"/>
         <div className="event-body">
           <div className="event-body_feed">
             <div id="event-body_feed_details">
-              <h2>Details</h2>
+              <h2 id="body-color">Details</h2>
               <p>{event.description}</p>
             </div>
             <div id="event-body_feed_attendees">
@@ -122,7 +124,7 @@ const EventPage = () => {
               })}
             </div>
             <div id="event-body_feed_comments">
-              <h2>Comments ({numComments? numComments : 0})</h2>
+              <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
             </div>
             <CommentForm />
             <CommentFeed comments={comments} />

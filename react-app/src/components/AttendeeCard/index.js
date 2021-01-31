@@ -1,5 +1,5 @@
 import React from 'react';
-import "./index.css";
+import "./AttendeeCard.css";
 import UserImage from "../UserImage";
 
 const AttendeeCard = ({user}) => {
@@ -18,4 +18,3 @@ const AttendeeCard = ({user}) => {
 }
 
 export default AttendeeCard;
-

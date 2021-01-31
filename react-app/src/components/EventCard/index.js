@@ -24,7 +24,7 @@ const EventCard = ({ event }) => {
     <div className="event-card">
       <a href={`/events/${event.id}`}>
       <div className="event-card_date">
-        {!event.start_time && <img src={"../../../public/Bars-0.7s-98px.gif"}>Loading...</>}
+        {!event.start_time && <img src={"../../../public/Bars-0.7s-98px.gif"}/>}
         {formatDate(event.start_time, 'long')}
       </div>
       <div className="event-card_title">{event.event_name}</div>
