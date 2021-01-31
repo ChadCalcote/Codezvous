@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { fetchSingleUser } from "../../store/users";
 import UserImage from '../UserImage';
+import './Comment.css'
 
 const Comment = ({ comment }) => {
-    
+
     const [ user, setUser ] = useState({})
-    
+
     useEffect(() => {
         const fetchUser = async()=> {
             const response = await fetch(`/api/users/${comment.user_id}`)
@@ -19,7 +20,7 @@ const Comment = ({ comment }) => {
         <div className="comment" id={`comment-${comment.id}`}>
             <div className="comment-info">
                 {user && <UserImage user={user} />}
-                {user && user.username}    
+                {user && user.username}
             </div>
             <div className="comment-body">
                 {comment.body}
