@@ -42,9 +42,6 @@ const EventFormReact = () => {
     const [endTime, setEndTime] = useState("");
     const [status, setStatus] = useState("Ongoing");
     
-
-
-
     const onSubmit = async (e) => {
         e.preventDefault();
         await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)

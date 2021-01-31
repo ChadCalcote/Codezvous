@@ -9,7 +9,6 @@ import './GroupGallery.css'
 
 const GroupGallery = ({ user, type }) => {
 
-    const [ whichGroups, setWhichGroups ] = useState(type)
     const dispatch = useDispatch();
     const groups = useSelector(reduxState => {
         return reduxState.groups

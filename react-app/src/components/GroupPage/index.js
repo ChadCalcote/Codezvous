@@ -137,15 +137,12 @@ const GroupPage = () => {
           </div>
           <div className="group-body_sidebar">
             <div id="group-body_sidebar_organizer">Organizer</div>
-            {/* UserImages */}
             <div id="group-body_sidebar_members">Member icons</div>
-            {/* members (###) */}
-            {/* UserImages */}
             Members ({`${members.length}`})
             {members.length > 0 &&  Array.isArray(members) && members.map((user) => <UserImage user={user} key={user.id} />)}
           </div>
           <div className="group-body_sim-events">
-            Similar events
+            {/* Similar events */}
             {/* header tag */}
             {/* Event Components */}
           </div>

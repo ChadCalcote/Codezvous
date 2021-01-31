@@ -15,13 +15,6 @@ import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
 import "./EventPage.css";
 
-// List Out Data from Single Event
-// List Out Data about Attendees
-// List Out Data about Comments
-    // Add, Edit, Delete Comments
-// RSVP Button
-// If User is Event Owner, Display Edit Form & Delete Button
-
 const EventPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
@@ -34,11 +27,6 @@ const EventPage = () => {
     const events = useSelector(reduxState => {
       return reduxState.events
     })
-
-    // const event = useSelector(reduxState => {
-    //   eventsArray = { events }
-    //   return reduxState.events
-    // }).find(event => event.id = eventId)
 
     const group = useSelector(reduxState => {
       return reduxState.groups
@@ -56,13 +44,15 @@ const EventPage = () => {
       return reduxState.session
     })
 
-// setup groups state to be the one group holding the event
-
     useEffect(() => {
       dispatch(fetchAllEvents())
       dispatch(fetchAllComments(eventId))
       dispatch(fetchEventUsers(eventId))
     }, [])
+
+    useEffect(() => {
+      dispatch(fetchAllComments(eventId))
+    }, [CommentForm])
 
     useEffect(() => {
       setNumComments(comments.length)
@@ -87,7 +77,6 @@ const EventPage = () => {
 
     useEffect(() => {
       dispatch(fetchOneGroup(event.group_id))
-
     }, [event])
 
     useEffect(() => {
@@ -98,13 +87,10 @@ const EventPage = () => {
       }
     }, [users, group])
 
-
-    // Set State
-    const [leader, setLeader] = useState({}); //can the current user edit/delete the event
+    const [leader, setLeader] = useState({}); 
     const [attending, setAttending] = useState(false);
     const [commentHasText, setCommentHasText] = useState(false);
     const [attendees, setAttendees] = useState([])
-
 
     return (
       <div className="event-page">
@@ -127,14 +113,12 @@ const EventPage = () => {
             <div id="event-body_feed_details">
               <h2>Details</h2>
               <p>{event.description}</p>
-              {/* <video class="header-video" autoplay="true" loop="true" src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4"></video> */}
             </div>
             <div id="event-body_feed_attendees">
               <h2>Attendees ({users.length})</h2>
               { attendees.slice(0, 7).map(attendee => {
                 return <AttendeeCard user={attendee} />
               })}
-              {/* TODO: Attendee Card => need to setup a useEffect/State for selecting users who are attending */}
             </div>
             <div id="event-body_feed_comments">
               <h2>Comments ({numComments? numComments : 0})</h2>
@@ -161,20 +145,15 @@ const EventPage = () => {
         <div className="event-sim-events">
           <h2>Similar events nearby</h2>
           <EventGallery selectedEvents={galleryEvents}/>
-          {/* event gallery with 4 random events */}
-            {/* header tag */}
-            {/* Event Components */}
         </div>
         <div className="event-footer">
-            {/* <h3>{formatDate(event.start_time, "short")} - {formatTime(event.start_time)}</h3> */}
+            {/* <h3>{formatDate(event.start_time, "short")} - {formatTime(event.end_time, "short")}</h3> */}
             <h2>{event.event_name}</h2>
             {/* Event Details  */}
             {/* RSVP COMPONENT  */}
         </div>
       </div>
     );
-
-
 }
 
 export default EventPage;

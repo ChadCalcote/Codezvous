@@ -105,7 +105,6 @@ const EventGallery = ({events, parent}) => {
         }
     }
     
-
     return (
         <div className="event-gallery">
             {gallerySwap()}

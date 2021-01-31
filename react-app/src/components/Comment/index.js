@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { fetchSingleUser } from "../../store/users";
 import UserImage from '../UserImage';
 
-
 const Comment = ({comment}) => {
     const dispatch = useDispatch()
     const [ user, setUser ] = useState({})
