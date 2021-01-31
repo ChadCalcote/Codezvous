@@ -123,7 +123,7 @@ const GroupForm = () => {
             ></input>
           </div>
           <br />
-            <button type="submit" className="submit-button">Create Group</button>
+            <button type="submit" className="group-form-submit-button">Create Group</button>
         </div>
       </form>
     );

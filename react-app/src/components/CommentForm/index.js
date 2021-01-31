@@ -38,8 +38,8 @@ const CommentFormReact = () => {
     return (
       <div className="comment-form_wrapper">
         <form className="comment-form_form" onSubmit={onSubmit}>
-            <textarea value={comment} onChange={event => setComment(event.target.value)}/>
-          <button type="submit"><FiSend /></button>
+            <textarea value={comment} onChange={event => setComment(event.target.value)} className="input-field"/>
+          <button type="submit" className="submit-button"><FiSend /></button>
         </form>
       </div>
     );
