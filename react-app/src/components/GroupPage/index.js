@@ -7,7 +7,7 @@ import { fetchGroupUsers } from "../../store/users";
 import { getCurrentUser } from "../../store/session";
 import { fetchGroupEvents } from "../../store/events";
 import { createUserGroup } from "../../store/userGroups";
-import { BsGeoAlt, BsPeople } from 'react-icons/bs';
+import { BsGeoAlt, BsPeople, BsPerson } from 'react-icons/bs';
 import EventGallery from '../EventGallery';
 import UserImage from '../UserImage';
 import "./GroupPage.css"
@@ -96,28 +96,29 @@ const GroupPage = () => {
 
     return (
       <div className="group-page">
-        <h1>Group Page!</h1>
         <div className="group-header">
           <div className="group-header_img">
-            {!group && <h2>Loading....</h2>}
-            {group && <img alt="" src={group.image_url} />}
+            {!group.image_url && <img src="../../../Bars-0.7s-98px.gif" />}
+            {group && <img id="group-header_img" alt="" src={group.image_url} />}
           </div>
-          <div className="group-header_title">
-            <h1>{group.group_name}</h1>
-          </div>
-          <div className="group-header_location">
-            <BsGeoAlt /> {`${group.city}, ${group.state}`}
-          </div>
-          <div className="group-header_members">
-            <BsPeople /> {`${numGroupUsers} members`}
-          </div>
-          <div className="group-header_leader">
-            Organized by leader:
-            {leader ? leader.username : null}
-          </div>
-          <div className="group-header_member-button">
-            {isMember && <h2>You're a member</h2>}
-            {!isMember && <button onClick={onClick}>Join Us!</button>}
+          <div className="group-header_info">
+            <div id="group-header_info_title">
+              <h1>{group.group_name}</h1>
+            </div>
+            <div id="group-header_info_location">
+              <BsGeoAlt />  {`${group.city}, ${group.state}`}
+            </div>
+            <div id="group-header_info_members">
+              <BsPeople />  {`${numGroupUsers} members`}
+            </div>
+            <div id="group-header_info_leader">
+              <BsPerson /> Organized by leader:
+              {leader ? leader.username : null}
+            </div>
+            <div id="group-header_info_member_button">
+              {isMember && <h2>You're a member</h2>}
+              {!isMember && <button className="button" onClick={onClick}>Join Us!</button>}
+            </div>
           </div>
         </div>
         <div className="group-body">
@@ -129,14 +130,20 @@ const GroupPage = () => {
             </div>
           </div>
           <div className="group-body_sidebar">
-            <div id="group-body_sidebar_organizer">Organizer</div>
-            {leader ? <UserImage user={leader}/>: null}
-            <div id="group-body_sidebar_members">Member icons</div>
-            Members ({`${members.length}`})
-            {members.length > 0 &&
-              Array.isArray(members) &&
-              members.slice(0, 10).map((user) => <UserImage user={user} key={user.id} />)}
-          </div>
+            <div className="group-body_sidebar_header">
+              <div id="group-body_sidebar_organizer">
+                <h3>Organizer</h3>
+              </div>
+              {leader ? <UserImage user={leader}/>: null}
+              <div id="group-body_sidebar_members">Member icons</div>
+                <h3>Members ({`${members.length}`})</h3>
+              </div>
+              <div id="group-body_sidebar_gallery">
+                {members.length > 0 &&
+                Array.isArray(members) &&
+                members.slice(0, 10).map((user) => <UserImage user={user} key={user.id} />)}
+              </div>
+              </div>
         </div>
         <div>
           {isLeader 
