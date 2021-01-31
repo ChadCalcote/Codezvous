@@ -43,6 +43,12 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
+        <Route path="/signup" exact={true}>
+          <SignUpForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
         {/* <Route path="/footer" exact={true}> */}
           {/* <Footer
             authenticated={authenticated}
@@ -59,12 +65,6 @@ function App() {
           <EventFormReact
             // authenticated={authenticated}
             // setAuthenticated={setAuthenticated}
-          />
-        </Route>
-        <Route path="/signup" exact={true}>
-          <SignUpForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
           />
         </Route>
         <Route exact path="/events/test">
