@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchGroupUsers } from "../../store/users";
@@ -87,4 +85,3 @@ const GroupCard = ({ group }) => {
 };
 
 export default GroupCard;
->>>>>>> main

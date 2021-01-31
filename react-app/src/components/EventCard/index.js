@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import EventPage from "../EventPage";
@@ -50,4 +48,3 @@ const EventCard = ({ event }) => {
 }
 
 export default EventCard;
->>>>>>> main

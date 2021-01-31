@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React from 'react';
 import "./AttendeeCard.css";
 import UserImage from "../UserImage";
@@ -20,4 +18,3 @@ const AttendeeCard = ({user}) => {
 }
 
 export default AttendeeCard;
->>>>>>> main

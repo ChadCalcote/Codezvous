@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useState } from "react";
 import "./index.css";
 
@@ -201,4 +199,3 @@ const EventFormReact = () => {
 };
 
 export default EventFormReact;
->>>>>>> main

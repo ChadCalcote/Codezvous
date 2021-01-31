@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import Comment from '../Comment'
@@ -15,4 +13,3 @@ const CommentFeed = ({comments}) => {
 }
 
 export default CommentFeed;
->>>>>>> main

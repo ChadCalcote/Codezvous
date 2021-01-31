@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -161,4 +159,3 @@ const EventPage = () => {
 }
 
 export default EventPage;
->>>>>>> main

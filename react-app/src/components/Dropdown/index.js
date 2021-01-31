@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useState, useRef, useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
@@ -57,4 +55,3 @@ const Dropdown = ({setAuthenticated}) => {
 };
 
 export default Dropdown
->>>>>>> main

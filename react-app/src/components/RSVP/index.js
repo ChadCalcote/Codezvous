@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUser } from "../../store/session";
@@ -68,4 +66,3 @@ function RSVP({ event }) {
   }
 
 export default RSVP;
->>>>>>> main

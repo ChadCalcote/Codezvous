@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useState, useEffect } from 'react';
@@ -153,4 +151,3 @@ const GroupPage = () => {
 }
 
 export default GroupPage;
->>>>>>> main

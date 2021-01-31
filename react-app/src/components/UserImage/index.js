@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React from "react";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -50,4 +48,3 @@ function displayUserImage (user){
 }
 
 export default UserImage;
->>>>>>> main

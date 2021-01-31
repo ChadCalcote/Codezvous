@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 from app.models import db, Event
 from faker import Faker
 from random import random

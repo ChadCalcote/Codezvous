@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -49,4 +47,3 @@ const CommentFormReact = () => {
 }
 
 export default CommentFormReact;
->>>>>>> main

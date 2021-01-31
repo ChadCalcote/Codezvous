@@ -53,9 +53,6 @@ export const fetchGroupEvents = (groupId) => {
   }
 }
 
-return async 
-
-
 const initialState ={};
 
 const eventsReducer = (state = initialState, action) => {
