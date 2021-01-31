@@ -1,0 +1,46 @@
+.group-form {
+  text-align: center;
+  background-color: #211C1F;
+  padding: 80px;
+  color: #5DACBD;
+}
+
+.form-wrapper {
+  padding: 20px;
+  border: 1px solid #5DACBD;
+  margin: auto;
+  max-width: 500px;
+  border-radius: 40px;
+}
+
+input {
+  padding: 10px;
+  height: 10px;
+  border: 1px solid #5DACBD;
+  border-radius: 10px;
+  background-color: #211C1F;
+  color: white;
+  outline: none;
+  margin-top: 2px;
+}
+
+button {
+  padding: 10px;
+  color: white;
+  background-color: #5DACBD;
+  border: 2px solid white;
+  border-radius: 999px;
+}
+
+.description {
+  text-align: justify;
+  height: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #5DACBD;
+  border-radius: 10px;
+  background-color: #211C1F;
+  color: white;
+  outline: none;
+  margin-top: 2px;
+}
