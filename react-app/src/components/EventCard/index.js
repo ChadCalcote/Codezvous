@@ -22,7 +22,7 @@ const EventCard = ({ event }) => {
     <div className="event-card">
       <a href={`/events/${event.id}`}>
       <div className="event-card_date">
-        {!event.start_time && <>Loading...</>}
+        {!event.start_time && <img src='../../Bars-0.7s-98px.gif'/>}
         {formatDate(event.start_time, 'long')}
       </div>
       <div className="event-card_title">{event.event_name}</div>
@@ -34,7 +34,7 @@ const EventCard = ({ event }) => {
       <div className="event-card_description">{event.description}</div>
       <div className="event-card_attendees">
         <div className="event-card_attendees_total">
-          {users.length > 0 ? `${users.length} going` : "1 going"}
+          {/* {users.length > 0 ? `${users.length} going` : "1 going"} */}
         </div>
         <div className="event-card_attendees_pics">
         {users.length > 0 ? users.slice(0, 3).map(user => <UserImage key={user.id} user={user}/>) : <BsPerson />}

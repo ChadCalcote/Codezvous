@@ -1,9 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchSingleUser } from "../../store/users";
+import './UserImage.css'
 
 const UserImage = ({ user }) => {
 
-const [ imageLoaded, setImageLoaded ] = useState("loading...")
+const [ imageLoaded, setImageLoaded ] = useState("loading")
 const [ imageErrored, setImageErrored ] = useState("")
 
 const handleImageLoaded = () => setImageLoaded("loaded")
@@ -12,14 +16,12 @@ const handleImageErrored = () => setImageErrored("failed to load")
 
 function displayUserImage (user){
   return (
-    <div className="user-pic">
-      <img width="100px" 
-        src={user.image_url}
-        onLoad={handleImageLoaded}
-        onError={handleImageErrored}
-        alt=""
-      />
-    </div>
+    <img
+      className="user-image"
+      src={user.image_url}
+      onLoad={handleImageLoaded}
+      onError={handleImageErrored}
+    />
   )
 }
 
@@ -32,7 +34,7 @@ function displayUserImage (user){
   //   displayUserImage(user)
 
   // }, [user])
-// // Use User's image 
+// // Use User's image
 
     return (
       <div className="user_photo">

@@ -30,11 +30,9 @@ const CommentFormReact = () => {
             body: comment,
             event_id: parseInt(eventId)
         };
-
-          dispatch(createComment(newComment));
-          setComment("");
+        dispatch(createComment(newComment));
+        setComment("");
     }
-
 
     return (
       <div className="comment-form_wrapper">
@@ -47,6 +45,5 @@ const CommentFormReact = () => {
       </div>
     );
 }
-
 
 export default CommentFormReact;

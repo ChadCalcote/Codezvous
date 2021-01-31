@@ -93,8 +93,8 @@ const GroupPage = () => {
         <h1>Group Page!</h1>
         <div className="group-header">
           <div className="group-header_img">
-            {!group && <h2>Loading....</h2>}
-            {group && <img alt="" src={group.image_url} />}
+            {!group && <img src='../../Bars-0.7s-98px.gif'/>}
+            {group && <img src={group.image_url} />}
           </div>
           <div className="group-header_title">
             <h1>{group.group_name}</h1>

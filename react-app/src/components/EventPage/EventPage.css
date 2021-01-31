@@ -35,6 +35,13 @@ Dark Pastel Green: #35C04A
 
 }
 
+#event-body_feed_attendees {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: auto;
+    width: 720px;
+}
 
 #event-body_sidebar_group,
 #event-body_sidebar_details {
@@ -72,11 +79,28 @@ Dark Pastel Green: #35C04A
     margin-right: 10px;
 }
 
-.attendees-row {
+.event-header_leader {
     display: flex;
-    justify-content: space-between;
-    flex-flow: wrap;
-    flex-direction: row;
-    max-width: 500px;
 }
 
+.hosted-by {
+    width: 50%;
+    float: left;
+    margin-left: 5px;
+}
+
+.event-header_title {
+    color: #FFF4E4;
+}
+
+.top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.bottom-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

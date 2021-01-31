@@ -2,7 +2,6 @@ import React from 'react';
 // import { useDispatch } from 'react-redux';
 // import { fetchSingleUser } from "../../store/users";
 
-
 const Comment = ({comment}) => {
     // const dispatch = useDispatch()
     // const [ user, setUser ] = useState({})
