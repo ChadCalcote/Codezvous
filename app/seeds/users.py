@@ -18,13 +18,15 @@ def seed_users():
 
     db.session.commit()
 
+    num=1
     for _ in range(300):
         username = f'{fakes.last_name()}{fakes.state_abbr()}{int(random() * 50 ) + 1960}'
-        fakeUser = User(username=username, image_url='http://www.thispersondoesnotexist.com/image', 
+        fakeUser = User(username=username, image_url=f'http://www.thispersondoesnotexist.com/image?{num}', 
                         zip_code=fakes.postalcode_in_state(state_abbr=state_abbr), 
                         email=fakes.email(), password=fakes.password())
         db.session.add(fakeUser)
         db.session.commit()
+        num+=1
 
 
 # Uses a raw SQL query to TRUNCATE the users table.
