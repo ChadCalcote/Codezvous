@@ -115,7 +115,7 @@ const EventPage = () => {
               </div>
                 <h2 id="body-color">Attendees ({users.length})</h2>
               <div id="event-body_feed_attendees">
-                { attendees.slice(0, 7).map(attendee => {
+                { attendees.slice(0, 8).map(attendee => {
                   return <AttendeeCard user={attendee} />
                 })}
               </div>
