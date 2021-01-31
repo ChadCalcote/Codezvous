@@ -19,6 +19,7 @@ function displayUserImage (user){
     <img
       className="user-image"
       src={user.image_url}
+      // src={`${user.image_url}?${Math.random().toString().split(".")[1]}`}
       onLoad={handleImageLoaded}
       onError={handleImageErrored}
     />
