@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { createComment } from "../../store/comments";
 import { getCurrentUser } from "../../store/session";
-
+import { FiSend } from 'react-icons/all'
 
 const CommentFormReact = () => {
 
@@ -37,13 +37,14 @@ const CommentFormReact = () => {
 
 
     return (
-      <form onSubmit={onSubmit}>
-        <div>
-          <label>Comment</label>
-          <textarea value={comment} onChange={event => setComment(event.target.value)}/>
-        </div>
-        <button type="submit">Add Comment</button>
-      </form>
+      <div className="comment-form_wrapper">
+        <form onSubmit={onSubmit}>
+            <label>Comment</label>
+            <br />
+            <textarea value={comment} onChange={event => setComment(event.target.value)}/>
+          <button type="submit"><FiSend /></button>
+        </form>
+      </div>
     );
 }
 
