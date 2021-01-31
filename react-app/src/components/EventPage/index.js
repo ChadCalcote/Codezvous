@@ -13,6 +13,7 @@ import UserImage from '../UserImage';
 import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
+import RSVP from '../RSVP';
 import "./EventPage.css";
 
 const EventPage = () => {
@@ -25,72 +26,72 @@ const EventPage = () => {
     const { eventId } = params;
 
     const events = useSelector(reduxState => {
-      return reduxState.events
-    })
+      return reduxState.events;
+    });
 
     const group = useSelector(reduxState => {
-      return reduxState.groups
-    })
+      return reduxState.groups;
+    });
 
     const users = useSelector(reduxState => {
-      return reduxState.users
-    })
+      return reduxState.users;
+    });
 
     const comments = useSelector(reduxState => {
-      return reduxState.comments
-    })
+      return reduxState.comments;
+    });
 
     const currentUser = useSelector(reduxState => {
-      return reduxState.session
-    })
+      return reduxState.session;
+    });
 
     useEffect(() => {
-      dispatch(fetchAllEvents())
-      dispatch(fetchAllComments(eventId))
-      dispatch(fetchEventUsers(eventId))
-    }, [])
+      dispatch(fetchAllEvents());
+      dispatch(fetchAllComments(eventId));
+      dispatch(fetchEventUsers(eventId));
+    }, []);
 
     useEffect(() => {
-      dispatch(fetchAllComments(eventId))
-    }, [CommentForm])
+      dispatch(fetchAllComments(eventId));
+    }, [CommentForm]);
 
     useEffect(() => {
-      setNumComments(comments.length)
-    }, [comments])
+      setNumComments(comments.length);
+    }, [comments]);
 
     useEffect(() => {
       function chooseOneEvent(events) {
         const eventsArray = events.events
         if (Array.isArray(eventsArray)){
-          setEvent(eventsArray.find(event => eventId == event.id))
+          setEvent(eventsArray.find(event => eventId == event.id));
         }
-      }
+      };
       function chooseFourEvents(events) {
         const eventsArray = events.events
         if (Array.isArray(eventsArray)){
-          setGalleryEvents(eventsArray.slice(0,3))
+          setGalleryEvents(eventsArray.slice(0,3));
         }
       }
-      chooseOneEvent({events})
-      chooseFourEvents({events})
-    }, [events])
+      chooseOneEvent({events});
+      chooseFourEvents({events});
+    }, [events]);
 
     useEffect(() => {
-      dispatch(fetchOneGroup(event.group_id))
-    }, [event])
+      dispatch(fetchOneGroup(event.group_id));
+    }, [event]);
 
     useEffect(() => {
       if (Array.isArray(users)){
-        setLeader(users.find(user => user.id == group.leader_id))
-        setAttendees(users)
-        console.log(users)
+        setLeader(users.find(user => user.id == group.leader_id));
+        setAttendees(users);
+        console.log(users);
       }
-    }, [users, group])
+    }, [users, group]);
 
     const [leader, setLeader] = useState({}); 
     const [attending, setAttending] = useState(false);
     const [commentHasText, setCommentHasText] = useState(false);
-    const [attendees, setAttendees] = useState([])
+    const [attendees, setAttendees] = useState([]);
 
     return (
       <div className="event-page">
@@ -147,10 +148,9 @@ const EventPage = () => {
           <EventGallery selectedEvents={galleryEvents}/>
         </div>
         <div className="event-footer">
-            {/* <h3>{formatDate(event.start_time, "short")} - {formatTime(event.end_time, "short")}</h3> */}
+            {event.start_time && <h3>{formatDate(event.start_time, "short")} - {formatTime(event.end_time, "short")}</h3>}
             <h2>{event.event_name}</h2>
-            {/* Event Details  */}
-            {/* RSVP COMPONENT  */}
+            <RSVP event={event}/>
         </div>
       </div>
     );
