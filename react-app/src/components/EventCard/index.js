@@ -4,9 +4,9 @@ import EventPage from "../EventPage";
 import { fetchEventUsers } from "../../store/users";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
-import "./index.css";
 import UserImage from "../UserImage";
 import { formatDate } from "../../dateFunctions";
+import "./EventCard.css";
 
 const EventCard = ({ event }) => {
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ const EventCard = ({ event }) => {
       <div className="event-card_location">
         {event.virtual ?
             <><BsCameraVideo /><p>Virtual event</p></> 
+
           : <><div><BsGeoAlt />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
       </div>
       <div className="event-card_description">{event.description}</div>

@@ -5,11 +5,15 @@ Cosmic Latte: #FFF4E4
 Carolina Blue: #449DD1
 Dark Pastel Green: #35C04A
 */
-
 .event-page {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.event-page::after {
+    content: "";
+    display: block
 }
 
 .event-header,
@@ -75,6 +79,10 @@ Dark Pastel Green: #35C04A
     max-width: 350px;
 }
 
+.event-body_sidebar, h3 {
+    color: #FFF4E4
+}
+
 .icons {
     margin-right: 10px;
 }
@@ -83,24 +91,33 @@ Dark Pastel Green: #35C04A
     display: flex;
 }
 
+.event-header_leader .user-image {
+    width: 60px;
+}
+
 .hosted-by {
-    width: 50%;
-    float: left;
-    margin-left: 5px;
+    margin-left: 10px;
+    margin-top: 5px;
 }
 
 .event-header_title {
     color: #FFF4E4;
 }
 
-.top-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.event-footer {
+    height:160px;
+    width: 100%;
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
 }
 
-.bottom-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+.event-footer-contents {
+    height: 160px;
+    width: 1000px;
+    margin: auto;
 }
