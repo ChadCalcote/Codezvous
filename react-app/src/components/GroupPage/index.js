@@ -62,6 +62,7 @@ const GroupPage = () => {
       dispatch(createUserGroup(newUserGroup));
       setUserGroupState(newUserGroup);
       setIsMember(true);
+      dispatch(fetchGroupUsers(groupId));
     };
 
     useEffect(() => {
@@ -137,17 +138,12 @@ const GroupPage = () => {
           </div>
           <div className="group-body_sidebar">
             <div id="group-body_sidebar_organizer">Organizer</div>
-            {/* UserImages */}
+            {leader ? <UserImage user={leader}/>: null}
             <div id="group-body_sidebar_members">Member icons</div>
-            {/* members (###) */}
-            {/* UserImages */}
             Members ({`${members.length}`})
-            {members.length > 0 &&  Array.isArray(members) && members.map((user) => <UserImage user={user} key={user.id} />)}
-          </div>
-          <div className="group-body_sim-events">
-            Similar events
-            {/* header tag */}
-            {/* Event Components */}
+            {members.length > 0 &&
+              Array.isArray(members) &&
+              members.slice(0, 10).map((user) => <UserImage user={user} key={user.id} />)}
           </div>
         </div>
       </div>
