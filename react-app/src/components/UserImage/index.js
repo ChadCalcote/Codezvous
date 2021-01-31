@@ -6,9 +6,6 @@ import { fetchSingleUser } from "../../store/users";
 import './UserImage.css'
 
 const UserImage = ({ user }) => {
-const params = useParams();
-const dispatch = useDispatch();
-const { userId } = params
 
 const [ imageLoaded, setImageLoaded ] = useState("loading")
 const [ imageErrored, setImageErrored ] = useState("")
@@ -34,10 +31,10 @@ function displayUserImage (user){
 //   return reduxState.users
 // })
 
-  useEffect(() => {
-    displayUserImage(user)
+  // useEffect(() => {
+  //   displayUserImage(user)
 
-  }, [user])
+  // }, [user])
 // // Use User's image
 
     return (

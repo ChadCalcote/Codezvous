@@ -59,11 +59,14 @@ const eventsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_EVENTS:
-      return action.events;
+      newState = action.events;
+      return newState;
     case SET_ONE_EVENT:
-      return action.event;
+      newState = action.event;
+      return newState;
     case SET_GROUP_EVENTS:
-      return action.events;
+      newState = action.events;
+      return newState;
     default:
         return state;
   }

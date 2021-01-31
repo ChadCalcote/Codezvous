@@ -30,6 +30,7 @@ const userGroupsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_GROUP:
       newState = action.userGroup;
+      return newState
     default:
       return state;
   }

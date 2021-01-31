@@ -18,7 +18,7 @@ const CommentFormReact = () => {
 
     useEffect(() => {
       dispatch(getCurrentUser())
-    }, [])
+    }, [dispatch])
 
     const [comment, setComment] = useState("")
 

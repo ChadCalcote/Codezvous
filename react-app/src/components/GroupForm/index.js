@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-
 import "./GroupForm.css";
 
 const createGroup = async (group_name, description, city, state, zip_code, image_url, leader_id) => {
