@@ -20,30 +20,30 @@ const EventCard = ({ event }) => {
   },[dispatch])
 
   return (
-    <a href={`/events/${event.id}`}>
-      <div className="event-card">
-        <div className="event-card_date">
-          {!event.start_time && <>Loading...</>}
-          {formatDate(event.start_time, 'long')}
-        </div>
-        <div className="event-card_title">{event.event_name}</div>
-        <div className="event-card_location">
-          {event.virtual 
-            ? <><BsCameraVideo /><p>Virtual event</p></> 
-            : <><div><BsGeoAlt />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
-        </div>
-        <div className="event-card_description">{event.description}</div>
-        <div className="event-card_attendees">
-          <div className="event-card_attendees_total">
-            {users.length > 0 ? `${users.length} going` : "1 going"}
-          </div>
-          <div className="event-card_attendees_pics">
-          {users.length > 0 ? users.slice(0, 3).map(user => <UserImage user={user}/>) : <BsPerson />}
-          </div>
-        </div>
-        <RSVP />
+    <div className="event-card">
+      <a href={`/events/${event.id}`}>
+      <div className="event-card_date">
+        {!event.start_time && <>Loading...</>}
+        {formatDate(event.start_time, 'long')}
       </div>
-    </a>
+      <div className="event-card_title">{event.event_name}</div>
+      <div className="event-card_location">
+        {event.virtual 
+          ? <><BsCameraVideo /><p>Virtual event</p></> 
+          : <><div><BsGeoAlt />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
+      </div>
+      <div className="event-card_description">{event.description}</div>
+      <div className="event-card_attendees">
+        <div className="event-card_attendees_total">
+          {users.length > 0 ? `${users.length} going` : "1 going"}
+        </div>
+        <div className="event-card_attendees_pics">
+        {users.length > 0 ? users.slice(0, 3).map(user => <UserImage user={user}/>) : <BsPerson />}
+        </div>
+      </div>
+      </a>
+      <RSVP event={event}/>
+    </div>
   );
 }
 
