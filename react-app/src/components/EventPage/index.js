@@ -18,12 +18,13 @@ import "./EventPage.css";
 
 const EventPage = () => {
     const params = useParams();
+    const { eventId } = params;
     const dispatch = useDispatch();
     const [ event, setEvent ] = useState({});
     const [ galleryEvents, setGalleryEvents ] = useState([]);
     const [ numComments, setNumComments ] = useState([]);
-
-    const { eventId } = params;
+    const [leader, setLeader] = useState({});
+    const [attendees, setAttendees] = useState([]);
 
     const events = useSelector(reduxState => {
       return reduxState.events;
@@ -86,11 +87,6 @@ const EventPage = () => {
         setAttendees(users);
       }
     }, [users, group]);
-
-    const [leader, setLeader] = useState({});
-    const [attending, setAttending] = useState(false);
-    const [commentHasText, setCommentHasText] = useState(false);
-    const [attendees, setAttendees] = useState([]);
 
     return (
       <div className="event-page_wrapper">

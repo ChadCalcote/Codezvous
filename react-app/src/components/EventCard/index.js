@@ -11,7 +11,6 @@ const EventCard = ({ event }) => {
   const dispatch = useDispatch();
 
   const [ users, setUsers ] = useState([])
-  console.log(users)
 
   useEffect(() =>{
     const fetchUsers = async() => {
