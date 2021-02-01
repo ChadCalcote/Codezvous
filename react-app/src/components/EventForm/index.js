@@ -26,6 +26,7 @@ const createEvent = async (event_name, description, address, city, state, zip_co
     });
     return await response.json();
 };
+
 const EventFormReact = () => {
     
     const history = useHistory()

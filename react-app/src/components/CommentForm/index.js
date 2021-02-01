@@ -2,9 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { createComment } from "../../store/comments";
+import { createComment, fetchAllComments } from "../../store/comments";
 import { getCurrentUser } from "../../store/session";
-import { FiSend } from 'react-icons/all'
+import { FaSatellite, FiSend } from 'react-icons/all'
 import './CommentForm.css'
 
 const CommentFormReact = () => {
@@ -17,11 +17,17 @@ const CommentFormReact = () => {
       return state.session
     })
 
+    const comments = useSelector(state => {
+      return state.comments
+    })
+    
+    const [comment, setComment] = useState([])
+
     useEffect(() => {
       dispatch(getCurrentUser())
-    }, [dispatch])
+      dispatch(fetchAllComments(eventId))
+    }, [dispatch, comments])
 
-    const [comment, setComment] = useState("")
 
     const onSubmit = async (event) => {
         event.preventDefault();
