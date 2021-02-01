@@ -79,14 +79,16 @@ const HomePage = () => {
         <div className="home-page">
             <div className="home-page_header">
                 <h1>Find your next event</h1>
-                <div className="searchbar">
-                    {/* <SearchBar
+                {/* <div className="searchbar">
+                    <SearchBar
                         query={query}
                         setQuery={setQuery}
-                    /> */}
+                    />
+                </div> */}
+                <div id="home-page_header_buttons">
+                    <button className="toggle" id="group-toggle" disabled={!eventListDisplayed} onClick={()=>handleToggleClick()}><h2>Groups</h2></button>
+                    <button className="toggle" id="event-toggle" disabled={eventListDisplayed} onClick={()=>handleToggleClick()}><h2>Calendar</h2></button>
                 </div>
-                <button className="toggle" id="group-toggle" disabled={!eventListDisplayed} onClick={()=>handleToggleClick()}>Groups</button>
-                <button className="toggle" id="event-toggle" disabled={eventListDisplayed} onClick={()=>handleToggleClick()}>Calendar</button>
             </div>
             <div className="home-page_body">
                 {gallerySwap()}

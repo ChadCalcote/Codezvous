@@ -1,3 +1,29 @@
 .event-card_attendees_pics .user-image {
   width: 30px;
+  border: 2pt solid #5DACBD
+}
+
+
+/*  Trying to get images to overlap
+.user-image + .user-image {
+  position: relative;
+  margin-left: 4px;
+} */
+
+.event-card_attendees_pics {
+  display: flex;
+  padding: 8px 0px;
+}
+
+.event-card .RSVP-button {
+  padding: 10px 20px;
+  color: #5DACBD;
+  background-color: #2C2629;
+  border: 2px solid #5DACBD;
+  border-radius: 2px;
+}
+
+.event-card .RSVP-button:hover {
+  opacity: 0.8;
+  box-shadow: rgba(93, 172, 189, .30) 2px 4px 16px;
 }
