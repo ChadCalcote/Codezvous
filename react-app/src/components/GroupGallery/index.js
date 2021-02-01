@@ -21,7 +21,7 @@ const GroupGallery = ({ user, type }) => {
     }, [dispatch, type, user.id])
 
     return (
-        <div className="group-suggested-gallery">
+        <div className="group-gallery">
             {!groups && <img src='../../Bars-0.7s-98px.gif'/>}
             {Array.isArray(groups) && type=="user" && groups.slice(0,4).map(group => <GroupCard group={group} key={group.id} />)}
             {Array.isArray(groups) && type=="all" && groups.slice(0,20).map(group => <GroupCard group={group} key={group.id} />)}

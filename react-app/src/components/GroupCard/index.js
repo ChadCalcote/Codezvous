@@ -68,16 +68,20 @@ const GroupCard = ({ group }) => {
     return (
         <a href={`/groups/${group.id}`}>
             <div className="group-card">
-                <div className="group-card_photo">
-                    <img src={group.image_url} alt="group" />
+                <div className="group-card_1">
+                    <div className="group-card_photo">
+                        <img src={group.image_url} alt="group" />
+                    </div>
+                    <div className="group-card_name">
+                       <strong>{group.group_name}</strong> 
+                    </div>  
                 </div>
-                <div className="group-card_name">
-                    {group.group_name}
-                </div>
-                <div className="group-card_members">
+                <div className="group-card_2">
+                    <div className="group-card_members">
                     {users.length > 0 ? `${users.length} Members` : "Check us out!"}
+                    </div>
+                    {showButtonHandler()}             
                 </div>
-                {showButtonHandler()}
             </div>
         </a>
     );

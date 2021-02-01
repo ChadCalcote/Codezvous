@@ -45,11 +45,15 @@ const HomePage = () => {
         if (galleryToDisplay === "group"){
             return (
             <>  
-                <h2 className="grp">Your Groups</h2>
-                <GroupGallery className="home-group" user={user} type="user"/>
-                <br />
-                <h2 className="cls">Suggested Groups</h2>
-                <GroupGallery className="home-group" user={user} type="all"/>
+                <div className="your-groups">
+                    <h2 id="your-groups-header">Your Groups</h2>
+                    <GroupGallery id="your-groups-gallery" user={user} type="user"/>
+                </div>
+                <hr id="group-break-bar" color="#5DACBD" />
+                <div className="suggested-groups">
+                    <h2 id="suggested-groups-header">Suggested Groups</h2>
+                    <GroupGallery id="suggested-group-gallery" user={user} type="all"/>
+                </div>
             </>
             )
         } else if (events) {
