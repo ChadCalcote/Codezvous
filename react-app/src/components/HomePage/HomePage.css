@@ -1,4 +1,4 @@
-.home-page_body {
+.home-page-groups {
     display: flex;
     align-content: flex-start;
     flex-direction: column;
@@ -6,9 +6,17 @@
     /* width: 980px; */
 }
 
+.home-page_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2C2629;
+    padding: 35px 0;
+}
+
 .home-page_body a {
     text-decoration: none;
-    color: rgb(93, 172, 189);
+    color: #5dacbd;
 }
 
 /* .group-suggested-gallery {
@@ -43,7 +51,7 @@
     border-radius: 25px;
     background-color: #2C2629;
     max-width: 240px;
-    height: 280px
+    height: 240px
 }
 
 .suggested-groups .group-card {
@@ -73,18 +81,37 @@
 
 .your-groups .group-card_photo > img {
     width: 236px;
-    height: 180px;
-    border-radius: 25px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-.suggested-groups .group-card_photo > img {
-    width: 309px;
-    height: 180px;
+    height: 100%;
     border-radius: 25px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
 }
 
+.suggested-groups .group-card_photo > img {
+    width: 309px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 25px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.home-page-events {
+    display: flex;
+    margin-left: 20vw;
+    width: 60vw;
+    justify-content: center;
+}
+
+.event-card .user-image{
+    flex-direction: row;
+}
+
+.event-gallery .event-card {
+    border: 1px solid #5dacbd;
+    background-color: #2C2629;
+    width: 100%;
+    padding: 15px;
+}
 
 

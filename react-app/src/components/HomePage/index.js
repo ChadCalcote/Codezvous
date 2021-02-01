@@ -44,7 +44,7 @@ const HomePage = () => {
     function gallerySwap() {
         if (galleryToDisplay === "group"){
             return (
-            <>  
+            <div className="home-page-groups">  
                 <div className="your-groups">
                     <h2 id="your-groups-header">Your Groups</h2>
                     <GroupGallery id="your-groups-gallery" user={user} type="user"/>
@@ -54,13 +54,13 @@ const HomePage = () => {
                     <h2 id="suggested-groups-header">Suggested Groups</h2>
                     <GroupGallery id="suggested-group-gallery" user={user} type="all"/>
                 </div>
-            </>
+            </div>
             )
         } else if (events) {
             return (
-            <>
+            <div className="home-page-events">
                 <EventGallery events={events} parent={"home"}/>
-            </>
+            </div>
             )
         }
     }
@@ -78,6 +78,7 @@ const HomePage = () => {
     return (
         <div className="home-page">
             <div className="home-page_header">
+                <h1>Find your next event</h1>
                 <div className="searchbar">
                     {/* <SearchBar
                         query={query}
