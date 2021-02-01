@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./index.css";
 
 const createEvent = async (event_name, description, address, city, state, zip_code, virtual, type, image_url, group_id, start_time, end_time, status) => {
@@ -27,7 +28,8 @@ const createEvent = async (event_name, description, address, city, state, zip_co
 };
 
 const EventFormReact = () => {
-
+    
+    const history = useHistory()
     const [eventName, setEventName] = useState("");
     const [description, setDescription] = useState("");
     const [address, setAddress] = useState("");
@@ -58,9 +60,10 @@ const EventFormReact = () => {
         setStartTime("")
         setEndTime("")
         setStatus("Ongoing")
+        history.goBack()
     }
 
-    return (
+    return ( 
         <form onSubmit={onSubmit}>
             <div>
                 <label>Event Name</label>
