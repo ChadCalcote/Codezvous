@@ -62,8 +62,7 @@ const EventFormReact = () => {
         history.goBack()
     }
 
-    return (
-       <> 
+    return ( 
         <form onSubmit={onSubmit}>
             <div>
                 <label>Event Name</label>
@@ -198,8 +197,6 @@ const EventFormReact = () => {
             </div>
             <button type="submit">Create Event</button>
       </form>
-      
-     </> 
     );
 };
 
