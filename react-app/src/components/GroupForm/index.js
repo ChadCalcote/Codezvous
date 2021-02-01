@@ -1,46 +1,50 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { fetchOneGroup } from "../../store/groups";
 import "./GroupForm.css";
 
-const createGroup = async (group_name, description, city, state, zip_code, image_url, leader_id) => {
-  const response = await fetch("/api/groups/test", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      group_name,
-      description,
-      city,
-      state,
-      zip_code,
-      image_url,
-      leader_id
-    }),
-  });
-  return await response.json();
-};
 
 const GroupForm = () => {
-
-    const [groupName, setGroupName] = useState("");
-    const [description, setDescription] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [zipCode, setZipCode] = useState();
-    const [imageUrl, setImageUrl] = useState("");
-    const [leader_id, setLeaderId] = useState();
+  const history = useHistory();
+  const [groupName, setGroupName] = useState("");
+  const [description, setDescription] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zipCode, setZipCode] = useState();
+  const [imageUrl, setImageUrl] = useState("");
+  const [leader_id, setLeaderId] = useState();
+  
+  const createGroup = async (group_name, description, city, state, zip_code, image_url, leader_id) => {
+    const response = await fetch("/api/groups/test", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        group_name,
+        description,
+        city,
+        state,
+        zip_code,
+        image_url,
+        leader_id
+      }),
+    });
+    return await response.json();
+  };
 
     const onSubmit = async(event) => {
         event.preventDefault();
-        await createGroup(groupName, description, city, state, zipCode, imageUrl, leader_id)
-        setGroupName("")
-        setDescription("")
-        setCity("")
-        setState("")
-        setZipCode(0)
-        setImageUrl("")
-        setLeaderId(0)
-    }
+        const group = await createGroup(groupName, description, city, state, zipCode, imageUrl, leader_id);
+        setGroupName("");
+        setDescription("");
+        setCity("");
+        setState("");
+        setZipCode(0);
+        setImageUrl("");
+        setLeaderId(0);
+        history.push(`/groups/${group.id}`);
+    };
 
     return (
       <form className="group-form" onSubmit={onSubmit}>
@@ -94,7 +98,6 @@ const GroupForm = () => {
             <label>Zip Code</label>
             <br />
             <input
-              type="number"
               name="zipCode"
               onChange={(event) => setZipCode(event.target.value)}
               value={zipCode}

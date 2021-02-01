@@ -58,7 +58,7 @@ function RSVP({ event }) {
     if (attending){
       return "See you there!"
     }else {
-      return <button onClick={handleClick}>RSVP</button>;
+      return <button className="RSVP-button" onClick={handleClick}>RSVP</button>;
     };
   };
 

@@ -18,7 +18,7 @@ input {
   height: 10px;
   border: 1px solid #5DACBD;
   border-radius: 10px;
-  background-color: #211C1F;
+  background-color: #2C2629;
   color: white;
   outline: none;
   margin-top: 2px;
@@ -26,10 +26,14 @@ input {
 
 .group-form-submit-button {
   padding: 10px;
-  color: white;
-  background-color: #5DACBD;
-  border: 2px solid white;
+  color: #5DACBD;
+  background-color: #2C2629;
+  border: 2px solid #5DACBD;
   border-radius: 999px;
+}
+
+.group-form-submit-button:hover {
+  opacity: 0.8;
 }
 
 .description {

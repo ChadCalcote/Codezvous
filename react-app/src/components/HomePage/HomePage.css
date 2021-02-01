@@ -14,6 +14,72 @@
     padding: 35px 0;
 }
 
+.home-page-events .event-card {
+    padding: 40px;
+}
+
+.home-page-events .event-card_date {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px 20px;
+}
+
+.home-page-events a {
+    display: flex;
+    margin: 5px 30px 0px;
+}
+
+.home-page-events .event-card_title {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.home-page-events #event-card_location_physical {
+    display: flex;
+}
+
+.home-page-events #event-card_location_physical div {
+    padding: 0px 5px;
+}
+
+.home-page-events div {
+    margin-bottom: 5px;
+}
+
+.home-page-events .event-card_description {
+    width: 40vw;
+}
+
+.home-page-events .event-card_attendees {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.toggle {
+    padding: 0px 25px;
+    color: #5DACBD;
+    background-color: #2C2629;
+    border: 2px solid #5DACBD;
+}
+
+#group-toggle{
+    border-radius: 2pt 0pt 0pt 2pt;
+}
+
+#event-toggle{
+    border-radius: 0pt 2pt 2pt 0pt;
+}
+
+.toggle:active {
+    background-color: #5DACBD;
+    color: #2C2629;
+}
+
+.toggle:hover {
+opacity: 0.8;
+}
+
 .home-page_body a {
     text-decoration: none;
     color: #5dacbd;
@@ -114,4 +180,6 @@
     padding: 15px;
 }
 
-
+.event-card .RSVP-button {
+    margin: 0px 30px 10px;
+}
