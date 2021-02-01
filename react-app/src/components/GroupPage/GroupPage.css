@@ -4,6 +4,11 @@
     align-items: center;
 }
 
+.group-page a {
+    text-decoration: none;
+    color: #5dacbd;
+}
+
 .group-header {
     padding: 10px 30px;
     display: flex;

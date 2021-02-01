@@ -1,3 +1,12 @@
+.event-card_attendees_pics {
+  display: flex;
+
+}
+
 .event-card_attendees_pics .user-image {
   width: 30px;
+}
+
+.user-image + .user-image {
+  margin-left: -10px;
 }

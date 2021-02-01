@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./index.css";
 
 const createEvent = async (event_name, description, address, city, state, zip_code, virtual, type, image_url, group_id, start_time, end_time, status) => {
-    const response = await fetch("/api/events/test", {
+    const response = await fetch("/api/events", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

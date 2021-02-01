@@ -10,6 +10,7 @@ events_routes = Blueprint('events', __name__)
 # Retrieve all events
 @events_routes.route('/')
 def events():
+    # events = Event.query.all()
     events = db.session.query(Event).order_by(Event.start_time)
     return jsonify([event.to_dict() for event in events])
 
@@ -27,9 +28,24 @@ def event(id):
 #     event_leader = User.query.join(Group).join(Event).filter(Group.id == Event.group_id).filter(User.id == Group.leader_id).all()
 
 
-# Create an event
-@events_routes.route('/test', methods=["POST"])
-@login_required
+# # Create an event
+# @events_routes.route('/', methods=["POST"])
+# # @login_required
+# def post():
+#     form = EventForm()
+#     if form.validate_on_submit():
+#         new_event = Event()
+#         new_event.group_id = request.json["group_id"]
+#         form.populate_obj(new_event)
+#         db.session.add(new_event)
+#         db.session.commit()
+#         return new_event.to_dict()
+#     else:
+#         return "Bad Data"
+
+
+@events_routes.route('/', methods=["POST"])
+# @login_required
 def postTest():
     form = EventForm()  # need to create a form
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -100,9 +116,11 @@ def put(id):
 def delete(id):
     event = Event.query.get(id)
     comments = Comment.query.join(Event).filter(Comment.event_id == id).all()
+
     db.session.delete(comments)
     db.session.delete(event)
     db.session.commit()
+
     return {"message": "success"}
 
 

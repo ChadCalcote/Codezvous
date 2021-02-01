@@ -11,6 +11,11 @@ Dark Pastel Green: #35C04A
     align-items: center;
 }
 
+.event-page a {
+    text-decoration: none;
+    color: #5dacbd;
+}
+
 .event-page::after {
     content: "";
     display: block

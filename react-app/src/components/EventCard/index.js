@@ -4,7 +4,7 @@ import { fetchEventUsers } from "../../store/users";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
 import UserImage from "../UserImage";
-import { formatDate } from "../../dateFunctions";
+import { formatDate, formatTime } from "../../dateFunctions";
 import "./EventCard.css";
 
 const EventCard = ({ event }) => {
@@ -27,6 +27,7 @@ const EventCard = ({ event }) => {
       <div className="event-card_date">
         {!event.start_time && <img src='../../Bars-0.7s-98px.gif'/>}
         {formatDate(event.start_time, 'long')}
+        {formatTime(event.start_time)}
       </div>
       <div className="event-card_title">{event.event_name}</div>
       <div className="event-card_location">

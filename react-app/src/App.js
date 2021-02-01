@@ -67,12 +67,6 @@ function App() {
             // setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route exact path="/events/test">
-          <EventFormReact
-            // authenticated={authenticated}
-            // setAuthenticated={setAuthenticated}
-          />
-        </Route>
         {/* <Route exact path="/events/:eventId/comments">
           <CommentFormReact
             authenticated={authenticated}
