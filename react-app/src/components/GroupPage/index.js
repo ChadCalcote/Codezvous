@@ -141,7 +141,7 @@ const GroupPage = () => {
               <div id="group-body_sidebar_gallery">
                 {members.length > 0 &&
                 Array.isArray(members) &&
-                members.slice(0, 10).map((user) => <UserImage user={user} key={user.id} />)}
+                members.slice(0, 12).map((user) => <UserImage user={user} key={user.id} />)}
               </div>
               </div>
         </div>
