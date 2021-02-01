@@ -22,23 +22,27 @@ const CommentFormReact = () => {
     })
     
     const [comment, setComment] = useState([])
-
+    const [feed, setFeed] = useState()
+  
     useEffect(() => {
       dispatch(getCurrentUser())
       dispatch(fetchAllComments(eventId))
-    }, [dispatch, comments])
+    }, [dispatch, feed])
 
+    useEffect(() => {
+      setFeed(comments)
+    }, [comment])
+    
+    const onSubmit = async (e) => {
+      e.preventDefault();
+      const newComment = {
+        user_id: user.id,
+        body: comment,
+        event_id: parseInt(eventId)
+      };
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
-
-        const newComment = {
-            user_id: user.id,
-            body: comment,
-            event_id: parseInt(eventId)
-        };
-        dispatch(createComment(newComment));
-        setComment("");
+      dispatch(createComment(newComment));
+      setComment("");
     }
 
     return (
