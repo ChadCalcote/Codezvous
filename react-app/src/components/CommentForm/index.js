@@ -27,11 +27,11 @@ const CommentFormReact = () => {
     useEffect(() => {
       dispatch(getCurrentUser())
       dispatch(fetchAllComments(eventId))
-    }, [dispatch, feed])
+    }, [dispatch, comment])
 
     useEffect(() => {
-      setFeed(comments)
-    }, [comment])
+      dispatch(fetchAllComments(eventId))
+    }, [dispatch, comment])
     
     const onSubmit = async (e) => {
       e.preventDefault();
