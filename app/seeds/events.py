@@ -310,7 +310,7 @@ def seed_events():
     db.session.commit()
 
     num = 0
-    for _ in range (200):
+    for _ in range (100):
         adjective = adjectives[int(random() * 98)]
         programming_language = programming_languages[int(random() * 83)]
         event = events[int(random() * 15)]
@@ -321,7 +321,7 @@ def seed_events():
         event_name = f'{adverb} {adjective} {programming_language} {event}'
         start_date = fakes.date_time_ad(end_datetime='+30d', start_datetime='now')
         hours = int(random() * 3 ) + 1
-        random_group = int(random() * 50 ) + 1
+        random_group = int(random() * 10 ) + 1
         is_virtual = random() >= 0.5
 
         demo_event = Event(event_name=event_name, description=fakes.paragraph(nb_sentences=10),
