@@ -116,7 +116,7 @@ def seed_groups():
 
     db.session.commit()
     num = 2
-    for _ in range (71):
+    for _ in range (9):
         random_number = int(random() *10) + 1
         img_num = num + 2
         city = fakes.city()
