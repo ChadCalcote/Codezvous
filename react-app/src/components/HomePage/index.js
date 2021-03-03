@@ -8,15 +8,11 @@ import "./HomePage.css";
 
 const HomePage = () => {
     
-    const events = useSelector(reduxState => {
-        return reduxState.events
-    })
-    const user = useSelector(reduxState => {
-        return reduxState.session
-    })
+    const events = useSelector(state => state.events) // all events
+    const user = useSelector(state => state.session) // current user
     
     // const [eventsShown, setEventsShown] = useState([...events]);
-    const [ galleryToDisplay, setGalleryToDisplay ] = useState("event")
+    const [ galleryToDisplay, setGalleryToDisplay ] = useState("event") // events or groups
     const [ eventListDisplayed, setEventListDisplayed ] = useState(true)
     
 	// let EventsRegex = new RegExp(query, 'i');
@@ -59,7 +55,7 @@ const HomePage = () => {
         } else if (events) {
             return (
             <div className="home-page-events">
-                <EventGallery events={events} parent={"home"}/>
+                <EventGallery events={events} user={user} parent={"home"}/>
             </div>
             )
         }
