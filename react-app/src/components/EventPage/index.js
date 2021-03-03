@@ -87,10 +87,10 @@ const EventPage = () => {
               <h1>{event.event_name}</h1>
             </div>
             <div className="event-header_leader">
-              {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif'/>}
+              {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif' alt="loading..."/>}
               <div className="hosted-by">
                 Hosted by
-                {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif'/> }
+                {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif' alt="loading..."/> }
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ const EventPage = () => {
             </div>
             <div className="event-body_sidebar">
                 <div id="event-body_sidebar_group">
-                  <img src={group.image_url} href={`/groups/${group.id}`} />
+                  <img src={group.image_url} href={`/groups/${group.id}`} alt='group'/>
                   <br />
                   <a href={`/groups/${group.id}`}>{group.group_name}</a>
                   <h4>Public Group</h4>

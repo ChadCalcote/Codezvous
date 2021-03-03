@@ -31,7 +31,7 @@ const EventCard = ({ event, user }) => {
     <div className="event-card">
       <a href={`/events/${event.id}`}>
       <div className="event-card_date">
-        {!event.start_time && <img src='../../Bars-0.7s-98px.gif'/>}
+        {!event.start_time && <img src='../../Bars-0.7s-98px.gif' alt="loading..."/>}
         {`${formatTime(event.start_time)} ${formatDate(event.start_time, 'long')}`} 
         <RSVP 
           hidden={attending}

@@ -17,7 +17,7 @@ const NavBar = ({ setAuthenticated }) => {
             className="header_logo"
             onClick={() => history.push("/")}
             src={logo}
-            alt=""
+            alt="logo"
           />
         </div>
       </div>
