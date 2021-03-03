@@ -7,25 +7,42 @@ import { getCurrentUser } from "../../store/session";
 import { FaSatellite, FiSend } from 'react-icons/all'
 import './CommentForm.css'
 
-const CommentFormReact = ({user, comments, setComments}) => {
+const CommentFormReact = () => {
 
     const params = useParams();
     const dispatch = useDispatch();
     const { eventId } = params;
+
+    const  user = useSelector(state => {
+      return state.session
+    })
+
+    const comments = useSelector(state => {
+      return state.comments
+    })
     
     const [comment, setComment] = useState([])
+    const [feed, setFeed] = useState()
+  
+    useEffect(() => {
+      dispatch(getCurrentUser())
+      dispatch(fetchAllComments(eventId))
+    }, [dispatch, comment])
 
-    const onSubmit = async (event) => {
-        event.preventDefault();
+    useEffect(() => {
+      dispatch(fetchAllComments(eventId))
+    }, [dispatch, comment])
+    
+    const onSubmit = async (e) => {
+      e.preventDefault();
+      const newComment = {
+        user_id: user.id,
+        body: comment,
+        event_id: parseInt(eventId)
+      };
 
-        const newComment = {
-            user_id: user.id,
-            body: comment,
-            event_id: parseInt(eventId)
-        };
-        dispatch(createComment(newComment));
-        setComments([...comments, ...newComment])
-        setComment("");
+      dispatch(createComment(newComment));
+      setComment("");
     }
 
     return (
