@@ -26,26 +26,14 @@ const GroupPage = () => {
     const [userGroupState, setUserGroupState] = useState([])
 
     // If session.userId === leader.id make edit/delete/add buttons available
-    const group = useSelector(reduxState => { // Returning an Object
-      return reduxState.groups
-    });
-    const groupUsers = useSelector(reduxState => { // Returning a list
-      return reduxState.users
-    });
-
-    const currentUser = useSelector(reduxState => {
-      return reduxState.session 
-    });
-
-    const events = useSelector(reduxState => {
-      return reduxState.events
-    });
-
-    const groupLeaderId = group.leader_id; // 6
+    const group = useSelector(state => state.groups); // Returning an Object
+    const groupUsers = useSelector(state => state.users);// Returning a list
+    const currentUser = useSelector(state => state.session );
+    const events = useSelector(state => state.events);
+    const groupLeaderId = group.leader_id;
 
     const onClick = async (event) => {
       event.preventDefault();
-
       const newUserGroup = {
         user_id: currentUser.id,
         group_id: parseInt(groupId),
@@ -126,7 +114,7 @@ const GroupPage = () => {
             <div id="group-body_feed_description">{group.description}</div>
             <div id="group-body_feed_events">
               Group Events ({`${events.length}`})
-              <EventGallery events={events} parent={"groupPage"} />
+              <EventGallery events={events} parent={"groupPage"} user={currentUser}/>
             </div>
           </div>
           <div className="group-body_sidebar">
