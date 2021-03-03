@@ -110,9 +110,9 @@ const EventPage = () => {
               <div id="event-body_feed_comments">
                 <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
               </div>
-              <CommentForm comments={commentsDisplayed} setComments={setCommentsDisplayed} user={currentUser}/>
+              <CommentForm commentsDisplayed={commentsDisplayed} setCommentsDisplayed={setCommentsDisplayed} user={currentUser}/>
               <div className="comment-feeds">
-                <CommentFeed comments={comments}/>
+                <CommentFeed comments={commentsDisplayed}/>
               </div>
             </div>
             <div className="event-body_sidebar">
