@@ -20,16 +20,16 @@ const GroupCard = ({ group, user }) => {
         createUserGroup(currentUser.id, group.id);
     }
 
-    useEffect(() => {
-        if (Array.isArray(groupUsers)) {
-            for (let i = 0; i < groupUsers.length; i++) {
-                if (groupUsers[i].id === currentUser.id) {
-                    setIsMember(true);
-                    return;
-                }
-            }
-        }
-    }, [groupUsers, currentUser]);
+    // useEffect(() => {
+    //     if (Array.isArray(groupUsers)) {
+    //         for (let i = 0; i < groupUsers.length; i++) {
+    //             if (groupUsers[i].id === currentUser.id) {
+    //                 setIsMember(true);
+    //                 return;
+    //             }
+    //         }
+    //     }
+    // }, [groupUsers, currentUser]);
 
     useEffect(() => {
         const getNumGroupMembers = async (groupId) =>{
@@ -42,7 +42,7 @@ const GroupCard = ({ group, user }) => {
           const members = await response.json();
           setPreviewMembers(members);
         }
-        getIsMember(group.id, user.id)
+        // getIsMember(group.id, user.id)
         getNumGroupMembers(group.id)
         getSomeGroupMembers(group.id)
     }, [dispatch, group]);

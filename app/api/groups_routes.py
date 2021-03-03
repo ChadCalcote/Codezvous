@@ -48,8 +48,7 @@ def get_members(id):
 def get_members(id):
     members = User.query.join(Users_Group).filter(Users_Group.group_id == id).all()
     members_dict = [member.to_dict() for member in members]
-    random_index = int(random() * len(members_dict))
-    select_members = [members_dict[random_index], members_dict[random_index], members_dict[random_index]]
+    select_members = [members_dict[int(random() * len(members_dict))], members_dict[int(random() * len(members_dict))], members_dict[int(random() * len(members_dict))]]
     return jsonify(select_members)
 
 
@@ -57,7 +56,7 @@ def get_members(id):
 @groups_routes.route('/<int:id>/members/total')
 def get_members(id):
     members = User.query.join(Users_Group).filter(Users_Group.group_id == id).all().count()
-    return jsonify(members)
+    return members
 
 
 # Create a group
