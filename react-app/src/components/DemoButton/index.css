@@ -1,0 +1,11 @@
+.demo {
+    padding: 10px;
+    color: #5DACBD;
+    border: 2px solid #5DACBD;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.demo:hover {
+    opacity: 0.8;
+}
