@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchEventUsers } from "../../store/users";
+import { useDispatch } from "react-redux";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
 import UserImage from "../UserImage";
 import { formatDate, formatTime } from "../../dateFunctions";
 import "./EventCard.css";
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, user }) => {
   const dispatch = useDispatch();
 
-  const [ users, setUsers ] = useState([])
+  const [ attendees, setAttendees ] = useState([])
+  const [ attending, setAttending ] = useState(false)
 
   useEffect(() =>{
-    const fetchUsers = async() => {
+    const fetchAttendees = async() => {
       const response = await fetch(`/api/events/${event.id}/attendees`)
-      const users = await response.json()
-      setUsers(users)
+      const attendees = await response.json()
+      setAttendees(attendees)
     }
-    fetchUsers()
+    fetchAttendees()
   },[])
+
+  useEffect(() => {
+    if(Array.isArray(attendees)){
+      if (attendees.filter(attendee => attendee.id == user.id)){
+        setAttending(true)
+      }
+    }
+  },[attendees])
 
   return (
     <div className="event-card">
@@ -27,7 +35,18 @@ const EventCard = ({ event }) => {
       <div className="event-card_date">
         {!event.start_time && <img src='../../Bars-0.7s-98px.gif'/>}
         {`${formatTime(event.start_time)} ${formatDate(event.start_time, 'long')}`} 
-        <RSVP event={event}/>
+        <RSVP 
+          hidden={attending}
+          event={event} 
+          user={user}
+          attending={attending}
+          setAttending={setAttending}
+          attendees={attendees}
+          setAttendees={setAttendees}
+          />
+        <div hidden={!attending}> 
+          See you there.
+        </div>
       </div>
       <div className="event-card-info">
         <div className="event-card_title">{event.event_name}</div>
@@ -52,10 +71,10 @@ const EventCard = ({ event }) => {
         <div className="event-card_description">{event.description}</div>
         <div className="event-card_attendees">
           <div className="event-card_attendees_total">
-            {users && users.length > 0 ? `${users.length} going` : "1 going"}
+            {attendees && attendees.length > 0 ? `${attendees.length} going` : "1 going"}
           </div>
           <div className="event-card_attendees_pics">
-          {users.length > 0 ? users.slice(0, 3).map(user => <UserImage key={user.id} user={user}/>) : <BsPerson />}
+          {attendees.length > 0 ? attendees.slice(0, 3).map(user => <UserImage key={user.id} user={user}/>) : <BsPerson />}
           </div>
         </div>
       </div>
