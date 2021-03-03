@@ -19,6 +19,7 @@ function displayUserImage (user){
     <img
       className="user-image"
       src={user.image_url}
+      alt='user'
       onLoad={handleImageLoaded}
       onError={handleImageErrored}
     />

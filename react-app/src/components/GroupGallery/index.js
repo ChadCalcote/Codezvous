@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllGroups, fetchUserGroups } from '../../store/groups';
 import GroupCard from '../GroupCard'
+import loader from  '../../Bars-0.7s-98px.gif'
 import './GroupGallery.css'
 
 const GroupGallery = ({ user, type }) => {
@@ -22,7 +23,7 @@ const GroupGallery = ({ user, type }) => {
 
     return (
         <div className="group-gallery">
-            {!groups && <img src='../../Bars-0.7s-98px.gif'/>}
+            {!groups && <img src={loader} alt="loading..."/>}
             {Array.isArray(groups) && type=="user" && groups.slice(0,4).map(group => <GroupCard group={group} key={group.id} />)}
             {Array.isArray(groups) && type=="all" && groups.slice(0,20).map(group => <GroupCard group={group} key={group.id} />)}
         </div>

@@ -14,6 +14,7 @@ import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
 import RSVP from '../RSVP';
+import loader from  '../../Bars-0.7s-98px.gif'
 import "./EventPage.css";
 
 const EventPage = () => {
@@ -38,7 +39,7 @@ const EventPage = () => {
       dispatch(fetchAllEvents()); // sets events redux.....triggers setSelectedEvents
       dispatch(fetchAllComments(eventId));
       dispatch(fetchEventUsers(eventId));
-    }, []);
+    }, [dispatch, eventId]);
 
     // useEffect(() => {
     //   dispatch(fetchAllComments(eventId));
@@ -60,11 +61,11 @@ const EventPage = () => {
         }
       }
       setSelectedEvents({events}); //triggers redux state of group
-    }, [events]);
+    }, [events, eventId]);
 
     useEffect(() => {
       dispatch(fetchOneGroup(event.group_id)); // sets redux state of groups to group hosting event....triggers group leader, attendees, attending
-    }, [event]);
+    }, [dispatch, event]);
 
     useEffect(() => {
       if (Array.isArray(users)){
@@ -74,7 +75,7 @@ const EventPage = () => {
           setAttending(true) //sets if user is attending event
         }
       }
-    }, [users, group]);
+    }, [users, currentUser.id, group]);
 
     return (
       <div className="event-page_wrapper">
@@ -87,10 +88,10 @@ const EventPage = () => {
               <h1>{event.event_name}</h1>
             </div>
             <div className="event-header_leader">
-              {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif'/>}
+              {leader ? <UserImage className="leader-image" user={leader} />: <img src={loader} alt="loading..."/>}
               <div className="hosted-by">
                 Hosted by
-                {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif'/> }
+                {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..."/>}
               </div>
             </div>
           </div>
@@ -104,7 +105,7 @@ const EventPage = () => {
                 <h2 id="body-color">Attendees ({users.length})</h2>
               <div id="event-body_feed_attendees">
                 { attendees.slice(0, 8).map(attendee => {
-                  return <AttendeeCard user={attendee} />
+                  return <AttendeeCard user={attendee} key={attendee.id}/>
                 })}
               </div>
               <div id="event-body_feed_comments">
@@ -117,7 +118,7 @@ const EventPage = () => {
             </div>
             <div className="event-body_sidebar">
                 <div id="event-body_sidebar_group">
-                  <img src={group.image_url} href={`/groups/${group.id}`} />
+                  <img src={group.image_url} href={`/groups/${group.id}`} alt='group'/>
                   <br />
                   <a href={`/groups/${group.id}`}>{group.group_name}</a>
                   <h4>Public Group</h4>
