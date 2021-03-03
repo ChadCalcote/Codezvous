@@ -51,10 +51,6 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/demo" exact={true}>
-          <DemoButton setAuthenticated={setAuthenticated}
-          />
-        </Route>
         {/* <Route path="/footer" exact={true}> */}
         {/* <Footer
             authenticated={authenticated}
