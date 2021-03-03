@@ -18,3 +18,15 @@ html,body {
     background-color: #161315;
     color: #5DACBD;
 }
+
+.authButton {
+    padding: 10px;
+    color: #5DACBD;
+    border: 2px solid #5DACBD;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.authButton:hover {
+    opacity: 0.8;
+}
