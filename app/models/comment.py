@@ -6,12 +6,15 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id'), nullable=False)
+    event_id = db.Column(db.Integer, db.ForeignKey(
+        'events.id'), nullable=False)
     body = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
-    #Comment has a single User
+    # Comment has a single User
     user = db.relationship('User', back_populates='comments')
-    #Comment related to a single Event
+    # Comment related to a single Event
     event = db.relationship('Event', back_populates='comments')
 
     def to_dict(self):

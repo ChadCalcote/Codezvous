@@ -19,6 +19,8 @@ class Group(db.Model):
     # May cause errors, Do we need to import users table here?
     leader_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     # Group has many Events
     events = db.relationship('Event', back_populates='group')

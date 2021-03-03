@@ -111,7 +111,8 @@ def delete(id):
 @events_routes.route('/<int:id>/comments')
 # @login_required
 def comments(id):
-    comments = Comment.query.filter(Comment.event_id == id)
+    desc = db.desc(Comment.created_at)
+    comments = db.session.query(Comment).filter(Comment.event_id == id).order_by(desc).all()
     return jsonify([comment.to_dict() for comment in comments])
 
 

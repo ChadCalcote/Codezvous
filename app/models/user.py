@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     zip_code = db.Column(db.String(10), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     # User has many RSVPs
     rsvps = db.relationship('RSVP', back_populates='user')

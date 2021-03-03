@@ -21,6 +21,8 @@ class Event(db.Model):
         'groups.id'), nullable=False)
     start_time = db.Column(db.DateTime, nullable=False)
     end_time = db.Column(db.DateTime, nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     # Event has a single Group
     group = db.relationship('Group', back_populates='events')
