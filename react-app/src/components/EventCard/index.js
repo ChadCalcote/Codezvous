@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
+import loader from  '../../Bars-0.7s-98px.gif'
 import UserImage from "../UserImage";
 import { formatDate, formatTime } from "../../dateFunctions";
 import "./EventCard.css";
@@ -31,7 +32,7 @@ const EventCard = ({ event, user }) => {
     <div className="event-card">
       <a href={`/events/${event.id}`}>
       <div className="event-card_date">
-        {!event.start_time && <img src='../../Bars-0.7s-98px.gif' alt="loading..."/>}
+        {!event.start_time && <img src={loader} alt="loading..."/>}
         {`${formatTime(event.start_time)} ${formatDate(event.start_time, 'long')}`} 
         <RSVP 
           hidden={attending}

@@ -14,6 +14,7 @@ import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
 import RSVP from '../RSVP';
+import loader from  '../../Bars-0.7s-98px.gif'
 import "./EventPage.css";
 
 const EventPage = () => {
@@ -87,10 +88,10 @@ const EventPage = () => {
               <h1>{event.event_name}</h1>
             </div>
             <div className="event-header_leader">
-              {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif' alt="loading..."/>}
+              {leader ? <UserImage className="leader-image" user={leader} />: <img src={loader} alt="loading..."/>}
               <div className="hosted-by">
                 Hosted by
-                {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif' alt="loading..."/> }
+                {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..."/>}
               </div>
             </div>
           </div>
@@ -104,7 +105,7 @@ const EventPage = () => {
                 <h2 id="body-color">Attendees ({users.length})</h2>
               <div id="event-body_feed_attendees">
                 { attendees.slice(0, 8).map(attendee => {
-                  return <AttendeeCard user={attendee} />
+                  return <AttendeeCard user={attendee} key={attendee.id}/>
                 })}
               </div>
               <div id="event-body_feed_comments">
