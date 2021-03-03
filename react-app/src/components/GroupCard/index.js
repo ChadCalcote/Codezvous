@@ -5,23 +5,16 @@ import { createUserGroup } from "../../store/userGroups";
 import { getCurrentUser } from "../../store/session";
 import "./index.css";
 
-const GroupCard = ({ group }) => {
-
+const GroupCard = ({ group, user }) => {
+  // Fetch the number of group members
+  // Fetch three group members
+  // 
     const [isMember, setIsMember] = useState(false);
-
+    const [numMembers, setNumMembers] = useState(0);
+    const [previewMembers, setPreviewMembers] = useState([])
     const dispatch = useDispatch();
 
-    const users = useSelector((reduxState) => {
-        return reduxState.users;
-    });
-
-    const groupUsers = useSelector(reduxState => { 
-        return reduxState.users;
-    });
-
-    const currentUser = useSelector(reduxState => {
-        return reduxState.session;
-    });
+    const currentUser = useSelector(state => state.session);
 
     const handleJoinClick = () =>{
         createUserGroup(currentUser.id, group.id);
@@ -29,7 +22,6 @@ const GroupCard = ({ group }) => {
 
     useEffect(() => {
         if (Array.isArray(groupUsers)) {
-
             for (let i = 0; i < groupUsers.length; i++) {
                 if (groupUsers[i].id === currentUser.id) {
                     setIsMember(true);
@@ -40,9 +32,20 @@ const GroupCard = ({ group }) => {
     }, [groupUsers, currentUser]);
 
     useEffect(() => {
-        dispatch(fetchGroupUsers(group.id));
-        dispatch(getCurrentUser());
-    }, [dispatch, setIsMember, group.id]);
+        const getNumGroupMembers = async (groupId) =>{
+          const response = await fetch(`/api/${groupId}/members/total`);
+          const members = await response.json();
+          setNumMembers(members);
+        }
+        const getSomeGroupMembers = async (groupId) =>{
+          const response = await fetch(`/api/${groupId}/members/preview`);
+          const members = await response.json();
+          setPreviewMembers(members);
+        }
+        getIsMember(group.id, user.id)
+        getNumGroupMembers(group.id)
+        getSomeGroupMembers(group.id)
+    }, [dispatch, group]);
 
     const showButtonHandler = () => {
         if (isMember){
@@ -78,7 +81,7 @@ const GroupCard = ({ group }) => {
                 </div>
                 <div className="group-card_2">
                     <div className="group-card_members">
-                    {users.length > 0 ? `${users.length} Members` : "Check us out!"}
+                    {numMembers > 0 ? `${numMembers} Members` : "Check us out!"}
                     </div>
                     {showButtonHandler()}             
                 </div>
