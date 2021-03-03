@@ -1,9 +1,13 @@
 .footer-container {
-  background-color: rgba(128, 128, 128, 0.219);
+  background-color: rgb(44, 39, 55);
   display: flex;
   align-items: center;
   justify-content: space-around;
-  padding: 50px;
+  padding: 30px;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  z-index: 999;
 }
 
 .footer-container_title {
@@ -20,4 +24,8 @@
   text-align: center;
   color: #FFF4E4;
   padding-bottom: 10px;
+}
+
+.icon {
+  margin: 0 2px;
 }
