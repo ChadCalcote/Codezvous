@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import React, { useRef, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { useDetectOutsideClick } from "./useDetectOutsideClick";
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
@@ -15,13 +15,11 @@ const Dropdown = ({ setAuthenticated }) => {
 
 	const dispatch = useDispatch();
 
-	const currentUser = useSelector((reduxState) => {
-		return reduxState.session;
-	});
+	const currentUser = useSelector(state => state.session);
 
 	useEffect(() => {
 		dispatch(getCurrentUser());
-	}, []);
+	}, [dispatch]);
 
 	if (currentUser.errors == undefined) {
 		return (
@@ -50,7 +48,7 @@ const Dropdown = ({ setAuthenticated }) => {
 								Demo Events
 							</NavLink>
 						</li>
-						<li classname="nav-item">
+						<li className="nav-item">
 							<LogoutButton setAuthenticated={setAuthenticated} />
 						</li>
 					</ul>
