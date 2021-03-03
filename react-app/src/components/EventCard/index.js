@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
 import loader from  '../../Bars-0.7s-98px.gif'
@@ -8,7 +7,6 @@ import { formatDate, formatTime } from "../../dateFunctions";
 import "./EventCard.css";
 
 const EventCard = ({ event, user }) => {
-  const dispatch = useDispatch();
 
   const [ attendees, setAttendees ] = useState([])
   const [ attending, setAttending ] = useState(false)
@@ -20,13 +18,13 @@ const EventCard = ({ event, user }) => {
       setAttendees(attendees)
     }
     fetchAttendees()
-  },[])
+  },[event.id])
 
   useEffect(() => {
     if(Array.isArray(attendees) && attendees.length > 0){
       setAttending(!!attendees.filter(attendee => attendee.id == user.id))
     }
-  },[attendees])
+  },[attendees, user.id])
 
   return (
     <div className="event-card">

@@ -39,7 +39,7 @@ const EventPage = () => {
       dispatch(fetchAllEvents()); // sets events redux.....triggers setSelectedEvents
       dispatch(fetchAllComments(eventId));
       dispatch(fetchEventUsers(eventId));
-    }, []);
+    }, [dispatch, eventId]);
 
     // useEffect(() => {
     //   dispatch(fetchAllComments(eventId));
@@ -61,11 +61,11 @@ const EventPage = () => {
         }
       }
       setSelectedEvents({events}); //triggers redux state of group
-    }, [events]);
+    }, [events, eventId]);
 
     useEffect(() => {
       dispatch(fetchOneGroup(event.group_id)); // sets redux state of groups to group hosting event....triggers group leader, attendees, attending
-    }, [event]);
+    }, [dispatch, event]);
 
     useEffect(() => {
       if (Array.isArray(users)){
@@ -75,7 +75,7 @@ const EventPage = () => {
           setAttending(true) //sets if user is attending event
         }
       }
-    }, [users, group]);
+    }, [users, currentUser.id, group]);
 
     return (
       <div className="event-page_wrapper">
