@@ -33,12 +33,12 @@ const GroupCard = ({ group, user }) => {
 
     useEffect(() => {
         const getNumGroupMembers = async (groupId) =>{
-          const response = await fetch(`/api/${groupId}/members/total`);
+          const response = await fetch(`/api/groups/${groupId}/members/total`);
           const members = await response.json();
           setNumMembers(members);
         }
         const getSomeGroupMembers = async (groupId) =>{
-          const response = await fetch(`/api/${groupId}/members/preview`);
+          const response = await fetch(`/api/groups/${groupId}/members/preview`);
           const members = await response.json();
           setPreviewMembers(members);
         }

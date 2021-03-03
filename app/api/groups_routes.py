@@ -45,7 +45,7 @@ def get_members(id):
 
 # Retrieve some group members
 @groups_routes.route('/<int:id>/members/preview')
-def get_members(id):
+def get_some_members(id):
     members = User.query.join(Users_Group).filter(Users_Group.group_id == id).all()
     members_dict = [member.to_dict() for member in members]
     select_members = [members_dict[int(random() * len(members_dict))], members_dict[int(random() * len(members_dict))], members_dict[int(random() * len(members_dict))]]
@@ -54,9 +54,9 @@ def get_members(id):
 
 # Retrieve number of members in a group
 @groups_routes.route('/<int:id>/members/total')
-def get_members(id):
-    members = User.query.join(Users_Group).filter(Users_Group.group_id == id).all().count()
-    return members
+def get_num_members(id):
+    members = User.query.join(Users_Group).filter(Users_Group.group_id == id).count()
+    return jsonify(members)
 
 
 # Create a group

@@ -36,7 +36,7 @@ def user_groups(id):
 # Retrieve if user is a member of a group
 @user_routes.route('/<int:userId>/groups/<int:groupId>')
 # @login_required
-def user_groups(userId, groupId):
+def user_is_member(userId, groupId):
     isMember = Group.query.join(Users_Group).filter(
         Users_Group.user_id == userId).first()
     return jsonify([group.to_dict() for group in groups])
