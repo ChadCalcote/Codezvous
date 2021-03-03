@@ -14,6 +14,7 @@ import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
 import Footer from "./components/Footer";
 import EventFormReact from "./components/EventForm";
+import DemoButton from "./components/DemoButton";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -42,6 +43,7 @@ function App() {
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
+          <DemoButton setAuthenticated={setAuthenticated} />
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm
@@ -49,28 +51,32 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
+        <Route path="/demo" exact={true}>
+          <DemoButton setAuthenticated={setAuthenticated}
+          />
+        </Route>
         {/* <Route path="/footer" exact={true}> */}
-          {/* <Footer
+        {/* <Footer
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           /> */}
         {/* </Route> */}
         <Route path="/create-group" exact={true}>
           <GroupForm
-            // authenticated={authenticated}
-            // setAuthenticated={setAuthenticated}
+          // authenticated={authenticated}
+          // setAuthenticated={setAuthenticated}
           />
         </Route>
         <Route path="/groups/create/event" exact={true}>
           <EventFormReact
-            // authenticated={authenticated}
-            // setAuthenticated={setAuthenticated}
+          // authenticated={authenticated}
+          // setAuthenticated={setAuthenticated}
           />
         </Route>
         <Route exact path="/events/test">
           <EventFormReact
-            // authenticated={authenticated}
-            // setAuthenticated={setAuthenticated}
+          // authenticated={authenticated}
+          // setAuthenticated={setAuthenticated}
           />
         </Route>
         {/* <Route exact path="/events/:eventId/comments">
@@ -84,7 +90,7 @@ function App() {
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
-       </Route>
+        </Route>
         <Route path="/attendee">
           <EventPage
             authenticated={authenticated}
@@ -116,7 +122,10 @@ function App() {
           <HomePage />
         </ProtectedRoute>
       </Switch>
-      <Footer authenticated={authenticated} setAuthenticated={setAuthenticated}/>
+      <Footer
+        authenticated={authenticated}
+        setAuthenticated={setAuthenticated}
+      />
     </BrowserRouter>
   );
 }
