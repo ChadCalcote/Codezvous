@@ -7,7 +7,7 @@ import { getCurrentUser } from "../../store/session";
 import { FaSatellite, FiSend } from 'react-icons/all'
 import './CommentForm.css'
 
-const CommentFormReact = ({user, comments, setComments}) => {
+const CommentFormReact = ({user, commentsDisplayed, setCommentsDisplayed}) => {
 
     const params = useParams();
     const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const CommentFormReact = ({user, comments, setComments}) => {
             event_id: parseInt(eventId)
         };
         dispatch(createComment(newComment));
-        setComments([...comments, ...newComment])
+        setCommentsDisplayed([...commentsDisplayed, newComment])
         setComment("");
     }
 
