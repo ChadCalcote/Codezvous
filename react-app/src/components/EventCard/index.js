@@ -22,10 +22,8 @@ const EventCard = ({ event, user }) => {
   },[])
 
   useEffect(() => {
-    if(Array.isArray(attendees)){
-      if (attendees.filter(attendee => attendee.id == user.id)){
-        setAttending(true)
-      }
+    if(Array.isArray(attendees) && attendees.length > 0){
+      setAttending(!!attendees.filter(attendee => attendee.id == user.id))
     }
   },[attendees])
 

@@ -135,7 +135,7 @@ const EventPage = () => {
           <hr color="#2C2629"/>
           <div className="event-sim-events">
             <h2 id="body-color">Similar events nearby</h2>
-            <EventGallery events={events} parent={"eventPage"}/>
+            <EventGallery events={events} parent={"eventPage"} user={currentUser}/>
           </div>
         </div>
         <footer hidden={attending} className="event-footer">
