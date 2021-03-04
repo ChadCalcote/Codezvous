@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchGroupUsers } from "../../store/users";
 import { createUserGroup } from "../../store/userGroups";
-import { getCurrentUser } from "../../store/session";
 import "./index.css";
 
 const GroupCard = ({ group, user }) => {

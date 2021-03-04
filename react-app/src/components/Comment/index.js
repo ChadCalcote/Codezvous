@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { fetchSingleUser } from "../../store/users";
 import UserImage from '../UserImage';
 import './comment.css'
 
@@ -14,7 +13,7 @@ const Comment = ({ comment }) => {
             setUser(user)
             }
         fetchUser()
-    },[])
+    },[comment.user_id])
 
     return (
         <div className="comment" id={`comment-${comment.id}`}>

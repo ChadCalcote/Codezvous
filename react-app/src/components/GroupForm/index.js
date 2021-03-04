@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { fetchOneGroup } from "../../store/groups";
 import "./GroupForm.css";
 
 
