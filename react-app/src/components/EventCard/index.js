@@ -9,12 +9,22 @@ import "./EventCard.css";
 const EventCard = ({ event, user }) => {
 
   const [ attendees, setAttendees ] = useState([])
+  const [ attendeesForImages, setAttendeesForImages ] = useState([])
   const [ attending, setAttending ] = useState(false)
 
   useEffect(() =>{
+    const selectRandom = (array, num) =>{
+      const newArr = [];
+      for (let i = 0; i < num; i++){
+        
+        newArr.push(array[Math.floor(Math.random() * array.length)])
+      }
+      return newArr
+    }
     const fetchAttendees = async() => {
       const response = await fetch(`/api/events/${event.id}/attendees`)
       const attendees = await response.json()
+      setAttendeesForImages(selectRandom(attendees, 3))
       setAttendees(attendees)
     }
     fetchAttendees()
@@ -71,7 +81,8 @@ const EventCard = ({ event, user }) => {
             {attendees && attendees.length > 0 ? `${attendees.length} going` : "1 going"}
           </div>
           <div className="event-card_attendees_pics">
-          {attendees.length > 0 ? attendees.slice(0, 3).map(user => <UserImage key={user.id} user={user}/>) : <BsPerson />}
+          {!attendeesForImages[0] && <img src={loader} alt="loading..."/>}
+          {attendeesForImages[0] && attendeesForImages.map((user, i) => <UserImage key={i} user={user}/>)}
           </div>
         </div>
       </div>
