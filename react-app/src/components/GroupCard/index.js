@@ -5,44 +5,54 @@ import { createUserGroup } from "../../store/userGroups";
 import { getCurrentUser } from "../../store/session";
 import "./index.css";
 
-const GroupCard = ({ group }) => {
-
+const GroupCard = ({ group, user }) => {
+  
     const [isMember, setIsMember] = useState(false);
-
+    const [numMembers, setNumMembers] = useState(0);
+    // const [previewMembers, setPreviewMembers] = useState([])
     const dispatch = useDispatch();
 
-    const users = useSelector((reduxState) => {
-        return reduxState.users;
-    });
-
-    const groupUsers = useSelector(reduxState => { 
-        return reduxState.users;
-    });
-
-    const currentUser = useSelector(reduxState => {
-        return reduxState.session;
-    });
+    const currentUser = useSelector(state => state.session);
 
     const handleJoinClick = () =>{
-        createUserGroup(currentUser.id, group.id);
+      const newUserGroup = {
+        user_id: currentUser.id,
+        group_id: parseInt(group.Id),
+      };
+        dispatch(createUserGroup(newUserGroup));
     }
 
-    useEffect(() => {
-        if (Array.isArray(groupUsers)) {
+    // useEffect(() => {
+    //     if (Array.isArray(groupUsers)) {
+    //         for (let i = 0; i < groupUsers.length; i++) {
+    //             if (groupUsers[i].id === currentUser.id) {
+    //                 setIsMember(true);
+    //                 return;
+    //             }
+    //         }
+    //     }
+    // }, [groupUsers, currentUser]);
 
-            for (let i = 0; i < groupUsers.length; i++) {
-                if (groupUsers[i].id === currentUser.id) {
-                    setIsMember(true);
-                    return;
-                }
-            }
+    useEffect(() => {
+        const getNumGroupMembers = async (groupId) =>{
+          const response = await fetch(`/api/groups/${groupId}/members/total`);
+          const members = await response.json();
+          setNumMembers(members);
         }
-    }, [groupUsers, currentUser]);
-
-    useEffect(() => {
-        dispatch(fetchGroupUsers(group.id));
-        dispatch(getCurrentUser());
-    }, [dispatch, setIsMember, group.id]);
+        // const getSomeGroupMembers = async (groupId) =>{
+        //   const response = await fetch(`/api/groups/${groupId}/members/preview`);
+        //   const members = await response.json();
+        //   setPreviewMembers(members);
+        // }
+        const getIsMember = async (userId, groupId) =>{
+          const response = await fetch(`/api/users/${userId}/groups/${groupId}`);
+          const member = await response.json();
+          setIsMember(member);
+        }
+        getIsMember(user.id, group.id)
+        getNumGroupMembers(group.id)
+        // getSomeGroupMembers(group.id)
+    }, [dispatch, group.id, user.id]);
 
     const showButtonHandler = () => {
         if (isMember){
@@ -78,7 +88,7 @@ const GroupCard = ({ group }) => {
                 </div>
                 <div className="group-card_2">
                     <div className="group-card_members">
-                    {users.length > 0 ? `${users.length} Members` : "Check us out!"}
+                    {numMembers > 0 ? `${numMembers} Members` : "Check us out!"}
                     </div>
                     {showButtonHandler()}             
                 </div>

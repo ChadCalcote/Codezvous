@@ -1,33 +1,37 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchAllGroups, fetchUserGroups } from '../../store/groups';
+import React, { useEffect, useState } from 'react'
 import GroupCard from '../GroupCard'
-import loader from  '../../Bars-0.7s-98px.gif'
+import loader from '../../Bars-0.7s-98px.gif'
 import './GroupGallery.css'
 
-const GroupGallery = ({ user, type }) => {
+const GroupGallery = ({ user, type, groups }) => {
 
-    const dispatch = useDispatch();
-    const groups = useSelector(reduxState => {
-        return reduxState.groups
-    })
+  const [groupsToDisplay, setGroupsToDisplay] = useState([]);
+  const [groupMemberships, setGroupMemberships ] = useState([]);
+  // TODO: NEED TO CHANGE THIS TO ONLY MAKE THE STORE ONLY ONE OF THESE IN THE PARENT COMPONENT
 
-    useEffect(() => {
-        if (type === "all"){
-          dispatch(fetchAllGroups())  
-        }else {
-            dispatch(fetchUserGroups(user.id))
-        }
+  useEffect(() => {
+    const fetchMemberships = async() => {
+      const response = await fetch(`/api/users/${user.id}/user-groups`);
+      const memberships = await response.json(); // returns an array with the group_ids of the groups the user belongs to
+      setGroupMemberships(memberships)
+    }
+    fetchMemberships();
+  }, [user])
 
-    }, [dispatch, type, user.id])
+  useEffect(() => {
+    if (Array.isArray(groups) && Array.isArray(groupMemberships) && type === "all"){
+      setGroupsToDisplay(groups.filter(group => !groupMemberships.includes(group.id)).slice(0,19))
+    }else if (Array.isArray(groups) && groupMemberships.length > 0 && type === "user"){
+      setGroupsToDisplay(groups.filter(group => groupMemberships.includes(group.id)).slice(0,4));
+    }
+  }, [groups, type, groupMemberships])
 
-    return (
-        <div className="group-gallery">
-            {!groups && <img src={loader} alt="loading..."/>}
-            {Array.isArray(groups) && type=="user" && groups.slice(0,4).map(group => <GroupCard group={group} key={group.id} />)}
-            {Array.isArray(groups) && type=="all" && groups.slice(0,20).map(group => <GroupCard group={group} key={group.id} />)}
-        </div>
-    )
+  return (
+    <div className="group-gallery">
+      {!groups && <img src={loader} alt="loading..." />}
+      {Array.isArray(groups) && groupsToDisplay.map(group => <GroupCard group={group} user={user} key={group.id} />)}
+    </div>
+  )
 }
 
 export default GroupGallery;
