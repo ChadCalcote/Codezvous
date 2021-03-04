@@ -9,6 +9,7 @@ const UserImage = ({ user }) => {
         {!user.image_url && <img src={loader} alt="loading..." />}
         {user.image_url &&  <img
         className="user-image"
+        title={user.username}
         src={user.image_url}
         alt='user'
       />}
