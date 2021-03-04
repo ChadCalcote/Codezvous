@@ -12,6 +12,7 @@ const GroupGallery = ({ user, type, groups }) => {
     const fetchMemberships = async() => {
       const response = await fetch(`/api/users/${user.id}/user-groups`);
       const memberships = await response.json();
+      console.log(memberships)
       setGroupMemberships(memberships)
     }
     fetchMemberships();

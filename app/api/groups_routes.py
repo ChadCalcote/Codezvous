@@ -143,10 +143,9 @@ def delete(id):
 @login_required
 def create():
     new_user_group = Users_Group(
-        user_id = request.json['userId']["user_id"],
-        group_id = request.json['userId']["group_id"]
+        user_id = request.json["user_id"],
+        group_id = request.json["group_id"]
     )
-    print(new_user_group)
 
     db.session.add(new_user_group)
     db.session.commit()
