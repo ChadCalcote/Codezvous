@@ -23,9 +23,7 @@ function RSVP({ event, user, attendees, setAttendees, attending, setAttending })
   };
 
   function showButton () {
-    if (attending){
-      return "See you there!"
-    }else {
+    if (!attending){
       return <button className="RSVP-button" onClick={handleClick}>RSVP</button>;
     };
   };
