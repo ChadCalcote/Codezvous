@@ -53,7 +53,7 @@ const EventGallery = ({events, parent, user}) => {
                 return eventDate === dayFive;
             }))
         }
-    },[events])
+    },[events, dayOne, dayTwo, dayThree, dayFour, dayFive])
 
     function gallerySwap() {
         if (parent === "home"){
@@ -61,27 +61,27 @@ const EventGallery = ({events, parent, user}) => {
                 <div className="event-gallery">
                     <div className="event-gallery_day-one">
                         <h2>{dayOne}</h2>
-                        {!events && <img src={loader} alt="loading..."/>}}
+                        {!events && <img src={loader} alt="loading..."/>}
                         {Array.isArray(dayOneEvents) && dayOneEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-two">
                         <h2>{dayTwo}</h2>
-                        {!events && <img src={loader} alt="loading..."/>}}
+                        {!events && <img src={loader} alt="loading..."/>}
                         {Array.isArray(dayTwoEvents) && dayTwoEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-three">
                         <h2>{dayThree}</h2>
-                        {!events && <img src={loader} alt="loading..."/>}}
+                        {!events && <img src={loader} alt="loading..."/>}
                         {Array.isArray(dayThreeEvents) && dayThreeEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-four">
                         <h2>{dayFour}</h2>
-                        {!events && <img src={loader} alt="loading..."/>}}
+                        {!events && <img src={loader} alt="loading..."/>}
                         {Array.isArray(dayFourEvents) && dayFourEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-five">
                         <h2>{dayFive}</h2>
-                        {!events && <img src={loader} alt="loading..."/>}}
+                        {!events && <img src={loader} alt="loading..."/>}
                         {Array.isArray(dayFiveEvents) && dayFiveEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                 </div>
@@ -89,14 +89,14 @@ const EventGallery = ({events, parent, user}) => {
         }else if (parent === "groupPage"){
             return (
                 <div className="event-gallery">
-                    {!events && <img src={loader} alt="loading..."/>}}
+                    {!events && <img src={loader} alt="loading..."/>}
                     {Array.isArray(events) && events.map(event => <EventCard event={event} user={user} key={event.id} />)}
                 </div>
             )
         }else if (parent === "eventPage"){
             return (
                 <div className="event-gallery">
-                    {!events && <img src={loader} alt="loading..."/>}}
+                    {!events && <img src={loader} alt="loading..."/>}
                     {Array.isArray(events) && events.slice(0,4).map(event => <EventCard event={event} user={user} key={event.id} />)}
                 </div>
             )

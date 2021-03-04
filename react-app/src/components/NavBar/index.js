@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
-import DemoButton from '../DemoButton';
 import Dropdown from '../Dropdown';
 import logo from './logo.png';
 
