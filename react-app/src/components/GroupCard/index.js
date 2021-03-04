@@ -9,6 +9,7 @@ const GroupCard = ({ group, user }) => {
   // Fetch the number of group members
   // Fetch three group members
   // 
+  
     const [isMember, setIsMember] = useState(false);
     const [numMembers, setNumMembers] = useState(0);
     const [previewMembers, setPreviewMembers] = useState([])
@@ -17,7 +18,11 @@ const GroupCard = ({ group, user }) => {
     const currentUser = useSelector(state => state.session);
 
     const handleJoinClick = () =>{
-        createUserGroup(currentUser.id, group.id);
+      const newUserGroup = {
+        user_id: currentUser.id,
+        group_id: parseInt(group.Id),
+      };
+        dispatch(createUserGroup(newUserGroup));
     }
 
     // useEffect(() => {
@@ -37,15 +42,21 @@ const GroupCard = ({ group, user }) => {
           const members = await response.json();
           setNumMembers(members);
         }
-        const getSomeGroupMembers = async (groupId) =>{
-          const response = await fetch(`/api/groups/${groupId}/members/preview`);
-          const members = await response.json();
-          setPreviewMembers(members);
+        // const getSomeGroupMembers = async (groupId) =>{
+        //   const response = await fetch(`/api/groups/${groupId}/members/preview`);
+        //   const members = await response.json();
+        //   setPreviewMembers(members);
+        // }
+        const getIsMember = async (userId, groupId) =>{
+          const response = await fetch(`/api/users/${userId}/groups/${groupId}`);
+          const member = await response.json();
+          setIsMember(member);
+          console.log("IS MEMBER?", member)
         }
-        // getIsMember(group.id, user.id)
+        getIsMember(user.id, group.id)
         getNumGroupMembers(group.id)
-        getSomeGroupMembers(group.id)
-    }, [dispatch, group]);
+        // getSomeGroupMembers(group.id)
+    }, [dispatch, group.id, user.id]);
 
     const showButtonHandler = () => {
         if (isMember){
