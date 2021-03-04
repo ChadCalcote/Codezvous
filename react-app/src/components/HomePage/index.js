@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllEvents } from '../../store/events'
+import { fetchAllGroups } from '../../store/groups';
 import { getCurrentUser } from '../../store/session';
 import EventGallery from '../EventGallery'
 import GroupGallery from '../GroupGallery'
@@ -10,7 +11,8 @@ const HomePage = () => {
     
     const events = useSelector(state => state.events) // all events
     const user = useSelector(state => state.session) // current user
-    
+    const groups = useSelector(state => state.groups);
+
     // const [eventsShown, setEventsShown] = useState([...events]);
     const [ galleryToDisplay, setGalleryToDisplay ] = useState("event") // events or groups
     const [ eventListDisplayed, setEventListDisplayed ] = useState(true)
@@ -34,6 +36,7 @@ const HomePage = () => {
     
     useEffect(() => {
         dispatch(fetchAllEvents())
+        dispatch(fetchAllGroups())
         dispatch(getCurrentUser())
     }, [dispatch])
     
@@ -43,12 +46,12 @@ const HomePage = () => {
             <div className="home-page-groups">  
                 <div className="your-groups">
                     <h2 id="your-groups-header">Your Groups</h2>
-                    <GroupGallery id="your-groups-gallery" user={user} type="user"/>
+                    <GroupGallery id="your-groups-gallery" user={user} groups={groups} type="user"/>
                 </div>
                 <hr id="group-break-bar" color="#5DACBD" />
                 <div className="suggested-groups">
                     <h2 id="suggested-groups-header">Suggested Groups</h2>
-                    <GroupGallery id="suggested-group-gallery" user={user} type="all"/>
+                    <GroupGallery id="suggested-group-gallery" user={user} groups={groups} type="all"/>
                 </div>
             </div>
             )

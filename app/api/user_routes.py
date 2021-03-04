@@ -26,16 +26,24 @@ def user(id):
 
 # Retrieve user groups
 @user_routes.route('/<int:id>/groups')
-# @login_required
+@login_required
 def user_groups(id):
     groups = Group.query.join(Users_Group).filter(
         Users_Group.user_id == id).all()
     return jsonify([group.to_dict() for group in groups])
 
 
+# Retrieve user groups
+@user_routes.route('/<int:id>/user-groups')
+@login_required
+def user_group_memberships(id):
+    groups = Users_Group.query.filter(Users_Group.user_id == id).all()
+    return jsonify([group.group_id for group in groups])
+
+
 # Retrieve if user is a member of a certain group
 @user_routes.route('/<int:userId>/groups/<int:groupId>')
-# @login_required
+@login_required
 def user_is_member(groupId, userId):
     group = Users_Group.query.filter(
         Users_Group.user_id == userId, Users_Group.group_id == groupId).first()
@@ -44,7 +52,7 @@ def user_is_member(groupId, userId):
 
 # Retrieve user events
 @user_routes.route('/<int:id>/events')
-# @login_required
+@login_required
 def user_events(id):
     user_events = Event.query.join(RSVP).filter(RSVP.user_id == id).all()
     return jsonify([event.to_dict() for event in user_events])

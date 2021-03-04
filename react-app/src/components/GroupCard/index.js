@@ -6,13 +6,10 @@ import { getCurrentUser } from "../../store/session";
 import "./index.css";
 
 const GroupCard = ({ group, user }) => {
-  // Fetch the number of group members
-  // Fetch three group members
-  // 
   
     const [isMember, setIsMember] = useState(false);
     const [numMembers, setNumMembers] = useState(0);
-    const [previewMembers, setPreviewMembers] = useState([])
+    // const [previewMembers, setPreviewMembers] = useState([])
     const dispatch = useDispatch();
 
     const currentUser = useSelector(state => state.session);
@@ -51,7 +48,6 @@ const GroupCard = ({ group, user }) => {
           const response = await fetch(`/api/users/${userId}/groups/${groupId}`);
           const member = await response.json();
           setIsMember(member);
-          console.log("IS MEMBER?", member)
         }
         getIsMember(user.id, group.id)
         getNumGroupMembers(group.id)
