@@ -7,12 +7,11 @@ const GroupGallery = ({ user, type, groups }) => {
 
   const [groupsToDisplay, setGroupsToDisplay] = useState([]);
   const [groupMemberships, setGroupMemberships ] = useState([]);
-  // TODO: NEED TO CHANGE THIS TO ONLY MAKE THE STORE ONLY ONE OF THESE IN THE PARENT COMPONENT
 
   useEffect(() => {
     const fetchMemberships = async() => {
       const response = await fetch(`/api/users/${user.id}/user-groups`);
-      const memberships = await response.json(); // returns an array with the group_ids of the groups the user belongs to
+      const memberships = await response.json();
       setGroupMemberships(memberships)
     }
     fetchMemberships();

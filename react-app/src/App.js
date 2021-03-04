@@ -51,12 +51,6 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        {/* <Route path="/footer" exact={true}> */}
-        {/* <Footer
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          /> */}
-        {/* </Route> */}
         <Route path="/create-group" exact={true}>
           <GroupForm
           // authenticated={authenticated}
@@ -75,12 +69,6 @@ function App() {
           // setAuthenticated={setAuthenticated}
           />
         </Route>
-        {/* <Route exact path="/events/:eventId/comments">
-          <CommentFormReact
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route> */}
         <Route exact path="/events/:eventId">
           <EventPage
             authenticated={authenticated}
