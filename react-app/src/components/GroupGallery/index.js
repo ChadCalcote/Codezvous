@@ -20,9 +20,8 @@ const GroupGallery = ({ user, type, groups }) => {
 
   useEffect(() => {
     if (Array.isArray(groups) && Array.isArray(groupMemberships) && type === "all"){
-      setGroupsToDisplay(groups.slice(0,19))
+      setGroupsToDisplay(groups.filter(group => !groupMemberships.includes(group.id)).slice(0,19))
     }else if (Array.isArray(groups) && groupMemberships.length > 0 && type === "user"){
-      // fetch groups that the user belongs to. (users_groups)
       setGroupsToDisplay(groups.filter(group => groupMemberships.includes(group.id)).slice(0,4));
     }
   }, [groups, type, groupMemberships])
