@@ -1,1 +1,28 @@
-Generic single-database configuration.
+command to migrate and seed database:
+flask seed undo && flask db downgrade base && flask db upgrade && flask seed all
+
+Database seeders:
+
+Users: 
+  - 1 individually generated (demo user)
+  - 300 randomly generated
+Groups: 
+  - 1 individually generated (demo user as owner)
+  - 20 randomly generated with users 2-21 as owner respectively
+Events: 
+  - 1-3 individually generated, 
+  - 4-103 randomly generated
+RSVPs: 
+  - 1-3 individually generated,
+  - 500 randomly generated
+users_groups (memberships):
+  - users 1 - 20 belong to groups 1 - 20 respectively (leaders belong to their group)
+  - user 1 (demo user) belongs to 10 random groups
+  - 500 randomly generated memberships for 300 users among 20 groups 
+comments:
+  - 4 individually generated,
+  - 500 randomly generated for a random event by a random user
+
+** Note: due to the limitations of the faker plugin and random number generator,
+          there may be an error in seeding with a duplication in email address or username.
+          Simply rerun the seeder command above.
