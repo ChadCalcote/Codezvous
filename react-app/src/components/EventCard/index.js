@@ -14,10 +14,15 @@ const EventCard = ({ event, user }) => {
 
   useEffect(() =>{
     const selectRandom = (array, num) =>{
+      if (array.length <= num) return array;
       const newArr = [];
-      for (let i = 0; i < num; i++){
-        
-        newArr.push(array[Math.floor(Math.random() * array.length)])
+      const indicies = new Set();
+      while (newArr.length < num){
+        const index = Math.floor(Math.random() * array.length)
+        if (!indicies.has(index)){
+          newArr.push(array[index])        
+          indicies.add(index);
+        }
       }
       return newArr
     }
