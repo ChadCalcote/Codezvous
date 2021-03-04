@@ -50,7 +50,7 @@ const Dropdown = ({ setAuthenticated }) => {
 								Demo Events
 							</NavLink>
 						</li>
-						<li classname="nav-item">
+						<li className="nav-item">
 							<LogoutButton setAuthenticated={setAuthenticated} />
 						</li>
 					</ul>
