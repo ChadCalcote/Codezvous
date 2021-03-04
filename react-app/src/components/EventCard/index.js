@@ -22,7 +22,7 @@ const EventCard = ({ event, user }) => {
 
   useEffect(() => {
     if(Array.isArray(attendees) && attendees.length > 0){
-      setAttending(!!attendees.filter(attendee => attendee.id == user.id))
+      setAttending(attendees.map(attendee=>attendee.id).includes(user.id))
     }
   },[attendees, user.id])
 
@@ -42,7 +42,7 @@ const EventCard = ({ event, user }) => {
           setAttendees={setAttendees}
           />
         <div hidden={!attending}> 
-          See you there.
+          See you there
         </div>
       </div>
       <div className="event-card-info">
