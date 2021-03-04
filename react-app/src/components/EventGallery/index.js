@@ -62,26 +62,31 @@ const EventGallery = ({events, parent, user}) => {
                     <div className="event-gallery_day-one">
                         <h2>{dayOne}</h2>
                         {!events && <img src={loader} alt="loading..."/>}
+                        {Array.isArray(dayOneEvents) && dayOneEvents.length === 0 && <h3>No events scheduled for this date</h3>}
                         {Array.isArray(dayOneEvents) && dayOneEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-two">
                         <h2>{dayTwo}</h2>
                         {!events && <img src={loader} alt="loading..."/>}
+                        {Array.isArray(dayTwoEvents) && dayTwoEvents.length === 0 && <h3>No events scheduled for this date</h3>}
                         {Array.isArray(dayTwoEvents) && dayTwoEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-three">
                         <h2>{dayThree}</h2>
                         {!events && <img src={loader} alt="loading..."/>}
+                        {Array.isArray(dayThreeEvents) && dayThreeEvents.length === 0 && <h3>No events scheduled for this date</h3>}
                         {Array.isArray(dayThreeEvents) && dayThreeEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-four">
                         <h2>{dayFour}</h2>
                         {!events && <img src={loader} alt="loading..."/>}
+                        {Array.isArray(dayFourEvents) && dayFourEvents.length === 0 && <h3>No events scheduled for this date</h3>}
                         {Array.isArray(dayFourEvents) && dayFourEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                     <div className="event-gallery_day-five">
                         <h2>{dayFive}</h2>
                         {!events && <img src={loader} alt="loading..."/>}
+                        {Array.isArray(dayFiveEvents) && dayFiveEvents.length === 0 && <h3>No events scheduled for this date</h3>}
                         {Array.isArray(dayFiveEvents) && dayFiveEvents.map(event => <EventCard event={event} user={user} key={event.id} />)}
                     </div>
                 </div>
