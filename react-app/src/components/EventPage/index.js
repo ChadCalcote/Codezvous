@@ -71,7 +71,7 @@ const EventPage = () => {
         setAttending(true) //sets if user is attending event
       }
     }
-  }, [users, currentUser.id, group]);
+  }, [users, currentUser.id, group.leader_id]);
 
   return (
     <div className="event-page_wrapper">
@@ -84,7 +84,8 @@ const EventPage = () => {
             <h1>{event.event_name}</h1>
           </div>
           <div className="event-header_leader">
-            {leader ? <UserImage className="leader-image" user={leader} /> : <img src={loader} alt="loading..." />}
+            {!leader && <img src={loader} alt="loading..." />}
+            {leader && <UserImage className="leader-image" user={leader} />}
             <div className="hosted-by">
               Hosted by
                 {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..." />}
