@@ -9,17 +9,17 @@ const NavBar = ({ setAuthenticated }) => {
 	const history = useHistory();
 
 	return (
-    <nav className="navbarWrapper">
-      <div className="header_left">
-        <div className="home">
-          <img
-            className="header_logo"
-            onClick={() => history.push("/")}
-            src={logo}
-            alt="logo"
-          />
-        </div>
-      </div>
+		<nav className="navbarWrapper">
+			<div className="header_left">
+				<div className="home">
+					<img
+						className="header_logo"
+						onClick={() => history.push('/home')}
+						src={logo}
+						alt="logo"
+					/>
+				</div>
+			</div>
 
       <div className="header_right">
         <div className="create_group">

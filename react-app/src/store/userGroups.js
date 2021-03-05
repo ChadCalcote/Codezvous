@@ -9,7 +9,6 @@ export const setUserGroup = (userGroup) => {
 
 export const createUserGroup = (newUserGroup) => {
   return async (dispatch) => {
-    console.log(newUserGroup)
     const responseFromDb = await fetch(`/api/groups/new-user`, {
       method: "POST",
       headers: {

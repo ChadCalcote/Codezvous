@@ -1,0 +1,42 @@
+.splash-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-page-wrapper > h1 {
+  font-family: monospace;
+  font-size: 50px;
+  color: #376DA1;
+}
+
+.splash-page_buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.splash-page_buttons > button {
+  height: fit-content;
+  background-color: #171415;
+  padding: 10px;
+  color: #5DACBD;
+  border: 3px solid #376DA1;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.splash-page_buttons > button:hover {
+  opacity: 0.8;
+}
+
+.splash-page_buttons > a {
+  margin-top: 5px;
+  color: #6A696A
+}
+
+.splash-page_buttons > a:hover {
+  color: #8f8f8f
+}

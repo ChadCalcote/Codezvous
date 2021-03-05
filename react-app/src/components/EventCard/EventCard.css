@@ -28,3 +28,7 @@
   opacity: 0.8;
   box-shadow: rgba(93, 172, 189, .30) 2px 4px 16px;
 }
+
+.event-card a {
+  color: #5DACBD;
+}
