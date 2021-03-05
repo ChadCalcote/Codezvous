@@ -14,10 +14,11 @@ def seed_rsvps():
     db.session.add(demo_rsvp)
     db.session.commit()
 
-    
+
     demo_rsvp = RSVP(user_id=1, event_id=103)
     db.session.add(demo_rsvp)
     db.session.commit()
+
 
     user = 1
     event = 1

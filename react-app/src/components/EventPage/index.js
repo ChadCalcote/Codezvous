@@ -60,7 +60,8 @@ const EventPage = () => {
   }, [events, eventId]);
 
   useEffect(() => {
-    dispatch(fetchOneGroup(event.group_id)); // sets redux state of groups to group hosting event....triggers group leader, attendees, attending
+    if (event.group_id)
+      dispatch(fetchOneGroup(event.group_id)); // sets redux state of groups to group hosting event....triggers group leader, attendees, attending
   }, [dispatch, event]);
 
   useEffect(() => {
