@@ -4,10 +4,11 @@
   align-items: center;
   justify-content: space-around;
   padding: 25px;
-  /* position: fixed; */
+  position: fixed;
   bottom: 0px;
   width: 100%;
   z-index: 999;
+  height: 110px;
 }
 
 .footer-container_title {

@@ -104,21 +104,23 @@ Dark Pastel Green: #35C04A
 }
 
 .event-footer {
-    height:160px;
-    width: 100%;
-    background-image: none;
-    background-repeat: repeat;
-    background-attachment: scroll;
-    background-position: 0% 0%;
-    position: fixed;
-    bottom: 0pt;
-    left: 0pt;
+  height: 60px;
+  width: 100%;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
+  bottom: 80pt;
+  left: 0pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.event-footer-contents {
-    height: 160px;
-    width: 1000px;
-    margin: auto;
+.event-footer_contents {
+  margin: 0 15px;
 }
 
 .comment-feeds .comment {
