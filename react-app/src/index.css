@@ -35,3 +35,7 @@ a {
     text-decoration: none;
     color: #5dacbd;
 }
+
+textarea::-webkit-scrollbar {
+    width: 0.05em;
+}

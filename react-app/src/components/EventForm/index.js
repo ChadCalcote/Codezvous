@@ -80,13 +80,13 @@ const EventFormReact = () => {
                 <div>
                     <label>Description</label>
                     <br />
-                    <input
+                    <textarea
                         className="description"
                         type="text"
                         name="description"
                         onChange={(event) => setDescription(event.target.value)}
                         value={description}
-                    ></input>
+                    ></textarea>
                 </div>
                 <br />
                 <div>
