@@ -73,6 +73,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
               value={email}
             ></input>
           </div>
+          <br />
           <div>
             <label>Profile Photo</label>
             <br />

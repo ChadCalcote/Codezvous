@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage"
 import UserImage from "./components/UserImage";
 import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
+import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import EventFormReact from "./components/EventForm";
 
