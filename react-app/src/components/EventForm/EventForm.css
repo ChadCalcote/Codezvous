@@ -1,0 +1,72 @@
+.event-form {
+    text-align: center;
+    background-color: #211C1F;
+    padding: 80px;
+    color: #5DACBD;
+  }
+  
+  .form-wrapper {
+    padding: 20px;
+    border: 1px solid #5DACBD;
+    margin: auto;
+    max-width: 500px;
+    border-radius: 40px;
+  }
+  
+  input {
+    padding: 10px;
+    height: 10px;
+    border: 1px solid #5DACBD;
+    border-radius: 10px;
+    background-color: #2C2629;
+    color: white;
+    outline: none;
+    margin-top: 2px;
+  }
+  
+  .event-form-submit-button {
+    padding: 10px;
+    color: #2C2629;
+    background-color: #5DACBD;
+    border: 2px solid #5DACBD;
+    border-radius: 999px;
+    font-size: 16px;
+  }
+
+  select {
+    padding: 10px;
+    color: #5DACBD;
+    background-color: #2C2629;
+    border: 2px solid #5DACBD;
+    border-radius: 999px;
+  }
+  
+  .event-form-submit-button:hover {
+    opacity: 0.8;
+  }
+  
+  .description {
+    text-align: justify;
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #5DACBD;
+    border-radius: 10px;
+    background-color: #211C1F;
+    color: white;
+    outline: none;
+    margin-top: 2px;
+    resize: none;
+  }
+
+  .page-container {
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  #footer {
+    position: absolute;
+    bottom: 0;
+  
+  }
+  

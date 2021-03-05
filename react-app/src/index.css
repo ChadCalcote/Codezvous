@@ -30,3 +30,12 @@ Dark Pastel Green: #35C04A
 .authButton:hover {
     opacity: 0.8;
 }
+
+a {
+    text-decoration: none;
+    color: #5dacbd;
+}
+
+textarea::-webkit-scrollbar {
+    width: 0.05em;
+}

@@ -13,7 +13,6 @@ const GroupCard = ({ group, user }) => {
   const currentUser = useSelector(state => state.session);
 
   const handleJoinClick = () => {
-    console.log(group.id)
     const newUserGroup = {
       user_id: currentUser.id,
       group_id: group.id,

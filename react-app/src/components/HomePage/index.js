@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllEvents } from '../../store/events'
 import { fetchAllGroups } from '../../store/groups';
 import { getCurrentUser } from '../../store/session';
-import EventGallery from '../EventGallery'
-import GroupGallery from '../GroupGallery'
+import EventGallery from '../EventGallery';
+import GroupGallery from '../GroupGallery';
+import Footer from '../Footer';
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -94,6 +95,7 @@ const HomePage = () => {
             </div>
             <div className="home-page_sidebar">
             </div>
+            {/* <Footer /> */}
         </div>
     )
 }
