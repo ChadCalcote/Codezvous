@@ -8,10 +8,14 @@ const Splash = () => {
 
   return (
     <div className="splash-page-wrapper">
-      <h1>Hi! I'm splash page.</h1>
-      <p>Lorem Ipsum...</p>
-      <button onClick={() => history.push('/login')}>Log In</button>
-      <button onClick={() => history.push('/signup')}>Sign Up</button>
+      <p>**placeholder for the video on repeat?**</p>
+      <br />
+      <h1>Welcome to Codezvous.</h1>
+      <h4>" Find the events so you can do more of what matters to you. Or create your own group and meet people near you who share your interests. "</h4>
+      <div className="splash-page_buttons">
+        <button onClick={() => history.push('/login')}>Click Here to Begin</button>
+        <a href="/signup">Don't have an account?</a>
+      </div>
     </div>
 
   )
