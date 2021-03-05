@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Redirect } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneGroup } from "../../store/groups"
@@ -104,8 +104,16 @@ const GroupPage = () => {
               {leader ? leader.username : null}
             </div>
             <div id="group-header_info_member_button">
-              {isMember && <h2>You're a member</h2>}
-              {!isMember && <button className="button" onClick={onClick}>Join Us!</button>}
+              {isLeader ? 
+                <>
+                  <h2>You're the leader</h2> 
+                  <div className="create-event-button">
+                    <Link to="/groups/create/event">Create Event</Link>
+                  </div>
+                </> 
+                : isMember ? 
+                  <h2>You're a member</h2> : <button className="membership-button" onClick={onClick}>Join Us!</button>
+              }
             </div>
           </div>
         </div>
@@ -132,10 +140,6 @@ const GroupPage = () => {
                 members.slice(0, 12).map((user) => <UserImage user={user} key={user.id} />)}
               </div>
               </div>
-        </div>
-        <div>
-          {isLeader 
-          ? <Link to="create/event">Create Form</Link> : null }
         </div>
       </div>
     );
