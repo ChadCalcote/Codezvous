@@ -28,10 +28,11 @@
 
 .group-form-submit-button {
   padding: 10px;
-  color: #5DACBD;
-  background-color: #2C2629;
+  color: #2C2629;
+  background-color: #5DACBD;
   border: 2px solid #5DACBD;
   border-radius: 999px;
+  font-size: 16px;
 }
 
 .group-form-submit-button:hover {
@@ -49,4 +50,5 @@
   color: white;
   outline: none;
   margin-top: 2px;
+  scrollbar-color: blue;
 }
