@@ -119,9 +119,12 @@ const GroupPage = () => {
         </div>
         <div className="group-body">
           <div className="group-body_feed">
-            <div id="group-body_feed_description">{group.description}</div>
+            <div id="group-body_feed_description">
+              <h2> What we're about</h2>
+              {group.description}
+            </div>
             <div id="group-body_feed_events">
-              Group Events ({`${events.length}`})
+              <h2> Upcoming Events ({`${events.length}`})</h2> 
               <EventGallery events={events} parent={"groupPage"} user={currentUser}/>
             </div>
           </div>
