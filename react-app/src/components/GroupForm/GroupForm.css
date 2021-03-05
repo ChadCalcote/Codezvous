@@ -13,14 +13,16 @@
   border-radius: 40px;
 }
 
-input {
+.group-form input,
+.group-form textarea {
   padding: 10px;
-  height: 10px;
+  margin: 20px 0;
   border: 1px solid #5DACBD;
   border-radius: 10px;
   background-color: #2C2629;
   color: white;
   outline: none;
+  width: 90%;
   margin-top: 2px;
 }
 

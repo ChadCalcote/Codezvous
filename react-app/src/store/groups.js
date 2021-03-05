@@ -19,15 +19,6 @@ export const setOneGroup = (group) => {
   }
 };
 
-// export const setUserGroup = (userGroup) => {
-//   return {
-//     type: SET_USER_GROUP,
-//     userGroup: userGroup
-//   }
-// };
-
-// Thunk
-// What we use in the component
 export const fetchAllGroups = () => {
   return async (dispatch) => {
     const responseFromDb = await fetch('/api/groups');
