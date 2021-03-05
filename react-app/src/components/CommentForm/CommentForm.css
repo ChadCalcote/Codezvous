@@ -17,6 +17,7 @@ textarea {
   color: white;
   outline: none;
   margin-top: 2px;
+  resize: none;
 }
 
 .submit-button {

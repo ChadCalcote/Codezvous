@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LoginForm from "./components/auth/LoginForm";
+import LoginForm from "./components/auth/LoginPage";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import EventPage from "./components/EventPage";
@@ -43,7 +43,6 @@ function App() {
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
-          <DemoButton setAuthenticated={setAuthenticated} />
         </Route>
         <Route path="/signup" exact={true}>
           <SignUpForm
@@ -106,10 +105,10 @@ function App() {
           <HomePage />
         </ProtectedRoute>
       </Switch>
-      <Footer
+      {/* <Footer
         authenticated={authenticated}
         setAuthenticated={setAuthenticated}
-      />
+      /> */}
     </BrowserRouter>
   );
 }
