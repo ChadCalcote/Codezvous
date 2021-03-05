@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { login } from "../../../services/auth";
 import DemoButton from "../../DemoButton";
-import Footer from "../../Footer";
 import "./LoginForm.css";
 
 
@@ -73,7 +72,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           </div>
         </div>
       </form>
-      <Footer id="footer"/>
     </div>
   );
 };

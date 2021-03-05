@@ -100,8 +100,8 @@ const GroupPage = () => {
               <BsPeople />  {`${numGroupUsers} members`}
             </div>
             <div id="group-header_info_leader">
-              <BsPerson /> Organized by leader:
-              {leader ? leader.username : null}
+              <BsPerson /> Organized by leader:   
+              {leader ? ` ${leader.username}` : null}
             </div>
             <div id="group-header_info_member_button">
               {isLeader ? 

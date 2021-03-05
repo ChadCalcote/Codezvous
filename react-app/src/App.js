@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginPage";
-import SignUpForm from "./components/auth/SignUpForm";
+import SignUpForm from "./components/auth/SignUpPage";
 import NavBar from "./components/NavBar";
 import EventPage from "./components/EventPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -14,7 +14,6 @@ import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
 import Footer from "./components/Footer";
 import EventFormReact from "./components/EventForm";
-import DemoButton from "./components/DemoButton";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -105,10 +104,10 @@ function App() {
           <HomePage />
         </ProtectedRoute>
       </Switch>
-      {/* <Footer
+      <Footer
         authenticated={authenticated}
         setAuthenticated={setAuthenticated}
-      /> */}
+      />
     </BrowserRouter>
   );
 }

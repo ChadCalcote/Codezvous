@@ -1,4 +1,4 @@
-  .login-form {
+.signup-form {
     text-align: center;
     background-color: #211C1F;
     padding: 75px;
@@ -15,9 +15,17 @@
     border-radius: 40px;
   }
 
-  .login-buttons {
-      display: flex;
-      justify-content: center;
+  .signup-buttons {
+    padding: 10px;
+    color: #2C2629;
+    background-color: #5DACBD;
+    border: 2px solid #5DACBD;
+    border-radius: 999px;
+    font-size: 16px;
+  }
+
+  .signup-buttons:hover {
+    opacity: 0.8;
   }
 
   input {
