@@ -16,7 +16,7 @@
 }
 
 .group-header_img {
-    margin: 40px;
+    margin: 40px 40px 40px 0;
 }
 
 #group-header_img{
@@ -60,13 +60,18 @@
     border-radius: 4px;
     margin: 20px;
     height: 670px;
-}
+  }
 
-#group-body_sidebar_gallery {
+  .group-body_sidebar img {
+    margin-left: 27px; 
+  }
+  
+  #group-body_sidebar_gallery {
+    justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
-    max-width: 650px;
+    max-width: 500px;
 }
 
 #group-body_sidebar_gallery .user-image {

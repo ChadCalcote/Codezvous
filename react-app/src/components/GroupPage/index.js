@@ -136,7 +136,6 @@ const GroupPage = () => {
               <h3>Organizer</h3>
             </div>
             {leader ? <UserImage user={leader} /> : null}
-            <div id="group-body_sidebar_members">Member icons</div>
             <h3>Members ({`${members.length}`})</h3>
           </div>
           <div id="group-body_sidebar_gallery">
