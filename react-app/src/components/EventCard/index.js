@@ -87,7 +87,13 @@ const EventCard = ({ event, user }) => {
           </div>
           <div className="event-card_attendees_pics">
           {!attendeesForImages[0] && <img src={loader} alt="loading..."/>}
-          {attendeesForImages[0] && attendeesForImages.map((user, i) => <UserImage key={i} user={user}/>)}
+          {attendeesForImages[0] && 
+            attendeesForImages.map((user, i) => 
+              <UserImage 
+                additionalClass={`event-card_attendee_pics-${i}`} 
+                key={i} 
+                user={user}
+              />)}
           </div>
         </div>
       </div>

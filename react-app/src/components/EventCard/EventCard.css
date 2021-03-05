@@ -1,29 +1,54 @@
-.event-card_attendees_pics .user-image {
-  width: 30px;
-  height: 30px;
-  border: 2pt solid #5DACBD
+.event-card {
+  margin-bottom: 20px;
+  border-radius: 6px;
 }
 
+.event-card div {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 
-/*  Trying to get images to overlap
-.user-image + .user-image {
-  position: relative;
-  margin-left: 4px;
-} */
+.event-card_attendees_pics .user-image {
+  width: 32px;
+  height: 32px;
+  border: 1.5pt solid #5DACBD
+}
 
 .event-card_attendees_pics {
-  display: flex;
-  padding: 8px 0px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  position: relative;
+  width: 65px;
+  padding: 10px 0 0 0;
+}
+
+.event-card_attendee_pics-0 {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+  z-index: 3;
+}
+
+.event-card_attendee_pics-1 {
+  grid-column: 4 / span 4;
+  grid-row: 1;
+  z-index: 2;
+}
+
+.event-card_attendee_pics-2 {
+  grid-column: 7 / span 4;
+  grid-row: 1;
+  z-index: 1;
 }
 
 .event-card .RSVP-button {
   padding: 10px 20px;
   color: #5DACBD;
   background-color: #2C2629;
-  border: 2px solid #5DACBD;
+  border: 1.5px solid #5DACBD;
   border-radius: 2px;
 }
 
+.event-card:hover,
 .event-card .RSVP-button:hover {
   opacity: 0.8;
   box-shadow: rgba(93, 172, 189, .30) 2px 4px 16px;

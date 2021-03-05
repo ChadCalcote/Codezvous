@@ -2,10 +2,10 @@ import React from "react";
 import loader from '../../Bars-0.7s-98px.gif'
 import './UserImage.css'
 
-const UserImage = ({ user }) => {
+const UserImage = ({ user, additionalClass }) => {
 
     return (
-      <div className="user_photo">
+      <div className={`user_photo ${additionalClass? additionalClass : null}`}>
         {!user.image_url && <img src={loader} alt="loading..." />}
         {user.image_url &&  <img
         className="user-image"
