@@ -4,7 +4,8 @@
   align-items: center;
   justify-content: space-around;
   padding: 50px;
-  bottom: 0;
+  bottom: 0px;
+  position: fixed;
   width: 100vw;
   height: auto;
   opacity: 0.8;

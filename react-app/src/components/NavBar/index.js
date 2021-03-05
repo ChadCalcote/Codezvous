@@ -14,7 +14,7 @@ const NavBar = ({ setAuthenticated }) => {
 				<div className="home">
 					<img
 						className="header_logo"
-						onClick={() => history.push('/')}
+						onClick={() => history.push('/home')}
 						src={logo}
 						alt=""
 					/>

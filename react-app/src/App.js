@@ -116,7 +116,7 @@ function App() {
           <User />
           <UserImage />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
           <HomePage />
         </ProtectedRoute>
       </Switch>
