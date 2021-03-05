@@ -16,21 +16,21 @@ const NavBar = ({ setAuthenticated }) => {
 						className="header_logo"
 						onClick={() => history.push('/home')}
 						src={logo}
-						alt=""
+						alt="logo"
 					/>
 				</div>
 			</div>
 
-			<div className="header_right">
-				<div className="create_group">
-					<NavLink to="/create-group" exact={true} activeClassName="active">
-						Start a new group
-					</NavLink>
-				</div>
-				<Dropdown setAuthenticated={setAuthenticated}/>
-			</div>
-		</nav>
-	);
+      <div className="header_right">
+        <div className="create_group">
+          <NavLink to="/create-group" exact={true} activeClassName="active">
+            Start a new group
+          </NavLink>
+        </div>
+        <Dropdown setAuthenticated={setAuthenticated} />
+      </div>
+    </nav>
+  );
 };
 
 export default NavBar;

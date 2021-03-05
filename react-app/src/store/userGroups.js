@@ -7,14 +7,15 @@ export const setUserGroup = (userGroup) => {
   };
 };
 
-export const createUserGroup = (data) => {
+export const createUserGroup = (newUserGroup) => {
   return async (dispatch) => {
+    console.log(newUserGroup)
     const responseFromDb = await fetch(`/api/groups/new-user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(newUserGroup),
     });
 
     if (responseFromDb.ok) {

@@ -1,33 +1,18 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { createComment, fetchAllComments } from "../../store/comments";
-import { getCurrentUser } from "../../store/session";
-import { FaSatellite, FiSend } from 'react-icons/all'
+import { createComment } from "../../store/comments";
+import { FiSend } from 'react-icons/all'
 import './CommentForm.css'
 
-const CommentFormReact = () => {
+const CommentFormReact = ({user, commentsDisplayed, setCommentsDisplayed}) => {
 
     const params = useParams();
     const dispatch = useDispatch();
     const { eventId } = params;
-
-    const  user = useSelector(state => {
-      return state.session
-    })
-
-    const comments = useSelector(state => {
-      return state.comments
-    })
     
     const [comment, setComment] = useState([])
-
-    useEffect(() => {
-      dispatch(getCurrentUser())
-      dispatch(fetchAllComments(eventId))
-    }, [dispatch, comments])
-
 
     const onSubmit = async (event) => {
         event.preventDefault();
@@ -38,6 +23,7 @@ const CommentFormReact = () => {
             event_id: parseInt(eventId)
         };
         dispatch(createComment(newComment));
+        setCommentsDisplayed([...commentsDisplayed, newComment])
         setComment("");
     }
 

@@ -14,6 +14,7 @@ import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
 import RSVP from '../RSVP';
+import loader from  '../../Bars-0.7s-98px.gif'
 import "./EventPage.css";
 
 const EventPage = () => {
@@ -23,70 +24,58 @@ const EventPage = () => {
     const [ event, setEvent ] = useState({});
     const [ galleryEvents, setGalleryEvents ] = useState([]);
     const [ numComments, setNumComments ] = useState([]);
-    const [leader, setLeader] = useState({});
-    const [attendees, setAttendees] = useState([]);
+    const [ commentsDisplayed, setCommentsDisplayed ] = useState([]);
+    const [ leader, setLeader ] = useState({});
+    const [ attendees, setAttendees ] = useState([]);
+    const [ attending, setAttending ] = useState(false);
 
-    const events = useSelector(reduxState => {
-      return reduxState.events;
-    });
-
-    const group = useSelector(reduxState => {
-      return reduxState.groups;
-    });
-
-    const users = useSelector(reduxState => {
-      return reduxState.users;
-    });
-
-    const comments = useSelector(reduxState => {
-      return reduxState.comments;
-    });
-
-    const currentUser = useSelector(reduxState => {
-      return reduxState.session;
-    });
+    const events = useSelector(state => state.events);  // all events ever
+    const group = useSelector(state => state.groups);  // 
+    const users = useSelector(state => state.users);  // event attendees
+    const comments = useSelector(state => state.comments); // event comments
+    const currentUser = useSelector(state => state.session);
 
     useEffect(() => {
-      dispatch(fetchAllEvents());
+      dispatch(fetchAllEvents()); // sets events redux.....triggers setSelectedEvents
       dispatch(fetchAllComments(eventId));
       dispatch(fetchEventUsers(eventId));
-    }, []);
+    }, [dispatch, eventId]);
+
+    // useEffect(() => {
+    //   dispatch(fetchAllComments(eventId));
+    // }, [CommentForm]);
 
     useEffect(() => {
-      dispatch(fetchAllComments(eventId));
-    }, [CommentForm]);
-
-    useEffect(() => {
-      setNumComments(comments.length);
+      if(Array.isArray(comments)){
+        setNumComments(comments.length);
+        setCommentsDisplayed(comments);
+      }
     }, [comments]);
 
     useEffect(() => {
-      function chooseOneEvent(events) {
+      function setSelectedEvents(events) {
         const eventsArray = events.events
         if (Array.isArray(eventsArray)){
-          setEvent(eventsArray.find(event => eventId == event.id));
-        }
-      };
-      function chooseFourEvents(events) {
-        const eventsArray = events.events
-        if (Array.isArray(eventsArray)){
-          setGalleryEvents(eventsArray.slice(0,3));
+          setEvent(eventsArray.find(event => eventId == event.id)); // sets event on page
+          setGalleryEvents(eventsArray.slice(0,3));  // sets gallery of recommended events
         }
       }
-      chooseOneEvent({events});
-      chooseFourEvents({events});
-    }, [events]);
+      setSelectedEvents({events}); //triggers redux state of group
+    }, [events, eventId]);
 
     useEffect(() => {
-      dispatch(fetchOneGroup(event.group_id));
-    }, [event]);
+      dispatch(fetchOneGroup(event.group_id)); // sets redux state of groups to group hosting event....triggers group leader, attendees, attending
+    }, [dispatch, event]);
 
     useEffect(() => {
       if (Array.isArray(users)){
-        setLeader(users.find(user => user.id == group.leader_id));
-        setAttendees(users);
+        setLeader(users.find(user => user.id == group.leader_id)); //sets group leader
+        setAttendees(users); //sets attendees to be users redux state
+        if (users.find(user => user.id == currentUser.id)){
+          setAttending(true) //sets if user is attending event
+        }
       }
-    }, [users, group]);
+    }, [users, currentUser.id, group]);
 
     return (
       <div className="event-page_wrapper">
@@ -99,10 +88,10 @@ const EventPage = () => {
               <h1>{event.event_name}</h1>
             </div>
             <div className="event-header_leader">
-              {leader ? <UserImage className="leader-image" user={leader} />: <img src='../../Bars-0.7s-98px.gif'/>}
+              {leader ? <UserImage className="leader-image" user={leader} />: <img src={loader} alt="loading..."/>}
               <div className="hosted-by">
                 Hosted by
-                {leader ? <h3>{leader.username}</h3> : <img src='../../Bars-0.7s-98px.gif'/> }
+                {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..."/>}
               </div>
             </div>
           </div>
@@ -116,20 +105,20 @@ const EventPage = () => {
                 <h2 id="body-color">Attendees ({users.length})</h2>
               <div id="event-body_feed_attendees">
                 { attendees.slice(0, 8).map(attendee => {
-                  return <AttendeeCard user={attendee} />
+                  return <AttendeeCard user={attendee} key={attendee.id}/>
                 })}
               </div>
               <div id="event-body_feed_comments">
                 <h2 id="body-color">Comments ({numComments? numComments : 0})</h2>
               </div>
-              <CommentForm />
+              <CommentForm commentsDisplayed={commentsDisplayed} setCommentsDisplayed={setCommentsDisplayed} user={currentUser}/>
               <div className="comment-feeds">
-                <CommentFeed comments={comments}/>
+                <CommentFeed comments={commentsDisplayed}/>
               </div>
             </div>
             <div className="event-body_sidebar">
                 <div id="event-body_sidebar_group">
-                  <img src={group.image_url} href={`/groups/${group.id}`} />
+                  <img src={group.image_url} href={`/groups/${group.id}`} alt='group'/>
                   <br />
                   <a href={`/groups/${group.id}`}>{group.group_name}</a>
                   <h4>Public Group</h4>
@@ -147,14 +136,21 @@ const EventPage = () => {
           <hr color="#2C2629"/>
           <div className="event-sim-events">
             <h2 id="body-color">Similar events nearby</h2>
-            <EventGallery events={events} parent={"eventPage"}/>
+            <EventGallery events={events} parent={"eventPage"} user={currentUser}/>
           </div>
         </div>
-        <footer className="event-footer">
+        <footer hidden={attending} className="event-footer">
           <div className="event-footer_contents">
             {event.start_time && event.end_time && <h3>{formatDate(event.start_time, "short")} • {formatTime(event.end_time, "short")}</h3>}
             <h2>{event.event_name}</h2>
-            <RSVP event={event}/>
+            <RSVP 
+              event={event}
+              user={currentUser}
+              attendees={attendees} 
+              setAttendees={setAttendees}
+              attending={attending}
+              setAttending={setAttending}
+              />
           </div>
         </footer>
       </div>

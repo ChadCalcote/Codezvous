@@ -9,12 +9,24 @@ Dark Pastel Green: #35C04A
 * {
     box-sizing: border-box;
     text-decoration: none;
+  }
+  
+  html,body {
+    font-family: "Montserrat";
+    margin: 0 0 100px 0;
+    padding: 0;
+    color: #5DACBD;
+    background-color: #161315;
 }
 
-html,body {
-    font-family: "Montserrat";
-    margin: 0;
-    padding: 0;
-    background-color: #161315;
+.authButton {
+    padding: 10px;
     color: #5DACBD;
+    border: 2px solid #5DACBD;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.authButton:hover {
+    opacity: 0.8;
 }

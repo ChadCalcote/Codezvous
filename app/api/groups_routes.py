@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required
 from app.models import User, Group, Event, RSVP, db, Users_Group
 from app.forms import GroupForm
+from random import random
 
 
 groups_routes = Blueprint('groups', __name__)
@@ -34,11 +35,28 @@ def get_leader(id):
     leader_id = User.query.join(Group).filter(Group.id == id).filter(User.id == Group.leader_id).all()
     return jsonify([leader.to_dict() for leader in leader_id])
 
+
 # Retrieve all group members
 @groups_routes.route('/<int:id>/members')
 def get_members(id):
     members = User.query.join(Users_Group).filter(Users_Group.group_id == id).all()
     return jsonify([member.to_dict() for member in members])
+
+
+# Retrieve some group members
+@groups_routes.route('/<int:id>/members/preview')
+def get_some_members(id):
+    members = User.query.join(Users_Group).filter(Users_Group.group_id == id).all()
+    members_dict = [member.to_dict() for member in members]
+    select_members = [members_dict[int(random() * len(members_dict))], members_dict[int(random() * len(members_dict))], members_dict[int(random() * len(members_dict))]]
+    return jsonify(select_members)
+
+
+# Retrieve number of members in a group
+@groups_routes.route('/<int:id>/members/total')
+def get_num_members(id):
+    members = User.query.join(Users_Group).filter(Users_Group.group_id == id).count()
+    return jsonify(members)
 
 
 # Create a group
@@ -54,6 +72,7 @@ def post():
         db.session.commit()
         return new_group.to_dict()
     return "Bad Data"
+
 
 # Create a group [TEST]
 @groups_routes.route('/test', methods=["POST"])
@@ -117,6 +136,7 @@ def delete(id):
     db.session.commit()
 
     return {"message": "success"}
+
 
 # Create a user_groups record
 @groups_routes.route('/new-user', methods=["POST"])

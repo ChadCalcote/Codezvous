@@ -1,4 +1,4 @@
-.RSVP-button {
+.demo {
     padding: 10px;
     color: #5DACBD;
     border: 2px solid #5DACBD;
@@ -6,6 +6,6 @@
     border-radius: 20px;
 }
 
-.RSVP-button:hover {
+.demo:hover {
     opacity: 0.8;
 }

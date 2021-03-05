@@ -1,40 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchEventUsers } from "../../store/users";
 import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
 import RSVP from "../RSVP"
+import loader from  '../../Bars-0.7s-98px.gif'
 import UserImage from "../UserImage";
 import { formatDate, formatTime } from "../../dateFunctions";
 import "./EventCard.css";
 
-const EventCard = ({ event }) => {
-  const dispatch = useDispatch();
+const EventCard = ({ event, user }) => {
 
-  const [ users, setUsers ] = useState([])
+  const [ attendees, setAttendees ] = useState([])
+  const [ attendeesForImages, setAttendeesForImages ] = useState([])
+  const [ attending, setAttending ] = useState(false)
 
   useEffect(() =>{
-    const fetchUsers = async() => {
-      const response = await fetch(`/api/events/${event.id}/attendees`)
-      const users = await response.json()
-      setUsers(users)
+    const selectRandom = (array, num) =>{
+      if (array.length <= num) return array;
+      const newArr = [];
+      const indicies = new Set();
+      while (newArr.length < num){
+        const index = Math.floor(Math.random() * array.length)
+        if (!indicies.has(index)){
+          newArr.push(array[index])        
+          indicies.add(index);
+        }
+      }
+      return newArr
     }
-    fetchUsers()
-  },[])
+    const fetchAttendees = async() => {
+      const response = await fetch(`/api/events/${event.id}/attendees`)
+      const attendees = await response.json()
+      setAttendeesForImages(selectRandom(attendees, 3))
+      setAttendees(attendees)
+    }
+    fetchAttendees()
+  },[event.id])
+
+  useEffect(() => {
+    if(Array.isArray(attendees) && attendees.length > 0){
+      setAttending(attendees.map(attendee=>attendee.id).includes(user.id))
+    }
+  },[attendees, user.id])
 
   return (
     <div className="event-card">
       <a href={`/events/${event.id}`}>
       <div className="event-card_date">
-        {!event.start_time && <img src='../../Bars-0.7s-98px.gif'/>}
+        {!event.start_time && <img src={loader} alt="loading..."/>}
         {`${formatTime(event.start_time)} ${formatDate(event.start_time, 'long')}`} 
-        <RSVP event={event}/>
+        <RSVP 
+          hidden={attending}
+          event={event} 
+          user={user}
+          attending={attending}
+          setAttending={setAttending}
+          attendees={attendees}
+          setAttendees={setAttendees}
+          />
+        <div hidden={!attending}> 
+          You are attending this event.
+        </div>
       </div>
       <div className="event-card-info">
         <div className="event-card_title">{event.event_name}</div>
         <div className="event-card_location">
           {event.virtual ?
               <>
-                <BsCameraVideo />Virtual event
+                <BsCameraVideo />{`  Virtual event`}
               </> 
             : 
                 <div id="event-card_location_physical">
@@ -52,10 +83,11 @@ const EventCard = ({ event }) => {
         <div className="event-card_description">{event.description}</div>
         <div className="event-card_attendees">
           <div className="event-card_attendees_total">
-            {users && users.length > 0 ? `${users.length} going` : "1 going"}
+            {attendees && attendees.length > 0 ? `${attendees.length} going` : "1 going"}
           </div>
           <div className="event-card_attendees_pics">
-          {users.length > 0 ? users.slice(0, 3).map(user => <UserImage key={user.id} user={user}/>) : <BsPerson />}
+          {!attendeesForImages[0] && <img src={loader} alt="loading..."/>}
+          {attendeesForImages[0] && attendeesForImages.map((user, i) => <UserImage key={i} user={user}/>)}
           </div>
         </div>
       </div>
