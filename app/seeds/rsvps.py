@@ -5,8 +5,19 @@ from random import random
 
 
 def seed_rsvps():
-    random_user = int(random() * 300 ) + 1
-    random_event = int(random() * 50 ) + 1
+    demo_rsvp = RSVP(user_id=1, event_id=101)
+    db.session.add(demo_rsvp)
+    db.session.commit()
+
+
+    demo_rsvp = RSVP(user_id=1, event_id=102)
+    db.session.add(demo_rsvp)
+    db.session.commit()
+
+    
+    demo_rsvp = RSVP(user_id=1, event_id=103)
+    db.session.add(demo_rsvp)
+    db.session.commit()
 
     user = 1
     event = 1
@@ -21,7 +32,7 @@ def seed_rsvps():
 
     for _ in range (500):
         random_user = int(random() * 230 ) + 70
-        random_event = int(random() * 100 ) + 1
+        random_event = int(random() * 102 ) + 1
         demo_rsvp = RSVP(user_id=random_user, event_id=random_event)
 
         db.session.add(demo_rsvp)

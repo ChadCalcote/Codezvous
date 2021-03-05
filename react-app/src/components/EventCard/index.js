@@ -11,7 +11,7 @@ const EventCard = ({ event, user }) => {
   const [ attendees, setAttendees ] = useState([])
   const [ attendeesForImages, setAttendeesForImages ] = useState([])
   const [ attending, setAttending ] = useState(false)
-
+  console.log(event.id)
   useEffect(() =>{
     const selectRandom = (array, num) =>{
       if (array.length <= num) return array;
@@ -24,16 +24,19 @@ const EventCard = ({ event, user }) => {
           indicies.add(index);
         }
       }
+      console.log("NEW ARR", newArr)
       return newArr
     }
     const fetchAttendees = async() => {
       const response = await fetch(`/api/events/${event.id}/attendees`)
       const attendees = await response.json()
+      console.log(attendees)
       setAttendeesForImages(selectRandom(attendees, 3))
       setAttendees(attendees)
     }
     fetchAttendees()
-  },[event.id])
+    console.log(attendeesForImages)
+  },[event])
 
   useEffect(() => {
     if(Array.isArray(attendees) && attendees.length > 0){

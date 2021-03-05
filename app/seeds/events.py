@@ -272,8 +272,8 @@ def seed_events():
     # =====================================================
 
     demo_event3 = Event(event_name='Slightly Above Average C# Meetup', description='Ted Talk by Joe Alves on all the amazing things you can do with C#',
-                        address='480 E Broad St', city='Columbus', state='OH', zip_code=43215,
-                        type='Info Session', start_time='2021-02-02 08:45:00', end_time='2020-02-02 10:30:00', group_id=2)
+                        address='480 E Broad St', city='Fort Worth', state='TX', zip_code=43215,
+                        type='Info Session', start_time='2021-02-02 08:45:00', end_time='2020-02-02 10:30:00', group_id=1)
     db.session.add(demo_event3)
     db.session.commit()
 
