@@ -64,139 +64,165 @@ const EventFormReact = () => {
     }
 
     return ( 
-        <form onSubmit={onSubmit}>
-            <div>
-                <label>Event Name</label>
-                <input
-                    type="text"
-                    name="eventName"
-                    onChange={(event) => setEventName(event.target.value)}
-                    value={eventName}
-                ></input>
-            </div>
-            <div>
-                <label>Description</label>
-                <input
-                    type="text"
-                    name="description"
-                    onChange={(event) => setDescription(event.target.value)}
-                    value={description}
-                ></input>
-            </div>
-            <div>
-                <label>Address</label>
-                <input
-                    type="text"
-                    name="address"
-                    onChange={(event) => setAddress(event.target.value)}
-                    value={address}
-                ></input>
-            </div>
-            <div>
-                <label>City</label>
-                <input
-                    type="text"
-                    name="city"
-                    onChange={(event) => setCity(event.target.value)}
-                    value={city}
-                ></input>
-            </div>
-            <div>
-                <label>State</label>
-                <input
-                    type="text"
-                    name="state"
-                    onChange={(event) => setState(event.target.value)}
-                    value={state}
-                ></input>
-            </div>
-            <div>
-                <label>Zip Code</label>
-                <input
-                    type="number"
-                    name="zipCode"
-                    onChange={(event) => setZipCode(event.target.value)}
-                    value={zipCode}
-                ></input>
-            </div>
-            <div>
-                <label>Virtual Event?</label>
-                <input
-                    type="checkbox"
-                    name="isVirtual"
-                    checked={virtual}
-                    onChange={(event) => setVirtual(event.target.value)}
-                    value={virtual}
-                ></input>
-            </div>
-            <div>
-                <label>Event Type</label>
-                <select 
-                    onChange={(event) => setType(event.target.value)}
-                    value={type}
-                >
-                    <option value=''>Select Event Type</option>
-                    <option value='workshop'>Workshop</option>
-                    <option value='competition'>Competition</option>
-                    <option value='networking'>Networking Event</option>
-                    <option value='film'>Film</option>
-                    <option value='job fair'>Job Fair</option>
-                    <option value='talk'>Talk</option>
-                    <option value='pairboarding'>Pairboarding</option>
-                    <option value='meetup'>Meetup</option>
-                    <option value='hackathon'>Hackathon</option>
-                    <option value='meet and greet'>Meet and Greet</option>
-                    <option value='ama'>AMA</option>
-                    <option value='interview'>Interview</option>
-                    <option value='panel'>Panel</option>
-                    <option value='conference'>Conference</option>
-                    <option value='seminar'>Seminar</option>
-                    <option value='hang'>Hang</option>
-                    <option value='mixer'>Mixer</option>
-                    <option value='social'>Social</option>
-                    <option value='info session'>Info Session</option>
-                    <option value='dance'>Dance</option>
-                    <option value='whiteboard'>Whiteboard</option>
-                    {/* <option value='virtual'>Virtual event</option> not sure about this one */}
-                </select>
-            </div>
-            <div>
-                <label>Image URL</label>
-                <input
-                    type="text"
-                    name="imageUrl"
-                    onChange={(event) => setImageUrl(event.target.value)}
-                    value={imageUrl}
-                ></input>
-            </div>
-            <div>
-                <label>Group</label>
-                <input
-                    type="number"
-                    name="group_id"
-                    onChange={(event) => setGroupId(event.target.value)}
-                    value={groupId}
-                ></input>
-            </div>
-            <div>
-                <label>Choose a time for your meeting:</label>
-                <input type="datetime-local"
-                    value={startTime}
-                    onChange={(event) => setStartTime(event.target.value)}
-                    required
+        <form className="event-form"onSubmit={onSubmit}>
+            <div className="form-wrapper">
+                <div>
+                    <label>Event Name</label>
+                    <br />
+                    <input
+                        type="text"
+                        name="eventName"
+                        onChange={(event) => setEventName(event.target.value)}
+                        value={eventName}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>Description</label>
+                    <br />
+                    <input
+                        type="text"
+                        name="description"
+                        onChange={(event) => setDescription(event.target.value)}
+                        value={description}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>Address</label>
+                    <br />
+                    <input
+                        type="text"
+                        name="address"
+                        onChange={(event) => setAddress(event.target.value)}
+                        value={address}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>City</label>
+                    <br />
+                    <input
+                        type="text"
+                        name="city"
+                        onChange={(event) => setCity(event.target.value)}
+                        value={city}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>State</label>
+                    <br />
+                    <input
+                        type="text"
+                        name="state"
+                        onChange={(event) => setState(event.target.value)}
+                        value={state}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>Zip Code</label>
+                    <br />
+                    <input
+                        type="number"
+                        name="zipCode"
+                        onChange={(event) => setZipCode(event.target.value)}
+                        value={zipCode}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>Virtual Event?</label>
+                    <br />
+                    <input
+                        type="checkbox"
+                        name="isVirtual"
+                        checked={virtual}
+                        onChange={(event) => setVirtual(event.target.value)}
+                        value={virtual}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>Event Type</label>
+                    <br />
+                    <select 
+                        onChange={(event) => setType(event.target.value)}
+                        value={type}
                     >
-                </input>
+                        <option value=''>Select Event Type</option>
+                        <option value='workshop'>Workshop</option>
+                        <option value='competition'>Competition</option>
+                        <option value='networking'>Networking Event</option>
+                        <option value='film'>Film</option>
+                        <option value='job fair'>Job Fair</option>
+                        <option value='talk'>Talk</option>
+                        <option value='pairboarding'>Pairboarding</option>
+                        <option value='meetup'>Meetup</option>
+                        <option value='hackathon'>Hackathon</option>
+                        <option value='meet and greet'>Meet and Greet</option>
+                        <option value='ama'>AMA</option>
+                        <option value='interview'>Interview</option>
+                        <option value='panel'>Panel</option>
+                        <option value='conference'>Conference</option>
+                        <option value='seminar'>Seminar</option>
+                        <option value='hang'>Hang</option>
+                        <option value='mixer'>Mixer</option>
+                        <option value='social'>Social</option>
+                        <option value='info session'>Info Session</option>
+                        <option value='dance'>Dance</option>
+                        <option value='whiteboard'>Whiteboard</option>
+                        {/* <option value='virtual'>Virtual event</option> not sure about this one */}
+                    </select>
+                </div>
+                <br />
+                <div>
+                    <label>Image URL</label>
+                    <br />
+                    <input
+                        type="text"
+                        name="imageUrl"
+                        onChange={(event) => setImageUrl(event.target.value)}
+                        value={imageUrl}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>Group</label>
+                    <br />
+                    <input
+                        type="number"
+                        name="group_id"
+                        onChange={(event) => setGroupId(event.target.value)}
+                        value={groupId}
+                    ></input>
+                </div>
+                <br />
+                <div>
+                    <label>Choose a time for your meeting:</label>
+                    <br />
+                    <input type="datetime-local"
+                        value={startTime}
+                        onChange={(event) => setStartTime(event.target.value)}
+                        required
+                        >
+                    </input>
+                </div>
+                <br />
+                <div>
+                    <label>Choose a time for your meeting:</label>
+                    <br />
+                    <input type="datetime-local" 
+                        value={endTime}
+                        onChange={(event) => setEndTime(event.target.value)}
+                        required
+                        >
+                    </input>
+                </div>
+                <br />
+                <button className="event-form-submit-button" type="submit">Create Event</button>
             </div>
-            <div>
-                <label>Choose a time for your meeting:</label>
-                <input type="datetime-local" 
-                    value={endTime}
-                    onChange={(event) => setEndTime(event.target.value)}
-                    required
-                    >
-                </input>
-            </div>
-            <button type="submit">Create Event</button>
       </form>
     );
 };
