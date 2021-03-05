@@ -145,6 +145,7 @@ const EventPage = () => {
           <h2>{event.event_name}</h2>
         </div>
         <div className="event-footer_contents">
+          <h3 hidden={!attending}>You are attending this event.</h3>
           <RSVP
             event={event}
             user={currentUser}
