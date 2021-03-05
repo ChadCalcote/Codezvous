@@ -24,7 +24,16 @@
     margin-top: 2px;
   }
   
-  .event-form-submit-button, select {
+  .event-form-submit-button {
+    padding: 10px;
+    color: #5DACBD#2C2629;
+    background-color: #5DACBD;
+    border: 2px solid #5DACBD;
+    border-radius: 999px;
+    font-size: 16px;
+  }
+
+  select {
     padding: 10px;
     color: #5DACBD;
     background-color: #2C2629;

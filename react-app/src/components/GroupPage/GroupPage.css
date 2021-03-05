@@ -64,6 +64,23 @@
     margin: 10px;
 }
 
+#group-card_join-button {
+    padding: 5px;
+    color: #5DACBD;
+    border: 2px solid #5DACBD;
+    background-color: transparent;
+}
+
+#group-card_join-button:hover {
+    padding: 5px;
+    color: #5DACBD;
+    border: 2px solid ;
+    background-color: #2C2629;
+    opacity: 0.9;
+    box-shadow: rgba(93, 172, 189, 0.302) 2px 4px 16px;
+    border-color: hsla(191, 42%, 55%, 0.702);
+}
+
 .create-event-button > a, .membership-button {
     padding: 10px;
     color: #5DACBD;
