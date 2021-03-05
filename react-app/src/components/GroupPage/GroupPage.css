@@ -7,6 +7,12 @@
 .group-header {
     padding: 10px 30px;
     display: flex;
+    justify-content: center;
+}
+.group-header-content {
+    padding: 10px 30px;
+    display: flex;
+    width: 60vw;
 }
 
 .group-header_img {
@@ -30,7 +36,9 @@
 .group-body {
     display: flex;
     padding: 0px 30px;
-}
+    justify-content: center;
+    width: 60vw;
+  }
 
 .group-header,
 .group-footer {
@@ -51,6 +59,7 @@
     background-color: #2C2629;
     border-radius: 4px;
     margin: 20px;
+    height: 670px;
 }
 
 #group-body_sidebar_gallery {
