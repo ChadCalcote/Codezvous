@@ -81,6 +81,7 @@ const EventFormReact = () => {
                     <label>Description</label>
                     <br />
                     <input
+                        className="description"
                         type="text"
                         name="description"
                         onChange={(event) => setDescription(event.target.value)}
