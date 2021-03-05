@@ -30,3 +30,11 @@ html,body {
 .authButton:hover {
     opacity: 0.8;
 }
+
+a {
+    text-decoration: none;
+    color: #5dacbd;
+}
+
+
+

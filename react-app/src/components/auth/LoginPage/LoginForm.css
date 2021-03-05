@@ -37,3 +37,12 @@
     margin-top: 5px;
   }
  
+  #footer {
+    bottom: 0;
+    position: absolute;
+  }
+
+  .footer-container {
+    margin-top: 155px;
+    padding-bottom: 250px;
+  }
