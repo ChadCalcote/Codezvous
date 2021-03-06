@@ -62,12 +62,12 @@ function App() {
           // setAuthenticated={setAuthenticated}
           />
         </ProtectedRoute>
-        <ProtectedRoute path="/groups/create/event" exact={true}>
+        <Route path="/groups/create/event" exact={true}>
           <EventFormReact
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
+          // authenticated={authenticated}
+          // setAuthenticated={setAuthenticated}
           />
-        </ProtectedRoute>
+        </Route>
         {/* <Route exact path="/events/test">
           <EventFormReact
           authenticated={authenticated}

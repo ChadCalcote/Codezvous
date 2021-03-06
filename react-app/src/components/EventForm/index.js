@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import "./EventForm.css";
 
 const createEvent = async (event_name, description, address, city, state, zip_code, virtual, type, image_url, group_id, start_time, end_time, status) => {
@@ -28,7 +28,7 @@ const createEvent = async (event_name, description, address, city, state, zip_co
 };
 
 const EventFormReact = () => {
-
+  const location = useLocation()
   const history = useHistory()
   const [eventName, setEventName] = useState("");
   const [description, setDescription] = useState("");
@@ -43,6 +43,10 @@ const EventFormReact = () => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [status, setStatus] = useState("Ongoing");
+
+  useEffect(() => {
+    setGroupId(location.state.groupId)
+  },[location])
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -186,17 +190,6 @@ const EventFormReact = () => {
             name="imageUrl"
             onChange={(event) => setImageUrl(event.target.value)}
             value={imageUrl}
-          />
-        </div>
-        <div className="event-form-label">
-          <label>Group</label>
-        </div>
-        <div className="event-form-input">
-          <input
-            type="number"
-            name="group_id"
-            onChange={(event) => setGroupId(event.target.value)}
-            value={groupId}
           />
         </div>
         <div className="event-form-label">

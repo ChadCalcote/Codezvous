@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link, Redirect } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOneGroup } from "../../store/groups"
@@ -13,6 +13,7 @@ import UserImage from '../UserImage';
 import "./GroupPage.css"
 
 const GroupPage = () => {
+  const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -25,7 +26,6 @@ const GroupPage = () => {
   const [members, setMembers] = useState([]);
   const [userGroupState, setUserGroupState] = useState([])
 
-  // If session.userId === leader.id make edit/delete/add buttons available
   const group = useSelector(state => state.groups); // Returning an Object
   const groupUsers = useSelector(state => state.users);// Returning a list
   const currentUser = useSelector(state => state.session);
@@ -44,6 +44,14 @@ const GroupPage = () => {
     setIsMember(true);
     dispatch(fetchGroupUsers(groupId));
   };
+
+  const handleCreateEvent = async (event) => {
+    event.preventDefault();
+    history.push({
+      pathname: "/groups/create/event",
+      state: {groupId}
+    })
+  }
 
   useEffect(() => {
     if (Array.isArray(groupUsers)) {
@@ -109,7 +117,7 @@ const GroupPage = () => {
                 <>
                   <h2>You're the leader</h2>
                   <div className="create-event-button">
-                    <Link to="/groups/create/event">Create Event</Link>
+                    <button onClick={handleCreateEvent}>Create Event</button>
                   </div>
                 </>
                 : isMember ?
