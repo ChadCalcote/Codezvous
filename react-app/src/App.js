@@ -14,6 +14,7 @@ import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
+import HomePageContainer from "./components/HomePageContainer";
 import EventFormReact from "./components/EventForm";
 
 function App() {
@@ -39,7 +40,9 @@ function App() {
       <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
         <Route path="/" exact={true}>
-          <Splash />
+          <HomePageContainer
+          authenticated={authenticated}
+          />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -104,9 +107,9 @@ function App() {
           <User />
           <UserImage />
         </ProtectedRoute>
-        <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
+        {/* <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
           <HomePage />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
       </Switch>
       <Footer
         authenticated={authenticated}
