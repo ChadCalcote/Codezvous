@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../../services/auth';
 import './SignUpForm.css';
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -52,73 +52,73 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     <div className="page-container">
       <form className="signup-form" onSubmit={onSignUp}>
         <div className="form-wrapper">
-          <div>
+          <div className="form-label">
             <label>User Name</label>
-            <br />
+          </div>
+          <div className="form-input">
             <input
               type="text"
               name="username"
               onChange={updateUsername}
               value={username}
-            ></input>
+            />
           </div>
-          <br />
-          <div>
+          <div className="form-label">
             <label>Email</label>
-            <br />
+          </div>
+          <div className="form-input">
             <input
               type="text"
               name="email"
               onChange={updateEmail}
               value={email}
-            ></input>
+            />
           </div>
-          <br />
-          <div>
-            <label>Profile Photo</label>
-            <br />
+          <div className="form-label">
+            <label>Profile Photo Url</label>
+          </div>
+          <div className="form-input">
             <input
               type="text"
               name="imageUrl"
               onChange={updateImageUrl}
               value={imageUrl}
-            ></input>
+            />
           </div>
-          <br />
-          <div>
+          <div className="form-label">
             <label>Zip Code</label>
-            <br />
+          </div>
+          <div className="form-input">
             <input
               type="text"
               name="zipCode"
               onChange={updateZipCode}
               value={zipCode}
-            ></input>
+            />
           </div>
-          <br />
-          <div>
+          <div className="form-label">
             <label>Password</label>
-            <br />
+          </div>
+          <div className="form-input">
             <input
               type="password"
               name="password"
               onChange={updatePassword}
               value={password}
-            ></input>
+            />
           </div>
-          <br />
-          <div>
+          <div className="form-label">
             <label>Repeat Password</label>
-            <br />
+          </div>
+          <div className="form-input">
             <input
               type="password"
               name="repeat_password"
               onChange={updateRepeatPassword}
               value={repeatPassword}
               required={true}
-            ></input>
+            />
           </div>
-          <br />
           <button className="signup-buttons" type="submit">Sign Up</button>
         </div>
       </form>
