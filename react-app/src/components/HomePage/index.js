@@ -58,8 +58,10 @@ const HomePage = () => {
             )
         } else if (events) {
             return (
-            <div className="home-page-events">
+            <div className="home-page-events-container">
+              <div className="home-page-events">
                 <EventGallery events={events} user={user} parent={"home"}/>
+              </div>
             </div>
             )
         }
@@ -93,9 +95,6 @@ const HomePage = () => {
             <div className="home-page_body">
                 {gallerySwap()}
             </div>
-            <div className="home-page_sidebar">
-            </div>
-            {/* <Footer /> */}
         </div>
     )
 }

@@ -1,185 +1,178 @@
 .home-page-groups {
-    display: flex;
-    align-content: flex-start;
-    flex-direction: column;
-    /* flex-wrap: wrap; */
-    /* width: 980px; */
+  display: flex;
+  align-content: flex-start;
+  flex-direction: column;
 }
 
 .home-page_header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #2C2629;
-    padding: 35px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #2c2629;
+  padding: 35px 0;
+}
+
+.home-page_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-page .event-gallery {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 30px;
+  align-items: center;
+  max-width: 55vw;
 }
 
 .home-page-events .event-card {
-    padding: 40px;
+  padding: 40px;
 }
 
 .home-page-events .event-card_date {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 5px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px 20px;
 }
 
 .home-page-events a {
-    display: flex;
-    margin: 5px 30px 0px;
+  display: flex;
+  margin: 5px 30px 0px;
 }
 
 .home-page-events .event-card_title {
-    font-size: 30px;
-    font-weight: 700;
+  font-size: 30px;
+  font-weight: 700;
 }
 
 .home-page-events #event-card_location_physical {
-    display: flex;
+  display: flex;
 }
 
 .home-page-events #event-card_location_physical div {
-    padding: 0px 5px;
-}
-
-.home-page-events div {
-    margin-bottom: 5px;
-}
-
-.home-page-events .event-card_description {
-    width: 40vw;
+  padding: 0px 5px;
 }
 
 .home-page-events .event-card_attendees {
-    font-size: 20px;
-    font-weight: 700;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .toggle {
-    padding: 0px 25px;
-    color: #5DACBD;
-    background-color: #2C2629;
-    border: 2px solid #5DACBD;
+  padding: 0px 25px;
+  color: #5dacbd;
+  background-color: #2c2629;
+  border: 2px solid #5dacbd;
 }
 
-#group-toggle{
-    border-radius: 2pt 0pt 0pt 2pt;
+#group-toggle {
+  border-radius: 2pt 0pt 0pt 2pt;
 }
 
-#event-toggle{
-    border-radius: 0pt 2pt 2pt 0pt;
+#event-toggle {
+  border-radius: 0pt 2pt 2pt 0pt;
 }
 
 .toggle:active {
-    background-color: #5DACBD;
-    color: #2C2629;
+  background-color: #5dacbd;
+  color: #2c2629;
 }
 
 .toggle:hover {
-opacity: 0.8;
+  opacity: 0.8;
 }
 
 .home-page_body a {
-    text-decoration: none;
-    color: #5dacbd;
+  text-decoration: none;
+  color: #5dacbd;
 }
 
-/* .group-suggested-gallery {
-    
-} */
-#your-groups-header, 
+#your-groups-header,
 #suggested-groups-header {
-    margin-left: 20vw;
-    padding-left: 25px;
+  margin-left: 20vw;
+  padding-left: 25px;
 }
 
 #group-break-bar {
-    width: 60vw;
+  width: 60vw;
 }
 
 .group-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    text-align: center;
-    width: 980px;
-    padding-bottom: 20px;
-    margin: auto;
-    text-decoration: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+  width: 50vw;
+  padding-bottom: 20px;
+  margin: auto;
+  text-decoration: none;
 }
 
 .your-groups .group-card {
-    margin-bottom: 20px;
-    border: solid;
-    border-width: 2px;
-    border-color: #2C2629;
-    border-radius: 25px;
-    background-color: #2C2629;
-    max-width: 240px;
-    height: 240px
+  margin-bottom: 20px;
+  border: solid;
+  border-width: 2px;
+  border-color: #2c2629;
+  border-radius: 25px;
+  background-color: #2c2629;
+  max-width: 240px;
+  height: 240px;
 }
 
 .suggested-groups .group-card {
-    margin-bottom: 20px;
-    border: solid;
-    border-width: 2px;
-    border-color: #2C2629;
-    border-radius: 25px;
-    background-color: #2C2629;
-    max-width: 313px;
-    height: 300px;
+  margin-bottom: 20px;
+  border: solid;
+  border-width: 2px;
+  border-color: #2c2629;
+  border-radius: 25px;
+  background-color: #2c2629;
+  max-width: 313px;
+  height: 300px;
 }
 
 .your-groups .group-card:hover,
 .suggested-groups .group-card:hover {
-    box-shadow: rgba(93, 172, 189, .30) 2px 4px 16px;
+  box-shadow: rgba(93, 172, 189, 0.3) 2px 4px 16px;
 }
 
 .suggested-groups .group-card #group-card_join-button {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .suggested-groups .group-card .group-card_name {
-    margin-top: 10px;
-    height: 40px;
+  margin-top: 10px;
+  height: 40px;
 }
 
 .your-groups .group-card_photo > img {
-    width: 236px;
-    height: 100%;
-    border-radius: 25px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+  width: 236px;
+  height: 100%;
+  border-radius: 25px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .suggested-groups .group-card_photo > img {
-    width: 309px;
-    height: 180px;
-    overflow: hidden;
-    border-radius: 25px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+  width: 309px;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 25px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
-.home-page-events {
-    display: flex;
-    margin-left: 20vw;
-    width: 60vw;
-    justify-content: center;
-}
-
-.event-card .user-image{
-    flex-direction: row;
+.event-card .user-image {
+  flex-direction: row;
 }
 
 .event-gallery .event-card {
-    border: 1px solid #5dacbd;
-    background-color: #2C2629;
-    width: 100%;
-    padding: 15px;
+  border: 1px solid #5dacbd;
+  background-color: #2c2629;
+  padding: 15px;
 }
 
 .event-card .RSVP-button {
-    margin: 0px 30px 10px;
+  margin: 0px 30px 10px;
 }

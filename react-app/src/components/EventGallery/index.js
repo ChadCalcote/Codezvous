@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {formatDate} from '../../dateFunctions';
 import EventCard from '../EventCard'
 import loader from  '../../Bars-0.7s-98px.gif'
-import './EventGallery.css'
 
 const EventGallery = ({events, parent, user}) => {
     const DAY = 60 * 60 * 24 * 1000
