@@ -40,14 +40,6 @@
   z-index: 1;
 }
 
-.event-card .RSVP-button {
-  padding: 10px 20px;
-  color: #5DACBD;
-  background-color: #2C2629;
-  border: 1.5px solid #5DACBD;
-  border-radius: 2px;
-}
-
 .event-card:hover,
 .event-card .RSVP-button:hover {
   opacity: 0.8;

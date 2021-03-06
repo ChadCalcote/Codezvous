@@ -68,11 +68,11 @@
 }
 
 #group-toggle {
-  border-radius: 2pt 0pt 0pt 2pt;
+  border-radius: 4pt 0pt 0pt 4pt;
 }
 
 #event-toggle {
-  border-radius: 0pt 2pt 2pt 0pt;
+  border-radius: 0pt 4pt 4pt 0pt;
 }
 
 .toggle:active {
