@@ -31,6 +31,7 @@ const EventCard = ({ event, user }) => {
       const attendees = await response.json()
       setAttendeesForImages(selectRandom(attendees, 3))
       setAttendees(attendees)
+      console.log(attendees)
     }
     fetchAttendees()
   },[event])

@@ -80,7 +80,9 @@ const EventPage = () => {
         <div className="event-header">
           <div className="event-header-content">
             <div className="event-header_date">
-              <h4>{formatDate(event.start_time, 'long')}</h4>
+              {!event.start_time && <img src={loader} alt="loading..." />}
+              {event.start_time && <h4>{formatDate(event.start_time, 'long')}</h4>}
+              {}
             </div>
             <div className="event-header_title">
               <h1>{event.event_name}</h1>

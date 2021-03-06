@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from "react-router-dom";
 import "./EventForm.css";
 
@@ -27,6 +28,19 @@ const createEvent = async (event_name, description, address, city, state, zip_co
   return await response.json();
 };
 
+async function createRSVP(userid, eventid) {
+  const response = await fetch(`/api/events/${eventid}/rsvps`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id: userid
+    }),
+  });
+  return await response.json()
+};
+
 const EventFormReact = () => {
   const location = useLocation()
   const history = useHistory()
@@ -43,6 +57,7 @@ const EventFormReact = () => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [status, setStatus] = useState("Ongoing");
+  const user = useSelector(state => state.session);
 
   useEffect(() => {
     setGroupId(location.state.groupId)
@@ -50,7 +65,9 @@ const EventFormReact = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)
+    const newEvent = await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)
+    console.log("USER", user.id, "NEW EVENT", newEvent)
+    await createRSVP(user.id, newEvent.id)
     setEventName("")
     setDescription("")
     setAddress("")
@@ -64,7 +81,7 @@ const EventFormReact = () => {
     setStartTime("")
     setEndTime("")
     setStatus("Ongoing")
-    history.goBack()
+    history.push(`/events/${newEvent.id}`)
   }
 
   return (
@@ -143,7 +160,7 @@ const EventFormReact = () => {
             type="checkbox"
             name="isVirtual"
             checked={virtual}
-            onChange={(event) => setVirtual(event.target.value)}
+            onChange={(event) => setVirtual(!!event.target.value)}
             value={virtual}
             />
         </div>
