@@ -5,7 +5,7 @@ import logo from './logo.png';
 
 import './NavBar.css';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ authenticated, setAuthenticated }) => {
 	const history = useHistory();
 
 	return (
@@ -20,17 +20,17 @@ const NavBar = ({ setAuthenticated }) => {
 					/>
 				</div>
 			</div>
+		{authenticated ? <div className="header_right">
+			<div className="create_group">
+			<NavLink to="/create-group" exact={true} activeClassName="active">
+				Start a new group
+			</NavLink>
+			</div>
+			<Dropdown setAuthenticated={setAuthenticated} />
+		</div> : <Dropdown setAuthenticated={setAuthenticated} />}
 
-      <div className="header_right">
-        <div className="create_group">
-          <NavLink to="/create-group" exact={true} activeClassName="active">
-            Start a new group
-          </NavLink>
-        </div>
-        <Dropdown setAuthenticated={setAuthenticated} />
-      </div>
-    </nav>
-  );
+		</nav>
+	);
 };
 
 export default NavBar;
