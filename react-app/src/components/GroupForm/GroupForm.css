@@ -1,14 +1,17 @@
 .group-form {
-  text-align: center;
   background-color: #211C1F;
   padding: 80px;
   color: #5DACBD;
 }
 
 .form-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
   border: 1px solid #5DACBD;
   margin: auto;
+  width: 40vw;
   max-width: 500px;
   border-radius: 40px;
 }
@@ -22,7 +25,8 @@
   background-color: #2C2629;
   color: white;
   outline: none;
-  width: 90%;
+  width: 30vw;
+  max-width: 400px;
   margin-top: 2px;
 }
 
@@ -39,7 +43,12 @@
   opacity: 0.8;
 }
 
-.description {
+.group-form-label {
+  align-self: flex-start;
+  margin-left: 30px;
+}
+
+/* .description {
   text-align: justify;
   height: 50px;
   width: 100%;
@@ -51,4 +60,4 @@
   outline: none;
   margin-top: 2px;
   scrollbar-color: blue;
-}
+} */
