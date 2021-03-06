@@ -16,14 +16,28 @@ Dark Pastel Green: #35C04A
     display: block
 }
 
-.event-header,
-.event-sim-events {
-    padding: 0px 30px
+.event-header {
+    padding: 10px 30px;
+    display: flex;
+    justify-content: center;
 }
+
+.event-header-content {
+    padding: 10px 30px;
+    width: 60vw;
+  }
 
 .event-body {
     display: flex;
     padding: 0px 30px;
+    justify-content: center;
+    width: 60vw;
+  }
+  
+  .event-sim-events {
+    flex-direction: column;
+    padding: 0px 30px;
+  width: 60vw;
 }
 
 .event-header,
@@ -58,6 +72,7 @@ Dark Pastel Green: #35C04A
 #event-body_sidebar_group > img {
     width: 100%;
     height: 100%;
+    border-radius: 6px;
 }
 
 #event-body_sidebar_group > a {
@@ -104,21 +119,23 @@ Dark Pastel Green: #35C04A
 }
 
 .event-footer {
-    height:160px;
-    width: 100%;
-    background-image: none;
-    background-repeat: repeat;
-    background-attachment: scroll;
-    background-position: 0% 0%;
-    position: fixed;
-    bottom: 0pt;
-    left: 0pt;
+  height: 60px;
+  width: 100%;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  position: fixed;
+  bottom: 80pt;
+  left: 0pt;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.event-footer-contents {
-    height: 160px;
-    width: 1000px;
-    margin: auto;
+.event-footer_contents {
+  margin: 0 15px;
 }
 
 .comment-feeds .comment {

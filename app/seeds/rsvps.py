@@ -5,47 +5,35 @@ from random import random
 
 
 def seed_rsvps():
-    random_user = int(random() * 300 ) + 1
-    random_event = int(random() * 50 ) + 1
-    demo_rsvp1 = RSVP(user_id=2, event_id=1)
-
-    db.session.add(demo_rsvp1)
-
+    demo_rsvp = RSVP(user_id=1, event_id=101)
+    db.session.add(demo_rsvp)
     db.session.commit()
 
-# =====================================================
 
-    demo_rsvp2 = RSVP(user_id=1, event_id=1)
-
-    db.session.add(demo_rsvp2)
-
+    demo_rsvp = RSVP(user_id=1, event_id=102)
+    db.session.add(demo_rsvp)
     db.session.commit()
 
-# =====================================================
 
-    demo_rsvp3 = RSVP(user_id=3, event_id=2)
-
-    db.session.add(demo_rsvp3)
-
+    demo_rsvp = RSVP(user_id=1, event_id=103)
+    db.session.add(demo_rsvp)
     db.session.commit()
 
-    # num1 = 1
-    # for _ in range (10):
-    #     user = num1
-    #     num2 = 1
-    #     for _ in range (100):
-    #         event = num2
-    #         demo_rsvp = RSVP(user_id=user, event_id=event)
 
-    #         db.session.add(demo_rsvp)
+    user = 1
+    event = 1
+    for _ in range (20):
+        for _ in range (5):
+            demo_rsvp = RSVP(user_id=user, event_id=event)
+            db.session.add(demo_rsvp)
+            db.session.commit()
+            event += 1
 
-    #         db.session.commit()
-    #         num2 += 1
-    #     num1 += 1
+        user += 1
 
     for _ in range (500):
         random_user = int(random() * 230 ) + 70
-        random_event = int(random() * 100 ) + 1
+        random_event = int(random() * 102 ) + 1
         demo_rsvp = RSVP(user_id=random_user, event_id=random_event)
 
         db.session.add(demo_rsvp)

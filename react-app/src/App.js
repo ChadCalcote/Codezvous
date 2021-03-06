@@ -14,6 +14,7 @@ import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
 import Splash from "./components/Splash";
 import Footer from "./components/Footer";
+import HomePageContainer from "./components/HomePageContainer";
 import EventFormReact from "./components/EventForm";
 
 function App() {
@@ -39,7 +40,9 @@ function App() {
       <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
         <Route path="/" exact={true}>
-          <Splash />
+          <HomePageContainer
+          authenticated={authenticated}
+          />
         </Route>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -53,36 +56,36 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/create-group" exact={true}>
+        <ProtectedRoute path="/create-group" exact={true}>
           <GroupForm
           // authenticated={authenticated}
           // setAuthenticated={setAuthenticated}
           />
-        </Route>
+        </ProtectedRoute>
         <Route path="/groups/create/event" exact={true}>
           <EventFormReact
           // authenticated={authenticated}
           // setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route exact path="/events/test">
+        {/* <Route exact path="/events/test">
           <EventFormReact
-          // authenticated={authenticated}
-          // setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
           />
-        </Route>
+        </Route> */}
         <Route exact path="/events/:eventId">
           <EventPage
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/attendee">
+        {/* <Route path="/attendee">
           <EventPage
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
-        </Route>
+        </Route> */}
         <Route path="/groups/:groupId">
           <GroupPage
             authenticated={authenticated}
@@ -104,9 +107,9 @@ function App() {
           <User />
           <UserImage />
         </ProtectedRoute>
-        <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
+        {/* <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
           <HomePage />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
       </Switch>
       <Footer
         authenticated={authenticated}

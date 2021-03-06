@@ -9,94 +9,84 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentUser } from '../../store/session';
 
 const Dropdown = ({ setAuthenticated }) => {
-	const dropdownRef = useRef(null);
-	const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
-	const onClick = () => setIsActive(!isActive);
+  const dropdownRef = useRef(null);
+  const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+  const onClick = () => setIsActive(!isActive);
 
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-	const currentUser = useSelector(state => state.session);
+  const currentUser = useSelector(state => state.session);
 
-	useEffect(() => {
-		dispatch(getCurrentUser());
-	}, [dispatch]);
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
 
-	if (currentUser.errors == undefined) {
-		return (
-			<div className="menu-container">
-				<i className="menu_icon" onClick={onClick}>
-					<CgProfile />
-					{isActive ? <BsChevronUp /> : <BsChevronDown />}
-				</i>
-				<nav
-					ref={dropdownRef}
-					className={`menu ${isActive ? 'active' : 'inactive'}`}
-				>
-					<ul>
-						<li className="nav-item">
-							<NavLink to="/" onClick={onClick}>
-								Home
+  if (currentUser.errors == undefined) {
+    return (
+      <div className="menu-container">
+        <i className="menu_icon" onClick={onClick}>
+          <CgProfile />
+          {isActive ? <BsChevronUp /> : <BsChevronDown />}
+        </i>
+        <nav
+          ref={dropdownRef}
+          className={`menu ${isActive ? 'active' : 'inactive'}`}
+        >
+          <ul>
+            <li className="nav-item">
+              <NavLink to="/" onClick={onClick}>
+                Home
 							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="/groups/1" onClick={onClick}>
-								Demo Groups
+            </li>
+            <li className="nav-item">
+              <NavLink to="/groups/1" onClick={onClick}>
+                My Sample Group
 							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="/events/1" onClick={onClick}>
-								Demo Events
+            </li>
+            <li className="nav-item">
+              <NavLink to="/events/1" onClick={onClick}>
+                My Sample Event
 							</NavLink>
-						</li>
-						<li className="nav-item">
-							<LogoutButton setAuthenticated={setAuthenticated} />
-						</li>
-					</ul>
-				</nav>
-			</div>
-		);
-	} else {
-		return (
-			<div className="menu-container">
-				<i className="menu_icon" onClick={onClick}>
-					<CgProfile />
-					{isActive ? <BsChevronUp /> : <BsChevronDown />}
-				</i>
-				<nav
-					ref={dropdownRef}
-					className={`menu ${isActive ? 'active' : 'inactive'}`}
-				>
-					<ul>
-						<li className="nav-item">
-							<NavLink to="/" onClick={onClick}>
-								Home
+            </li>
+            <li className="nav-item">
+              <LogoutButton setAuthenticated={setAuthenticated} />
+            </li>
+          </ul>
+        </nav>
+      </div>
+    );
+  } else {
+    return (
+      <div className="menu-container">
+        <i className="menu_icon" onClick={onClick}>
+          <CgProfile />
+          {isActive ? <BsChevronUp /> : <BsChevronDown />}
+        </i>
+        <nav
+          ref={dropdownRef}
+          className={`menu ${isActive ? 'active' : 'inactive'}`}
+        >
+          <ul>
+            <li className="nav-item">
+              <NavLink to="/" onClick={onClick}>
+                Home
 							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="/login" onClick={onClick}>
-								Log In
+            </li>
+            <li className="nav-item">
+              <NavLink to="/login" onClick={onClick}>
+                Log In
 							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="/signup" onClick={onClick}>
-								Sign Up
+            </li>
+            <li className="nav-item">
+              <NavLink to="/signup" onClick={onClick}>
+                Sign Up
 							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="/groups/1" onClick={onClick}>
-								Demo Groups
-							</NavLink>
-						</li>
-						<li className="nav-item">
-							<NavLink to="/events/1" onClick={onClick}>
-								Demo Events
-							</NavLink>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		);
-	}
+            </li>
+          </ul>
+        </nav>
+      </div>
+    );
+  }
 };
 
 export default Dropdown;

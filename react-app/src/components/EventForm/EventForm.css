@@ -1,27 +1,35 @@
 .event-form {
-    text-align: center;
     background-color: #211C1F;
     padding: 80px;
     color: #5DACBD;
   }
   
   .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
     border: 1px solid #5DACBD;
     margin: auto;
+    width: 40vw;
     max-width: 500px;
     border-radius: 40px;
   }
   
-  input {
+  .event-form input,
+  .event-form textarea,
+  .event-form select {
     padding: 10px;
-    height: 10px;
+    margin: 20px 0;
     border: 1px solid #5DACBD;
     border-radius: 10px;
     background-color: #2C2629;
     color: white;
     outline: none;
+    width: 30vw;
+    max-width: 400px;
     margin-top: 2px;
+    font-family: "Montserrat";
   }
   
   .event-form-submit-button {
@@ -40,12 +48,36 @@
     border: 2px solid #5DACBD;
     border-radius: 999px;
   }
+
+  .virtual {
+    display: flex;
+    align-items: flex-start;
+    margin: 5px 0 10px;
+  }
+
+  input[type=checkbox] {
+    width: 30px;
+    margin-left: 5px;
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2); /* IE */
+  -moz-transform: scale(2); /* FF */
+  -webkit-transform: scale(2); /* Safari and Chrome */
+  -o-transform: scale(2); /* Opera */
+  transform: scale(2);
+  padding: 10px;
+  color:#2C2629
+}
+
+.event-form-label {
+  align-self: flex-start;
+  margin-left: 30px;
+}
   
   .event-form-submit-button:hover {
     opacity: 0.8;
   }
   
-  .description {
+  /* .description {
     text-align: justify;
     height: 50px;
     width: 100%;
@@ -57,16 +89,11 @@
     outline: none;
     margin-top: 2px;
     resize: none;
-  }
+  } */
 
   .page-container {
     min-height: 100vh;
     position: relative;
   }
-  
-  #footer {
-    position: absolute;
-    bottom: 0;
-  
-  }
+
   

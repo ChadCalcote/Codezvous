@@ -1,14 +1,13 @@
 // React Dependencies
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 // React Router Dependencies
 import { useHistory } from "react-router-dom";
 // Login Helper Function
 import { login } from "../../services/auth";
 import "./index.css";
 
-const DemoButton = ({ setAuthenticated}) => {
+const DemoButton = ({ errors, setErrors, setAuthenticated}) => {
   const history = useHistory();
-  const [errors, setErrors] = useState([]);
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -23,11 +22,6 @@ const DemoButton = ({ setAuthenticated}) => {
 
   return (
     <Fragment>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
       <button className="demo" type="submit" onClick={onLogin}>
         DEMO
       </button>

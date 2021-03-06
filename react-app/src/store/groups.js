@@ -2,7 +2,6 @@
 // Action
 const SET_GROUPS = "SET_GROUPS";
 const SET_ONE_GROUP = "SET_ONE_GROUP";
-// const SET_USER_GROUP = "SET_USER_GROUP";
 
 // Action Creator Carries Data to the State
 export const setGroups = (groups) => { // All of the groups in our DB

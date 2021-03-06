@@ -121,7 +121,6 @@ def seed_groups():
         img_num = num + 2
         city = fakes.city()
         current_group_name = f'{fake_group_names[num]} of {city}'
-        num += 1
         state_abbr = 'TX'
         active = random() >= 0.5
 
@@ -132,6 +131,7 @@ def seed_groups():
         db.session.add(fake_group)
 
         db.session.commit()
+        num += 1
 
 
 # Uses a raw SQL query to TRUNCATE the users table.
