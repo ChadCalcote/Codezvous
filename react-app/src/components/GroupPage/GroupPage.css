@@ -95,7 +95,7 @@
     border-color: hsla(191, 42%, 55%, 0.702);
 }
 
-.create-event-button > a, .membership-button {
+.create-event-button > button, .membership-button {
     padding: 10px;
     color: #F7405F;
     background-color: #2C2629;
@@ -105,7 +105,7 @@
     margin-bottom: 4px;
 }
 
-.create-event-button > a:hover, .membership-button:hover {
+.create-event-button > button:hover, .membership-button:hover {
     opacity: 0.8;
 }
 
