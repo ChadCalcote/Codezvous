@@ -53,36 +53,36 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/create-group" exact={true}>
+        <ProtectedRoute path="/create-group" exact={true}>
           <GroupForm
           // authenticated={authenticated}
           // setAuthenticated={setAuthenticated}
           />
-        </Route>
-        <Route path="/groups/create/event" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/groups/create/event" exact={true}>
           <EventFormReact
-          // authenticated={authenticated}
-          // setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
           />
-        </Route>
-        <Route exact path="/events/test">
+        </ProtectedRoute>
+        {/* <Route exact path="/events/test">
           <EventFormReact
-          // authenticated={authenticated}
-          // setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+          setAuthenticated={setAuthenticated}
           />
-        </Route>
+        </Route> */}
         <Route exact path="/events/:eventId">
           <EventPage
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <Route path="/attendee">
+        {/* <Route path="/attendee">
           <EventPage
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
-        </Route>
+        </Route> */}
         <Route path="/groups/:groupId">
           <GroupPage
             authenticated={authenticated}

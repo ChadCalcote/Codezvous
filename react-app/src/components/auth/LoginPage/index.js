@@ -36,15 +36,15 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     <div className="page-container">
       <form className="login-form" onSubmit={onLogin}>
         <div className="form-wrapper">
-          <div>
+          <div className="login-form_errors">
             {errors.map((error) => (
               <div>{error}</div>
             ))}
           </div>
-          <br />
-          <div>
+          <div className="login-form-label">
             <label htmlFor="email">Email</label>
-            <br />
+          </div>
+          <div className="login-form-input">
             <input
               name="email"
               type="text"
@@ -53,10 +53,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               onChange={updateEmail}
             />
           </div>
-          <br />
-          <div>
+          <div className="login-form-label">
             <label htmlFor="password">Password</label>
-            <br />
+          </div>
+          <div className="login-form-input">
             <input
               name="password"
               type="password"
@@ -65,10 +65,9 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
               onChange={updatePassword}
             />
           </div>
-          <br />
           <div className="login-buttons">
-            <DemoButton setAuthenticated={setAuthenticated} />
-            <button className="authButton" type="submit">Login</button>
+            <button id="login-button" type="submit">Login</button>
+            <DemoButton errors={errors} setErrors={setErrors} setAuthenticated={setAuthenticated} />
           </div>
         </div>
       </form>

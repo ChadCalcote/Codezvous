@@ -16,17 +16,35 @@
   }
 
   .login-buttons {
-      display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
   }
 
-  input {
+  #login-button,
+  .demo {
+    padding: 10px 20px;
+    color: #2C2629;
+    background-color: #5DACBD;
+    border: 2px solid #5DACBD;
+    border-radius: 999px;
+    font-size: 16px;
+  }
+
+  .login-form-label {
+    align-self: flex-start;
+    margin-left: 30px;
+  }
+
+  .login-form input {
     padding: 10px;
-    height: 10px;
+    margin: 20px 0;
     border: 1px solid #5DACBD;
     border-radius: 10px;
     background-color: #2C2629;
     color: white;
     outline: none;
+    width: 30vw;
+    max-width: 400px;
     margin-top: 2px;
   }
