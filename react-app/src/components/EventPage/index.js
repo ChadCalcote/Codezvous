@@ -78,63 +78,67 @@ const EventPage = () => {
     <div className="event-page_wrapper">
       <div className="event-page">
         <div className="event-header">
-          <div className="event-header_date">
-            <h4>{formatDate(event.start_time, 'long')}</h4>
-          </div>
-          <div className="event-header_title">
-            <h1>{event.event_name}</h1>
-          </div>
-          <div className="event-header_leader">
-            {!leader && <img src={loader} alt="loading..." />}
-            {leader && <UserImage className="leader-image" user={leader} />}
-            <div className="hosted-by">
-              Hosted by
+          <div className="event-header-content">
+            <div className="event-header_date">
+              <h4>{formatDate(event.start_time, 'long')}</h4>
+            </div>
+            <div className="event-header_title">
+              <h1>{event.event_name}</h1>
+            </div>
+            <div className="event-header_leader">
+              {!leader && <img src={loader} alt="loading..." />}
+              {leader && <UserImage className="leader-image" user={leader} />}
+              <div className="hosted-by">
+                Hosted by
                 {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..." />}
-            </div>
-          </div>
-        </div>
-        <hr color="#2C2629" />
-        <div className="event-body">
-          <div className="event-body_feed">
-            <div id="event-body_feed_details">
-              <h2 id="body-color">Details</h2>
-              <p>{event.description}</p>
-            </div>
-            <h2 id="body-color">Attendees ({users.length})</h2>
-            <div id="event-body_feed_attendees">
-              {attendees.slice(0, 8).map(attendee => {
-                return <AttendeeCard user={attendee} key={attendee.id} />
-              })}
-            </div>
-            <div id="event-body_feed_comments">
-              <h2 id="body-color">Comments ({numComments ? numComments : 0})</h2>
-            </div>
-            <CommentForm commentsDisplayed={commentsDisplayed} setCommentsDisplayed={setCommentsDisplayed} user={currentUser} />
-            <div className="comment-feeds">
-              <CommentFeed comments={commentsDisplayed} />
-            </div>
-          </div>
-          <div className="event-body_sidebar">
-            <div id="event-body_sidebar_group">
-              <img src={group.image_url} href={`/groups/${group.id}`} alt='group' />
-              <br />
-              <a href={`/groups/${group.id}`}>{group.group_name}</a>
-              <h4>Public Group</h4>
-            </div>
-            <div id="event-body_sidebar_details">
-              <div><BsClock className="icons" />{formatDate(event.start_time, 'long')}</div>
-              <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div>
-              <br />
-              <div id="event-body_sidebar_location">
-                {event.virtual ? <><BsCameraVideo className="icons" />Virtual event</> : <><div><BsGeoAlt className="icons" />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
               </div>
             </div>
           </div>
         </div>
         <hr color="#2C2629" />
-        <div className="event-sim-events">
-          <h2 id="body-color">Similar events nearby</h2>
-          <EventGallery events={events} parent={"eventPage"} user={currentUser} />
+        <div className="event-body-container">
+          <div className="event-body">
+            <div className="event-body_feed">
+              <div id="event-body_feed_details">
+                <h2 id="body-color">Details</h2>
+                <p>{event.description}</p>
+              </div>
+              <h2 id="body-color">Attendees ({users.length})</h2>
+              <div id="event-body_feed_attendees">
+                {attendees.slice(0, 8).map(attendee => {
+                  return <AttendeeCard user={attendee} key={attendee.id} />
+                })}
+              </div>
+              <div id="event-body_feed_comments">
+                <h2 id="body-color">Comments ({numComments ? numComments : 0})</h2>
+              </div>
+              <CommentForm commentsDisplayed={commentsDisplayed} setCommentsDisplayed={setCommentsDisplayed} user={currentUser} />
+              <div className="comment-feeds">
+                <CommentFeed comments={commentsDisplayed} />
+              </div>
+            </div>
+            <div className="event-body_sidebar">
+              <div id="event-body_sidebar_group">
+                <img id="event-body_sidebar_group-image" src={group.image_url} href={`/groups/${group.id}`} alt='group' />
+                <br />
+                <a href={`/groups/${group.id}`}>{group.group_name}</a>
+                <h4>Public Group</h4>
+              </div>
+              <div id="event-body_sidebar_details">
+                <div><BsClock className="icons" />{formatDate(event.start_time, 'long')}</div>
+                <div>{`${formatTime(event.start_time)} to ${formatTime(event.end_time)}`} </div>
+                <br />
+                <div id="event-body_sidebar_location">
+                  {event.virtual ? <><BsCameraVideo className="icons" />Virtual event</> : <><div><BsGeoAlt className="icons" />{event.address}</div><div>{event.city}, {event.state} {event.zip_code}</div></>}
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr color="#2C2629" />
+          <div className="event-sim-events">
+            <h2 id="body-color">Similar events nearby</h2>
+            <EventGallery events={events} parent={"eventPage"} user={currentUser} />
+          </div>
         </div>
       </div>
       <footer hidden={attending} className="event-footer">
