@@ -66,7 +66,6 @@ const EventFormReact = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const newEvent = await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)
-    console.log("USER", user.id, "NEW EVENT", newEvent)
     await createRSVP(user.id, newEvent.id)
     setEventName("")
     setDescription("")
