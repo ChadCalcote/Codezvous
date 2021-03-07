@@ -1,7 +1,7 @@
 Codezvous is a functional clone of Meetup.com, allowing users to find and join groups, RSVP for events, and leave comments. 
 
 You can find Codezvous here: 
-https://codezvous.herokuapp.com/login
+https://codezvous.herokuapp.com/
 
 You can find the real Meetup here:
 https://www.meetup.com/home/
