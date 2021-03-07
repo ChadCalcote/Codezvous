@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BsCameraVideo, BsGeoAlt, BsPerson } from 'react-icons/bs';
+import { BsCameraVideo, BsGeoAlt } from 'react-icons/bs';
 import RSVP from "../RSVP"
 import loader from  '../../Bars-0.7s-98px.gif'
 import UserImage from "../UserImage";
