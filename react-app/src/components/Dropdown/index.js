@@ -21,7 +21,7 @@ const Dropdown = ({ setAuthenticated }) => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
-  if (currentUser.errors == undefined) {
+  if (currentUser.errors === undefined) {
     return (
       <div className="menu-container">
         <i className="menu_icon" onClick={onClick}>
