@@ -37,7 +37,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar authenticated={authenticated} setAuthenticated={setAuthenticated} />
       <Switch>
         <Route path="/" exact={true}>
           <HomePageContainer
@@ -56,11 +56,12 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <ProtectedRoute path="/create-group" exact={true}>
-          <GroupForm
-          // authenticated={authenticated}
-          // setAuthenticated={setAuthenticated}
-          />
+        <ProtectedRoute 
+        authenticated={authenticated}
+        path="/create-group" 
+        exact={true}
+        >
+          <GroupForm />
         </ProtectedRoute>
         <Route path="/groups/create/event" exact={true}>
           <EventFormReact
@@ -86,7 +87,7 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route> */}
-        <Route path="/groups/:groupId">
+        <Route exact path="/groups/:groupId">
           <GroupPage
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}

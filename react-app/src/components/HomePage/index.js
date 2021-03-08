@@ -5,7 +5,6 @@ import { fetchAllGroups } from '../../store/groups';
 import { getCurrentUser } from '../../store/session';
 import EventGallery from '../EventGallery';
 import GroupGallery from '../GroupGallery';
-import Footer from '../Footer';
 import "./HomePage.css";
 
 const HomePage = () => {

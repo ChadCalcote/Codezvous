@@ -4,6 +4,7 @@ import { signUp } from '../../../services/auth';
 import './SignUpForm.css';
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
+  const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,6 +17,8 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       const user = await signUp(username, email, password, imageUrl, zipCode);
       if (!user.errors) {
         setAuthenticated(true);
+      } else {
+        setErrors(user.errors);
       }
     }
   };
@@ -52,6 +55,11 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     <div className="page-container">
       <form className="signup-form" onSubmit={onSignUp}>
         <div className="form-wrapper">
+          <div className="signup-form_errors">
+              {errors.map((error) => (
+                <div>{error}</div>
+              ))}
+            </div>
           <div className="form-label">
             <label>User Name</label>
           </div>

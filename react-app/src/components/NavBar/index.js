@@ -5,7 +5,7 @@ import logo from './logo.png';
 
 import './NavBar.css';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ authenticated, setAuthenticated }) => {
 	const history = useHistory();
 
 	return (
@@ -14,23 +14,22 @@ const NavBar = ({ setAuthenticated }) => {
 				<div className="home">
 					<img
 						className="header_logo"
-						onClick={() => history.push('/home')}
+						onClick={() => history.push('/')}
 						src={logo}
 						alt="logo"
 					/>
 				</div>
 			</div>
-
-      <div className="header_right">
-        <div className="create_group">
-          <NavLink to="/create-group" exact={true} activeClassName="active">
-            Start a new group
-          </NavLink>
-        </div>
-        <Dropdown setAuthenticated={setAuthenticated} />
-      </div>
-    </nav>
-  );
+		{authenticated ? <div className="header_right">
+			<div className="create_group">
+			<NavLink to="/create-group" exact={true} authenticated={authenticated} activeClassName="active">
+				Start a new group
+			</NavLink>
+			</div>
+			<Dropdown setAuthenticated={setAuthenticated} />
+			</div> : <Dropdown setAuthenticated={setAuthenticated} />}
+		</nav>
+	);
 };
 
 export default NavBar;
