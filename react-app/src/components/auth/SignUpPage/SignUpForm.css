@@ -43,3 +43,7 @@
     max-width: 400px;
     margin-top: 2px;
   }
+
+  .signup-form_errors {
+    color: red;
+  }
