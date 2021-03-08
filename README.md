@@ -3,7 +3,7 @@
 
 A Meetup clone designed for fellow programmers to meet other tech-minded individuals within groups and at events in their area.
 
-You can also visit Meetup [here](https://www.meetup.com/home/)
+You can also visit Meetup [here](https://www.meetup.com/home/).
 
 **Table of Contents**
   * [Codezvous at a Glance](#Codezvous-at-a-glance)
