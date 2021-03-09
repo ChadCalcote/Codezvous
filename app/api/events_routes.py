@@ -96,7 +96,7 @@ def put(id):
 
 # Delete an event
 @events_routes.route('/<int:id>', methods=["DELETE"])
-# @login_required
+@login_required
 def delete(id):
     event = Event.query.get(id)
     rsvps = db.session.query(RSVP).filter(RSVP.event_id == id)

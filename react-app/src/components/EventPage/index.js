@@ -81,7 +81,6 @@ const EventPage = () => {
     
     if (confirmation) {
       await fetch(`/api/events/${eventId}`, { method: "DELETE" }) 
-      history.push(`/groups/${group.id}`)
     }
   }
 
