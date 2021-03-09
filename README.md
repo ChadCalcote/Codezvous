@@ -5,6 +5,8 @@ A Meetup clone designed for fellow programmers to meet other tech-minded individ
 
 You can also visit Meetup [here](https://www.meetup.com/home/).
 
+For a deeper dive into our planning process and code, feel free to visit our [Wiki](https://github.com/ChadCalcote/Codezvous/wiki)!
+
 **Table of Contents**
   * [Codezvous at a Glance](#Codezvous-at-a-glance)
   * [Technologies Used](#technologies-used)
