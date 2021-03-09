@@ -48,8 +48,8 @@ The backend is a Python Flask server with a PostgreSQL database.
 ## Application Architecture
 The frontend is a `create-react-app` using functional components with hooks. The backend is a Flask server with various RESTful endpoints. They are deployed via Docker to a Heroku server.
 
-##### Codezvous Postgres database schema
-Schema Photo
+##### Codezvous Postgres Database Schema
+![image](https://user-images.githubusercontent.com/65975008/110401346-a339de00-8036-11eb-842f-8714e64364da.png)
 
 
 ## Frontend Overview
