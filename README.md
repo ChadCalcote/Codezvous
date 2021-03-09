@@ -1,5 +1,5 @@
 # Codezvous
-*By [Chad Calcote](http://chadcalcote.com/) - [Live site](https://codezvous.herokuapp.com/)*
+*By [Chad Calcote](http://chadcalcote.com/), [Chris Clark](https://percist.github.io/) - [Live site](https://codezvous.herokuapp.com/)*
 
 A Meetup clone designed for fellow programmers to meet other tech-minded individuals within groups and at events in their area.
 
