@@ -8,11 +8,10 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import GroupPage from "./components/GroupPage";
-import HomePage from "./components/HomePage"
+import NotFoundPage from "./components/NotFoundPage"
 import UserImage from "./components/UserImage";
 import GroupForm from "./components/GroupForm";
 import { authenticate } from "./services/auth";
-import Splash from "./components/Splash";
 import Footer from "./components/Footer";
 import HomePageContainer from "./components/HomePageContainer";
 import EventFormReact from "./components/EventForm";
@@ -108,9 +107,9 @@ function App() {
           <User />
           <UserImage />
         </ProtectedRoute>
-        {/* <ProtectedRoute path="/home" exact={true} authenticated={authenticated}>
-          <HomePage />
-        </ProtectedRoute> */}
+        <Route path="*" >
+            <NotFoundPage />
+        </Route>
       </Switch>
       <Footer
         authenticated={authenticated}
