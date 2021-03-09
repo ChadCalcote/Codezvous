@@ -28,7 +28,6 @@ The backend is a Python Flask server with a PostgreSQL database.
 * View, create, and join tech groups in your area
 * View, create, and RSVP for events of the groups you are a part of
 * Comment and see other comments on events
-[CoffeeHub mini-demo](/readme-assets/star-trader-demo-full.gif)
 
 ## Technologies Used
 * Frontend
