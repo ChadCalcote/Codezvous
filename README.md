@@ -13,6 +13,8 @@ For a deeper dive into our planning process and code setup, please visit our [Wi
   * [Application Architecture](#application-architecture)
   * [Frontend Overview](#frontend-overview)
   * [Backend Overview](#backend-overview)
+  * [Backend Installation and Setup](#Backend-Installation-and-Setup)
+  * [Frontend Installation and Setup](#Frontend-Installation-and-Run-Application-Locally)
   * [Conclusion](#conclusion)
 
 ## Codezvous at a Glance
@@ -115,6 +117,34 @@ The database is queried using the SQLAlchemy ORM, and seed data was created usin
    psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
    There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
 ***
+
+## Frontend Installation and Run Application Locally
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+No environment variables are needed to run this application in development, but be sure to set the REACT_APP_BASE_URL environment variable in heroku!
+
+This app will be automatically built when you deploy to heroku, please see the `heroku-postbuild` script in your `express.js` applications `package.json` to see how this works.
+
+1. Change Directory to react-app
+
+   ```bash
+   cd react-app
+   ```
+   
+2. Install Dependencies
+
+  ```bash
+   npm install
+   ```
+ 
+3. Start the local host
+
+ ```bash
+   npm start
+   ```
+
+4. Visit application at localhost:3000 (changes you make locally will appear)
 
 
 ## Conclusion
