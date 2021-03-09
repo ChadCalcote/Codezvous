@@ -146,3 +146,18 @@ Dark Pastel Green: #35C04A
     background-color: #2D262A;
     border-radius: 10px;
 }
+
+.delete-event_button {
+    border: 2px solid #5DACBD;
+    background-color: transparent;
+    border-radius: 20px;
+    align-self: flex-end;
+    position: absolute;
+    padding: 10px;
+    margin-left: 600px;
+    margin-bottom: 18.72px;
+}
+
+.delete-event_button a {
+    color: #F7405F;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
@@ -18,6 +18,7 @@ import loader from '../../Bars-0.7s-98px.gif'
 import "./EventPage.css";
 
 const EventPage = () => {
+  const history = useHistory();
   const params = useParams();
   const { eventId } = params;
   const dispatch = useDispatch();
@@ -74,6 +75,16 @@ const EventPage = () => {
     }
   }, [users, currentUser.id, group.leader_id]);
 
+  const deleteEventOnClick = async (e) => {
+    // e.preventDefault();
+    const confirmation = window.confirm("Are you sure you want to delete this event?");
+    
+    if (confirmation) {
+      await fetch(`/api/events/${eventId}`, { method: "DELETE" }) 
+      history.push(`/groups/${group.id}`)
+    }
+  }
+
   return (
     <div className="event-page_wrapper">
       <div className="event-page">
@@ -94,8 +105,12 @@ const EventPage = () => {
                 Hosted by
                 {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..." />}
               </div>
+              </div>
             </div>
-          </div>
+              {group.leader_id == currentUser.id ? <button className="delete-event_button" onClick={deleteEventOnClick}>
+                <Link to={`/groups/${group.id}`}>Cancel Event
+                </Link>
+                </button>: null}
         </div>
         <hr color="#2C2629" />
         <div className="event-body-container">
