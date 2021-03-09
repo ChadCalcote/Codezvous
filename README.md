@@ -130,7 +130,7 @@ This app will be automatically built when you deploy to heroku, please see the `
 
    ```bash
    cd react-app
-     ```
+   ```
    
 2. Install Dependencies
 
