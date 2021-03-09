@@ -14,7 +14,7 @@ For a deeper dive into our planning process and code setup, please visit our [Wi
   * [Frontend Overview](#frontend-overview)
   * [Backend Overview](#backend-overview)
   * [Backend Installation and Setup](#Backend-Installation-and-Setup)
-  * [Frontend Installation and Setup](#Frontend-Installation-and-Run-Application-Locally)
+  * [Frontend Installation and Run Application Locally](#Frontend-Installation-and-Run-Application-Locally)
   * [Conclusion](#conclusion)
 
 ## Codezvous at a Glance
