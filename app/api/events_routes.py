@@ -99,8 +99,14 @@ def put(id):
 @login_required
 def delete(id):
     event = Event.query.get(id)
+    rsvps = db.session.query(RSVP).filter(RSVP.event_id == id)
     comments = Comment.query.join(Event).filter(Comment.event_id == id).all()
-    db.session.delete(comments)
+    for each_comment in comments:
+        db.session.delete(each_comment)
+
+    for each_RSVP in rsvps:
+        db.session.delete(each_RSVP)
+
     db.session.delete(event)
     db.session.commit()
     return {"message": "success"}
