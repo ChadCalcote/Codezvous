@@ -57,6 +57,7 @@ const EventFormReact = () => {
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [status, setStatus] = useState("Ongoing");
+  const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session);
 
   useEffect(() => {
@@ -65,8 +66,9 @@ const EventFormReact = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
     const newEvent = await createEvent(eventName, description, address, city, state, zipCode, virtual, type, imageUrl, groupId, startTime, endTime, status)
-    await createRSVP(user.id, newEvent.id)
+    if (!newEvent.errors) {
     setEventName("")
     setDescription("")
     setAddress("")
@@ -80,7 +82,11 @@ const EventFormReact = () => {
     setStartTime("")
     setEndTime("")
     setStatus("Ongoing")
-    history.push(`/events/${newEvent.id}`)
+    await createRSVP(user.id, newEvent.id);
+    history.push(`/events/${newEvent.id}`);
+  } else {
+      setErrors(newEvent.errors);
+    }
   }
 
   return (
@@ -161,7 +167,7 @@ const EventFormReact = () => {
             checked={virtual}
             onChange={(event) => setVirtual(!!event.target.value)}
             value={virtual}
-            />
+          />
         </div>
         <div className="event-form-label">
           <label>Event Type</label>
@@ -171,36 +177,34 @@ const EventFormReact = () => {
             onChange={(event) => setType(event.target.value)}
             value={type}
           >
-            <option value=''>Select Event Type</option>
-            <option value='workshop'>Workshop</option>
-            <option value='competition'>Competition</option>
-            <option value='networking'>Networking Event</option>
-            <option value='film'>Film</option>
-            <option value='job fair'>Job Fair</option>
-            <option value='talk'>Talk</option>
-            <option value='pairboarding'>Pairboarding</option>
-            <option value='meetup'>Meetup</option>
-            <option value='hackathon'>Hackathon</option>
-            <option value='meet and greet'>Meet and Greet</option>
-            <option value='ama'>AMA</option>
-            <option value='interview'>Interview</option>
-            <option value='panel'>Panel</option>
-            <option value='conference'>Conference</option>
-            <option value='seminar'>Seminar</option>
-            <option value='hang'>Hang</option>
-            <option value='mixer'>Mixer</option>
-            <option value='social'>Social</option>
-            <option value='info session'>Info Session</option>
-            <option value='dance'>Dance</option>
-            <option value='whiteboard'>Whiteboard</option>
+            <option value="">Select Event Type</option>
+            <option value="workshop">Workshop</option>
+            <option value="competition">Competition</option>
+            <option value="networking">Networking Event</option>
+            <option value="film">Film</option>
+            <option value="job fair">Job Fair</option>
+            <option value="talk">Talk</option>
+            <option value="pairboarding">Pairboarding</option>
+            <option value="meetup">Meetup</option>
+            <option value="hackathon">Hackathon</option>
+            <option value="meet and greet">Meet and Greet</option>
+            <option value="ama">AMA</option>
+            <option value="interview">Interview</option>
+            <option value="panel">Panel</option>
+            <option value="conference">Conference</option>
+            <option value="seminar">Seminar</option>
+            <option value="hang">Hang</option>
+            <option value="mixer">Mixer</option>
+            <option value="social">Social</option>
+            <option value="info session">Info Session</option>
+            <option value="dance">Dance</option>
+            <option value="whiteboard">Whiteboard</option>
             {/* <option value='virtual'>Virtual event</option> not sure about this one */}
           </select>
         </div>
         <div className="event-form-label">
           <label>Image URL</label>
-          <div className="event-form-input">
-
-          </div>
+          <div className="event-form-input"></div>
           <input
             type="text"
             name="imageUrl"
@@ -212,7 +216,8 @@ const EventFormReact = () => {
           <label>Choose a start time for your event:</label>
         </div>
         <div className="event-form-input">
-          <input type="datetime-local"
+          <input
+            type="datetime-local"
             value={startTime}
             onChange={(event) => setStartTime(event.target.value)}
             required
@@ -222,13 +227,21 @@ const EventFormReact = () => {
           <label>Choose a end time for your event:</label>
         </div>
         <div className="event-form-input">
-          <input type="datetime-local"
+          <input
+            type="datetime-local"
             value={endTime}
             onChange={(event) => setEndTime(event.target.value)}
             required
           />
         </div>
-        <button className="event-form-submit-button" type="submit">Create Event</button>
+        <div className="event-form_errors">
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+        <button className="event-form-submit-button" type="submit">
+          Create Event
+        </button>
       </div>
     </form>
   );

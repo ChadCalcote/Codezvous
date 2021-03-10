@@ -6,6 +6,15 @@ from app.forms import EventForm, CommentForm
 
 events_routes = Blueprint('events', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
 
 # Retrieve all events
 @events_routes.route('/')
@@ -31,7 +40,7 @@ def event(id):
 @events_routes.route('/test', methods=["POST"])
 @login_required
 def postTest():
-    form = EventForm()  # need to create a form
+    form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     form.data['start_time'] = request.json['start_time']
     if form.validate_on_submit():
@@ -54,7 +63,7 @@ def postTest():
         db.session.commit()
         return new_event.to_dict()
     print("did not validate")
-    return "Bad Data"
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # Edit an event

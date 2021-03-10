@@ -8,6 +8,16 @@ from random import random
 groups_routes = Blueprint('groups', __name__)
 
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f"{field} : {error}")
+    return errorMessages
+
 # Retrieve all groups
 @groups_routes.route('/')
 def groups():
@@ -95,7 +105,7 @@ def postTest():
         db.session.add(new_group)
         db.session.commit()
         return new_group.to_dict()
-    return "Bad Data"
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 # Edit a group

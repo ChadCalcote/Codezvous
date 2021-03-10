@@ -48,16 +48,6 @@
   margin-left: 30px;
 }
 
-/* .description {
-  text-align: justify;
-  height: 50px;
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #5DACBD;
-  border-radius: 10px;
-  background-color: #211C1F;
-  color: white;
-  outline: none;
-  margin-top: 2px;
-  scrollbar-color: blue;
-} */
+.group-form_errors {
+  color: #F7405F;
+}
