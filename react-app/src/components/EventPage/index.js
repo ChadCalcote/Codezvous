@@ -14,7 +14,8 @@ import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
 import RSVP from '../RSVP';
-import loader from '../../Bars-0.7s-98px.gif'
+import bigLoader from '../../Spinner-1s-237px.gif';
+import smallLoader from '../../Spinner-1s-30px.gif';
 import "./EventPage.css";
 
 const EventPage = () => {
@@ -99,7 +100,7 @@ const EventPage = () => {
         <div className="event-header">
           <div className="event-header-content">
             <div className="event-header_date">
-              {!event && !event.start_time && <img src={loader} alt="loading..." />}
+              {!event && !event.start_time && <img src={smallLoader} alt="loading..." />}
               {event && event.start_time && <h4>{formatDate(event.start_time, 'long')}</h4>}
               {}
             </div>
@@ -107,11 +108,11 @@ const EventPage = () => {
               <h1>{event.event_name}</h1>
             </div>
             <div className="event-header_leader">
-              {!leader && <img src={loader} alt="loading..." />}
+              {!leader && <img src={bigLoader} alt="loading..." />}
               {leader && <UserImage className="leader-image" user={leader} />}
               <div className="hosted-by">
                 Hosted by
-                {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..." />}
+                {leader ? <h3>{leader.username}</h3> : <img src={smallLoader} alt="loading..." />}
               </div>
               </div>
             </div>

@@ -10,6 +10,7 @@ import { createUserGroup } from "../../store/userGroups";
 import { BsGeoAlt, BsPeople, BsPerson } from 'react-icons/bs';
 import EventGallery from '../EventGallery';
 import UserImage from '../UserImage';
+import bigLoader from '../../Spinner-1s-237px.gif';
 import "./GroupPage.css"
 
 const GroupPage = () => {
@@ -26,8 +27,8 @@ const GroupPage = () => {
   const [members, setMembers] = useState([]);
   const [userGroupState, setUserGroupState] = useState([])
 
-  const group = useSelector(state => state.groups); // Returning an Object
-  const groupUsers = useSelector(state => state.users);// Returning a list
+  const group = useSelector(state => state.groups); // Returning an object
+  const groupUsers = useSelector(state => state.users); // Returning a list
   const currentUser = useSelector(state => state.session);
   const events = useSelector(state => state.events);
   const groupLeaderId = group.leader_id;
@@ -95,7 +96,7 @@ const GroupPage = () => {
       <div className="group-header">
         <div className="group-header-content">
           <div className="group-header_img">
-            {!group.image_url && <img src="../../../Bars-0.7s-98px.gif" alt="loading..." />}
+            {!group.image_url && <img src={bigLoader} alt="loading..." />}
             {group && <img id="group-header_img" src={group.image_url} alt="group" />}
           </div>
           <div className="group-header_info">
