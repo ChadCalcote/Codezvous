@@ -20,7 +20,7 @@ export const setOneGroup = (group) => {
 
 export const fetchAllGroups = () => {
   return async (dispatch) => {
-    const responseFromDb = await fetch('/api/groups');
+    const responseFromDb = await fetch('/api/groups/');
     const groupsList = await responseFromDb.json();
     dispatch(
       setGroups(groupsList)
