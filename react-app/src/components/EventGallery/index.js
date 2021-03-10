@@ -5,6 +5,7 @@ import bigLoader from '../../Spinner-1s-237px.gif';
 
 const EventGallery = ({events, parent, user}) => {
     const DAY = 60 * 60 * 24 * 1000
+    const today = new Date();
     
     const [ dayOneEvents, setDayOneEvents ] = useState([])
     const [ dayTwoEvents, setDayTwoEvents ] = useState([])
@@ -94,14 +95,19 @@ const EventGallery = ({events, parent, user}) => {
             return (
                 <div className="event-gallery">
                     {!events && <img src={bigLoader} alt="loading..."/>}
-                    {Array.isArray(events) && events.map(event => <EventCard event={event} user={user} key={event.id} />)}
+                    {Array.isArray(events) && events.sort((a,b) => new Date(a.start_time) - new Date(b.start_time))
+                                                    .filter(event => new Date(event.start_time) > today)
+                                                    .map(event => <EventCard event={event} user={user} key={event.id} />)}
                 </div>
             )
         }else if (parent === "eventPage"){
             return (
                 <div className="event-gallery">
                     {!events && <img src={bigLoader} alt="loading..."/>}
-                    {Array.isArray(events) && events.slice(0,4).map(event => <EventCard event={event} user={user} key={event.id} />)}
+                    {Array.isArray(events) && events.sort((a,b) => new Date(a.start_time) - new Date(b.start_time))
+                                                    .filter(event => new Date(event.start_time) > today)
+                                                    .slice(0,4)
+                                                    .map(event => <EventCard event={event} user={user} key={event.id} />)}
                 </div>
             )
         }
