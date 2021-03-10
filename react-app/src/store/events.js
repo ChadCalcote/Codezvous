@@ -25,7 +25,7 @@ export const setGroupEvents = (events) => {
 
 export const fetchAllEvents = () => {
   return async (dispatch) => {
-    const responseFromDb = await fetch('/api/events');
+    const responseFromDb = await fetch('/api/events/');
     const eventsList = await responseFromDb.json();
     dispatch(
       setEvents(eventsList)
