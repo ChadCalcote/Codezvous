@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
@@ -14,11 +14,11 @@ import EventGallery from '../EventGallery';
 import CommentForm from '../CommentForm';
 import CommentFeed from '../CommentFeed';
 import RSVP from '../RSVP';
-import loader from '../../Bars-0.7s-98px.gif'
+import bigLoader from '../../Spinner-1s-237px.gif';
+import smallLoader from '../../Spinner-1s-30px.gif';
 import "./EventPage.css";
 
 const EventPage = () => {
-  const history = useHistory();
   const params = useParams();
   const { eventId } = params;
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const EventPage = () => {
   const users = useSelector(state => state.users);  // event attendees
   const comments = useSelector(state => state.comments); // event comments
   const currentUser = useSelector(state => state.session);
-
+  const today = new Date()
 
   useEffect(() => {
     dispatch(fetchAllEvents()); // sets events redux.....triggers setSelectedEvents
@@ -60,8 +60,9 @@ const EventPage = () => {
     function setSelectedEvents(events) {
       const eventsArray = events.events
       if (Array.isArray(eventsArray)) {
-        // setEvent(eventsArray.find(event => eventId == event.id)); // sets event on page
-        setGalleryEvents(eventsArray.slice(0, 3));  // sets gallery of recommended events
+        setGalleryEvents(eventsArray.sort((a,b) => new Date(a.start_time) - new Date(b.start_time))
+                                    .filter(event => new Date(event.start_time) > today)
+                                    .slice(0, 6));  // sets gallery of 5 recommended events after today in chronological order
       }
     }
     if (events) {
@@ -85,7 +86,6 @@ const EventPage = () => {
   }, [users, currentUser.id, group.leader_id]);
 
   const deleteEventOnClick = async (e) => {
-    // e.preventDefault();
     const confirmation = window.confirm("Are you sure you want to delete this event?");
 
     if (confirmation) {
@@ -99,7 +99,7 @@ const EventPage = () => {
         <div className="event-header">
           <div className="event-header-content">
             <div className="event-header_date">
-              {!event && !event.start_time && <img src={loader} alt="loading..." />}
+              {!event && !event.start_time && <img src={smallLoader} alt="loading..." />}
               {event && event.start_time && <h4>{formatDate(event.start_time, 'long')}</h4>}
               {}
             </div>
@@ -107,11 +107,11 @@ const EventPage = () => {
               <h1>{event.event_name}</h1>
             </div>
             <div className="event-header_leader">
-              {!leader && <img src={loader} alt="loading..." />}
+              {!leader && <img src={bigLoader} alt="loading..." />}
               {leader && <UserImage className="leader-image" user={leader} />}
               <div className="hosted-by">
                 Hosted by
-                {leader ? <h3>{leader.username}</h3> : <img src={loader} alt="loading..." />}
+                {leader ? <h3>{leader.username}</h3> : <img src={smallLoader} alt="loading..." />}
               </div>
               </div>
             </div>
@@ -162,7 +162,7 @@ const EventPage = () => {
           <hr color="#2C2629" />
           <div className="event-sim-events">
             <h2 id="body-color">Similar events nearby</h2>
-            <EventGallery events={events} parent={"eventPage"} user={currentUser} />
+            <EventGallery events={galleryEvents} parent={"eventPage"} user={currentUser} />
           </div>
         </div>
       </div>

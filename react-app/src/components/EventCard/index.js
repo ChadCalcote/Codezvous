@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BsCameraVideo, BsGeoAlt } from 'react-icons/bs';
 import RSVP from "../RSVP"
-import loader from  '../../Bars-0.7s-98px.gif'
+import smallLoader from '../../Spinner-1s-30px.gif';
 import UserImage from "../UserImage";
 import { formatDate, formatTime } from "../../dateFunctions";
 import "./EventCard.css";
@@ -45,7 +45,7 @@ const EventCard = ({ event, user }) => {
     <div className="event-card">
       <a href={`/events/${event.id}`}>
       <div className="event-card_date">
-        {!event.start_time && <img src={loader} alt="loading..."/>}
+        {!event.start_time && <img src={smallLoader} alt="loading..."/>}
         {`${formatTime(event.start_time)} ${formatDate(event.start_time, 'long')}`} 
         <RSVP 
           hidden={attending}
@@ -86,7 +86,7 @@ const EventCard = ({ event, user }) => {
             {attendees && attendees.length > 0 ? `${attendees.length} going` : "1 going"}
           </div>
           <div className="event-card_attendees_pics">
-          {!attendeesForImages[0] && <img src={loader} alt="loading..."/>}
+          {!attendeesForImages[0] && <img src={smallLoader} alt="loading..."/>}
           {attendeesForImages[0] && 
             attendeesForImages.map((user, i) => 
               <UserImage 

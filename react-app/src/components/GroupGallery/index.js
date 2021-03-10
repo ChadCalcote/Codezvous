@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import GroupCard from '../GroupCard'
-import loader from '../../Bars-0.7s-98px.gif'
+import bigLoader from '../../Spinner-1s-237px.gif';
 import './GroupGallery.css'
 
 const GroupGallery = ({ user, type, groups }) => {
@@ -27,7 +27,7 @@ const GroupGallery = ({ user, type, groups }) => {
 
   return (
     <div className="group-gallery">
-      {!groups && <img src={loader} alt="loading..." />}
+      {!groups && <img src={bigLoader} alt="loading..." />}
       {Array.isArray(groups) && groupsToDisplay.map(group => <GroupCard group={group} user={user} key={group.id} />)}
     </div>
   )
