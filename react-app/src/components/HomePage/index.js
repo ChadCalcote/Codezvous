@@ -13,24 +13,8 @@ const HomePage = () => {
     const user = useSelector(state => state.session) // current user
     const groups = useSelector(state => state.groups);
 
-    // const [eventsShown, setEventsShown] = useState([...events]);
     const [ galleryToDisplay, setGalleryToDisplay ] = useState("event") // events or groups
     const [ eventListDisplayed, setEventListDisplayed ] = useState(true)
-    
-	// let EventsRegex = new RegExp(query, 'i');
-	// const filterEvents = () => {
-    //     if (query.length > 0) {
-    //         let eventName = [...events].filter((event) => EventsRegex.test(event.event_name));
-	// 		let eventDescription = [...events].filter(event => EventsRegex.test(event.description))
-	// 		let eventAddress = [...events].filter(event => EventsRegex.test(event.address))
-	// 		let eventCity = [...events].filter(event => EventsRegex.test(event.city))
-	// 		let eventState = [...events].filter(event => EventsRegex.test(event.state))
-	// 		let eventZipcode = [...events].filter(event => EventsRegex.test(event.zip_code))
-    //         setEventsShown([...eventName, ...eventDescription, ...eventAddress, ...eventCity, ...eventState, ...eventZipcode,]);
-	// 	} else if (query.length === 0) {
-    //         setEventsShown([...events]);
-	// 	}
-	// };
     
     const dispatch = useDispatch();
     
@@ -80,12 +64,6 @@ const HomePage = () => {
         <div className="home-page">
             <div className="home-page_header">
                 <h1>Find your next event</h1>
-                {/* <div className="searchbar">
-                    <SearchBar
-                        query={query}
-                        setQuery={setQuery}
-                    />
-                </div> */}
                 <div id="home-page_header_buttons">
                     <button className="toggle" id="group-toggle" disabled={!eventListDisplayed} onClick={()=>handleToggleClick()}><h2>Groups</h2></button>
                     <button className="toggle" id="event-toggle" disabled={eventListDisplayed} onClick={()=>handleToggleClick()}><h2>Calendar</h2></button>
