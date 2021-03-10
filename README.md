@@ -25,6 +25,9 @@ The backend is a Python Flask server with a PostgreSQL database.
 
 **Key Features**
 * User sign in / sign up with flask-login authentication and encrypted password with werkzeug
+ 
+![Animated GIF-downsized_large](https://user-images.githubusercontent.com/65975008/110565690-17928100-810c-11eb-8dcb-b456bf771598.gif)
+
 * View, create, and join tech groups in your area
 * View, create, and RSVP for events of the groups you are a part of
 * Comment and see other comments on events
