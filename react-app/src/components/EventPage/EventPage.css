@@ -158,6 +158,10 @@ Dark Pastel Green: #35C04A
     margin-bottom: 18.72px;
 }
 
-.delete-event_button a {
+.delete-event_button > a {
     color: #F7405F;
+}
+
+.delete-event_button:hover {
+    opacity: 0.8;
 }
