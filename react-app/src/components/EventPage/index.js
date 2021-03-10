@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formatTime, formatDate } from '../../dateFunctions';
@@ -19,6 +19,7 @@ import smallLoader from '../../Spinner-1s-30px.gif';
 import "./EventPage.css";
 
 const EventPage = () => {
+  const history = useHistory();
   const params = useParams();
   const { eventId } = params;
   const dispatch = useDispatch();
@@ -89,7 +90,10 @@ const EventPage = () => {
     const confirmation = window.confirm("Are you sure you want to delete this event?");
 
     if (confirmation) {
-      await fetch(`/api/events/${eventId}`, { method: "DELETE" }) 
+      await fetch(`/api/events/${eventId}`, { method: "DELETE" });
+      history.push(`/groups/${group.id}`);
+    } else {
+      return null;
     }
   }
 
@@ -116,8 +120,7 @@ const EventPage = () => {
               </div>
             </div>
               {group.leader_id == currentUser.id ? <button className="delete-event_button" onClick={deleteEventOnClick}>
-                <Link to={`/groups/${group.id}`}>Cancel Event
-                </Link>
+                <Link>Cancel Event</Link>
                 </button>: null}
         </div>
         <hr color="#2C2629" />
