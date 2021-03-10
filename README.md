@@ -30,6 +30,9 @@ The backend is a Python Flask server with a PostgreSQL database.
 
 * View, create, and join tech groups in your area
 * View, create, and RSVP for events of the groups you are a part of
+
+![Animated GIF-downsized_large (2)](https://user-images.githubusercontent.com/65975008/110568954-1152d380-8111-11eb-937a-1c897648f37e.gif)
+
 * Comment and see other comments on events
 
 ## Technologies Used
