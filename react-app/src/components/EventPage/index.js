@@ -36,10 +36,17 @@ const EventPage = () => {
   const comments = useSelector(state => state.comments); // event comments
   const currentUser = useSelector(state => state.session);
 
+
   useEffect(() => {
     dispatch(fetchAllEvents()); // sets events redux.....triggers setSelectedEvents
     dispatch(fetchAllComments(eventId));
     dispatch(fetchEventUsers(eventId));
+    async function fetchData() {
+      const responseFromDb = await fetch(`/api/events/${eventId}`);
+      const foundEvent = await responseFromDb.json();
+      setEvent(foundEvent);
+    }
+    fetchData();
   }, [dispatch, eventId]);
 
   useEffect(() => {
@@ -53,11 +60,13 @@ const EventPage = () => {
     function setSelectedEvents(events) {
       const eventsArray = events.events
       if (Array.isArray(eventsArray)) {
-        setEvent(eventsArray.find(event => eventId == event.id)); // sets event on page
+        // setEvent(eventsArray.find(event => eventId == event.id)); // sets event on page
         setGalleryEvents(eventsArray.slice(0, 3));  // sets gallery of recommended events
       }
     }
-    setSelectedEvents({ events }); //triggers redux state of group
+    if (events) {
+      setSelectedEvents({ events }); //triggers redux state of group
+    }
   }, [events, eventId]);
 
   useEffect(() => {
@@ -78,7 +87,7 @@ const EventPage = () => {
   const deleteEventOnClick = async (e) => {
     // e.preventDefault();
     const confirmation = window.confirm("Are you sure you want to delete this event?");
-    
+
     if (confirmation) {
       await fetch(`/api/events/${eventId}`, { method: "DELETE" }) 
     }
@@ -90,8 +99,8 @@ const EventPage = () => {
         <div className="event-header">
           <div className="event-header-content">
             <div className="event-header_date">
-              {!event.start_time && <img src={loader} alt="loading..." />}
-              {event.start_time && <h4>{formatDate(event.start_time, 'long')}</h4>}
+              {!event && !event.start_time && <img src={loader} alt="loading..." />}
+              {event && event.start_time && <h4>{formatDate(event.start_time, 'long')}</h4>}
               {}
             </div>
             <div className="event-header_title">

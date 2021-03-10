@@ -66,10 +66,10 @@ const EventCard = ({ event, user }) => {
           {event.virtual ?
               <>
                 <BsCameraVideo />{`  Virtual event`}
-              </> 
-            : 
+              </>
+            :
                 <div id="event-card_location_physical">
-                  <BsGeoAlt />  
+                  <BsGeoAlt />
                   <div>
                     <div>
                       {event.address}

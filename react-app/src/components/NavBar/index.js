@@ -22,7 +22,7 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
 			</div>
 		{authenticated ? <div className="header_right">
 			<div className="create_group">
-			<NavLink to="/create-group" exact={true} authenticated={authenticated} activeClassName="active">
+			<NavLink to="/create-group" exact={true} authenticated={authenticated.toString()} activeClassName="active">
 				Start a new group
 			</NavLink>
 			</div>

@@ -12,6 +12,7 @@ const GroupForm = () => {
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState();
   const [imageUrl, setImageUrl] = useState("");
+  const [errors, setErrors] = useState([]);
   const currentUser = useSelector(state => state.session);
 
   const createGroup = async (group_name, description, city, state, zip_code, image_url) => {
@@ -36,14 +37,20 @@ const GroupForm = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    setErrors([]);
     const group = await createGroup(groupName, description, city, state, zipCode, imageUrl);
-    setGroupName("");
-    setDescription("");
-    setCity("");
-    setState("");
-    setZipCode(0);
-    setImageUrl("");
-    history.push(`/groups/${group.id}`);
+    if (!group.errors) {
+      setGroupName("");
+      setDescription("");
+      setCity("");
+      setState("");
+      setZipCode(0);
+      setImageUrl("");
+      history.push(`/groups/${group.id}`);
+    } else {
+      setErrors(group.errors);
+    }
+    
   };
 
   return (
@@ -115,7 +122,14 @@ const GroupForm = () => {
             value={imageUrl}
           />
         </div>
-        <button type="submit" className="group-form-submit-button">Create Group</button>
+        <div className="group-form_errors">
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+        <button type="submit" className="group-form-submit-button">
+          Create Group
+        </button>
       </div>
     </form>
   );

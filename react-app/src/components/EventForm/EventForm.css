@@ -96,4 +96,6 @@
     position: relative;
   }
 
-  
+   .event-form_errors {
+    color: #F7405F;
+  }
