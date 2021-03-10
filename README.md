@@ -64,7 +64,9 @@ Code Snippet Photos
 ## Backend Overview
 The Flask backend is a collection of RESTful routes serving data to the frontend and an interface with the Postgres database.
 
-The database is queried using the SQLAlchemy ORM, and seed data was created using the faker packing and added using the Alembic library.
+The database is queried using the SQLAlchemy ORM, and seed data was created using the faker packing and added using the Alembic library:
+
+<img width="920" alt="Codezvous" src="https://user-images.githubusercontent.com/65975008/110566185-e4042680-810c-11eb-9c45-65259e4bf2c3.png">
 
 ## Backend Installation and Setup
 
