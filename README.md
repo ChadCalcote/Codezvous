@@ -38,13 +38,13 @@ The backend is a Python Flask server with a PostgreSQL database.
 ## Technologies Used
 * Frontend
   * React
-  * Javascript
+  * JavaScript
   * Redux
   * CSS
 * Backend
   * Flask
   * Python
-  * Postgres
+  * PostgreSQL
   * SQLAlchemy
   * Alembic
   * Heroku deployment via Docker
@@ -52,12 +52,12 @@ The backend is a Python Flask server with a PostgreSQL database.
 ## Application Architecture
 The frontend is a `create-react-app` using functional components with hooks. The backend is a Flask server with various RESTful endpoints. They are deployed via Docker to a Heroku server.
 
-##### Codezvous Postgres Database Schema
+##### Codezvous PostgreSQL Database Schema
 ![image](https://user-images.githubusercontent.com/65975008/110401346-a339de00-8036-11eb-842f-8714e64364da.png)
 
 
 ## Frontend Overview
-The front end is is modeled after Meetup and uses all original styling. We implemented a custom component library for all events, groups, and users to keep styling the same and DRY up the code base.
+The front end is modeled after Meetup and uses all original styling. We implemented a custom component library for all events, groups, and users to keep styling the same and DRY up the code base.
 
 Code Snippet Description Here:
 
@@ -65,7 +65,7 @@ Code Snippet Photos
 Code Snippet Photos
 
 ## Backend Overview
-The Flask backend is a collection of RESTful routes serving data to the frontend and an interface with the Postgres database.
+The Flask backend is a collection of RESTful routes serving data to the frontend and an interface with the PostgreSQL database.
 
 The database is queried using the SQLAlchemy ORM, and seed data was created using the faker packing and added using the Alembic library:
 
